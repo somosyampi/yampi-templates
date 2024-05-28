@@ -1,0 +1,128 @@
+{% set sectionConfig = pageConfig.data.sections.main_product_content %}
+{% set categoriesBreadcrumbs = product.data.breadcrumbs.data|map(breadcrumb => {
+    'link': breadcrumb.url_path ?: '',
+    'name': breadcrumb.name ?: ''
+}) %}
+
+{% set allBreadcrumbs = categoriesBreadcrumbs|merge([{
+    'link': '',
+    'name': product.data.name
+}]) %}
+
+{% set hasVideo = false %}
+
+{% set video = product.data.extras.data.video %}
+{% if video %}
+    {% set hasVideo = video is defined %}
+{% endif %}
+
+<section class="main-product-content container">
+    {% include "breadcrumbs.twig" with { 'levels': allBreadcrumbs } %}
+
+    <div class="main-product-holder flex">
+        <div class="main-product-images">
+            <product-zoom :has-video="{{ hasVideo ? 'true' : 'false' }}"></product-zoom>
+        </div>
+
+        <div class="main-product-info">
+            <product-info
+                v-slot="{ sku, availability, warranty, price, formattedPrice, priceTypeText }"
+                selected-price="{{ pageConfig.data.theme.params.highlight_type_payment }}"
+            >
+                {% if product.data.flags.data|length > 0 %}
+                    <div class="holder-flags">
+                        {% for flag in product.data.flags.data %}
+                            <span class="flag"
+                                  style="--flag-color: {{ flag.text_color }}; --flag-bg-color: {{ flag.background_color }};">
+                                {{ flag.name }}
+                            </span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% if sectionConfig.params.show_sku or sectionConfig.params.show_availability %}
+                    <div class="reference-availability">
+                        {% if sectionConfig.params.show_sku %}
+                            <span class="main-product-reference">
+                                Ref.:
+                                <span v-text="sku">
+                                    {{ product.data.skus.data.0.sku }}
+                                </span>
+                            </span>
+                        {% endif %}
+
+                        {% if sectionConfig.params.show_sku and sectionConfig.params.show_availability %}
+                            <span> | </span>
+                        {% endif %}
+
+                        {% if sectionConfig.params.show_availability %}
+                            <span class="main-product-availability">
+                                Disponibilidade:
+                                <span v-text="availability">
+                                    {{ product.data.skus.data.0.days_availability_formated }}
+                                </span>
+                            </span>
+                        {% endif %}
+                    </div>
+                {% endif %}
+
+                {% if sectionConfig.params.show_warranty and product.data.warranty %}
+                    <div class="main-product-guarantee">
+                        Garantia:
+                        <span v-text="warranty">
+                            {{ product.data.warranty }}
+                        </span>
+                        {{ product.data.warranty > 1 ? 'meses' : 'mês' }}
+                    </div>
+                {% endif %}
+
+                <h1 class="main-product-name theme-title">{{ product.data.name }}</h1>
+
+                <average-rating
+                    v-if="{{ sectionConfig.params.show_average_review ? 'true' : 'false' }}"
+                    :product="{{ product|json_encode }}"
+                ></average-rating>
+
+                <div class="main-product-prices">
+                    {% set price = product.data.prices.data %}
+
+                    <div class="old-price" v-if="price.has_promotion" v-text="price.price_sale_formated">
+                        {{ price.price_sale_formated }}
+                    </div>
+
+                    <div class="flex">
+                        <div class="actual-price price">
+                            <span v-text="formattedPrice"></span>
+                            <span class="payment-type--product" v-text="priceTypeText"></span>
+                        </div>
+
+                        <discount-tag class="-main-product" :value="price.percent_discount"></discount-tag>
+                    </div>
+
+                    <installments-text :key="price"></installments-text>
+
+                    {% if sectionConfig.params.show_all_installments|default(true) %}
+                        <installments
+                            :show-all-installments="{{ sectionConfig.params.show_all_installments ? 'true' : 'false' }}"
+                            :loader-height="24"
+                        ></installments>
+                    {% endif %}
+                </div>
+
+                <product-customizations
+                    buy-button-text="{{ sectionConfig.params.buy_button_text }}"
+                    :show-quantity-selector="{{ sectionConfig.params.show_quantity_selector ? 'true' : 'false' }}"
+                    :show-inventory-countdown="{{ sectionConfig.params.show_inventory_countdown ? 'true' : 'false' }}"
+                    :show-shipping-form="{{ sectionConfig.params.show_shipping_form ? 'true' : 'false' }}"
+                    :show-modal-after-purchase="{{ sectionConfig.params.show_modal_after_purchase ? 'true' : 'false' }}"
+                    :show-mobile-floating-button="{{ sectionConfig.params.show_mobile_floating_button ? 'true' : 'false' }}"
+                    :cart-type="{{ pageConfig.data.theme.params.cart_type|json_encode }}"
+                    variations-style="{{ sectionConfig.params.product_variations_style|default('list') }}"
+                ></product-customizations>
+            </product-info>
+        </div>
+    </div>
+
+    <product-groups></product-groups>
+
+</section>

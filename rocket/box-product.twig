@@ -1,0 +1,130 @@
+{% set highlightTypePayment = pageConfig.data.theme.params.highlight_type_payment ?: 'promotional' %}
+
+{% set price = {
+    'path': 'prices.data.price_formated',
+    'text': ''
+} %}
+
+{% set pricePath = {
+    'pix': {
+        'path': 'prices.data.pix.price_formatted',
+        'text': 'no pix'
+    },
+    'billet': {
+        'path': 'prices.data.billet.price_formated',
+        'text': 'no boleto',
+    },
+    'promotional': {
+        'path': 'prices.data.price_formated',
+        'text': ''
+    },
+} %}
+
+{% set price = pricePath[highlightTypePayment] %}
+
+{% set fallbackPrice = pricePath['promotional']['path'] %}
+{% set selectedPrice = price.path %}
+
+
+<div 
+    class="box-product 
+    {% if pageConfig.data.theme.params.grids_text_align == 'center' %}-center{% endif %}" 
+    {% if not product %}slot-scope="data"{% endif %}
+>
+    <a
+        {{ product
+            ? "href='#{product.data['url_path']}'"
+            : ':href="data.product.url_path"'
+        }}
+        class="block -clean"
+    >
+        <div class="holder-images relative-tags">
+            <discount-tag :value="data.product.prices.data.percent_discount"></discount-tag>
+
+            <div class="image-ratio">
+                {% if product %}
+                    <x-image class="-loading" src="{{ product.data['images']['data'][0]['url'] }}" :thumbor="{'resize': '275x275'}" alt="{{ product.data['name'] }}" />
+                {% else %}
+                    <custom-image v-if="data.product.images" :src="data.product.images.data[0] ? data.product.images.data[0].url : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'" :thumbor-enabled="data.product.images.data[0] ? true : false" :thumbor="{'resize': '275x275'}" :alt="data.product.name" class="-loading"></custom-image>
+                {% endif %}
+            </div>
+
+            {% if pageConfig.data.theme.params.show_add_to_cart_button %}
+                <buy-button
+                    {% if product %}
+                        :product="{{ product.data | json_encode }}"
+                    {% else %}
+                        :product="data.product"
+                    {% endif %}
+                >
+                    <template slot="buy-button">
+                        <svg width="29" height="24" viewBox="0 0 29 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 12.5831C2.44477e-08 12.3035 0.2267 12.0768 0.506349 12.0768L8.60794 12.0768C8.88758 12.0768 9.11429 12.3035 9.11429 12.5831C9.11429 12.8628 8.88758 13.0895 8.60794 13.0895L0.506349 13.0895C0.2267 13.0895 -2.44477e-08 12.8628 0 12.5831Z" fill="#222222"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.55714 7.85718C4.83679 7.85718 5.06349 8.08388 5.06349 8.36353L5.06349 16.4651C5.06349 16.7448 4.83679 16.9715 4.55714 16.9715C4.27749 16.9715 4.05079 16.7448 4.05079 16.4651L4.05079 8.36353C4.05079 8.08388 4.27749 7.85718 4.55714 7.85718Z" fill="#222222"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M14.4395 17.3649C14.9667 17.3649 15.3941 16.9375 15.3941 16.4103C15.3941 15.8831 14.9667 15.4558 14.4395 15.4558C13.9123 15.4558 13.4849 15.8831 13.4849 16.4103C13.4849 16.9375 13.9123 17.3649 14.4395 17.3649ZM14.4395 18.5249C15.6074 18.5249 16.5541 17.5782 16.5541 16.4103C16.5541 15.2425 15.6074 14.2958 14.4395 14.2958C13.2717 14.2958 12.3249 15.2425 12.3249 16.4103C12.3249 17.5782 13.2717 18.5249 14.4395 18.5249Z" fill="#222222"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M20.3603 17.3649C20.8875 17.3649 21.3149 16.9375 21.3149 16.4103C21.3149 15.8831 20.8875 15.4558 20.3603 15.4558C19.8331 15.4558 19.4058 15.8831 19.4058 16.4103C19.4058 16.9375 19.8331 17.3649 20.3603 17.3649ZM20.3603 18.5249C21.5282 18.5249 22.4749 17.5782 22.4749 16.4103C22.4749 15.2425 21.5282 14.2958 20.3603 14.2958C19.1925 14.2958 18.2458 15.2425 18.2458 16.4103C18.2458 17.5782 19.1925 18.5249 20.3603 18.5249Z" fill="#222222"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.48242 4.74992C8.48242 4.4296 8.7421 4.16992 9.06242 4.16992H9.98229C10.5506 4.16992 11.0535 4.5377 11.2259 5.07924L11.862 7.07858C11.8946 7.07289 11.9282 7.06992 11.9624 7.06992H22.8961C23.7986 7.06992 24.4286 7.96397 24.1251 8.81384L23.1742 11.4765C22.7826 12.573 21.744 13.3049 20.5797 13.3049H14.6403C13.4406 13.3049 12.3788 12.5285 12.015 11.3852L10.1205 5.43096C10.1013 5.37079 10.0454 5.32992 9.98229 5.32992H9.06242C8.7421 5.32992 8.48242 5.07025 8.48242 4.74992ZM12.2283 8.22992L13.1204 11.0335C13.331 11.6954 13.9457 12.1449 14.6403 12.1449H20.5797C21.2537 12.1449 21.855 11.7212 22.0817 11.0864L23.0327 8.42369C23.0664 8.32926 22.9964 8.22992 22.8961 8.22992H12.2283Z" fill="#222222"/>
+                        </svg>
+                    </template>
+                </buy-button>
+            {% endif %}
+        </div>
+        <div class="holder-info">
+            <flags {% if product %}:default-flags="{{ product.data['flags']['data'] | json_encode }}"{% else %}:product="data.product"{% endif %}></flags>
+
+            {% if pageConfig.data.theme.params.show_review_average %}
+                <average-rating {% if product %}:product="{{ product.data | json_encode }}"{% else %}:product="data.product"{% endif %} class="{% if pageConfig.data.theme.params.grids_text_align == 'center' %}-center{% endif %}" :is-grid="true"></average-rating>
+            {% endif %}
+
+            {% if pageConfig.data.theme.params.grids_brand_enabled %}
+                <div class="product-brand ellipsis">
+                    {{ '{{ data.product.brand.data.name }}' }}
+                </div>
+            {% endif %}
+
+            <div class="product-name ellipsis-multiline l2">
+                {{ '{{ data.product.name }}' }}
+            </div>
+
+            <div class="product-prices">
+                <div class="flex -vcenter -wrap">
+                    <span class="product-old-price old-price" 
+                        {% if not product %}v-if="data.product.prices.data.has_promotion"{% endif %}
+                    >
+                        {{ '{{ data.product.prices.data.price_sale_formated }}' }}
+                    </span>
+                
+                    <span class="product-actual-price price">
+                        {% if product %}
+                            <div>
+                                {{ selectedPrice ?: fallbackPrice }}
+                                {% if selectedPrice %}
+                                    <span class="payment-type">{{ price['text'] }}</span>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+
+                        {% if not product %}
+                            <div {% if 'data.product.' ~ price.path %}v-if="data.product.{{ price.path }}"{% endif %}>
+                                {{ '{{ data.product.' ~ price.path ~ '}}' }} <span class="payment-type">{{ price['text'] }}</span>
+                            </div>
+                            <div v-else>
+                                {{ '{{ data.product.prices.data.price_formated }}' }}
+                            </div>
+                        {% endif %}
+                    </span>
+                </div>
+
+                {% if pageConfig.data.theme.params.show_max_installment %}
+                    <installments-text 
+                        {% if product %}
+                            :product="{{ product | json_encode }}"
+                        {% else %}
+                            :product="data.product"
+                        {% endif %}
+                    ></installments-text>
+                {% endif %}
+            </div>
+        </div>
+    </a>
+</div>

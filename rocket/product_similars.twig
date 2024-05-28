@@ -1,0 +1,9 @@
+{% set sectionConfig = pageConfig.data.sections.product_similars %}
+<product-similars
+    class="collection"
+    title="{{ sectionConfig.params.title }}"
+    desktop-layout="{{ sectionConfig.params.desktop_layout }}"
+    :products-per-line="{{ sectionConfig.params.mobile_products_per_line }}"
+>
+    {% include "box-product.twig" with {'product': null} %}
+</product-similars>

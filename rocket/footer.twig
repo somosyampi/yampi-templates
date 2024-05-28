@@ -1,0 +1,205 @@
+{% set sectionConfig = pageConfig.data.sections.footer %}
+{% set isBusiness = merchantData.company.person_type == 'business' %}
+{% set storeName = isBusiness ? merchantData.company.razao_social : merchantData.company.name %}
+{% set storeDocument = isBusiness ? merchantData.company.cnpj : merchantData.company.cpf %}
+{% set storeDocument = storeDocument | only_numbers %}
+
+{% set showBrand = sectionConfig.params.show_brand %}
+{% set showAddress = sectionConfig.params.show_address %}
+{% set showPayment = sectionConfig.params.show_payment_icons %}
+{% set showYampiBrand = sectionConfig.params.show_yampi_brand %}
+{% set showDescription = sectionConfig.params.show_description %}
+{% set showSecurityLabel = sectionConfig.params.show_security_label %}
+{% set showBusinessInfo = sectionConfig.params.show_business_information and storeName and storeDocument %}
+{% set descriptionEnabled = sectionConfig.params.description_enabled and (showDescription or showBrand) %}
+
+{% set pages = merchantData.pages %}
+{% set email = merchantData.company.email %}
+{% set socialMedias = merchantData.social %}
+{% set phoneNumber = merchantData.company.phone.number %}
+{% set whatsappNumber = merchantData.company.whatsapp.number %}
+
+{% set showEmail = sectionConfig.params.show_email and email %}
+{% set showPhone = sectionConfig.params.show_phone and phoneNumber %}
+{% set showWhatsapp = sectionConfig.params.show_whatsapp and whatsappNumber %}
+
+{% set categories = sectionConfig.params.categories_type == 'all' ? categories : featured_categories %}
+
+{% set showPages = sectionConfig.params.show_pages and pages|length %}
+{% set showCookiesPolicyPage = merchantData.cookies_policy.show_page %}
+{% set showCategories = sectionConfig.params.categories_enabled and categories|length %}
+{% set showSocialMedias = sectionConfig.params.social_enabled and socialMedias|length %}
+{% set showContact = sectionConfig.params.support_enabled and (showWhatsapp or showPhone or showEmail) %}
+{% set haveAllColumns = descriptionEnabled and showPages and showCategories and showSocialMedias and showContact %}
+
+<vue-section
+    class="footer {{ sectionConfig.params.newsletter_enabled ? null : 'top-line' }} {{ haveAllColumns ? '-full-columns' : null }}"
+    style="
+        --footer-font-color: {{ sectionConfig.params.text_color }};
+        --footer-bg-color: {{ sectionConfig.params.background_color }};
+        --footer-opacity-color: {{ hex_to_rgba(sectionConfig.params.text_color, 0.5) }};
+        --footer-hr-color: {{ hex_to_rgba(sectionConfig.params.text_color, 0.1) }};
+    "
+    :delay="500"
+>
+    {% include 'newsletter.twig' %}
+
+    <div class="holder-footer">
+        <div class="container">
+            <div class="holder-footer-section section-1 flex -hcenter">
+                {% if descriptionEnabled %}
+                    <div class="holder-footer-logo">
+                        {% if showBrand %}
+                            <div class="logo">
+                                <img src="{{ merchantData.logo_url }}" alt="{{ merchantData.company.razao_social }}" width="auto" height="auto"/>
+                            </div>
+                        {% endif %}
+                        {% if showDescription %}
+                            <div class="-description">
+                                {{ merchantData.manifest.description }}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+                <div class="holder-footer-info flex">
+                    {% if showCategories %}
+                        <div class="-categories">
+                            <div class="-title">Categorias</div>
+                            <expandable title="Categorias">
+                                <ul>
+                                    {% for category in categories %}
+                                        <li><a href="{{ category['url_path'] }}">{{ category['name'] }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </expandable>
+                        </div>
+                    {% endif %}
+                    {% if showPages %}
+                        <div class="-pages">
+                            <div class="-title">Informações</div>
+                            <expandable title="Informações">
+                                <ul>
+                                    {% for page in pages %}
+                                        {% if page['slug'] != merchantData.cookies_policy.slug or showCookiesPolicyPage %}
+                                            <li><a href="{{ page['path'] }}">{{ page['name'] }}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </expandable>
+                        </div>
+                    {% endif %}
+                    {% if showContact %}
+                        <div class="flex holder-contact">
+                            <div class="-contact">
+                                <div class="-title">Atendimento</div>
+                                <expandable title="Atendimento">
+                                    <ul>
+                                        {% if showWhatsapp %}
+                                            <li class="contact-whatsapp">
+                                                <whatsapp class="flex -vcenter" url="{{ merchantData.company.whatsapp.url }}" number="{{ whatsappNumber }}"></whatsapp>
+                                            </li>
+                                        {% endif %}
+                                        {% if showPhone %}
+                                            <li class="contact-phone">
+                                                <a class="flex -vcenter" href="tel:{{ phoneNumber }}" target="_blank" rel="noreferrer nofollow">
+                                                    <svg width="17" height="17" fill="none"><defs/><path d="M.514 6.16C.181 5.26-.06 4.342.013 3.368c.046-.6.272-1.113.711-1.533.478-.452.93-.926 1.4-1.384.612-.604 1.38-.6 1.993 0 .378.37.753.749 1.128 1.127.363.364.73.727 1.094 1.094.638.646.642 1.399.004 2.041-.46.46-.915.922-1.381 1.373-.122.118-.134.218-.069.367.306.734.75 1.388 1.247 2 1.002 1.23 2.134 2.324 3.484 3.169.29.18.608.313.91.478.157.084.26.057.386-.073.456-.47.922-.933 1.389-1.396.612-.604 1.377-.607 1.989 0 .75.742 1.495 1.488 2.237 2.237.623.627.62 1.395-.008 2.026-.424.428-.872.834-1.27 1.28-.58.65-1.315.865-2.149.819-1.216-.065-2.337-.47-3.419-.994a18.604 18.604 0 01-6.169-4.825C2.25 9.661 1.202 8.017.514 6.16z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M6.178 2.832c-.242-.244-.485-.486-.728-.728l-.365-.364-.001-.001C4.709 1.36 4.335.983 3.958.614 3.686.347 3.395.227 3.12.227s-.565.118-.837.386c-.187.183-.375.371-.564.561A37.66 37.66 0 01.88 2c-.396.379-.599.837-.641 1.386-.069.927.16 1.808.488 2.695.677 1.828 1.71 3.45 2.967 4.949a18.379 18.379 0 006.094 4.766c1.07.518 2.159.909 3.332.972.782.043 1.443-.156 1.968-.743.27-.304.568-.593.86-.877.142-.139.283-.276.418-.412.281-.283.406-.579.407-.856.002-.277-.12-.571-.399-.851a307.98 307.98 0 00-2.236-2.235c-.272-.27-.561-.39-.835-.39-.273.001-.563.121-.835.39-.467.463-.931.923-1.385 1.391a.586.586 0 01-.3.182.524.524 0 01-.356-.067h-.001a10.21 10.21 0 00-.35-.18l-.102-.05a5.825 5.825 0 01-.47-.255c-1.377-.862-2.527-1.974-3.54-3.219-.504-.62-.962-1.293-1.28-2.053l.001.001.208-.09-.21.087.002.002a.562.562 0 01-.051-.323.541.541 0 01.17-.296c.349-.337.69-.68 1.033-1.024l.345-.346c.288-.29.412-.583.411-.858 0-.276-.127-.572-.415-.864z"/></svg>
+                                                    {{ phoneNumber | mask('## #########') }}
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                        {% if showEmail %}
+                                            <li class="contact-email">
+                                                <a class="flex -vcenter" href="mailto:{{ email }}" rel="nofollow">
+                                                    {{ email }}
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </expandable>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if showSocialMedias %}
+                        <div class="-social-midia">
+                            <ul class="inline">
+                                {% for media, mediaUrl in socialMedias %}
+                                    {% set media = media|replace('_url', '') %}
+                                    {% if sectionConfig.params['show_' ~ media] %}
+                                        <li class="social-midia -{{ media }}">
+                                            <a class="-clean" href="{{ mediaUrl }}" target="_blank" rel="noreferrer nofollow">
+                                                <fa-icon :icon="['fab', social_media_fa(media)]"></fa-icon>
+                                                <span class="-invisible">{{ media }}</span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% if showPayment or showSecurityLabel %}
+                <div class="holder-footer-section section-2">
+                    {% if showPayment %}
+                        <span class="holder-cards">
+                            <ul class="inline">
+                                {% for card in merchantData.payments %}
+                                    <li>
+                                        <x-image src="{{ card['icon_url'] }}" alt="{{ card['alias'] }}" width="35" height="24"/>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </span>
+                    {% endif %}
+                    {% if showSecurityLabel %}
+                        <i class="icon icon-security"></i>
+                    {% endif %}
+                </div>
+            {% endif %}
+            <div class="holder-footer-section section-3 flex {{ (showAddress or showBusinessInfo) and showYampiBrand ? '-between' : '-hcenter'}}">
+                {% if showAddress or showBusinessInfo %}
+                    <div class="holder-store-address">
+                        {% if showAddress %}
+                            <span>
+                                {{ merchantData.company.address.street }}
+                                {{ merchantData.company.address.number }}
+                                {{ merchantData.company.address.complement ? ', ' ~ merchantData.company.address.complement : null }}
+                            </span>
+                            <span class="divisor"> - </span>
+                            <span>{{ merchantData.company.address.neighborhood }}</span>
+                            <span class="divisor"> - </span>
+                            <span>{{ merchantData.company.address.city }}</span>
+                            {% if showBusinessInfo %}
+                                <br>
+                            {% endif %}
+                        {% endif %}
+                        {% if showBusinessInfo %}
+                            © {{ "now"|date("Y") }}
+                            {{ storeName }}
+                            {% if storeDocument %}
+                                <span class="store-document">
+                                    {{ isBusiness ? 'CNPJ:' : 'CPF:' }}
+                                    <a href="javascript:" class="no-action -clean">
+                                        {% if isBusiness %}
+                                            {{ storeDocument | mask('##.###.###/####-##') }}
+                                        {% else %}
+                                            {{ storeDocument | mask('###.###.###-##') }}
+                                        {% endif %}
+                                    </a>
+                                </span>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                {% endif %}
+                {% if showYampiBrand %}
+                    <div class="holder-yampi flex">
+                        <span>Usamos</span>
+                        <a href="https://www.yampi.com.br?utm_source=store_v2_footer&utm_campaign=yampi_brand_footer_link" target="_blank" rel="noreferrer nofollow" class="yampi">
+                            <img src="https://icons.yampi.me/svg/yampi.svg" alt="Yampi - Plataforma de E-commerce" width="71" height="24" class="h-va-middle h-inline-block h-ml10"/>
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</vue-section>

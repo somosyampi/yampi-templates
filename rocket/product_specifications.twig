@@ -1,0 +1,17 @@
+{% set sectionConfig = pageConfig.data.sections.product_specifications %}
+<section class="product-specifications">
+    {% for type in ['description', 'specifications', 'measures'] %}
+        {% if product.data.texts.data[type] %}
+            <div class="container">
+                <div class="-holder">
+                    <div class="theme-title">
+                        {{ sectionConfig.params['title_' ~ type] }}
+                    </div>
+                    <div class="-content editor-theme">
+                        {{ product.data.texts.data[type] | raw }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</section>

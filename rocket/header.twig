@@ -1,0 +1,182 @@
+{% set sectionConfig = pageConfig.data.sections.header %}
+{% set headerTextColor = sectionConfig.params.text_color %}
+{% set menuTextColorValue = sectionConfig.params.menu_text_color %}
+
+{% set headerBgColor = sectionConfig.params.background_color %}
+{% set menuBgColorValue = sectionConfig.params.menu_background_color %}
+
+{% set headerLayout = sectionConfig.params.header_layout %}
+
+{% set layoutMenuBgColorMap = {
+    "inline": headerBgColor,
+    "left": menuBgColorValue,
+    "center": menuBgColorValue,
+} %}
+
+{% set layoutMenuTextColorMap = {
+    "inline": headerTextColor,
+    "left": menuTextColorValue,
+    "center": menuTextColorValue,
+} %}
+
+{% set menuTextColorMapValue = layoutMenuTextColorMap[headerLayout] %}
+{% set menuTextColor = menuTextColorMapValue %}
+
+{% set menuBgColorMapValue = layoutMenuBgColorMap[headerLayout] %}
+{% set menuBgColor = menuBgColorMapValue %}
+
+<section class="section-header {{ sectionConfig.params.fixed_header ? '-fixed' : '' }}" id="section-header">
+    <header-provider :config="{{ sectionConfig | json_encode }}">
+        <fixed-header
+            class="header"
+            :fixed="{{ sectionConfig.params.fixed_header ? 'true' : 'false' }}"
+            style="
+                --header-font-color: {{ headerTextColor }};
+                --header-bg-color: {{ headerBgColor }};
+                --header-icon-color: {{ sectionConfig.params.header_icon_color }};
+                --menu-text-color: {{ menuTextColor }};
+                --menu-bg-color: {{ menuBgColor }};"
+        >
+            {% if sectionConfig.params.highlightbar_enabled and sectionConfig.params.highlightbar_text and (not sectionConfig.params.highlightbar_only_home or pageConfig.page == 'home') %}
+                <div class="header-hightlightbar" style="background-color: {{ sectionConfig.params.highlightbar_background }}; color: {{ sectionConfig.params.highlightbar_text_color }}">
+                    <div class="container">
+                        {{ sectionConfig.params.highlightbar_text }}
+                    </div>
+                    {% if sectionConfig.params.highlightbar_link %}
+                        <a href="{{ sectionConfig.params.highlightbar_link }}" class="full-link">
+                            <span class="-invisible">link</span>
+                        </a>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            {% if sectionConfig.params.topbar_enabled and (sectionConfig.params.topbar_show_whatsapp or sectionConfig.params.topbar_show_phone or sectionConfig.params.topbar_tracking_url) %}
+                <div class="header-topbar">
+                    <div class="container flex -between">
+                        {% if sectionConfig.params.topbar_show_whatsapp or sectionConfig.params.topbar_show_phone %}
+                            <div class="header-topbar_contact flex">
+                                <span>Atendimento: </span>
+                                {% include 'phones.twig' %}
+                            </div>
+                        {% endif %}
+
+                        {% if sectionConfig.params.topbar_tracking_url %}
+                            <a href="{{ sectionConfig.params.topbar_tracking_url }}" class="header-topbar_tracking flex -vcenter" rel="nofollow">
+                                <i class="icon icon-tracker"></i>
+                                Rastreie seu pedido
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+            <div class="container h-{{ sectionConfig.params.header_layout }}-container">
+                <div class="header-content flex -between {{ sectionConfig.params.header_layout != 'inline' ? '-center' : 'inline-header' }} {{ sectionConfig.params.header_layout == 'left' ? '-drop-menu' : '' }}">
+                    {% if sectionConfig.params.show_categories or featured_categories | length %}
+                        <Side-Bar-Trigger active-class="active-menu" name="menu">
+                            <svg width="15" height="11" fill="none" viewBox="0 0 15 11" class="mobile -block">
+                                <icon-store-menu-list> </icon-store-menu-list>
+                            </svg>
+                        </Side-Bar-Trigger>
+                    {% endif %}
+
+                    <div class="logo {{ merchantData.logo_url ? '' : 'logo--empty' }}">
+                        {% if merchantData.logo_url %}
+                            <a href="/" class="inline-block">
+                                <img src="{{ merchantData.logo_url }}" alt="{{ merchantData.company.razao_social }}" width="auto" height="auto">
+                            </a>
+                        {% else %}
+                            <empty-logo store-name="{{ merchantData.manifest.name }}" />
+                        {% endif %}
+                    </div>
+
+                    <div class="categories">
+                        <div class="mobile -block -order-0">
+                            <ul>
+                                {% if sectionConfig.params.topbar_enabled and sectionConfig.params.topbar_tracking_url %}
+                                <li>
+                                    <a href="{{ sectionConfig.params.topbar_tracking_url | e }}" rel="nofollow">
+                                        <i class="icon icon-tracker"></i>
+                                        Rastreie seu pedido
+                                    </a>
+                                </li>
+                                {% endif %}
+
+                                {% if sectionConfig.params.enable_shopping_page %}
+                                <li class="shopper-mobile-container">
+                                    <i class="icon icon-checklist mr-8"></i>
+                                    <rocket-anchor
+                                        href="{{ merchantData['checkout.shopper_url'] ~ '?store_token=' ~ merchantData['checkout.store_token'] }}"
+                                        label="Minhas compras"
+                                    >
+                                    </rocket-anchor>
+                                </li>
+                                {% endif %}
+                            </ul>
+
+                            <hr>
+                        </div>
+
+                        <nav role="navigation" class="categories-menu h-navigation">
+                            {% if sectionConfig.params.show_categories %}
+                                <ul class="categories-list">
+                                    <li class="dropdown-holder category-dropdown-holder">
+                                        <span class="block">
+                                            <svg width="15" height="11" fill="{{ menuTextColor }}" viewBox="0 0 15 11">
+                                                <path d="M1.51 9.927c0 .367-.311.688-.72.688-.408 0-.72-.321-.72-.688 0-.39.312-.688.72-.688.409 0 .72.298.72.688zm11.9-.688H4.185c-.408 0-.72.298-.72.688 0 .367.312.688.72.688h9.225c.408 0 .72-.321.72-.688 0-.39-.312-.688-.72-.688zM.79 4.655c-.408 0-.72.298-.72.688 0 .366.312.687.72.687.409 0 .72-.32.72-.687 0-.39-.311-.688-.72-.688zm12.62 0H4.185c-.408 0-.72.298-.72.688 0 .366.312.687.72.687h9.225c.408 0 .72-.32.72-.687 0-.39-.312-.688-.72-.688zM.79.07C.383.07.07.368.07.758c0 .367.312.688.72.688.409 0 .72-.321.72-.688C1.51.368 1.2.07.79.07zm3.395 1.376h9.225c.408 0 .72-.321.72-.688 0-.39-.312-.688-.72-.688H4.185c-.408 0-.72.298-.72.688 0 .367.312.688.72.688z" />
+                                                <path clip-rule="evenodd" d="M0 .758C0 .326.347 0 .79 0c.444 0 .79.326.79.758 0 .407-.344.758-.79.758-.445 0-.79-.35-.79-.758zM.79.141C.418.14.14.41.14.758c0 .326.28.617.65.617.371 0 .65-.29.65-.617C1.44.41 1.163.141.79.141zm2.605.617c0-.432.346-.758.79-.758h9.225c.443 0 .79.326.79.758 0 .407-.345.758-.79.758H4.185c-.445 0-.79-.35-.79-.758zm.79-.617c-.372 0-.65.27-.65.617 0 .326.28.617.65.617h9.225c.37 0 .65-.29.65-.617 0-.348-.278-.617-.65-.617H4.185zM0 5.343c0-.432.347-.758.79-.758.444 0 .79.326.79.758 0 .407-.344.758-.79.758C.345 6.1 0 5.75 0 5.343zm.79-.618c-.372 0-.65.27-.65.618 0 .326.28.617.65.617.371 0 .65-.291.65-.617 0-.348-.277-.618-.65-.618zm2.605.618c0-.432.346-.758.79-.758h9.225c.443 0 .79.326.79.758 0 .407-.345.758-.79.758H4.185c-.445 0-.79-.351-.79-.758zm.79-.618c-.372 0-.65.27-.65.618 0 .326.28.617.65.617h9.225c.37 0 .65-.291.65-.617 0-.348-.278-.618-.65-.618H4.185zM.79 9.31c-.372 0-.65.27-.65.617 0 .327.28.618.65.618.371 0 .65-.291.65-.618 0-.348-.277-.617-.65-.617zM0 9.927c0-.431.347-.758.79-.758.444 0 .79.327.79.758 0 .407-.344.758-.79.758-.445 0-.79-.35-.79-.758zm3.395 0c0-.431.346-.758.79-.758h9.225c.443 0 .79.327.79.758 0 .407-.345.758-.79.758H4.185c-.445 0-.79-.35-.79-.758zm.79-.617c-.372 0-.65.27-.65.617 0 .327.28.618.65.618h9.225c.37 0 .65-.291.65-.618 0-.348-.278-.617-.65-.617H4.185z" />
+                                            </svg>
+                                            <span>Categorias</span>
+                                        </span>
+
+                                        {% include "category-subcategory.twig" %}
+                                    </li>
+                                </ul>
+                            {% endif %}
+
+                            {% for categories in featured_categories %}
+                                <div class="h-categories-container">
+                                    <rocket-categories-nav
+                                        :main-category="{{ categories | json_encode }}"
+                                        categories-display="{{ sectionConfig.params.categories_display }}"
+                                    >
+                                    </rocket-categories-nav>
+                                </div>
+                            {% endfor %}
+
+                            {% if sectionConfig.params.topbar_show_whatsapp or sectionConfig.params.topbar_show_phone %}
+                                <div class="mobile -block -order-2">
+                                    <hr>
+                                    {% include 'phones.twig' %}
+                                </div>
+                            {% endif %}
+                        </nav>
+                    </div>
+                    <div class="holder-search">
+                        {% if sectionConfig.params.search_enabled %}
+                            <search-bar></search-bar>
+                        {% endif %}
+                    </div>
+
+                    <div class="header-content-right">
+                        {% if sectionConfig.params.enable_shopping_page %}
+                            <h-shopping-page-redirect></h-shopping-page-redirect>
+                        {% endif %}
+
+                        <div class="mini-cart-holder" style="--cart-icon-color: {{ sectionConfig.params.header_icon_color }};">
+                            <mini-cart
+                                :cart-type="'{{ pageConfig.data.theme.params.cart_type }}'"
+                                :show-cart-savings="{{ pageConfig.data.theme.params.show_cart_savings ? 'true' : 'false' }}"
+                                :show-product-cart-savings="{{ pageConfig.data.theme.params.show_product_cart_savings ? 'true' : 'false' }}"
+                                :empty-cart-helper-text="'{{ pageConfig.data.theme.params.empty_cart_helper_text }}'"
+                                :empty-cart-text-button="'{{ pageConfig.data.theme.params.empty_cart_text_button }}'"
+                                :empty-cart-link-button="'{{ pageConfig.data.theme.params.empty_cart_link_button }}'"
+                                :highlighted-price="'{{ pageConfig.data.theme.params.highlight_type_payment | default('promotional') }}'"
+                            />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </fixed-header>
+    </header-provider>
+</section>

@@ -1,0 +1,22 @@
+<div class="breadcrumbs container">
+    <ul class="inline crumbs">
+        <li>
+            <a href="/">
+                Página Inicial
+            </a>
+        </li>
+
+        {% for level in levels %}
+            <li><span class="breadcrumb-divider"></span></li>
+            <li>
+                <a href="{{ level.link ?: '#' }}">
+                    {% if level.useHtml is defined and level.useHtml %}
+                        {{ level.name|raw }}
+                    {% else %}
+                        {{ level.name }}
+                    {% endif %}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

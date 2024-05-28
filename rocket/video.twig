@@ -1,0 +1,29 @@
+{% set sectionConfig = pageConfig.data.sections.video %}
+{% set video = product.data.extras.data.video %}
+{% set data = [] %}
+{% if video %}
+    {% set data = video | youtube_url %}
+{% endif %}
+
+{% if data.video %}
+    <section class="video" id="holder-main-product-video">
+        <div class="container -remove-overflow">
+            <div class="theme-title">{{ sectionConfig.params.title }}</div>
+            <div class="yt-video">
+                {% if data.video %}
+                    <video-player
+                        video-url="{{ data.video }}"
+                        img-src="{{ data.thumbnail }}"
+                    ></video-player>
+                {% else %}
+                    <div class="video-placeholder">
+                        <svg width="118" height="80" viewBox="0 0 118 80" class="play-icon" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50 52.6199C50 54.4579 51.9052 55.6002 53.4164 54.6683L73.8824 42.0483C75.3725 41.1295 75.3725 38.8705 73.8824 37.9517L53.4164 25.3317C51.9052 24.3998 50 25.5421 50 27.3801V52.6199Z" fill="#BBBBBB"/>
+                            <path d="M3 40C3 19.5655 19.5655 3 40 3H78C98.4345 3 115 19.5655 115 40C115 60.4345 98.4345 77 78 77H40C19.5655 77 3 60.4345 3 40Z" stroke="#BBBBBB" stroke-width="6"/>
+                        </svg>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+{% endif %}

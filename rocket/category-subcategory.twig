@@ -1,0 +1,51 @@
+<category-subcategory class="dropdown category-subcategory-menu">
+    <div class="holder-categories -is-loading">
+        <div class="mobile -block">
+            <div class="close-dropdown inline-block -ml">
+                Voltar
+            </div>
+
+            <div class="category-title">
+                Categorias
+            </div>
+        </div>
+
+        <ul>
+            {% for key, category in categories %}
+                <li class="dropdown-holder item-category {{ category.slug }}">
+                    <a class="block" href="{{ category.url_path }}">
+                        {{ category.name }}
+                    </a>
+
+                    {% if category.children.data|length %}
+                        <div class="dropdown -simple holder-sub-categories">
+                            <div class="close-dropdown mobile -inline-block">
+                                Voltar
+                            </div>
+
+                            <div class="parent-category-name">
+                                {{ category.name }}
+                            </div>
+
+                            <ul>
+                                <li class="all-products">
+                                    <a class="block" href="{{ category.url_path }}">
+                                        Todos os produtos
+                                    </a>
+                                </li>
+
+                                {% for subCategory in category.children.data %}
+                                    <li class="item-sub-category {{ subCategory.slug }}">
+                                        <a class="block" href="{{ subCategory.url_path }}">
+                                            {{ subCategory.name }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</category-subcategory>

@@ -1,0 +1,9 @@
+{% if sectionConfig.params.newsletter_enabled %}
+    <div class="holder-newsletter container">
+        <div class="-title theme-title">
+            {{ sectionConfig.params.newsletter_title }}
+        </div>
+
+        <newsletter></newsletter>
+    </div>
+{% endif %}

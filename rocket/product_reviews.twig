@@ -1,0 +1,12 @@
+{% set sectionConfig = pageConfig.data.sections.product_reviews %}
+<section class="product-reviews container">
+    <product-reviews
+        order="{{ sectionConfig.params.visualization_type }}"
+        :show-reviews="{{ sectionConfig.params.show_reviews ? 'true' : 'false' }}"
+        :show-questions="{{ sectionConfig.params.show_questions ? 'true' : 'false' }}"
+        :show-dates="{{ sectionConfig.params.show_dates ? 'true' : 'false' }}"
+        :limit="999"
+        :show-average-reviews="{{ sectionConfig.params.show_average_reviews ? 'true' : 'false' }}"
+        icon="{{ merchantData.meta.icons.default }}"
+    ></product-reviews>
+</section>

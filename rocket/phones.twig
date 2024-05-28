@@ -1,0 +1,24 @@
+{% if sectionConfig.params.topbar_show_whatsapp or merchantData.company.whatsapp.number %}
+    <span class="header-topbar-contact-whatsapp contact-whatsapp green">
+        <whatsapp 
+            class="phone-link_whatsapp flex -vcenter"
+            url="{{ merchantData.company.whatsapp.url }}" 
+            number="{{ merchantData.company.whatsapp.number }}"
+        ></whatsapp>
+    </span>
+{% endif %}
+
+{% if sectionConfig.params.topbar_show_phone or merchantData.company.phone.number %}
+    <span class="header-topbar-contact-phone contact-phone">
+        <a 
+            href="tel:{{ merchantData.company.phone.number }}" 
+            class="phone-link flex -vcenter"
+            target="_blank"
+            rel="noreferrer nofollow"
+        >
+            <i class="icon icon-phone"></i>
+            {{ merchantData.company.phone.number | mask('## #########') }}
+            {# {!! vFilter($merchantData->get('company.phone.number'), "mask('## #########')") !!} #}
+        </a>
+    </span>
+{% endif %}
