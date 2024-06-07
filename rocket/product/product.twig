@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="manifest" href="/manifest.json" />
+
+    <script defer src="/js/manifest.js"></script>
+    <script defer src="/js/vendor.js"></script>
+    <script defer src="/js/app.js"></script>
+
+    <link href="{{ pageConfig.data.theme.params.fonts_texts_family | font_link }}" rel="stylesheet" media="screen" async>
+    <link href="{{ pageConfig.data.theme.params.fonts_titles_family | font_link }}" rel="stylesheet" media="screen" async>
+
+    <link rel="stylesheet" href="/css/global.css" media="screen">
+    <link rel="stylesheet" href="/css/themes/rocket-product.css" media="screen">
+    <link rel="stylesheet" href="/css/themes/rocket-product-mobile.css" media="screen and (max-width: 700px)">
+    <link rel="stylesheet" href="/css/themes/rocket.css" media="screen">
+    <link rel="stylesheet" href="/css/themes/rocket-mobile.css" media="screen and (max-width: 700px)">
+    <link rel="preload" href="/css/global.css" as="style" />
+    <link rel="preload" href="/css/themes/rocket.css" as="style" />
+
+    <link rel="preconnect" crossorigin href="https://cdn.yampi.io">
+    <link rel="preconnect" crossorigin href="https://api.dooki.com.br">
+    <link rel="preconnect" crossorigin href="https://api.yampi.io">
+    <link rel="preconnect" crossorigin href="https://images.yampi.io">
+    <link rel="preconnect" crossorigin href="https://images.yampi.me">
+    <link rel="preconnect" crossorigin href="https://fonts.gstatic.com">
+    <link rel="preconnect" crossorigin href="https://fonts.googleapis.com">
+    <link rel="preconnect" crossorigin href="//bam.nr-data.net">
+    <link rel="preconnect" crossorigin href="//www.facebook.com">
+
+    <link href="//king-assets.yampi.me" rel="dns-prefetch" />
+    <link href="//awesome-assets.yampi.me" rel="dns-prefetch" />
+    <link href="//api.mercadopago.com" rel="dns-prefetch" />
+    <link href="//www.mercadopago.com" rel="dns-prefetch" />
+    <link href="//www.google-analytics.com" rel="dns-prefetch" />
+    <link href="//www.googleadservices.com" rel="dns-prefetch" />
+    <link href="//googleads.g.doubleclick.net" rel="dns-prefetch" />
+    <link href="//bat.bing.com" rel="dns-prefetch" />
+    <link href="//connect.facebook.net" rel="dns-prefetch" />
+    <link href="//staticxx.facebook.com" rel="dns-prefetch" />
+    <link href="//static.xx.fbcdn.net" rel="dns-prefetch" />
+    <link href="//s3.amazonaws.com" rel="dns-prefetch" />
+    <link href="//manager.smartlook.com" rel="dns-prefetch" />
+    <link href="//vars.hotjar.com" rel="dns-prefetch" />
+    <link href="//dis.us.criteo.com" rel="dns-prefetch" />
+    <link href="https://bam.nr-data.net" rel="dns-prefetch" />
+    <link href="https://stats.g.doubleclick.net" rel="dns-prefetch" />
+    <link href="https://connect.facebook.net" rel="dns-prefetch" />
+    <script>
+        window.merchant = {{ merchantData | json_encode | raw }}
+        window.themeConfig = {{ pageConfig.data | json_encode | raw }}
+        window.Yampi = {
+            "api_domain": "http://api.test",
+            "page": "home",
+            "cart_token": '{{ cart_token() }}',
+            "env": "local",
+            "csrf_token": '{{ csrf_token() }}',
+            "session": {
+                "utm_source": "",
+                "utm_campaign": "",
+                "utm_medium": "",
+                "utm_term": "",
+                "utm_content": "",
+                "utm_name": "",
+                "utm_email": "",
+                "zipcode": "",
+                "customer": {
+                    "name": "",
+                    "email": ""
+                }
+            },
+            "mixpanel": {
+                "key": ""
+            },
+            "thumbor": {
+                "enabled": false,
+                "url": "https://images.yampi.io",
+                "default": {
+                    "fitIn": "fit-in",
+                    "filters": [
+                        "background_color(white)",
+                        "upscale()"
+                    ]
+                }
+            },
+            "sentry": {
+                "enabled": false,
+                "tracing": false,
+                "dsn": ""
+            },
+            "cache": {
+                "js": 10
+            },
+            "icon_url": "https://icons.yampi.me",
+            "mago_config": {
+                "user_id": '{{ cart_token() }}',
+                "recomm_id": ""
+            }
+        }
+        window.data = {
+            'product': {{ product | json_encode() | raw }}
+        }
+    </script>
+    {% set params = pageConfig.data.theme.params %}
+
+    <style>
+        :root {
+            /* Fixed variables */
+            --container-max-width: 1200px;
+            --box-product-max-width: 275px;
+            --default-background-color: #F5F5F5;
+            --default-opacity: .8;
+            --modal-transition-time: .5s;
+
+            --error-color: #E50F38;
+            --light-error-color: #FEF7F7;
+            --light-error-color-rgb: 254, 247, 247;
+
+            --front-end-white: #FFF;
+            --front-end-f5f5f5: #f5f5f5;
+            --pink-regular: #fa085b;
+
+            --black-dark: #222222;
+            --black-dark-rgb: 34, 34, 34;
+            --error-color-rgb: 229, 15, 56;
+            --black-medium: #666666;
+            --black-light: #999999;
+            --black-lightest: #E5E5E5;
+            --green: #00AE31;
+            --white: #FFFFFF;
+
+            /* Dinamic variables */
+            --color-general-primary: {{ params.color_general_primary }};
+            --color-general-secundary: {{ params.color_general_secundary }};
+
+            --color-btn-primary-background: {{ button_bg_color(params.buttons_btn_primary_style, params.color_btn_primary_background) }};
+            --color-btn-primary-background-rgb: {{ hex_to_rgb(params.color_btn_primary_background) }};
+            --color-btn-primary-background-outline: {{ params.color_btn_primary_background }};
+            --color-btn-primary-text: {{ params.color_btn_primary_text }};
+
+            --color-btn-secundary-background: {{ button_bg_color(params.buttons_btn_secundary_style, params.color_btn_secundary_background) }};
+            --color-btn-secundary-background-outline: {{ params.color_btn_secundary_background }};
+            --color-btn-secundary-text: {{ params.color_btn_secundary_text }};
+
+            --discount-tag-background: {{ params.color_tag_background }};
+            --discount-tag-color: {{ params.color_tag_text }};
+
+            --fonts-texts-family: {{ params.fonts_texts_family }};
+            --fonts-texts-size: {{ params.fonts_texts_size }}px;
+
+            --fonts-titles-family: {{ params.fonts_titles_family }};
+            --fonts-titles-weight: {{ font_weight(params.fonts_titles_family, params.fonts_titles_weight) }};
+            --fonts-titles-uppercase: {{ params.fonts_titles_uppercase ? 'uppercase' : 'initial' }};
+
+            --fonts-buttons-uppercase: {{ params.fonts_buttons_uppercase ? 'uppercase' : 'initial' }};
+
+            --theme-border-radius: {{ type_border_radius(params.buttons_general_format) }};
+            --slides-border-radius: {{ type_border_radius_slide(params.buttons_general_format) }};
+
+            --label-radius: {{ type_border_radius(params.grids_label_format) }};
+
+            /* Font size with base 14px */
+            --font-10: .7143rem;
+            --font-11: .7857rem;
+            --font-12: .85rem;
+            --font-13: .9285rem;
+            --font-14: 1rem;
+            --font-15: 1.07rem;
+            --font-16: 1.1428rem;
+            --font-17: 1.215rem;
+            --font-18: 1.286rem;
+            --font-20: 1.4285rem;
+            --font-21: 1.5rem;
+            --font-22: 1.5714rem;
+            --font-24: 1.7143rem;
+            --font-25: 1.7857rem;
+            --font-27: 1.9285rem;
+            --font-28: 2rem;
+            --font-30: 2.1428rem;
+            --font-48: 3.4286rem;
+
+            /* Font weights */
+            --font-regular: {{ font_weight(params.fonts_texts_family, 'regular') }};
+            --font-medium: {{ font_weight(params.fonts_texts_family, 'medium') }};
+            --font-bold: {{ font_weight(params.fonts_texts_family, 'bold') }};
+            --font-black: {{ font_weight(params.fonts_texts_family, 'black') }};
+
+        }
+    </style>
+
+</head>
+<body>
+    <div id="app">
+        {% for section in sections %}
+            {% include section ~ '.twig' %}
+        {% endfor %}
+    </div>
+</body>
+</html>
