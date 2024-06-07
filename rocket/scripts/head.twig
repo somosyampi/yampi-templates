@@ -1,0 +1,83 @@
+<link href="{{ pageConfig.data.theme.params.fonts_texts_family | font_link }}" rel="stylesheet" media="screen" async>
+<link href="{{ pageConfig.data.theme.params.fonts_titles_family | font_link }}" rel="stylesheet" media="screen" async>
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PNCZP452');</script>
+
+ <script>
+    window.merchant = {{ merchantData | json_encode | raw }}
+    window.themeConfig = {{ pageConfig.data | json_encode | raw }}
+    window.Yampi = {
+        "api_domain": "{{ YAMPI_API_URL }}",
+        "page": "{{ PAGE }}",
+        "cart_token": '{{ cart_token() }}',
+        "env": "{{ ENVIRONMENT }}",
+        "csrf_token": '{{ csrf_token() }}',
+        "session": {
+            "utm_source": "",
+            "utm_campaign": "",
+            "utm_medium": "",
+            "utm_term": "",
+            "utm_content": "",
+            "utm_name": "",
+            "utm_email": "",
+            "zipcode": "",
+            "customer": {
+                "name": "",
+                "email": ""
+            }
+        },
+        "mixpanel": {
+            "key": ""
+        },
+        "thumbor": {
+            "enabled": false,
+            "url": "https://images.yampi.io",
+            "default": {
+                "fitIn": "fit-in",
+                "filters": [
+                    "background_color(white)",
+                    "upscale()"
+                ]
+            }
+        },
+        "sentry": {
+            "enabled": false,
+            "tracing": false,
+            "dsn": ""
+        },
+        "cache": {
+            "js": 10
+        },
+        "icon_url": "https://icons.yampi.me",
+        "mago_config": {
+            "user_id": '{{ cart_token() }}',
+            "recomm_id": ""
+        }
+    }
+    window.data = {
+        'product': {{ product | json_encode() | raw }}
+    }
+</script>
+
+<link rel="stylesheet" href="/css/global.css" media="screen">
+<link rel="stylesheet" href="/css/themes/rocket-product.css" media="screen">
+<link rel="stylesheet" href="/css/themes/rocket-product-mobile.css" media="screen and (max-width: 700px)">
+<link rel="stylesheet" href="/css/themes/rocket.css" media="screen">
+<link rel="stylesheet" href="/css/themes/rocket-mobile.css" media="screen and (max-width: 700px)">
+<link rel="preload" href="/css/global.css" as="style" />
+<link rel="preload" href="/css/themes/rocket.css" as="style" />
+
+<style>
+    {{ pageConfig.data.theme.params.custom_css }}
+</style>
+
+{% include 'scripts/services/criteo.twig' %}
+{% include 'scripts/services/google-analytics.twig' %}
+{% include 'scripts/services/google-tag-manager.twig' %}
+{% include 'scripts/services/google-remarketing.twig' %}
+{% include 'scripts/services/rich-snippets.twig' %}
+{% include 'scripts/services/ana.twig' %}

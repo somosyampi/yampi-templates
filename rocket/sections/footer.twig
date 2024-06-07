@@ -42,7 +42,7 @@
     "
     :delay="500"
 >
-    {% include 'newsletter.twig' %}
+    {% include 'elements/newsletter.twig' %}
 
     <div class="holder-footer">
         <div class="container">
@@ -145,7 +145,14 @@
                             <ul class="inline">
                                 {% for card in merchantData.payments %}
                                     <li>
-                                        <x-image src="{{ card['icon_url'] }}" alt="{{ card['alias'] }}" width="35" height="24"/>
+                                        <img
+                                            v-lazyload 
+                                            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" 
+                                            alt="{{ card['alias'] }}"
+                                            data-src="{{ card['icon_url'] }}"
+                                            width="35" 
+                                            height="24"
+                                        >
                                     </li>
                                 {% endfor %}
                             </ul>
@@ -195,7 +202,15 @@
                     <div class="holder-yampi flex">
                         <span>Usamos</span>
                         <a href="https://www.yampi.com.br?utm_source=store_v2_footer&utm_campaign=yampi_brand_footer_link" target="_blank" rel="noreferrer nofollow" class="yampi">
-                            <img src="https://icons.yampi.me/svg/yampi.svg" alt="Yampi - Plataforma de E-commerce" width="71" height="24" class="h-va-middle h-inline-block h-ml10"/>
+                            <img
+                                v-lazyload
+                                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" 
+                                data-src="https://icons.yampi.me/svg/yampi.svg" 
+                                alt="Yampi - Plataforma de E-commerce" 
+                                width="71" 
+                                height="24" 
+                                class="h-va-middle h-inline-block h-ml10"
+                            />
                         </a>
                     </div>
                 {% endif %}

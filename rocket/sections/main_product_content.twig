@@ -17,7 +17,7 @@
 {% endif %}
 
 <section class="main-product-content container">
-    {% include "breadcrumbs.twig" with { 'levels': allBreadcrumbs } %}
+    {% include "elements/breadcrumbs.twig" with { 'levels': allBreadcrumbs } %}
 
     <div class="main-product-holder flex">
         <div class="main-product-images">
@@ -27,7 +27,7 @@
         <div class="main-product-info">
             <product-info
                 v-slot="{ sku, availability, warranty, price, formattedPrice, priceTypeText }"
-                selected-price="{{ pageConfig.data.theme.params.highlight_type_payment }}"
+                selected-price="{{ pageConfig.data.theme.params.highlight_type_payment | default('promotional') }}"
             >
                 {% if product.data.flags.data|length > 0 %}
                     <div class="holder-flags">
