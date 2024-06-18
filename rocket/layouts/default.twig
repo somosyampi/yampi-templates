@@ -1,0 +1,36 @@
+{% set previewClass = isPreview ? 'main_preview' : '' %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    {% include "elements/head.twig" %}
+</head>
+<body class="{{ merchantData.alias }} {{ previewClass }} {{ PAGE }} {{ pageConfig.data.theme.params.show_dark_mode ? 'dark-mode' : '' }}">
+
+    <div id="app">
+        {% for section in sections %}
+            {# @TODO: verificar a possibilidade de passar a sectionConfig como um parâmetro para o template #}
+            {# {% if section.visible %} #}
+                {% include 'sections/' ~ section ~ '.twig' %}
+            {# {% endif %} #}
+        {% endfor %}
+
+        <smooth-scroll :display-at="300">
+            <template slot-scope="{ scroll }">
+                <div class="scroll-top" @click="scroll">
+                    <i class="icon icon-scroll-top"></i>
+                </div>
+            </template>
+        </smooth-scroll>
+        
+        {% if merchantData.cookies_policy.active %}
+            <div class="container">
+                <cookies-warning />
+            </div>
+        {% endif %}
+    </div>
+
+    {% include "elements/footer.twig" %}
+</body>
+</html>

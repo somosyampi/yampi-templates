@@ -1,0 +1,3 @@
+{% if merchantData.services.chat.script and ENVIRONMENT == 'production' %}
+    {{ merchantData.services.chat.script | raw }}
+{% endif %}

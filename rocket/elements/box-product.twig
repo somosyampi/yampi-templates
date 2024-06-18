@@ -43,7 +43,12 @@
 
             <div class="image-ratio">
                 {% if product %}
-                    <x-image class="-loading" src="{{ product.data['images']['data'][0]['url'] }}" :thumbor="{'resize': '275x275'}" alt="{{ product.data['name'] }}" />
+                    <img 
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" 
+                        alt="{{ product.data['name'] }}"
+                        data-src="{{ thumborize(product.data['images']['data'][0]['url'], []) }}"
+                        class="-loading"
+                    >
                 {% else %}
                     <custom-image v-if="data.product.images" :src="data.product.images.data[0] ? data.product.images.data[0].url : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'" :thumbor-enabled="data.product.images.data[0] ? true : false" :thumbor="{'resize': '275x275'}" :alt="data.product.name" class="-loading"></custom-image>
                 {% endif %}

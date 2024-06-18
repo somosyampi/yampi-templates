@@ -1,0 +1,29 @@
+{% set trackingId = merchantData.services.google.analytics_v4.ga_tracking_id %}
+
+{% if trackingId or YAMPI_TRACKING_ID %}
+    <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id={{ trackingId ?? YAMPI_TRACKING_ID }}"
+    ></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+
+        gtag('js', new Date());
+
+        {% if trackingId %}
+            gtag('config', '{{ trackingId }}', { groups: 'storeAnalytics' });
+        {% endif %}
+        
+        {% if YAMPI_TRACKING_ID %}
+            gtag('config', '{{ YAMPI_TRACKING_ID }}');
+        {% endif %}
+
+        window.merchant.google = {
+            analytics: {
+                id: '{{ trackingId }}',
+                version: 4,
+            }
+        }
+    </script>
+{% endif %}
