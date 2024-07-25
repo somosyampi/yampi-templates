@@ -1,4 +1,4 @@
-{% if ENVIRONMENT == 'production' %}
+{% if environment == 'production' %}
     <script>
         !function(e,a,n,t,s,c){e.ana||((t=e.ana=function(){t.process?t.process.apply(t,arguments):t.queue.push(arguments)}).queue=[],t.t=+new Date,(s=a.createElement(n)).async=1,s.src="https://cdn.yampi.io/ana/ana.min.js?t="+864e5*Math.ceil(new Date/864e5),(c=a.getElementsByTagName(n)[0]).parentNode.insertBefore(s,c))}(window,document,"script");
     </script>
@@ -12,20 +12,19 @@
             session_id: window.Yampi.cart_token
         }
 
-        {% if PAGE == 'home' %}
+        {% if page == 'home' %}
             var anaEvent = 'view-home';
-        {% elseif PAGE == 'product' %}
+        {% elseif page == 'product' %}
             var anaEvent = 'view-product';
             anaParams.content_type = 'sku';
             anaParams.content_ids = [{{ product.data.skus.data.0.id }}];
             anaParams.product_id = {{ product.data.id }};
-            {# @TODO: get the recomm_id from the URL #}
-            {# anaParams.recomm_id = {{ Request::get('recomm_id') }} #}
-        {% elseif PAGE == 'category' %}
-            {# @TODO: adequate these variables #}
-            {# var anaEvent = '{{ $customData['isSearch'] ? 'search' : 'view-category' }}'; #}
+            anaParams.recomm_id = {{ recomm_id }}
+        {% elseif page == 'category' %}
+            {# @TODO: adequate these variables when in the category page #}
+            var anaEvent = '{{ isSearch ? 'search' : 'view-category' }}';
             anaParams.content_type = 'sku';
-            {# anaParams.content_ids = {{ json_encode($customData['skusIds']) }}; #}
+            anaParams.content_ids = {{ SKUS_IDS }};
         {% else %}
             var anaEvent = 'pageview';
         {% endif %}

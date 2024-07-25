@@ -1,9 +1,9 @@
 {% set trackingId = merchantData.services.google.analytics_v4.ga_tracking_id %}
 
-{% if trackingId or YAMPI_TRACKING_ID %}
+{% if trackingId or yampi_tracking_id %}
     <script
         async
-        src="https://www.googletagmanager.com/gtag/js?id={{ trackingId ?? YAMPI_TRACKING_ID }}"
+        src="https://www.googletagmanager.com/gtag/js?id={{ trackingId ?? yampi_tracking_id }}"
     ></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -15,8 +15,8 @@
             gtag('config', '{{ trackingId }}', { groups: 'storeAnalytics' });
         {% endif %}
         
-        {% if YAMPI_TRACKING_ID %}
-            gtag('config', '{{ YAMPI_TRACKING_ID }}');
+        {% if yampi_tracking_id %}
+            gtag('config', '{{ yampi_tracking_id }}');
         {% endif %}
 
         window.merchant.google = {

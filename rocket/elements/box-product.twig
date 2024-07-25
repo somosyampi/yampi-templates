@@ -75,10 +75,24 @@
             {% endif %}
         </div>
         <div class="holder-info">
-            <flags {% if product %}:default-flags="{{ product.data['flags']['data'] | json_encode }}"{% else %}:product="data.product"{% endif %}></flags>
+            <flags 
+                {% if product %}
+                    :default-flags="{{ product.data['flags']['data'] | json_encode }}"
+                {% else %}
+                    :product="data.product"
+                {% endif %}
+            ></flags>
 
             {% if pageConfig.data.theme.params.show_review_average %}
-                <average-rating {% if product %}:product="{{ product.data | json_encode }}"{% else %}:product="data.product"{% endif %} class="{% if pageConfig.data.theme.params.grids_text_align == 'center' %}-center{% endif %}" :is-grid="true"></average-rating>
+                <average-rating 
+                    {% if product %}
+                        :product="{{ product.data | json_encode }}"
+                    {% else %}
+                        :product="data.product"
+                    {% endif %} 
+                    class="{% if pageConfig.data.theme.params.grids_text_align == 'center' %}-center{% endif %}" 
+                    :is-grid="true"
+                ></average-rating>
             {% endif %}
 
             {% if pageConfig.data.theme.params.grids_brand_enabled %}

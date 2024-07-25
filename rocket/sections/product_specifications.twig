@@ -1,17 +1,18 @@
-{% set sectionConfig = pageConfig.data.sections.product_specifications %}
-<section class="product-specifications">
-    {% for type in ['description', 'specifications', 'measures'] %}
-        {% if product.data.texts.data[type] %}
-            <div class="container">
-                <div class="-holder">
-                    <div class="theme-title">
-                        {{ sectionConfig.params['title_' ~ type] }}
-                    </div>
-                    <div class="-content editor-theme">
-                        {{ product.data.texts.data[type] | raw }}
+<rocket-emitter emits="product_specifications" label="Especificações" order="{{ section.order }}">
+    <section class="product-specifications {{ "#{section.section_alias}-#{section.order}" }}">
+        {% for type in ['description', 'specifications', 'measures'] %}
+            {% if product.data.texts.data[type] %}
+                <div class="container">
+                    <div class="-holder">
+                        <div class="theme-title">
+                            {{ section.params['title_' ~ type] }}
+                        </div>
+                        <div class="-content editor-theme">
+                            {{ product.data.texts.data[type] | raw }}
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% endif %}
-    {% endfor %}
-</section>
+            {% endif %}
+        {% endfor %}
+    </section>
+</rocket-emitter>

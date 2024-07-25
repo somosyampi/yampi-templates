@@ -6,14 +6,13 @@
 <head>
     {% include "elements/head.twig" %}
 </head>
-<body class="{{ merchantData.alias }} {{ previewClass }} {{ PAGE }} {{ pageConfig.data.theme.params.show_dark_mode ? 'dark-mode' : '' }}">
+<body class="{{ merchantData.alias }} {{ previewClass }} {{ page }} {{ pageConfig.data.theme.params.show_dark_mode ? 'dark-mode' : '' }}">
 
     <div id="app">
         {% for section in sections %}
-            {# @TODO: verificar a possibilidade de passar a sectionConfig como um parâmetro para o template #}
-            {# {% if section.visible %} #}
-                {% include 'sections/' ~ section ~ '.twig' %}
-            {# {% endif %} #}
+            {% if section.visible %}
+                {% include 'sections/' ~ section.section_alias ~ '.twig' with section %}
+            {% endif %}
         {% endfor %}
 
         <smooth-scroll :display-at="300">

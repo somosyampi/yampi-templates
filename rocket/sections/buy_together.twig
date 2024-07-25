@@ -1,12 +1,14 @@
-{% set sectionConfig = pageConfig.data.sections.buy_together %}
-<section-provider
-    :config="{{ sectionConfig | json_encode }}"
-    :page-config="{{ pageConfig | json_encode }}"
->
-    <product-combos
-        title="{{ sectionConfig.params.title }}"
-        buy-button-text="{{ sectionConfig.params.buy_button_text }}"
-        :show-modal-after-purchase="true"
-        :center="'{{ pageConfig.data.theme.params.grids_text_align == 'center' ? true : false }}'"
-    ></product-combos>
-</section-provider>
+<rocket-emitter emits="buy_together" label="Compre junto" order="{{ section.order }}">
+    <section-provider
+        :config="{{ section | json_encode }}"
+        :page-config="{{ pageConfig | json_encode }}"
+    >
+        <product-combos
+            class="{{ "#{section.section_alias}-#{section.order}" }}"
+            title="{{ section.params.title }}"
+            buy-button-text="{{ section.params.buy_button_text }}"
+            :show-modal-after-purchase="true"
+            :center="'{{ pageConfig.data.theme.params.grids_text_align == 'center' ? true : false }}'"
+        ></product-combos>
+    </section-provider>
+</rocket-emitter>

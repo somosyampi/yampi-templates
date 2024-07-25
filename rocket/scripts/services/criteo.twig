@@ -1,4 +1,4 @@
-{% if ENVIRONMENT == 'production' and merchantData.services.criteo.account_id  %}
+{% if environment == 'production' and merchantData.services.criteo.account_id  %}
     <script type="text/javascript" src="//static.criteo.net/js/ld/ld.js" async="true"></script>
     <script type="text/javascript">
         window.criteo_q = window.criteo_q || [];
@@ -8,11 +8,11 @@
             { event: "setEmail", email: window.Yampi.session.customer.email },
             { event: "setSiteType", type: deviceType},
 
-            {% if PAGE == 'home' %}
+            {% if page == 'home' %}
                 { event: "viewHome"}
             {% endif %}
 
-            {% if PAGE == 'product' %}
+            {% if page == 'product' %}
                 { event: "viewItem", item: {{ product.data.sku_id }}}
             {% endif %}
         );

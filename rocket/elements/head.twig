@@ -12,15 +12,13 @@
 <script defer src="/js/app.js"></script>
 
 <!-- robots -->
-<meta name="robots" content="{{ ENVIRONMENT == 'production' ? 'index,follow' : 'nofollow' }}" />
+<meta name="robots" content="{{ environment == 'production' ? 'index,follow' : 'nofollow' }}" />
 
 {% for tag in merchantData.meta_tags %}
-    {{ tag.value }}
+    {{ tag.value | raw }}
 {% endfor %}
 
-{# {% autoescape %}
-    {{ generate_seo() }}
-{% endautoescape %} #}
+{{ generate_seo() | raw }}
 
 {% include 'scripts/head.twig' %}
 {% include 'elements/variables.twig' %}

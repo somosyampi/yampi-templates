@@ -1,9 +1,10 @@
-{% set sectionConfig = pageConfig.data.sections.product_similars %}
-<product-similars
-    class="collection"
-    title="{{ sectionConfig.params.title }}"
-    desktop-layout="{{ sectionConfig.params.desktop_layout }}"
-    :products-per-line="{{ sectionConfig.params.mobile_products_per_line }}"
->
-    {% include "elements/box-product.twig" with {'product': null} %}
-</product-similars>
+<rocket-emitter emits="product_similars" label="Produtos relacionados" order="{{ section.order }}">
+    <product-similars
+        class="collection {{ "#{section.section_alias}-#{section.order}" }}"
+        title="{{ section.params.title }}"
+        desktop-layout="{{ section.params.desktop_layout }}"
+        :products-per-line="{{ section.params.mobile_products_per_line }}"
+    >
+        {% include "elements/box-product.twig" with {'product': null} %}
+    </product-similars>
+</rockt-emitter>

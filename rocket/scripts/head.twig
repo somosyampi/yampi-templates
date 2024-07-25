@@ -11,10 +11,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     window.merchant = {{ merchantData | json_encode | raw }}
     window.themeConfig = {{ pageConfig.data | json_encode | raw }}
     window.Yampi = {
-        "api_domain": "{{ YAMPI_API_URL }}",
-        "page": "{{ PAGE }}",
+        "api_domain": "{{ yampi_api_url }}",
+        "page": "{{ page }}",
         "cart_token": '{{ cart_token() }}',
-        "env": "{{ ENVIRONMENT }}",
+        "env": "{{ environment }}",
         "csrf_token": '{{ csrf_token() }}',
         "session": {
             "utm_source": "",
@@ -55,7 +55,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         "icon_url": "https://icons.yampi.me",
         "mago_config": {
             "user_id": '{{ cart_token() }}',
-            "recomm_id": ""
+            "recomm_id": '{{ recomm_id }}'
         }
     }
     window.data = {
