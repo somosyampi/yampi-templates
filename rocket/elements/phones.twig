@@ -1,4 +1,4 @@
-{% if sectionConfig.params.topbar_show_whatsapp or merchantData.company.whatsapp.number %}
+{% if section.params.topbar_show_whatsapp or merchantData.company.whatsapp.number %}
     <span class="header-topbar-contact-whatsapp contact-whatsapp green">
         <whatsapp 
             class="phone-link_whatsapp flex -vcenter"
@@ -8,7 +8,7 @@
     </span>
 {% endif %}
 
-{% if sectionConfig.params.topbar_show_phone or merchantData.company.phone.number %}
+{% if section.params.topbar_show_phone or merchantData.company.phone.number %}
     <span class="header-topbar-contact-phone contact-phone">
         <a 
             href="tel:{{ merchantData.company.phone.number }}" 
