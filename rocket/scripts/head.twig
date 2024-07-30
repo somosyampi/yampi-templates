@@ -13,48 +13,42 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     window.Yampi = {
         "api_domain": "{{ yampi_api_url }}",
         "page": "{{ page }}",
-        "cart_token": '{{ cart_token() }}',
+        "cart_token": '{{ cart_token }}',
         "env": "{{ environment }}",
-        "csrf_token": '{{ csrf_token() }}',
+        "csrf_token": '{{ csrf_token }}',
         "session": {
-            "utm_source": "",
-            "utm_campaign": "",
-            "utm_medium": "",
-            "utm_term": "",
-            "utm_content": "",
-            "utm_name": "",
-            "utm_email": "",
-            "zipcode": "",
+            "utm_source": '{{ utm_source }}',
+            "utm_campaign": '{{ utm_campaign }}',
+            "utm_medium": '{{ utm_medium }}',
+            "utm_term": '{{ utm_term }}',
+            "utm_content": '{{ utm_content }}',
+            "utm_name": '{{ utm_name }}',
+            "utm_email": '{{ utm_email }}',
+            "zipcode": '{{ zipcode }}',
             "customer": {
-                "name": "",
-                "email": ""
-            }
+                "name": '{{ customer_name }}',
+                "email": '{{ customer_email }}',
+            },
         },
         "mixpanel": {
-            "key": ""
+            "key": '{{ mixpanel_key }}'
         },
         "thumbor": {
-            "enabled": false,
-            "url": "https://images.yampi.io",
-            "default": {
-                "fitIn": "fit-in",
-                "filters": [
-                    "background_color(white)",
-                    "upscale()"
-                ]
-            }
+            "enabled": '{{ thumbor_enabled }}',
+            "url": '{{ thumbor_url }}',
+            "default": '{{ thumbor_default }}'
         },
         "sentry": {
-            "enabled": false,
-            "tracing": false,
-            "dsn": ""
+            "enabled": '{{ sentry_enabled }}',
+            "tracing": '{{ sentry_tracing }}',
+            "dsn": '{{ sentry_dsn }}'
         },
         "cache": {
-            "js": 10
+            "js": '{{ cache_js }}'
         },
-        "icon_url": "https://icons.yampi.me",
+        "icon_url": '{{ icon_url }}',
         "mago_config": {
-            "user_id": '{{ cart_token() }}',
+            "user_id": '{{ cart_token }}',
             "recomm_id": '{{ recomm_id }}'
         }
     }
