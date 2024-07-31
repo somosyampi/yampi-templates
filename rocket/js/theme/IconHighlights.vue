@@ -1,0 +1,35 @@
+<!-- eslint-disable max-len -->
+<template>
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="15"
+        viewBox="0 0 14 13"
+        fill="none"
+    >
+        <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M11.8125 7.95245L7.875 7.95245V7.07745L11.8125 7.07745V7.95245Z"
+            fill="white"
+        />
+        <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M11.8125 5.32745L7.875 5.32745V4.45245L11.8125 4.45245V5.32745Z"
+            fill="white"
+        />
+        <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M10.5 10.5719H7.875V9.6969L10.5 9.6969V10.5719Z"
+            fill="white"
+        />
+        <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M5.25 4.4375L3.0625 4.4375L3.0625 10.5625H5.25L5.25 4.4375ZM6.125 4.0625L6.125 10.5625C6.125 11.0457 5.73325 11.4375 5.25 11.4375H3.0625C2.57925 11.4375 2.1875 11.0457 2.1875 10.5625L2.1875 4.3125C2.1875 3.89829 2.52329 3.5625 2.9375 3.5625L5.625 3.5625C5.90114 3.5625 6.125 3.78636 6.125 4.0625Z"
+            fill="white"
+        />
+    </svg>
+</template>
