@@ -1,0 +1,53 @@
+@import "mixins/breakpoints.scss";
+
+.highlight {
+    margin-top: 22px;
+    margin-bottom: 49px;
+
+    @media screen and (min-width: 901px) {
+        &-holder {
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    &-container {
+        display: inline-flex;
+        align-items: center;
+        margin-right: 16px;
+
+        @media screen and (max-width: 900px) {
+            justify-content: center;
+            margin-right: 0;
+        }
+
+        &-flexible {
+            align-items: center;
+            display: flex;
+        }
+    }
+
+    &-text {
+        font-size: 13px;
+        max-width: 177px;
+    }
+
+    .splide {
+        .splide__arrow {
+            &--prev,
+            &:hover,
+            &.splide__arrow--next {
+                box-shadow: none;
+                background-color: transparent;
+            }
+        }
+
+        button[disabled] {
+            opacity: 0.5 !important;
+        }
+    }
+
+    .container {
+        overflow-y: hidden;
+    }
+}

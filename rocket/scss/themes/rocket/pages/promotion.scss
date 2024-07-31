@@ -1,0 +1,17 @@
+@import '../../../global/functions';
+@import '../category';
+@import '../collection';
+@import '../range-slider';
+@import '~vue-slider-component/lib/theme/default.scss'; // https://nightcatsama.github.io/vue-slider-component/#/style
+
+@media screen and (max-width: 700px) {
+    .promotion {
+        .theme-title {
+            padding: 0 16px;
+        }
+
+        .products-list {
+            padding: 0 16px;
+        }
+    }
+}

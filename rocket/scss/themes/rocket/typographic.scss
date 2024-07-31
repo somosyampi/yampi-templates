@@ -1,0 +1,132 @@
+.contact-whatsapp {
+    &.green {
+        color: var(--green);
+
+        svg {
+            fill: var(--green);
+        }
+    }
+}
+
+.price {
+    color: var(--color-general-primary);
+    font-weight: var(--font-bold);
+
+    .payment-type {
+        font-size: var(--font-13);
+    }
+
+    .payment-type--product {
+        font-size: var(--font-20);
+    }
+}
+
+.old-price {
+    color: var(--black-light);
+    text-decoration: line-through;
+}
+
+.editor-theme {
+    color: var(--black-dark);
+
+    * {
+        font-size: var(--font-14);
+        font-weight: var(--font-medium);
+        word-break: break-word;
+        max-width: 100%;
+    }
+
+    img {
+        height: auto;
+    }
+
+    strong {
+        font-weight: var(--font-bold);
+    }
+
+    table {
+        width: 100% !important;
+    }
+
+    h1 {
+        &,
+        * {
+            font-size: var(--font-24);
+        }
+    }
+
+    h2 {
+        &,
+        * {
+            font-size: var(--font-21);
+        }
+    }
+
+    h3 {
+        &,
+        * {
+            font-size: var(--font-18);
+        }
+    }
+
+    h4 {
+        &,
+        * {
+            font-size: var(--font-14);
+        }
+    }
+
+    ul {
+        list-style-type: initial !important;
+        margin: initial !important;
+        padding: initial !important;
+        padding-inline-start: 40px !important;
+    }
+}
+
+.ql-align- {
+    &center {
+        text-align: center;
+    }
+
+    &right {
+        text-align: right;
+    }
+
+    &justify {
+        text-align: justify;
+        text-justify: inter-word;
+    }
+}
+.ql-indent- {
+    &1 {
+        padding-inline-start: 40px;
+    }
+
+    &2 {
+        padding-inline-start: 80px;
+    }
+
+    &3 {
+        padding-inline-start: 120px;
+    }
+}
+
+.ql-image-align- {
+    &center {
+        display: block;
+        margin: auto;
+    }
+
+    &right {
+        display: inline;
+        float: right;
+        margin: 0px 0px 1em 1em;
+    }
+
+    &left {
+        display: inline;
+        float: left;
+        margin: 0px 1em 1em 0px;
+    }
+}

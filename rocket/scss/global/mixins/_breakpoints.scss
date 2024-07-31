@@ -1,0 +1,11 @@
+@mixin append-breakpoint($bp, $limit) {
+    @if $bp == 'xs' {
+        @media (max-width: $limit) {
+            @content;
+        }
+    } @else  {
+        @media (min-width: $limit) {
+            @content;
+        }
+    }
+}

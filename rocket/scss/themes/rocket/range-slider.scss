@@ -1,0 +1,19 @@
+.holder-price-slider {
+    .vue-slider-dot-handle {
+        box-shadow: none;
+        background-color: var(--default-background-color);
+        border: solid 4px var(--color-general-primary);
+    }
+    
+    .vue-slider-rail {
+        background-color: var(--default-background-color);
+    }
+
+    .vue-slider-process {
+        background-color: var(--color-general-primary);
+    }
+
+    .vue-slider-dot {
+        z-index: 1;
+    }
+}

@@ -1,0 +1,61 @@
+@use "sass:list";
+
+$max: 100;
+$offset: 1;
+$unit: 'px';
+
+@each $bp, $limit in $breakpoints {
+    @include append-breakpoint($bp, $limit) {
+        $value: 0;
+        @while $value <= $max {
+            // Margins
+            @include create-class('.mt-#{$bp}-', 'margin-top', $value, $unit);
+            @include create-class('.mr-#{$bp}-', 'margin-right', $value, $unit);
+            @include create-class(
+                '.mb-#{$bp}-',
+                'margin-bottom',
+                $value,
+                $unit
+            );
+            @include create-class('.ml-#{$bp}-', 'margin-left', $value, $unit);
+            @include create-class('.ma-#{$bp}-', 'margin', $value, $unit);
+
+            // Paddings
+            @include create-class('.pt-#{$bp}-', 'padding-top', $value, $unit);
+            @include create-class(
+                '.pr-#{$bp}-',
+                'padding-right',
+                $value,
+                $unit
+            );
+            @include create-class(
+                '.pb-#{$bp}-',
+                'padding-bottom',
+                $value,
+                $unit
+            );
+            @include create-class('.pl-#{$bp}-', 'padding-left', $value, $unit);
+            @include create-class('.pa-#{$bp}-', 'padding', $value, $unit);
+
+            $value: $value + $offset;
+        }
+    }
+}
+
+$value: 0;
+@while $value <= $max {
+    // Margins
+    @include create-class('.mt-', 'margin-top', $value, $unit);
+    @include create-class('.mr-', 'margin-right', $value, $unit);
+    @include create-class('.mb-', 'margin-bottom', $value, $unit);
+    @include create-class('.ml-', 'margin-left', $value, $unit);
+    @include create-class('.ma-', 'margin', $value, $unit);
+
+    // Paddings
+    @include create-class('.pt-', 'padding-top', $value, $unit);
+    @include create-class('.pr-', 'padding-right', $value, $unit);
+    @include create-class('.pb-', 'padding-bottom', $value, $unit);
+    @include create-class('.pl-', 'padding-left', $value, $unit);
+    @include create-class('.pa-', 'padding', $value, $unit);
+    $value: $value + $offset;
+}

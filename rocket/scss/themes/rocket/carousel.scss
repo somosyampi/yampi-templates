@@ -1,0 +1,163 @@
+@keyframes splide-loading{0%{transform:rotate(0)}to{transform:rotate(1turn)}}.splide__container{position:relative;box-sizing:border-box}.splide__list{margin:0!important;padding:0!important;width:-webkit-max-content;width:max-content;will-change:transform}.splide.is-active .splide__list{display:flex}.splide__pagination{display:inline-flex;align-items:center;width:95%;flex-wrap:wrap;justify-content:center;margin:0}.splide__pagination li{list-style-type:none;display:inline-block;line-height:1;margin:0}.splide{visibility:hidden}.splide,.splide__slide{position:relative;outline:none}.splide__slide{box-sizing:border-box;list-style-type:none!important;margin:0;flex-shrink:0}.splide__slide img{vertical-align:bottom}.splide__slider{position:relative}.splide__spinner{position:absolute;top:0;left:0;right:0;bottom:0;margin:auto;display:inline-block;width:20px;height:20px;border-radius:50%;border:2px solid #999;border-left-color:transparent;animation:splide-loading 1s linear infinite}.splide__track{position:relative;z-index:0;overflow:hidden}.splide--draggable>.splide__track>.splide__list>.splide__slide{-webkit-user-select:none;user-select:none}.splide--fade>.splide__track>.splide__list{display:block}.splide--fade>.splide__track>.splide__list>.splide__slide{position:absolute;top:0;left:0;z-index:0;opacity:0}.splide--fade>.splide__track>.splide__list>.splide__slide.is-active{position:relative;z-index:1;opacity:1}.splide--rtl{direction:rtl}.splide--ttb>.splide__track>.splide__list{display:block}.splide--ttb>.splide__pagination{width:auto}
+
+.splide {
+    &:not(.splide--ttb) {
+        .splide__arrows {
+            position: absolute;
+            z-index: 1;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .splide__arrow {
+            font-size: 0;
+            color: transparent;
+            line-height: 0;
+            width: 50px;
+            height: 50px;
+            box-shadow: 0px 1px 6px rgba(34, 34, 34, 0.15);
+            opacity: .8;
+            margin: 0;
+            border: none;
+            pointer-events: initial;
+            outline-style: unset;
+            cursor: pointer;
+
+            &,
+            &:hover {
+                background-color: #FFFFFF;
+                border-radius: 50%;
+                background-image: url(image('themes/rocket/icons/carousel-arrow.svg'));
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+
+            &:hover {
+                opacity: 1;
+            }
+
+            svg {
+                display: none;
+            }
+
+            &.splide__arrow--prev {
+                transform: scaleX(-1);
+            }
+        }
+
+        .splide__pagination {
+            display: flex;
+            position: absolute;
+            width: 100%;
+            justify-content: center;
+            bottom: 17px;
+            font-size: 0;
+            pointer-events: none;
+
+            button {
+                padding: 0;
+                border: 0;
+                border-radius: 5px;
+                outline-style: unset;
+                box-sizing: initial;
+                pointer-events: initial;
+                transition: opacity .6s;
+                transition: background-color .6s;
+
+                &:hover {
+                    opacity: 1;
+                }
+
+                &:not(.is-active) {
+                    opacity: .5;
+                    margin: 6px;
+                    width: 5px;
+                    height: 5px;
+                    background-color: var(--black-light);
+                }
+
+                &.is-active {
+                    margin: 2px;
+                    width: 9px;
+                    height: 9px;
+                    background-color: var(--color-general-primary);
+                }
+            }
+        }
+    }
+
+    &.splide--ttb {
+        &.arrows {
+            padding: 40px 0;
+        }
+
+        .splide__arrows {
+            position: absolute;
+            display: flex;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .splide__arrow {
+            font-size: 0;
+            color: transparent;
+            background-color: transparent;
+            line-height: 0;
+            width: 20px;
+            height: 50px;
+            opacity: .8;
+            margin: 0;
+            border: none;
+            pointer-events: initial;
+            outline-style: unset;
+            transform: rotate(90deg);
+            cursor: pointer;
+
+            &,
+            &:hover {
+                border-radius: 50%;
+                background-image: url(image('themes/rocket/icons/carousel-arrow.svg'));
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+
+            &:hover {
+                opacity: 1;
+            }
+
+            svg {
+                display: none;
+            }
+
+            &.splide__arrow--prev {
+                transform: rotate(-90deg);
+            }
+        }
+
+        .splide__slide {
+            &:hover,
+            &.is-active {
+                opacity: var(--default-opacity);
+            }
+
+            &.is-active {
+                z-index: 1;
+            }
+        }
+    }
+
+    &.-no-pagination {
+        .splide__arrows,
+        .splide__pagination {
+            display: none;
+        }
+    }
+
+}

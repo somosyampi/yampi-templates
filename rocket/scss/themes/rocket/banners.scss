@@ -1,0 +1,157 @@
+.main-banner {
+    .holder-main-banner {
+        position: relative;
+
+        &.container {
+            .splide__arrows {
+                padding: 0 50px;
+            }
+        }
+
+        .splide__arrows {
+            left: 50%;
+            transform: translate(-50%, -50%) !important;
+            max-width: var(--container-max-width);
+        }
+
+        .banner {
+            &:not(.is-active) {
+                height: 0;
+            }
+        }
+    }
+}
+
+.banner-1,
+.banner-2,
+.banner-3 {
+    .banner {
+        font-size: 0;
+
+        &.-hack {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+            height: 0;
+        }
+    }
+}
+
+.banner-1 {
+    .banner {
+        width: 100%;
+    }
+}
+
+.banner-2 {
+    .flex {
+        & > * + * {
+            margin-left: 2%;
+        }
+    }
+
+    .banner {
+        width: 583px;
+    }
+}
+
+.banner-3 {
+    .flex {
+        & > * + * {
+            margin-left: 2%;
+        }
+    }
+
+    .banner {
+        width: 377px;
+    }
+}
+
+.banner {
+    position: relative;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .relative-banner {
+        overflow: visible;
+    }
+}
+
+.banner-stopwatch-holder {
+    position: absolute;
+    padding: 10px 15px;
+    width: 172px;
+    top: 20px;
+    right: 20px;
+    text-align: center;
+    border-radius: 5px;
+    background: #fff;
+    font-weight: var(--font-bold);
+    font-size: 20px;
+    z-index: 1;
+
+    i {
+        margin-right: 8px;
+        min-width: 17px;
+        max-width: 17px;
+    }
+
+    .stopwatch {
+        white-space: nowrap;
+    }
+}
+
+.holder-banner-product {
+    padding: 20px 0;
+    height: 100%;
+    background-color: var(--default-background-color);
+
+    .holder {
+        width: 100%;
+        align-self: center;
+
+        & > * + * {
+            margin-left: 24px;
+        }
+    }
+
+    .holder-image {
+        width: 100%;
+        max-width: var(--box-product-max-width);
+    }
+
+    .holder-info {
+        align-self: flex-start;
+    }
+
+    .product-brand {
+        font-size: var(--font-14);
+        line-height: 1.14;
+        margin-bottom: 3px;
+    }
+
+    .product-name {
+        font-size: var(--font-30);
+        line-height: 1.067;
+        margin-bottom: 24px;
+        max-width: 355px;
+    }
+
+    .product-old-price {
+        font-size: var(--font-14);
+        line-height: 1.14;
+    }
+
+    .product-actual-price {
+        font-size: var(--font-28);
+        line-height: 1.178;
+    }
+
+    .installment-text {
+        font-size: var(--font-18);
+        line-height: 0.89;
+    }
+}

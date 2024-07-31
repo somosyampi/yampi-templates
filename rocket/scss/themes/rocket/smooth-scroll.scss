@@ -1,0 +1,8 @@
+.smooth-element {
+    transition: opacity .3s;
+
+    &:not(.visible) {
+        visibility: hidden;
+        opacity: 0;
+    }
+}

@@ -1,0 +1,42 @@
+.holder-newsletter {
+    padding: 43px 10px 50px;
+    background-color: var(--default-background-color);
+    border-radius: var(--theme-border-radius);
+    text-align: center;
+
+    &-form {
+        display: inline-block;
+        margin-top: 24px;
+        max-width: 647px;
+        width: 100%;
+        min-height: 45px;
+    }
+
+    .-title {
+        color: var(--color-general-secundary);
+    }
+
+    & + .holder-footer {
+        margin-top: 41px;
+        padding-top: 41px;
+    }
+}
+
+#form-newsletter {
+    display: flex;
+    
+    .btn {
+        min-width: 215px;
+        max-width: 215px;
+        margin-left: 16px;
+        white-space: nowrap;
+        padding-left: 20px;
+        padding-right: 20px;
+        align-self: flex-start;
+    }
+
+    .holder-input {
+        width: 100%;
+        text-align: left;
+    }
+}

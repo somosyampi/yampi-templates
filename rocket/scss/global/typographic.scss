@@ -1,0 +1,117 @@
+.theme-title {
+    font-size: var(--font-30);
+    font-family: var(--fonts-titles-family);
+    font-weight: var(--fonts-titles-weight);
+    text-transform: var(--fonts-titles-uppercase);
+    line-height: 33px;
+}
+
+.link-alike {
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.ellipsis {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
+    &-multiline {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+
+        &.l1 {
+            -webkit-line-clamp: 1;
+        }
+        &.l2 {
+            -webkit-line-clamp: 2;
+        }
+        &.l3 {
+            -webkit-line-clamp: 3;
+        }
+        &.l4 {
+            -webkit-line-clamp: 4;
+        }
+    }
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-underline {
+    text-decoration: underline;
+}
+
+.full-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.flex {
+    display: flex;
+
+    &.-between {
+        justify-content: space-between;
+    }
+
+    &.-hcenter {
+        justify-content: center;
+    }
+
+    &.-hend {
+        justify-content: flex-end;
+    }
+
+    &.-evenly {
+        justify-content: space-evenly;
+    }
+
+    &.-vcenter {
+        align-items: center;
+    }
+
+    &.-vtop {
+        align-items: flex-start;
+    }
+
+    .-baseline {
+        align-items: baseline;
+    }
+
+    &.-wrap {
+        flex-wrap: wrap;
+    }
+}
+
+.block {
+    display: block;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+    margin: 0;
+}
