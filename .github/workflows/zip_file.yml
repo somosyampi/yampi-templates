@@ -3,7 +3,7 @@ name: Create ZIP on Push to Master
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
