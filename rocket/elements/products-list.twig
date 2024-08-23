@@ -1,0 +1,9 @@
+<div class="products-list flex">
+    {% for product in products %}
+        {% include "elements/box-product.twig" with {'product': product  } %}
+    {% endfor %}
+
+    <div class="box-product -clear"></div>
+    <div class="box-product -clear"></div>
+    <div class="box-product -clear"></div>
+</div>

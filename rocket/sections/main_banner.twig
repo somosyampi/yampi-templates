@@ -1,0 +1,14 @@
+<rocket-emitter emits="main_banner" label="Banner principal" order={{ section.order }}>
+    {% if section.params.resource.ids | length or isPreview %}
+        <banners
+            class="main-banner {{ "#{section.section_alias}-#{section.order}" }}"
+            section="main-banner"
+            :ids="{{ section.params.resource.ids | json_encode }}"
+            :carousel="true"
+            :container="{{ section.params.layout != 'full' ? 'true' : 'false' }}"
+            :slider-delay="{{ section.params.slider_delay }}"
+            :dimensions="{{ section.params.resource.dimensions | json_encode }}"
+            :first-banner="{{ section.params.resource.first_banner | json_encode }}"
+        ></banners>
+    {% endif %}
+</rocket-emitter>

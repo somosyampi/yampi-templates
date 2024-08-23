@@ -20,11 +20,21 @@
     },
 } %}
 
-{% set price = pricePath[highlightTypePayment] %}
+{% set fallbackPrice = product.prices.data.price_formated %}
 
-{% set fallbackPrice = pricePath['promotional']['path'] %}
-{% set selectedPrice = price.path %}
+{% if highlightTypePayment == 'promotional' %}
+    {% set selectedPrice = product.prices.data.price_formated %}
+{% endif %}
 
+{% if highlightTypePayment == 'pix' %}
+    {% set selectedPrice = product.prices.data.pix.price_formatted %}
+    {% set priceText = 'no pix' %}
+{% endif %}
+
+{% if highlightTypePayment == 'billet' %}
+    {% set selectedPrice = product.prices.data.billet.price_formated %}
+    {% set priceText = 'no boleto' %}
+{% endif %}
 
 <div 
     class="box-product 
@@ -33,20 +43,21 @@
 >
     <a
         {{ product
-            ? "href='#{product.data['url_path']}'"
+            ? "href='#{product['url_path']}'"
             : ':href="data.product.url_path"'
         }}
         class="block -clean"
     >
         <div class="holder-images relative-tags">
-            <discount-tag :value="data.product.prices.data.percent_discount"></discount-tag>
+            <discount-tag :value="{{ vuetify(product, 'product', 'prices.data.percent_discount', false) }}"></discount-tag>
 
             <div class="image-ratio">
                 {% if product %}
-                    <img 
+                    <img
+                        v-lazyload 
                         src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" 
-                        alt="{{ product.data['name'] }}"
-                        data-src="{{ thumborize(product.data['images']['data'][0]['url'], []) }}"
+                        alt="{{ product.name }}"
+                        data-src="{{ thumborize(product.images.data.0.url, {"resize": "275x275"}) }}"
                         class="-loading"
                     >
                 {% else %}
@@ -57,7 +68,7 @@
             {% if pageConfig.data.theme.params.show_add_to_cart_button %}
                 <buy-button
                     {% if product %}
-                        :product="{{ product.data | json_encode }}"
+                        :product="{{ product | json_encode }}"
                     {% else %}
                         :product="data.product"
                     {% endif %}
@@ -77,7 +88,7 @@
         <div class="holder-info">
             <flags 
                 {% if product %}
-                    :default-flags="{{ product.data['flags']['data'] | json_encode }}"
+                    :default-flags="{{ product['flags']['data'] | json_encode }}"
                 {% else %}
                     :product="data.product"
                 {% endif %}
@@ -86,7 +97,7 @@
             {% if pageConfig.data.theme.params.show_review_average %}
                 <average-rating 
                     {% if product %}
-                        :product="{{ product.data | json_encode }}"
+                        :product="{{ product | json_encode }}"
                     {% else %}
                         :product="data.product"
                     {% endif %} 
@@ -102,7 +113,7 @@
             {% endif %}
 
             <div class="product-name ellipsis-multiline l2">
-                {{ '{{ data.product.name }}' }}
+                {{ vuetify(product, 'product', 'name') }}
             </div>
 
             <div class="product-prices">
@@ -110,7 +121,7 @@
                     <span class="product-old-price old-price" 
                         {% if not product %}v-if="data.product.prices.data.has_promotion"{% endif %}
                     >
-                        {{ '{{ data.product.prices.data.price_sale_formated }}' }}
+                        {{ vuetify(product, 'product', 'prices.data.price_sale_formated') }}
                     </span>
                 
                     <span class="product-actual-price price">
@@ -118,14 +129,14 @@
                             <div>
                                 {{ selectedPrice ?: fallbackPrice }}
                                 {% if selectedPrice %}
-                                    <span class="payment-type">{{ price['text'] }}</span>
+                                    <span class="payment-type">{{ priceText }}</span>
                                 {% endif %}
                             </div>
                         {% endif %}
 
                         {% if not product %}
                             <div {% if 'data.product.' ~ price.path %}v-if="data.product.{{ price.path }}"{% endif %}>
-                                {{ '{{ data.product.' ~ price.path ~ '}}' }} <span class="payment-type">{{ price['text'] }}</span>
+                                {{ '{{ data.product.' ~ price.path ~ '}}' }} <span class="payment-type">{{ priceText }}</span>
                             </div>
                             <div v-else>
                                 {{ '{{ data.product.prices.data.price_formated }}' }}

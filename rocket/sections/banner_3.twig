@@ -1,0 +1,14 @@
+<rocket-emitter emits="banner_3" label="3 Banner" order={{ section.order }}>
+    {% if section.params.resource.ids | length or isPreview %}
+        <banners
+            class="banner-3 {{ "#{section.section_alias}-#{section.order}" }}"
+            section="banner-3"
+            custom-class="flex"
+            :ids="{{ section.params.resource.ids | json_encode }}"
+            :carousel="false"
+            :quantity="3"
+            :dimensions="{{ section.params.resource.dimensions | json_encode }}"
+            :first-banner="{{ section.params.resource.first_banner | json_encode }}"
+        ></banners>
+    {% endif %}
+</rocket-emitter>

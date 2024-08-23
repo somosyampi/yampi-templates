@@ -1,0 +1,5 @@
+{% set image = content.data.data.0.images.data.0.url %}
+
+{% if image %}
+    <link rel="preload" as="image" href="{{ thumborize(image, {'resize': '275x275'}) }}"/>
+{% endif %}

@@ -9,6 +9,8 @@
 <body class="{{ merchantData.alias }} {{ previewClass }} {{ page }} {{ pageConfig.data.theme.params.show_dark_mode ? 'dark-mode' : '' }}">
 
     <div id="app">
+
+        {{ PAGE }}
         {% for section in sections %}
             {% if section.visible %}
                 {% include 'sections/' ~ section.section_alias ~ '.twig' with section %}

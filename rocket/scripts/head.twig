@@ -36,7 +36,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         "thumbor": {
             "enabled": '{{ thumbor_enabled }}',
             "url": '{{ thumbor_url }}',
-            "default": '{{ thumbor_default }}'
+            "default": {{ thumbor_default | raw }}
         },
         "sentry": {
             "enabled": '{{ sentry_enabled }}',
@@ -52,14 +52,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             "recomm_id": '{{ recomm_id }}'
         }
     }
-    window.data = {
-        'product': {{ product | json_encode() | raw }}
-    }
+    window.data = {{ customData | json_encode() | raw }}
 </script>
 
 <link rel="stylesheet" href="{{ mix('/css/global.css')}}" media="screen">
-<link rel="stylesheet" href="{{ mix('/css/themes/rocket-product.css')}}" media="screen">
-<link rel="stylesheet" href="{{ mix('/css/themes/rocket-product-mobile.css')}}" media="screen and (max-width: 700px)">
+<link rel="stylesheet" href='{{ mix("/css/themes/rocket-#{page}.css")}}' media="screen">
+<link rel="stylesheet" href='{{ mix("/css/themes/rocket-#{page}-mobile.css")}}' media="screen and (max-width: 700px)">
 <link rel="stylesheet" href="{{ mix('/css/themes/rocket.css')}}" media="screen">
 <link rel="stylesheet" href="{{ mix('/css/themes/rocket-mobile.css')}}" media="screen and (max-width: 700px)">
 <link rel="preload" href="{{ mix('/css/global.css')}}" as="style" />

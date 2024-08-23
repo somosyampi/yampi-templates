@@ -14,7 +14,7 @@
 
 {% set pages = merchantData.pages %}
 {% set email = merchantData.company.email %}
-{% set socialMedias = merchantData.social %}
+{% set socialMedias = merchantData.company.social | filter(social_media => social_media) %}
 {% set phoneNumber = merchantData.company.phone.number %}
 {% set whatsappNumber = merchantData.company.whatsapp.number %}
 
@@ -123,11 +123,11 @@
                             <div class="-social-midia">
                                 <ul class="inline">
                                     {% for media, mediaUrl in socialMedias %}
-                                        {% set media = media|replace('_url', '') %}
+                                        {% set media = media|replace({'_url': ''}) %}
                                         {% if section.params['show_' ~ media] %}
                                             <li class="social-midia -{{ media }}">
                                                 <a class="-clean" href="{{ mediaUrl }}" target="_blank" rel="noreferrer nofollow">
-                                                    <fa-icon :icon="['fab', social_media_fa(media)]"></fa-icon>
+                                                    <fa-icon :icon="['fab', '{{ social_media_fa(media) }}']"></fa-icon>
                                                     <span class="-invisible">{{ media }}</span>
                                                 </a>
                                             </li>
@@ -205,7 +205,7 @@
                                 <img
                                     v-lazyload
                                     src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" 
-                                    data-src="https://icons.yampi.me/svg/yampi.svg" 
+                                    data-src="https://icons.yampi.me/svg/yampi{{ color_is_light(section.params.background_color) ? null : '-white' }}.svg" 
                                     alt="Yampi - Plataforma de E-commerce" 
                                     width="71" 
                                     height="24" 

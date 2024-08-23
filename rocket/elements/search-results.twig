@@ -1,0 +1,97 @@
+{% set slug = content.data.slug %}
+
+{% set pageName = content.data.meta.name %}
+
+{% if context == 'search' %}
+    {% set pageName = "Busca por \"#{content.data.q}\"" %}
+{% endif %}
+
+<div class="flex -between -vtop">
+    <h1 class="theme-title">
+        {{ pageName }}
+    </h1>
+
+    {% if section.params.show_sort and content.data | length %}
+        <div class="select-order flex -vcenter -hend">
+            <span class="-title">
+                ORDENAR POR:
+            </span>
+
+            <select
+                is="custom-select"
+                id="category-order-select"
+                name="category-order"
+                :value="selectedOrder"
+                @change="updateOrderBy"
+            >
+                <option value="relevance">Relevância</option>
+                <option value="best_sellers">Mais vendidos</option>
+                <option value="highest_price">Maior preço</option>
+                <option value="lowest_price">Menor preço</option>
+                <option value="newest">Lançamentos</option>
+                <option value="rating">Melhor avaliação</option>
+                <option value="name_asc">A-Z</option>
+                <option value="name_desc">Z-A</option>
+            </select>
+        </div>
+    {% endif %}
+</div>
+
+{% if content.data.meta.description %}
+    <div class="category-description -loading">
+        <div is="read-more" class="editor-theme">
+            {{ content.data.meta.description | raw }}
+        </div>
+    </div>
+{% endif %}
+
+{% if content.data.data | length %}
+    <category-options
+        :is-mosaic="isMosaic"
+        :show-sort="{{ section.params.show_sort ? 'true' : 'false' }}"
+        :show-filters="{{ section.params.filters_enabled ? 'true' : 'false' }}"
+        :selected-order="selectedOrder"
+        @change="updateOrderBy"
+        @change-grid="updateGrid"
+        ref="categoryOptions"
+    ></category-options>
+{% endif %}
+
+{% if section.params.filters_enabled %}
+    <selected-filters></selected-filters>
+{% endif %}
+
+{% if section.params.show_banners and context == 'category' %}
+    <banners
+        section="main-banner"
+        class="main-banner"
+        custom-class="flex"
+        :ids="[]"
+        :carousel="true"
+        :dimensions="[]"
+        :slider-delay="{{ section.params.slider_delay }}"
+        slug="{{ slug }}"
+    ></banners>
+{% endif %}
+
+{% if content.data.data | length %}
+    {% include 'elements/products-list.twig' with { 'products': content.data.data } %}
+
+    <loader
+        class="paginate-loader"
+        v-if="paginate.loading"
+        :height="40"
+        :width="50"
+    ></loader>
+
+    <paginate
+        v-else-if="paginate.pageCount > 1"
+        :page-count="paginate.pageCount"
+        :pager-count="isMobile ? 5 : 7"
+        :value="paginate.currentPage"
+        :disabled="{{ isPreview ? 'true' : 'false' }}"
+        @input="updateCurrentPage($event)"
+    ></paginate>
+{% else %}
+    <div class="alert -yellow">Nenhum produto foi encontrado.</div>
+{% endif %}

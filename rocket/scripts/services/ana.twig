@@ -21,10 +21,9 @@
             anaParams.product_id = {{ product.data.id }};
             anaParams.recomm_id = {{ recomm_id }}
         {% elseif page == 'category' %}
-            {# @TODO: adequate these variables when in the category page #}
             var anaEvent = '{{ isSearch ? 'search' : 'view-category' }}';
             anaParams.content_type = 'sku';
-            anaParams.content_ids = {{ SKUS_IDS }};
+            anaParams.content_ids = {{ skusIds | json_encode }};
         {% else %}
             var anaEvent = 'pageview';
         {% endif %}

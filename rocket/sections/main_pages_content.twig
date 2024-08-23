@@ -1,0 +1,34 @@
+{% if content is defined %}
+<section class="section-pages container">
+    {% include 'elements/breadcrumbs.twig' with {
+        'levels': [
+            {
+                'link': '',
+                'name': content.data.name,
+            }
+        ]
+    } %}
+    <div class="holder-content {{ "#{section.section_alias}-#{section.order}" }}">
+        <div class="pages">
+            <div class="-title">Informações</div>
+            <ul>
+                {% for page in merchantData.pages %}
+                    <li class="{{ page.slug == content.data.slug ? 'is-active' : '' }}">
+                        <a href="{{ page.path }}">{{ page.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <pages-list
+                :page-list="{{ merchantData.pages | json_encode }}"
+                selected-page="{{ content.data.slug | raw }}"
+            ></pages-list>
+        </div>
+        <div class="content">
+            <div class="theme-title">{{ content.data.name }}</div>
+            <div class="editor-theme">
+                {{ content.data.content.data.content | raw }}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}

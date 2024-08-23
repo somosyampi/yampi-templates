@@ -1,0 +1,14 @@
+<rocket-emitter emits="collection" label="Coleções" order={{ section.order }}>
+    {% if section.params.resource.ids.0 or isPreview %}
+        <collection
+            class="collection {{ "#{section.section_alias}-#{section.order}" }}"
+            :show-link="{{ section.params.show_all_button | bool_text }}"
+            :collection-id="{{ section.params.resource.ids.0 | default('null') }}"
+            :products-per-line="{{ section.params.mobile_products_per_line }}"
+            :total-products="{{ section.params.visible_products }}"
+            desktop-layout="{{ section.params.desktop_layout }}"
+        >
+            {% include "elements/box-product.twig" with {'product': null} %}
+        </collection>
+    {% endif %}
+</rocket-emitter>

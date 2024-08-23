@@ -1,0 +1,11 @@
+{% set banner = pageConfig.data.sections.1.params.resource.first_banner %}
+
+{% if banner %}
+    {% if banner['image'] %}
+        <link rel="preload" as="image" href="{{ banner['image'] }}" media="(min-width: 701px)"/>
+    {% endif %}
+    {% if banner['mobile_image'] %}
+        <link rel="preload" as="image" href="{{ banner['mobile_image'] }}" media="(max-width: 700px)"/>
+    {% endif %}
+
+{% endif %}

@@ -1,8 +1,8 @@
 {% set headerTextColor = section.params.text_color %}
-{% set menuTextColorValue = section.params.menu_text_color %}
+{% set menuTextColorValue = section.params.menu_text_color | default(headerTextColor) %}
 
 {% set headerBgColor = section.params.background_color %}
-{% set menuBgColorValue = section.params.menu_background_color %}
+{% set menuBgColorValue = section.params.menu_background_color | default(headerBgColor) %}
 
 {% set headerLayout = section.params.header_layout %}
 
@@ -142,6 +142,20 @@
                                         </rocket-categories-nav>
                                     </div>
                                 {% endfor %}
+
+                                {% if section.params.highlighted_promotions %}
+                                    {% for promotion in featured_promotions %}
+                                        <li>
+                                            <a 
+                                                class="promotions-nav-text" 
+                                                style="color: {{ section.params.promotions_text_color }}" 
+                                                href="{{ promotion['url'] }}"
+                                            >
+                                                {{ promotion['name'] }}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                {% endif %}
 
                                 {% if section.params.topbar_show_whatsapp or section.params.topbar_show_phone %}
                                     <div class="mobile -block -order-2">

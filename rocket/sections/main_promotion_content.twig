@@ -1,0 +1,46 @@
+{% set breadcrumbLevels = [] %}
+{% set parentCategoryPath = content.data.meta.parent.url_path %}
+
+{% if parentCategoryPath %}
+    {% set breadcrumbLevels = breadcrumbLevels | merge([{
+        'link': parentCategoryPath,
+        'name': content.data.meta.parent.name
+    }]) %}
+{% endif %}
+
+{% set breadcrumbLevels = breadcrumbLevels | merge([{
+    'useHtml': true,
+    'link': '',
+    'name': content.data.meta.name
+}]) %}
+
+<section class="category-content">
+    <category-content
+        class="{{ "#{section.section_alias}-#{section.order}" }}"
+        products-per-page="{{ section.params.products_per_page|default(2) }}"
+        v-slot="{ newHtml, updateFilters, updateOrderBy, updateGrid, updateCurrentPage, selectedOrder, paginate, isMosaic, isMobile }"
+    >
+        {% include 'elements/breadcrumbs.twig' with {'levels': breadcrumbLevels} %}
+
+        <div class="flex-holder container flex">
+            {% if section.params.filters_enabled and content.data | length %}
+                <div class="filters">
+                    <filters
+                        :show-price="{{ section.params.show_price_slider ? 'true' : 'false' }}"
+                        :show-brand="{{ section.params.show_brand_filter ? 'true' : 'false' }}"
+                        :show-categories="{{ section.params.show_category_filter ? 'true' : 'false' }}"
+                        active-category="{{ content.data.meta.name }}"
+                    ></filters>
+                </div>
+            {% endif %}
+
+            <div class="holder-results">
+                <v-runtime-template v-if="newHtml" :template="newHtml"></v-runtime-template>
+
+                <div v-else>
+                    {% include 'elements/search-results.twig' %}
+                </div>
+            </div>
+        </div>
+    </category-content>
+</section>
