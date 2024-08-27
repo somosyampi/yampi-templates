@@ -10,11 +10,6 @@
             class="btn btn-primary"
             @click="handleClick"
         />
-
-        <div v-if="product" class="product">
-            <p class="theme-title">{{ product.title }}</p>
-            <p class="price">{{ product.prices.data.price_formated }}</p>
-        </div>
     </div>
 </template>
 
@@ -36,13 +31,6 @@ export default {
                 'Orange',
                 'Pineapple'
             ]
-        }
-    },
-
-    computed: {
-        product() {
-            const selectedSku = window.vueInstance.$store.getters['product/selectedSku'];
-            return selectedSku; 
         }
     },
 
