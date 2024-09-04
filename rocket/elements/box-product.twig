@@ -8,7 +8,7 @@
 {% set pricePath = {
     'pix': {
         'path': 'prices.data.pix.price_formatted',
-        'text': 'no pix'
+        'text': 'no Pix'
     },
     'billet': {
         'path': 'prices.data.billet.price_formated',
@@ -28,7 +28,7 @@
 
 {% if highlightTypePayment == 'pix' %}
     {% set selectedPrice = product.prices.data.pix.price_formatted %}
-    {% set priceText = 'no pix' %}
+    {% set priceText = 'no Pix' %}
 {% endif %}
 
 {% if highlightTypePayment == 'billet' %}
@@ -36,9 +36,9 @@
     {% set priceText = 'no boleto' %}
 {% endif %}
 
-<div 
-    class="box-product 
-    {% if pageConfig.data.theme.params.grids_text_align == 'center' %}-center{% endif %}" 
+<div
+    class="box-product
+    {% if pageConfig.data.theme.params.grids_text_align == 'center' %}-center{% endif %}"
     {% if not product %}slot-scope="data"{% endif %}
 >
     <a
@@ -86,7 +86,7 @@
             {% endif %}
         </div>
         <div class="holder-info">
-            <flags 
+            <flags
                 {% if product %}
                     :default-flags="{{ product['flags']['data'] | json_encode }}"
                 {% else %}
@@ -95,20 +95,20 @@
             ></flags>
 
             {% if pageConfig.data.theme.params.show_review_average %}
-                <average-rating 
+                <average-rating
                     {% if product %}
                         :product="{{ product | json_encode }}"
                     {% else %}
                         :product="data.product"
-                    {% endif %} 
-                    class="{% if pageConfig.data.theme.params.grids_text_align == 'center' %}-center{% endif %}" 
+                    {% endif %}
+                    class="{% if pageConfig.data.theme.params.grids_text_align == 'center' %}-center{% endif %}"
                     :is-grid="true"
                 ></average-rating>
             {% endif %}
 
             {% if pageConfig.data.theme.params.grids_brand_enabled %}
                 <div class="product-brand ellipsis">
-                    {{ '{{ data.product.brand.data.name }}' }}
+                    {{ vuetify(product, 'product', 'brand.data.name') }}
                 </div>
             {% endif %}
 
@@ -118,12 +118,12 @@
 
             <div class="product-prices">
                 <div class="flex -vcenter -wrap">
-                    <span class="product-old-price old-price" 
+                    <span class="product-old-price old-price"
                         {% if not product %}v-if="data.product.prices.data.has_promotion"{% endif %}
                     >
                         {{ vuetify(product, 'product', 'prices.data.price_sale_formated') }}
                     </span>
-                
+
                     <span class="product-actual-price price">
                         {% if product %}
                             <div>
@@ -146,7 +146,7 @@
                 </div>
 
                 {% if pageConfig.data.theme.params.show_max_installment %}
-                    <installments-text 
+                    <installments-text
                         {% if product %}
                             :product="{{ product | json_encode }}"
                         {% else %}

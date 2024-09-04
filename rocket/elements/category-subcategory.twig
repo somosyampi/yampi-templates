@@ -11,7 +11,7 @@
         </div>
 
         <ul>
-            {% for key, category in categories %}
+            {% for key, category in sorted_categories %}
                 <li class="dropdown-holder item-category {{ category.slug }}">
                     <a class="block" href="{{ category.url_path }}">
                         {{ category.name }}

@@ -9,8 +9,6 @@
 <body class="{{ merchantData.alias }} {{ previewClass }} {{ page }} {{ pageConfig.data.theme.params.show_dark_mode ? 'dark-mode' : '' }}">
 
     <div id="app">
-
-        {{ PAGE }}
         {% for section in sections %}
             {% if section.visible %}
                 {% include 'sections/' ~ section.section_alias ~ '.twig' with section %}
@@ -27,11 +25,15 @@
         
         {% if merchantData.cookies_policy.active %}
             <div class="container">
-                <cookies-warning />
+                <cookies-warning></cookies-warning>
             </div>
         {% endif %}
-    </div>
 
+        {% if pageConfig.data.page == 'home' %}
+            <add-to-cart selected-price="{{ pageConfig.data.theme.params.highlight_type_payment }}"> </add-to-cart>
+        {% endif %}
+
+    </div>
     {% include "elements/footer.twig" %}
 </body>
 </html>

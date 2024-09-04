@@ -10,8 +10,7 @@
     <h1 class="theme-title">
         {{ pageName }}
     </h1>
-
-    {% if section.params.show_sort and content.data | length %}
+    {% if customData.config.params.show_sort and content.data | length %}
         <div class="select-order flex -vcenter -hend">
             <span class="-title">
                 ORDENAR POR:
@@ -48,8 +47,8 @@
 {% if content.data.data | length %}
     <category-options
         :is-mosaic="isMosaic"
-        :show-sort="{{ section.params.show_sort ? 'true' : 'false' }}"
-        :show-filters="{{ section.params.filters_enabled ? 'true' : 'false' }}"
+        :show-sort="{{ customData.config.params.show_sort ? 'true' : 'false' }}"
+        :show-filters="{{ customData.config.params.filters_enabled ? 'true' : 'false' }}"
         :selected-order="selectedOrder"
         @change="updateOrderBy"
         @change-grid="updateGrid"
@@ -57,11 +56,11 @@
     ></category-options>
 {% endif %}
 
-{% if section.params.filters_enabled %}
+{% if customData.config.params.filters_enabled %}
     <selected-filters></selected-filters>
 {% endif %}
 
-{% if section.params.show_banners and context == 'category' %}
+{% if customData.config.params.show_banners and context == 'category' %}
     <banners
         section="main-banner"
         class="main-banner"
@@ -69,7 +68,7 @@
         :ids="[]"
         :carousel="true"
         :dimensions="[]"
-        :slider-delay="{{ section.params.slider_delay }}"
+        :slider-delay="{{ customData.config.params.slider_delay }}"
         slug="{{ slug }}"
     ></banners>
 {% endif %}

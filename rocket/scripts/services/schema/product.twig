@@ -1,3 +1,9 @@
+{% set productImages = [] %}
+
+{% for image in product.data.images.data %}
+    {% set productImages = productImages | merge([image.url]) %}
+{% endfor %}
+
 <script type="application/ld+json">
     {
         "@context": "http://schema.org/",
@@ -9,7 +15,7 @@
         "logo": "{{ merchantData.logo_url }}",
         "description": "{{ product.data.texts.data.description | striptags }}",
         "sku": "{{ product.data.sku }}",
-        "image": "",
+        "image": {{ productImages | json_encode | raw }},
         "itemCondition": "http://schema.org/NewCondition",
         "brand": "{{ product.data.brand.data.name }}",
         "mpn": "{{ product.data.ncm }}",
@@ -17,7 +23,7 @@
             "@type": "Offer",
             "priceCurrency": "BRL",
             "url": "{{ product.data.url }}",
-            "price": "{{ product.data.prices.data.price }}",
+            "price": {{ product.data.prices.data.price }},
             "availability": "http://schema.org/InStock",
             "priceValidUntil": "{{ 'now'|date('Y-m-d') }}",
             "seller": {

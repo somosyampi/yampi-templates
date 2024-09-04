@@ -7,10 +7,6 @@
 
 <link rel="manifest" href="/manifest.json" />
 
-<script defer src="{{ mix('/js/manifest.js')}}"></script>
-<script defer src="{{ mix('/js/vendor.js')}}"></script>
-<script defer src="{{ mix('/js/app.js')}}"></script>
-
 <!-- robots -->
 <meta name="robots" content="{{ environment == 'production' ? 'index,follow' : 'nofollow' }}" />
 
@@ -22,3 +18,9 @@
 
 {% include 'scripts/head.twig' %}
 {% include 'elements/variables.twig' %}
+
+<script type="module" src="/dist/vendor/windowVue.js"></script>
+
+{% include 'scripts/components.twig' ignore missing %}
+
+<script type="module" src="/dist/vendor/app.js"></script>

@@ -29,7 +29,7 @@
         {% include 'elements/breadcrumbs.twig' with {'levels': breadcrumbLevels} %}
 
         <div class="flex-holder container flex">
-            {% if section.params.filters_enabled and content.data | length %}
+            {% if section.params.filters_enabled and customData['content'].data.data | length %}
                 <div class="filters">
                     <filters
                         :show-price="{{ section.params.show_price_slider ? 'true' : 'false' }}"

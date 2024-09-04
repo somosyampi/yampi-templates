@@ -55,16 +55,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     window.data = {{ customData | json_encode() | raw }}
 </script>
 
-<link rel="stylesheet" href="{{ mix('/css/global.css')}}" media="screen">
-<link rel="stylesheet" href='{{ mix("/css/themes/rocket-#{page}.css")}}' media="screen">
-<link rel="stylesheet" href='{{ mix("/css/themes/rocket-#{page}-mobile.css")}}' media="screen and (max-width: 700px)">
-<link rel="stylesheet" href="{{ mix('/css/themes/rocket.css')}}" media="screen">
-<link rel="stylesheet" href="{{ mix('/css/themes/rocket-mobile.css')}}" media="screen and (max-width: 700px)">
-<link rel="preload" href="{{ mix('/css/global.css')}}" as="style" />
-<link rel="preload" href="{{ mix('/css/themes/rocket.css')}}" as="style" />
+<link rel="stylesheet" href="/dist/css/global.css" media="screen">
+<link rel="stylesheet" href="/dist/css/themes/rocket-{{ page }}.css" media="screen">
+<link rel="stylesheet" href="/dist/css/themes/rocket-{{ page }}-mobile.css" media="screen and (max-width: 700px)">
+<link rel="stylesheet" href="/dist/css/themes/rocket.css" media="screen">
+<link rel="stylesheet" href="/dist/css/themes/rocket-mobile.css" media="screen and (max-width: 700px)">
+<link rel="preload" href="/dist/css/global.css" as="style" />
+<link rel="preload" href="/dist/css/themes/rocket.css" as="style" />
 
 <style>
-    {{ pageConfig.data.theme.params.custom_css }}
+    {{ pageConfig.data.theme.params.custom_css | raw }}
 </style>
 
 {% include 'scripts/services/criteo.twig' %}
