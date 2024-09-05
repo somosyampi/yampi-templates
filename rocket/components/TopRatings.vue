@@ -99,25 +99,14 @@
 </template>
 
 <script>
-import times from 'lodash/times';
-import { mapGetters } from 'vuex';
-import { Splide, SplideSlide } from '@splidejs/vue-splide';
-import ReadMore from '@/components/generic/ReadMore';
+import _ from '~lodash';
+import { mapGetters } from '~vuex';
 import api from '@/modules/axios/api';
 import rocket from '@/modules/axios/rocket';
-import CustomImage from '@/components/generic/CustomImage';
 import mobileMixin from '@/mixins/mobile';
 
 export default {
     name: 'TopRatings',
-
-    components: {
-        Splide,
-        SplideSlide,
-        CustomImage,
-        mobileMixin,
-        ReadMore,
-    },
 
     mixins: [
         mobileMixin,
@@ -194,7 +183,7 @@ export default {
     },
 
     methods: {
-        times,
+        times: _.times,
 
         tagOrDiv(tag) {
             return this.carousel ? tag : 'div';

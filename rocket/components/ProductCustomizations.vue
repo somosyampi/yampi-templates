@@ -59,32 +59,13 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
-import _get from 'lodash/get';
-import _omitBy from 'lodash/omitBy';
-import _isEmpty from 'lodash/isEmpty';
+import { mapActions } from '~vuex';
+import _ from '~lodash';
 import productMixin from '@/mixins/product';
-import Zipcode from '@/components/product/Zipcode';
-import SelectSku from '@/components/product/SelectSku';
-import LoaderButton from '@/components/generic/LoaderButton';
-import QuantitySelector from '@/components/generic/QuantitySelector';
-import SkuCustomizations from '@/components/product/SkuCustomizations';
-import InventoryCountdown from '@/components/product/InventoryCountdown';
-import FloatingButton from '@/components/generic/FloatingButton';
 import trackingByApi from '@/mixins/tracking/api';
 
 export default {
     name: 'ProductCustomizations',
-
-    components: {
-        Zipcode,
-        SelectSku,
-        LoaderButton,
-        QuantitySelector,
-        SkuCustomizations,
-        InventoryCountdown,
-        FloatingButton,
-    },
 
     mixins: [
         productMixin,
@@ -150,7 +131,7 @@ export default {
         },
 
         customizations() {
-            return _get(this.selectedSku, 'customizations.data', []);
+            return _.get(this.selectedSku, 'customizations.data', []);
         },
 
         areCustomizationsValid() {
@@ -160,7 +141,7 @@ export default {
 
             if (this.selectedSku.allow_sell_without_customization) {
                 return this.customizations
-                    .every(customization => _isEmpty(this.customizationValues[customization.id]));
+                    .every(customization => _.isEmpty(this.customizationValues[customization.id]));
             }
 
             return this.customizations.every(customization => {
@@ -168,7 +149,7 @@ export default {
                     return true;
                 }
 
-                return !_isEmpty(this.customizationValues[customization.id]);
+                return !_.isEmpty(this.customizationValues[customization.id]);
             });
         },
     },
@@ -220,20 +201,20 @@ export default {
             this.loading = true;
 
             const customization = {};
-            const validValues = _omitBy(this.customizationValues, _isEmpty);
+            const validValues = _.omitBy(this.customizationValues, _.isEmpty);
 
             // if all customizations aren't required, ]
             // empty and the sku isn't allowed to be sold without a customization,
             // send them filled with empty values
             if (
                 this.customizations.every(_customization => !_customization.required)
-                && _isEmpty(validValues)
+                && _.isEmpty(validValues)
                 && !this.selectedSku.allow_sell_without_customization
             ) {
                 customization[this.selectedSku.id] = this.customizationValues;
             }
 
-            if (!_isEmpty(validValues)) {
+            if (!_.isEmpty(validValues)) {
                 customization[this.selectedSku.id] = validValues;
             }
 

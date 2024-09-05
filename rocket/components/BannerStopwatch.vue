@@ -7,13 +7,7 @@
 </template>
 
 <script>
-import Stopwatch from '@/components/generic/Stopwatch.vue';
-
 export default {
     name: 'BannerStopwatch',
-
-    components: {
-        Stopwatch,
-    },
 };
 </script>

@@ -28,16 +28,10 @@
 </template>
 
 <script>
-import times from 'lodash/times';
-import _delay from 'lodash/delay';
-import ImagesSlider from '@/components/generic/ImagesSlider';
+import _ from '~lodash';
 
 export default {
     name: 'ModalReviewDetailsMobile',
-
-    components: {
-        ImagesSlider,
-    },
 
     props: {
         review: {
@@ -59,7 +53,7 @@ export default {
     },
 
     methods: {
-        times,
+        _.times,
 
         handleModal() {
             this.show = !this.show;
@@ -69,7 +63,7 @@ export default {
                 document.getElementsByTagName('body')[0].style = 'overflow-y: hidden';
             } else {
                 document.getElementById('app').style.overflow = '';
-                _delay(() => {
+                _.delay(() => {
                     document.getElementsByTagName('body')[0].style = 'overflow-y: auto';
                 }, 350, 'later');
 

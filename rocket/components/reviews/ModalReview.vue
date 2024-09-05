@@ -104,28 +104,14 @@
 </template>
 
 <script>
-import _times from 'lodash/times';
-import _compact from 'lodash/compact';
-import _lastIndexOf from 'lodash/lastIndexOf';
-import { mapGetters } from 'vuex';
-import LoaderButton from '@/components/generic/LoaderButton';
-import Modal from '@/components/generic/Modal';
+import { mapGetters } from '~vuex';
 import rocket from '@/modules/axios/rocket';
 import errorsMixin from '@/mixins/errors';
-import ImageSelector from '@/components/reviews/ImageSelector';
 import trackingByApi from '@/mixins/tracking/api';
-import ErrorText from "../generic/ErrorText.vue";
-import _get from "lodash/get";
+import _ from '~lodash';
 
 export default {
     name: 'ModalReview',
-
-    components: {
-        ErrorText,
-        Modal,
-        LoaderButton,
-        ImageSelector,
-    },
 
     mixins: [
         errorsMixin,
@@ -152,7 +138,7 @@ export default {
     },
 
     methods: {
-        times: _times,
+        times: _.times,
 
         handleUploading(status) {
             this.uploading = status;
@@ -165,7 +151,7 @@ export default {
                 },
                 APPEND: () => {
                     if (this.form.images.length < 3) {
-                        const index = this.form.images.length ? _lastIndexOf(this.form.images) : 0;
+                        const index = this.form.images.length ? _.lastIndexOf(this.form.images) : 0;
                         this.$set(this.form.images, index, imageUrl);
                     }
                 },
@@ -199,7 +185,7 @@ export default {
 
             try {
                 const submittableForm = { ...this.form };
-                submittableForm.images = _compact(submittableForm.images);
+                submittableForm.images = _.compact(submittableForm.images);
 
                 await rocket.post(`products/${this.product.id}/reviews`, submittableForm);
 

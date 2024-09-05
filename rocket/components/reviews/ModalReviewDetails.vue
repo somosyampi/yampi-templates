@@ -64,20 +64,10 @@
 </template>
 
 <script>
-import times from 'lodash/times';
-import { Splide, SplideSlide } from '@splidejs/vue-splide';
-import Modal from '@/components/generic/Modal.vue';
-import Timeago from '@/components/generic/Timeago';
+import _ from '~lodash';
 
 export default {
     name: 'ModalReviewDetails',
-
-    components: {
-        Modal,
-        Timeago,
-        Splide,
-        SplideSlide,
-    },
 
     props: {
         review: {
@@ -100,7 +90,7 @@ export default {
     },
 
     methods: {
-        times,
+        times: _.times,
 
         handleModal() {
             this.ready = !this.ready;

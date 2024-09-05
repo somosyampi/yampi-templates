@@ -43,15 +43,9 @@
 </template>
 
 <script>
-import { Splide, SplideSlide } from '@splidejs/vue-splide';
 
 export default {
     name: 'ProductsList',
-
-    components: {
-        Splide,
-        SplideSlide,
-    },
 
     props: {
         products: {

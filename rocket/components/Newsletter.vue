@@ -34,19 +34,10 @@
 <script>
 import errorsMixin from '@/mixins/errors';
 import rocket from '@/modules/axios/rocket';
-import ModalNewsletter from './ModalNewsletter';
-import ErrorText from '@/components/generic/ErrorText';
-import LoaderButton from '@/components/generic/LoaderButton';
 import trackingByApi from '@/mixins/tracking/api';
 
 export default {
     name: 'Newsletter',
-
-    components: {
-        ErrorText,
-        LoaderButton,
-        ModalNewsletter,
-    },
 
     mixins: [
         errorsMixin,

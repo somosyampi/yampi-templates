@@ -33,15 +33,10 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import RocketEmitter from '@/components/RocketEmitter';
+import { mapGetters } from '~vuex';
 
 export default {
     name: 'NavigationDrawer',
-
-    components: {
-        RocketEmitter,
-    },
 
     data() {
         return {

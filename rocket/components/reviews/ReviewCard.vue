@@ -68,20 +68,11 @@
 </template>
 
 <script>
-import times from 'lodash/times';
-import ModalReviewDetails from '@/components/reviews/ModalReviewDetails';
-import ModalReviewDetailsMobile from '@/components/reviews/ModalReviewDetailsMobile';
-import Timeago from '@/components/generic/Timeago';
+import _ from '~lodash';
 import mobileMixin from '@/mixins/mobile';
 
 export default {
     name: 'ReviewCard',
-
-    components: {
-        Timeago,
-        ModalReviewDetails,
-        ModalReviewDetailsMobile,
-    },
 
     mixins: [
         mobileMixin,
@@ -151,7 +142,7 @@ export default {
     },
 
     methods: {
-        times,
+        times: _.times,
 
         handleContentDetails() {
             if (this.review.photos.data.length) {

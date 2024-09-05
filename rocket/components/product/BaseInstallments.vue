@@ -1,5 +1,5 @@
 <script>
-import _get from 'lodash/get';
+import _ from '~lodash';
 import api from '@/modules/axios/api';
 import productMixin from '@/mixins/product';
 import merchantsMixin from '@/mixins/merchant';
@@ -66,15 +66,15 @@ export default {
                 return {};
             }
 
-            const sku = this.isSku && _get(this.validSku, 'id')
+            const sku = this.isSku && _.get(this.validSku, 'id')
                 ? this.validSku
                 : undefined;
 
-            const productPrice = _get(sku || this.validProduct,
+            const productPrice = _.get(sku || this.validProduct,
                 'prices.data.price'
             );
 
-            const productId = _get(this.validProduct, 'id');
+            const productId = _.get(this.validProduct, 'id');
 
             const cached = this.getLocalStorageCache(productPrice, selectedCardAlias);
 

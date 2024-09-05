@@ -63,22 +63,13 @@
 
 <script>
 
-import { mapGetters } from 'vuex';
-
-import { Splide, SplideSlide } from '@splidejs/vue-splide';
-import CustomImage from '@/components/generic/CustomImage.vue';
+import { mapGetters } from '~vuex';
 import mobileMixin from '@/mixins/mobile';
 import rocket from '@/modules/axios/rocket';
 import api from '@/modules/axios/api';
 
 export default {
     name: 'CategoriesHighlight',
-
-    components: {
-        Splide,
-        SplideSlide,
-        CustomImage,
-    },
 
     mixins: [
         mobileMixin,

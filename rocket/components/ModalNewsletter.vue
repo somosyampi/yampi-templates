@@ -17,12 +17,9 @@
 </template>
 
 <script>
-import Modal from '@/components/generic/Modal';
 
 export default {
     name: 'ModalNewsletter',
-
-    components: { Modal },
 
     methods: {
         showModal() {

@@ -69,21 +69,13 @@
 </template>
 
 <script>
-import { Splide, SplideSlide } from '@splidejs/vue-splide';
-import { mapGetters } from 'vuex';
+import { mapGetters } from '~vuex';
 import api from '@/modules/axios/api';
 import rocket from '@/modules/axios/rocket';
 import mobileMixin from '@/mixins/mobile';
-import CustomImage from '@/components/generic/CustomImage';
 
 export default {
     name: 'Banners',
-
-    components: {
-        CustomImage,
-        Splide,
-        SplideSlide,
-    },
 
     mixins: [
         mobileMixin,

@@ -115,16 +115,11 @@
 </template>
 
 <script>
-import _isEmpty from 'lodash/isEmpty';
-import BaseCustomization from '@/components/product/BaseCustomization';
-import CustomRadioGroup from '@/components/CustomRadioGroup';
+import _ from '~lodash';
+import BaseCustomization from '@/components/product/BaseCustomization.vue';
 
 export default {
     name: 'CustomizationContent',
-
-    components: {
-        CustomRadioGroup,
-    },
 
     extends: BaseCustomization,
 
@@ -186,7 +181,7 @@ export default {
             }
 
             const emptyCustomizations = this.customizations
-                .filter(customization => _isEmpty(this.values[customization.id]));
+                .filter(customization => _.isEmpty(this.values[customization.id]));
 
             // all are empty, we don't need to check
             if (

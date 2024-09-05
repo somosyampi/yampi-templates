@@ -14,17 +14,12 @@
 </template>
 
 <script>
-import _get from 'lodash/get';
+import _ from '~lodash';
 import productMixin from '@/mixins/product';
-import AddToCart from './product/AddToCart';
 import { createPriceObjects } from '@/mixins/helpers';
 
 export default {
     name: 'ProductInfo',
-
-    components: {
-        AddToCart,
-    },
 
     mixins: [
         productMixin,
@@ -53,19 +48,19 @@ export default {
         price() {
             const item = this.validSku || this.validProduct;
 
-            return _get(item, 'prices.data', {});
+            return _.get(item, 'prices.data', {});
         },
 
         priceObject () {
-            return _get(this.price, this.selectedPriceMeta.path, {});
+            return _.get(this.price, this.selectedPriceMeta.path, {});
         },
 
         currentFormattedPrice() {
             if (Object.keys(this.priceObject).length) {
-                return `${_get(this.price, this.selectedPriceMeta.path, this.firstSku[0].prices.data.price_formated)}`;
+                return `${_.get(this.price, this.selectedPriceMeta.path, this.firstSku[0].prices.data.price_formated)}`;
             }
 
-            return `${_get(this.price, 'price_formated', this.firstSku[0].prices.data.price_formated)}`;
+            return `${_.get(this.price, 'price_formated', this.firstSku[0].prices.data.price_formated)}`;
         },
 
         selectedPriceText() {
@@ -81,7 +76,7 @@ export default {
         },
 
         availability() {
-            return _get(this.validSku, 'days_availability_formated');
+            return _.get(this.validSku, 'days_availability_formated');
         },
     },
 };

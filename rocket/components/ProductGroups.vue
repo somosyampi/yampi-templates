@@ -33,15 +33,10 @@
 </template>
 
 <script>
-import BaseProduct from '@/components/product/BaseProduct';
-import CustomImage from '@/components/generic/CustomImage';
+import BaseProduct from '@/components/product/BaseProduct.vue';
 
 export default {
     name: 'ProductGroups',
-
-    components: {
-        CustomImage,
-    },
 
     extends: BaseProduct,
 

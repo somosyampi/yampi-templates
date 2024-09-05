@@ -48,23 +48,14 @@
 </template>
 
 <script>
-import _get from 'lodash/get';
-import _times from 'lodash/times';
-import _difference from 'lodash/difference';
-import _constant from 'lodash/constant';
-import _sortBy from 'lodash/sortBy';
-import _isEqual from 'lodash/isEqual';
+import _ from '~lodash';
 import productMixin from '@/mixins/product';
 import { smoothScroll } from '@/mixins/helpers';
-import CustomSelect from '@/components/CustomSelect';
-import VariantButton from '@/components/VariantButton';
+import CustomSelect from '@/components/CustomSelect.vue';
+import VariantButton from '@/components/VariantButton.vue';
 
 export default {
     name: 'SelectSku',
-
-    components: {
-        CustomSelect,
-    },
 
     mixins: [productMixin],
 
@@ -88,11 +79,11 @@ export default {
 
     computed: {
         variations() {
-            return _get(this.validProduct, 'variations.data', []);
+            return _.get(this.validProduct, 'variations.data', []);
         },
 
         skus() {
-            return _get(this.validProduct, 'skus.data', []);
+            return _.get(this.validProduct, 'skus.data', []);
         },
 
         variationsSelectStyle() {
@@ -118,10 +109,10 @@ export default {
     methods: {
         smoothScroll,
         bootSelected() {
-            this.selected = _times(this.variations.length, _constant(0));
+            this.selected = _.times(this.variations.length, _.constant(0));
 
             if (this.variationsStyle === 'list' || this.variations.length === 1) {
-                this.options = _times(this.variations.length, () => ([]));
+                this.options = _.times(this.variations.length, () => ([]));
 
                 this.loadOptions();
 
@@ -177,7 +168,7 @@ export default {
             const selectedSku = this.skus.find(sku => {
                 const combinations = sku.combinations.split('-').map(item => parseInt(item, 10));
 
-                return _isEqual(_sortBy(this.selected), _sortBy(combinations));
+                return _.isEqual(_.sortBy(this.selected), _.sortBy(combinations));
             });
 
             return this.$emit('update', selectedSku);
@@ -206,7 +197,7 @@ export default {
         },
 
         filterVariationOptions(index) {
-            const options = _get(this.variations, `${index}.values.data`, []);
+            const options = _.get(this.variations, `${index}.values.data`, []);
             let  optionsNoCache = [];
 
             optionsNoCache = this.availabilitySkuVariationsWithoutCache(options)
@@ -261,7 +252,7 @@ export default {
                 option.id,
             ];
 
-            return _difference(partialCombination, combinations).length === 0;
+            return _.difference(partialCombination, combinations).length === 0;
         },
 
         verifySelect() {

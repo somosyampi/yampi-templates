@@ -102,23 +102,16 @@
 </template>
 
 <script>
-import _get from 'lodash/get';
-import _times from 'lodash/times';
-import _isEmpty from 'lodash/isEmpty';
-import _constant from 'lodash/constant';
-import CustomSelect from '@/components/CustomSelect';
-import ErrorText from '@/components/generic/ErrorText';
+import _ from 'lodash';
+import _ from 'lodash/_.times';
+import _ from 'lodash/isEmpty';
+import _ from 'lodash/constant';
 import BaseCustomization from '@/components/product/BaseCustomization.vue';
 import { smoothScroll } from '@/mixins/helpers';
 import errorsMixin from '@/mixins/errors';
 
 export default {
     name: 'SkuCustomizations',
-
-    components: {
-        CustomSelect,
-        ErrorText,
-    },
 
     extends: BaseCustomization,
 
@@ -143,11 +136,11 @@ export default {
         },
 
         customizations() {
-            return _get(this.sku, 'customizations.data', []);
+            return _.get(this.sku, 'customizations.data', []);
         },
 
         hasCustomizations() {
-            return !_isEmpty(this.customizations);
+            return !_.isEmpty(this.customizations);
         },
     },
 
@@ -155,7 +148,7 @@ export default {
         sku: {
             immediate: true,
             handler() {
-                this.showContent = !_get(this.sku, 'allow_sell_without_customization', true);
+                this.showContent = !_.get(this.sku, 'allow_sell_without_customization', true);
             },
         },
 
@@ -181,7 +174,7 @@ export default {
                 all: /[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ.!@#$%^&*()_\-?"{}0-9 ]/,
             };
 
-            return _times(customization.max_chars, _constant(tests[customization.allowed_values]));
+            return _.times(customization.max_chars, _.constant(tests[customization.allowed_values]));
         },
 
         calculateSum() {
@@ -223,7 +216,7 @@ export default {
 
             const invalidCustomizations = this.getInvalidCustomizations();
 
-            if (_isEmpty(invalidCustomizations)) {
+            if (_.isEmpty(invalidCustomizations)) {
                 return true;
             }
 
@@ -238,12 +231,12 @@ export default {
 
         getInvalidCustomizations() {
             if (this.customizations.length === 0
-                || _get(this.sku, 'allow_sell_without_customization', true)) {
+                || _.get(this.sku, 'allow_sell_without_customization', true)) {
                 return;
             }
 
             const emptyCustomizations = this.customizations
-                .filter(customization => _isEmpty(this.values[customization.id]));
+                .filter(customization => _.isEmpty(this.values[customization.id]));
 
             // all empty are not required
             if (emptyCustomizations.every(customization => !customization.required)) {

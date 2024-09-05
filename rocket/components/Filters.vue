@@ -31,22 +31,8 @@
 </template>
 
 <script>
-import FilterCategory from './filters/Category';
-import FilterBrand from './filters/Brand';
-import FilterPrice from './filters/Price';
-import FilterCustom from './filters/Custom';
-import FilterPromotion from './filters/Promotion';
-
 export default {
     name: 'Filters',
-
-    components: {
-        FilterCategory,
-        FilterBrand,
-        FilterPrice,
-        FilterCustom,
-        FilterPromotion,
-    },
 
     props: {
         showBrand: {

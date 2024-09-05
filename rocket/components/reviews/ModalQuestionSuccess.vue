@@ -19,12 +19,9 @@
 </template>
 
 <script>
-import Modal from '@/components/generic/Modal';
 
 export default {
     name: 'ModalQuestion',
-
-    components: { Modal },
 
     methods: {
         showModal() {

@@ -96,19 +96,10 @@
 </template>
 
 <script>
-import Timeago from '@/components/generic/Timeago';
-import BaseContent from '@/components/reviews/BaseContent';
-import ModalQuestion from '@/components/reviews/ModalQuestion';
-import ModalQuestionSuccess from '@/components/reviews/ModalQuestionSuccess';
+import BaseContent from '@/components/reviews/BaseContent.vue';
 
 export default {
     name: 'QuestionContent',
-
-    components: {
-        ModalQuestion,
-        ModalQuestionSuccess,
-        Timeago,
-    },
 
     extends: BaseContent,
 

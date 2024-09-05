@@ -54,11 +54,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import _get from 'lodash/get';
-import Modal from '@/components/generic/Modal';
-import ErrorText from '@/components/generic/ErrorText';
-import LoaderButton from '@/components/generic/LoaderButton';
+import { mapGetters } from '~vuex';
+import _ from '~lodash';
 import rocket from '@/modules/axios/rocket';
 import errorsMixin from '@/mixins/errors';
 
@@ -68,12 +65,6 @@ export default {
     mixins: [
         errorsMixin,
     ],
-
-    components: {
-        Modal,
-        ErrorText,
-        LoaderButton,
-    },
 
     data: () => ({
         sending: false,

@@ -18,15 +18,10 @@
 </template>
 
 <script>
-import BaseProduct from '@/components/product/BaseProduct';
-import Grid from '@/components/generic/Grid';
+import BaseProduct from '@/components/product/BaseProduct.vue';
 
 export default {
     name: 'ProductSimilars',
-
-    components: {
-        Grid,
-    },
 
     extends: BaseProduct,
 

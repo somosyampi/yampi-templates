@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations } from '~vuex';
 import { uuidv4, getImageMeta } from '@/mixins/helpers';
 
 export default {

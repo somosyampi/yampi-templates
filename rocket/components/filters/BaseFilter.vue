@@ -1,6 +1,6 @@
 <script>
-import { mapGetters } from 'vuex';
-import _pick from 'lodash/pick';
+import { mapGetters } from '~vuex';
+import _ from '~lodash';
 import api from '@/modules/axios/api';
 import rocket from '@/modules/axios/rocket';
 import queryParams from '@/mixins/queryParams';
@@ -43,7 +43,7 @@ export default {
             try {
                 this.loading = true;
 
-                const filteredQueryParams = _pick(this.queryParams, ['slug', 'q', 'context']);
+                const filteredQueryParams = _.pick(this.queryParams, ['slug', 'q', 'context']);
 
                 const url = this.$applyQueriesToUrl(`search/products/${this.route}`, filteredQueryParams);
                 const { data } = await api.get(url);

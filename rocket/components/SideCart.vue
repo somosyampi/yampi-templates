@@ -197,21 +197,10 @@
 </template>
 
 <script>
-import SelectArrow from '@/components/icons/SelectArrow';
 import BaseCart from '@/components/BaseCart.vue';
-import BuyTogetherCartGroup from '@/components/BuyTogetherCartGroup.vue';
-import NavigationDrawer from '@/components/generic/NavigationDrawer';
-import ProductCartBox from '@/components/product/ProductCartBox';
 
 export default {
     name: 'SideCart',
-
-    components: {
-        SelectArrow,
-        BuyTogetherCartGroup,
-        NavigationDrawer,
-        ProductCartBox,
-    },
 
     extends: BaseCart,
 

@@ -1,6 +1,6 @@
 <script>
-import { mapGetters } from 'vuex';
-import _get from 'lodash/get';
+import { mapGetters } from '~vuex';
+import _ from '~lodash';
 import api from '@/modules/axios/api';
 
 export default {
@@ -107,7 +107,7 @@ export default {
 
                 const { data } = await api.get(url);
 
-                this.pagination.total = _get(data, 'data.total', 0);
+                this.pagination.total = _.get(data, 'data.total', 0);
                 this.$emit('update:count', this.pagination.total);
             } catch (e) {
                 console.error(e);

@@ -55,17 +55,12 @@
 </template>
 
 <script>
-import _last from 'lodash/last';
-import BaseInstallments from '@/components/product/BaseInstallments';
-import buttonsMixin from '../../mixins/buttons.js';
-import LoaderButton from '@/components/generic/LoaderButton';
+import _ from '~lodash';
+import BaseInstallments from '@/components/product/BaseInstallments.vue';
+import buttonsMixin from '@/mixins/buttons.js';
 
 export default {
     name: 'FloatingButton',
-
-    components: {
-        LoaderButton,
-    },
 
     extends: BaseInstallments,
 
@@ -103,7 +98,7 @@ export default {
         },
 
         lastInstallment() {
-            return _last(this.installments.installments);
+            return _.last(this.installments.installments);
         },
 
         showFloatingButton() {

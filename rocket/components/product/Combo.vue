@@ -92,27 +92,14 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
-import _get from 'lodash/get';
-import _omit from 'lodash/omit';
-import _map from 'lodash/map';
-import SelectSku from '@/components/product/SelectSku';
-import CustomImage from '@/components/generic/CustomImage';
-import LoaderButton from '@/components/generic/LoaderButton';
-import BuyTogetherCustomization from '@/components/product/buy-together/BuyTogetherCustomization';
+import { mapActions, mapGetters } from '~vuex';
+import _ from '~lodash';
 import trackingByApi from '@/mixins/tracking/api';
-import Vue from "vue";
+import Vue from '~vue';
 import { createPriceObjects } from '@/mixins/helpers';
 
 export default {
     name: 'ProductCombo',
-
-    components: {
-        SelectSku,
-        CustomImage,
-        LoaderButton,
-        BuyTogetherCustomization,
-    },
 
     mixins: [trackingByApi],
 
@@ -167,7 +154,7 @@ export default {
         },
 
         products() {
-            return _get(this.combo, 'products.data', []);
+            return _.get(this.combo, 'products.data', []);
         },
 
         threeProducts() {
@@ -196,23 +183,23 @@ export default {
                 let tempSku = sku;
 
                 if (!tempSku) {
-                    tempSku = _get(this.products, `${index}.skus.data.0`);
+                    tempSku = _.get(this.products, `${index}.skus.data.0`);
                 }
 
-                const defaultPrice = _get(tempSku, 'prices.data.price', 0);
-                const selectedPrice = _get(tempSku, this.price.path, false);
+                const defaultPrice = _.get(tempSku, 'prices.data.price', 0);
+                const selectedPrice = _.get(tempSku, this.price.path, false);
 
                 if (!selectedPrice) {
                     this.invalidSelectedPrice = true;
                 }
 
-                return acc + _get(tempSku, this.price.path, defaultPrice);
+                return acc + _.get(tempSku, this.price.path, defaultPrice);
             }, 0);
         },
 
         priceWithDiscount() {
-            const discountValue = _get(this.combo, 'discount_value', 0);
-            const discountType = _get(this.combo, 'discount_type', 'v');
+            const discountValue = _.get(this.combo, 'discount_value', 0);
+            const discountType = _.get(this.combo, 'discount_type', 'v');
             const factors = {
                 p: this.fullPrice / 100,
                 v: 1,
@@ -248,7 +235,7 @@ export default {
             Object.keys(this.customizedProducts).forEach(key => {
                 if (this.customizedProducts[key].isMandatory
                     || this.customizedProducts[key].isPersonalized) {
-                    customized = { ...customized, [key]: _omit(this.customizedProducts[key], ['isPersonalized', 'isMandatory']) };
+                    customized = { ...customized, [key]: _.omit(this.customizedProducts[key], ['isPersonalized', 'isMandatory']) };
                 }
             });
 
@@ -319,7 +306,7 @@ export default {
         },
 
         setSelectedSkus() {
-            this.selectedSkus = this.products.map(product => _get(product, 'skus.data.0'));
+            this.selectedSkus = this.products.map(product => _.get(product, 'skus.data.0'));
         },
 
         handleBuyTogetherCustomization() {
@@ -352,7 +339,7 @@ export default {
                 this.handleTrackApi('purchase-intended', {
                     location: 'buy-together',
                     quick_buy_button_enabled: themeParams.show_add_to_cart_button,
-                    items: _map(this.products, 'name'),
+                    items: _.map(this.products, 'name'),
                     amount: this.priceWithDiscount,
                 });
             }

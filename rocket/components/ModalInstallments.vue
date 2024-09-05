@@ -65,19 +65,11 @@
 </template>
 
 <script>
-import _trimEnd from 'lodash/trimEnd';
-import _get from 'lodash/get';
-import Modal from '@/components/generic/Modal';
-import CustomSelect from '@/components/CustomSelect';
-import BaseInstallments from '@/components/product/BaseInstallments';
+import _ from '~lodash';
+import BaseInstallments from '@/components/product/BaseInstallments.vue';
 
 export default {
     name: 'ModalInstallments',
-
-    components: {
-        Modal,
-        CustomSelect,
-    },
 
     extends: BaseInstallments,
 
@@ -121,7 +113,7 @@ export default {
     },
 
     methods: {
-        get: _get,
+        get: _.get,
 
         async handleSelectCard(selectedCardAlias) {
             try {
@@ -156,7 +148,7 @@ export default {
         },
 
         cleanText(text) {
-            return _trimEnd(text, ' *');
+            return _.trimEnd(text, ' *');
         },
     },
 };

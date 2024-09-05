@@ -53,10 +53,10 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from '~vuex';
 import BaseCart from '@/components/BaseCart.vue';
-import DropdownCart from '@/components/DropdownCart';
-import SideCart from '@/components/SideCart';
+import DropdownCart from '@/components/DropdownCart.vue';
+import SideCart from '@/components/SideCart.vue';
 
 export default {
     name: 'MiniCart',

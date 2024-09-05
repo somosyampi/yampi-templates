@@ -38,23 +38,14 @@
 </template>
 
 <script>
-import _get from 'lodash/get';
+import _ from '~lodash';
 import rocket from '@/modules/axios/rocket';
 import errorsMixin from '@/mixins/errors';
 import productMixin from '@/mixins/product';
-import ModalZipcode from '@/components/product/ModalZipcode';
-import LoaderButton from '@/components/generic/LoaderButton';
-import ErrorText from '@/components/generic/ErrorText';
 import trackingByApi from '@/mixins/tracking/api';
 
 export default {
     name: 'Zipcode',
-
-    components: {
-        ErrorText,
-        LoaderButton,
-        ModalZipcode,
-    },
 
     mixins: [
         errorsMixin,
@@ -112,7 +103,7 @@ export default {
                     },
                 );
 
-                this.data = _get(data, 'data', {});
+                this.data = _.get(data, 'data', {});
 
                 if (Object.keys(this.data).length === 0) {
                     // eslint-disable-next-line
@@ -131,7 +122,7 @@ export default {
                 this.setError(
                     'zipcode',
                     // eslint-disable-next-line
-                    _get(e, 'response.data.message', 'Ocorreu um erro ao cotar o frete')
+                    _.get(e, 'response.data.message', 'Ocorreu um erro ao cotar o frete')
                 );
             } finally {
                 this.sending = false;

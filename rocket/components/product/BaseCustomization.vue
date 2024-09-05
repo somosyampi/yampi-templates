@@ -1,8 +1,5 @@
 <script>
-import _get from 'lodash/get';
-import _isEmpty from 'lodash/isEmpty';
-import _times from 'lodash/times';
-import _constant from 'lodash/constant';
+import _ from '~lodash';
 import errorsMixin from '@/mixins/errors';
 
 export default {
@@ -25,11 +22,11 @@ export default {
         },
 
         customizations() {
-            return _get(this.sku, 'customizations.data', []);
+            return _.get(this.sku, 'customizations.data', []);
         },
 
         hasCustomizations() {
-            return !_isEmpty(this.customizations);
+            return !_.isEmpty(this.customizations);
         },
     },
 
@@ -45,7 +42,7 @@ export default {
         sku: {
             immediate: true,
             handler() {
-                this.showContent = !_get(
+                this.showContent = !_.get(
                     this.sku,
                     'allow_sell_without_customization',
                     true,
@@ -62,9 +59,9 @@ export default {
                 all: /[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ.!@#$%^&*()_\-?"{}0-9 ]/,
             };
 
-            return _times(
+            return _.times(
                 customization.max_chars,
-                _constant(tests[customization.allowed_values]),
+                _.constant(tests[customization.allowed_values]),
             );
         },
 
@@ -96,12 +93,12 @@ export default {
 
             const invalidCustomizations = this.getInvalidCustomizations(values);
 
-            if (_isEmpty(invalidCustomizations)) {
+            if (_.isEmpty(invalidCustomizations)) {
                 return true;
             }
 
             invalidCustomizations.forEach(customization => {
-                if (!context || _get(context, 'id') === customization.id) {
+                if (!context || _.get(context, 'id') === customization.id) {
                     this.setError(customization.id, 'Campo obrigatório');
                 }
             });
@@ -115,7 +112,7 @@ export default {
             }
 
             const emptyCustomizations = this.customizations.filter(
-                customization => _isEmpty(values[customization.id]),
+                customization => _.isEmpty(values[customization.id]),
             );
 
             // all are empty, we don't need to check

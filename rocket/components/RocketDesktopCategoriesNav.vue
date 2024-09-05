@@ -41,16 +41,10 @@
 </template>
 
 <script>
-import _chunk from 'lodash/chunk';
-import _omit from 'lodash/omit';
-import RocketAnchor from '@/components/atoms/RocketAnchor.vue';
+import _ from '~lodash';
 
 export default {
     name: 'RocketDesktopCategoriesNav',
-
-    components: {
-        RocketAnchor,
-    },
 
     inject: ['mainCategory', 'categoriesDisplay'],
 
@@ -70,10 +64,10 @@ export default {
         },
 
         chunkedSubcategories() {
-            return _chunk([
+            return _.chunk([
                 ...[
                     {
-                        ..._omit(this.mainCategory, ['children']),
+                        ..._.omit(this.mainCategory, ['children']),
                         name: 'Todos os produtos',
                     },
                 ],

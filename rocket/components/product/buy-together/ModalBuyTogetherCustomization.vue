@@ -48,15 +48,11 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
-import Modal from '@/components/generic/Modal';
-import Stepper from '@/components/generic/Stepper';
-import BuyTogetherCustomizationContent from '@/components/product/buy-together/BuyTogetherCustomizationContent';
+import { mapActions, mapGetters } from '~vuex';
 
 export default {
     name: 'ModalBuyTogetherCustomization',
 
-    components: { Modal, Stepper, BuyTogetherCustomizationContent },
 
     data() {
         return {

@@ -125,31 +125,13 @@
 </template>
 
 <script>
-import _get from 'lodash/get';
-import _omitBy from 'lodash/omitBy';
-import _isEmpty from 'lodash/isEmpty';
-import { mapActions, mapGetters } from 'vuex';
+import _ from '~lodash';
+import { mapActions, mapGetters } from '~vuex';
 import trackingByApi from '@/mixins/tracking/api';
 import { createPriceObjects } from '@/mixins/helpers';
 
-import Modal from '@/components/generic/Modal';
-import CustomImage from '@/components/generic/CustomImage';
-import LoaderButton from '@/components/generic/LoaderButton';
-import QuantitySelector from '@/components/generic/QuantitySelector';
-import SelectSku from '@/components/product/SelectSku';
-import CustomizationContent from '@/components/product/CustomizationContent';
-
 export default {
     name: 'ModalConfirmAddToCart',
-
-    components: {
-        Modal,
-        CustomImage,
-        QuantitySelector,
-        LoaderButton,
-        SelectSku,
-        CustomizationContent,
-    },
 
     mixins: [trackingByApi],
 
@@ -207,20 +189,20 @@ export default {
 
         skuPriceFormated() {
             if (this.selectedSku) {
-                return `${_get(this.selectedSku,
+                return `${_.get(this.selectedSku,
                     this.price[this.selectedPrice].path,
                     this.selectedSku.prices.data.price_formated)}`;
             }
 
-            return `${_get(this.product,
+            return `${_.get(this.product,
                 this.price[this.selectedPrice].path,
                 this.product.prices.data.price_formated)}`;
         },
 
         imageUrl() {
-            if (this.selectedSku) return _get(this.selectedSku, 'images.data.0.url', null);
+            if (this.selectedSku) return _.get(this.selectedSku, 'images.data.0.url', null);
 
-            return _get(this.product, 'images.data.0.url', null);
+            return _.get(this.product, 'images.data.0.url', null);
         },
 
         primaryButtonText() {
@@ -236,7 +218,7 @@ export default {
         },
 
         customizations() {
-            return _get(this.selectedSku, 'customizations.data', []);
+            return _.get(this.selectedSku, 'customizations.data', []);
         },
 
         validSku() {
@@ -244,11 +226,11 @@ export default {
         },
 
         firstValidSku() {
-            return _get(this.product, 'skus.data', []).find(sku => !sku.blocked_sale);
+            return _.get(this.product, 'skus.data', []).find(sku => !sku.blocked_sale);
         },
 
         firstSku() {
-            return _get(this.product, 'skus.data', []);
+            return _.get(this.product, 'skus.data', []);
         },
 
         ellipsisClass() {
@@ -385,20 +367,20 @@ export default {
             }
 
             const customization = {};
-            const validValues = _omitBy(this.customizationValues, _isEmpty);
+            const validValues = _.omitBy(this.customizationValues, _.isEmpty);
 
             // if all customizations aren't required,
             // empty and the sku isn't allowed to be sold without a customization,
             // send them filled with empty values
             if (
                 this.customizations.every(_customization => !_customization.required)
-                && _isEmpty(validValues)
+                && _.isEmpty(validValues)
                 && !this.selectedSku.allow_sell_without_customization
             ) {
                 customization[this.selectedSku.id] = this.customizationValues;
             }
 
-            if (!_isEmpty(validValues)) {
+            if (!_.isEmpty(validValues)) {
                 customization[this.selectedSku.id] = validValues;
             }
 

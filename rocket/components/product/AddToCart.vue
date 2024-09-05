@@ -15,22 +15,14 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters } from '~vuex';
 import eventBus from '@/modules/eventBus';
 import api from '@/modules/axios/api';
 import rocket from '@/modules/axios/rocket';
-
-import ModalCartConfirmation from '@/components/product/ModalCartConfirmation';
-import ModalConfirmAddToCart from '@/components/product/ModalConfirmAddToCart';
-import _get from "lodash/get";
+import _ from '~lodash';
 
 export default {
     name: 'AddToCart',
-
-    components: {
-        ModalCartConfirmation,
-        ModalConfirmAddToCart,
-    },
 
     props: {
         selectedPrice: {

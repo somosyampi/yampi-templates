@@ -42,17 +42,10 @@
 </template>
 
 <script>
-import ProductsList from './ProductsList';
 import mobileMixin from '@/mixins/mobile';
-import RocketEmitter from '../RocketEmitter.vue';
 
 export default {
     name: 'Grid',
-
-    components: {
-        RocketEmitter,
-        ProductsList,
-    },
 
     mixins: [
         mobileMixin,

@@ -42,22 +42,11 @@
 </template>
 
 <script>
-import _lastIndexOf from 'lodash/lastIndexOf';
-import ReviewPhotoIcon from '@/components/icons/ReviewPhotoIcon.vue';
-import ReviewPhotoLoadingIcon from '@/components/icons/ReviewPhotoLoadingIcon.vue';
-import InputImage from '@/components/reviews/InputImage.vue';
-import CustomImage from '@/components/generic/CustomImage.vue';
+import _ from '~lodash';
 import rocket from '@/modules/axios/rocket';
 
 export default {
     name: 'ImageSelector',
-
-    components: {
-        ReviewPhotoIcon,
-        ReviewPhotoLoadingIcon,
-        InputImage,
-        CustomImage,
-    },
 
     props: {
         amount: {
@@ -79,7 +68,7 @@ export default {
 
     computed: {
         lastIndexUrl() {
-            return this.imagesUrls.length ? _lastIndexOf(this.imagesUrls) : 0;
+            return this.imagesUrls.length ? _.lastIndexOf(this.imagesUrls) : 0;
         },
     },
 

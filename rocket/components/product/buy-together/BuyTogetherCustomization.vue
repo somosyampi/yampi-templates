@@ -41,15 +41,10 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import ModalBuyTogetherCustomization from '@/components/product/buy-together/ModalBuyTogetherCustomization';
+import { mapGetters } from '~vuex';
 
 export default {
     name: 'BuyTogetherCustomization',
-
-    components: {
-        ModalBuyTogetherCustomization,
-    },
 
     props: {
         error: {

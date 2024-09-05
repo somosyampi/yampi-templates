@@ -28,16 +28,11 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
-import BaseProduct from '@/components/product/BaseProduct';
-import Combo from '@/components/product/Combo';
+import { mapMutations } from '~vuex';
+import BaseProduct from '@/components/product/BaseProduct.vue';
 
 export default {
     name: 'ProductCombos',
-
-    components: {
-        Combo,
-    },
 
     extends: BaseProduct,
 

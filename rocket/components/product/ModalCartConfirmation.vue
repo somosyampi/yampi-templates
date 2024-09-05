@@ -58,21 +58,13 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
-import _sumBy from 'lodash/sumBy';
-import _map from 'lodash/map';
+import { mapActions, mapGetters } from '~vuex';
+import _ from '~lodash';
 import trackingByApi from '@/mixins/tracking/api';
 import eventBus from '@/modules/eventBus';
-import Modal from '@/components/generic/Modal';
-import SelectArrow from '@/components/icons/SelectArrow';
 
 export default {
     name: 'ModalCartConfirmation',
-
-    components: {
-        Modal,
-        SelectArrow,
-    },
 
     mixins: [trackingByApi],
 
@@ -131,8 +123,8 @@ export default {
             await this.handleTrackApi('checkout-intended', {
                 location: 'modal-cart-confirm',
                 quick_buy_button_enabled: themeParams.show_add_to_cart_button,
-                items: _map(this.cart.items, 'name'),
-                amount: _sumBy(this.cart.items, 'price_total'),
+                items: _.map(this.cart.items, 'name'),
+                amount: _.sumBy(this.cart.items, 'price_total'),
             });
 
             this.redirectToCart();

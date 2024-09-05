@@ -147,26 +147,12 @@
 </template>
 
 <script>
-import times from 'lodash/times';
+import _ from '~lodash';
 import api from '@/modules/axios/api';
-
-import BaseContent from '@/components/reviews/BaseContent';
-import ModalReview from '@/components/reviews/ModalReview';
-import ModalReviewSuccess from '@/components/reviews/ModalReviewSuccess';
-import MasonryLayout from '@/components/MasonryLayout';
-import ReviewCard from '@/components/reviews/ReviewCard';
-import FilledStar from '@/components/icons/FilledStar.vue';
+import BaseContent from '@/components/reviews/BaseContent.vue';
 
 export default {
     name: 'ReviewContent',
-
-    components: {
-        ModalReview,
-        ModalReviewSuccess,
-        MasonryLayout,
-        ReviewCard,
-        FilledStar,
-    },
 
     extends: BaseContent,
 
@@ -232,7 +218,7 @@ export default {
     },
 
     methods: {
-        times,
+        times: _.times,
 
         async getAllRatings() {
             const URL = `catalog/products/reviews/ratings?product_id=${this.product.id}`;

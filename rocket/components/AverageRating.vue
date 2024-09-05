@@ -5,7 +5,7 @@
         @click="handleScroll"
     >
         <FilledStar
-            v-for="index in _times(5)"
+            v-for="index in times(5)"
             :key="index + uuidv4()"
             width="14"
             height="15"
@@ -22,17 +22,12 @@
 </template>
 
 <script>
-import _times from 'lodash/times';
-import { mapGetters } from 'vuex';
+import _ from 'lodash';
+import { mapGetters } from '~vuex';
 import { smoothScroll, uuidv4 } from '@/mixins/helpers';
-import FilledStar from '@/components/icons/FilledStar.vue';
 
 export default {
     name: 'AverageRating',
-
-    components: {
-        FilledStar,
-    },
 
     props: {
         isGrid: {
@@ -91,7 +86,7 @@ export default {
     methods: {
         uuidv4,
 
-        _times,
+        times: _.times,
 
         async handleScroll() {
             if (this.isGrid) return;

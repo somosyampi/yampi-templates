@@ -20,14 +20,12 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
-import BaseFilter from './BaseFilter';
-import Loader from '../generic/Loader.vue';
+import { mapActions, mapGetters } from '~vuex';
+import BaseFilter from '@/components/filters/BaseFilter.vue';
 
 export default {
     name: 'FilterPrice',
 
-    components: { Loader },
 
     extends: BaseFilter,
 

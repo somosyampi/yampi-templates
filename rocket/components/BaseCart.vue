@@ -1,13 +1,7 @@
 <script>
-import _get from 'lodash/get';
-import _some from 'lodash/some';
-import _sumBy from 'lodash/sumBy';
-import _debounce from 'lodash/debounce';
-import _groupBy from 'lodash/groupBy';
-import _map from 'lodash/map';
-import { mapActions, mapGetters } from 'vuex';
+import _ from '~lodash';
+import { mapActions, mapGetters } from '~vuex';
 import trackingByApi from '@/mixins/tracking/api';
-import { pageParams } from '@/mixins/helpers';
 
 export default {
     name: 'BaseCart',
@@ -41,7 +35,7 @@ export default {
         ...mapGetters('preview', ['isPreview']),
 
         items() {
-            return _get(this.cart, 'items', []);
+            return _.get(this.cart, 'items', []);
         },
 
         buttonText() {
@@ -53,22 +47,22 @@ export default {
         },
 
         cartQuantity() {
-            return _sumBy(this.items, 'quantity');
+            return _.sumBy(this.items, 'quantity');
         },
 
         anyLoading() {
-            return _some(this.loading);
+            return _.some(this.loading);
         },
 
         redirectUrl() {
             return this.$checkoutUrl(
-                _get(this.$store.getters, 'merchant/merchant.checkout.redirect_to'),
+                _.get(this.$store.getters, 'merchant/merchant.checkout.redirect_to'),
                 true,
             );
         },
 
         buyTogetherItems() {
-            return _groupBy(
+            return _.groupBy(
                 this.items.filter(item => item.kit_id),
                 item => item.kit_id,
             );
@@ -109,8 +103,8 @@ export default {
             for (const iterator in paymentMethods) {
                 if (paymentMethods[iterator].alias === this.highlightedPrice) {
                     return {
-                        value: parseFloat(_get(paymentMethods[iterator], 'prices.total')),
-                        percentage: parseFloat(_get(paymentMethods[iterator], 'percent_discount')),
+                        value: parseFloat(_.get(paymentMethods[iterator], 'prices.total')),
+                        percentage: parseFloat(_.get(paymentMethods[iterator], 'percent_discount')),
                         configured: true
                     }
                 }
@@ -142,7 +136,7 @@ export default {
             this.setLoading('all', false);
         },
 
-        handleQuantityChange: _debounce(function (item, quantity) {
+        handleQuantityChange: _.debounce(function (item, quantity) {
             this.updateQuantity(item, quantity);
         }, 300),
 
@@ -162,7 +156,7 @@ export default {
             this.handleTrackApi(eventDispatch, {
                 location: 'side-cart',
                 quick_buy_button_enabled: themeParams.show_add_to_cart_button,
-                items: _map(this.items, 'name'),
+                items: _.map(this.items, 'name'),
                 amount: this.cartValue,
             });
 

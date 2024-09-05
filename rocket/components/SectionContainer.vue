@@ -10,21 +10,10 @@
 </template>
 
 <script>
-import RocketAnchor from '@/components/atoms/RocketAnchor';
 
 export default {
     name: 'SectionContainer',
 
     inject: ['params'],
-
-    components: {
-        RocketAnchor
-    },
-
-    methods: {
-        extractCssStyleVar({ paramsFields }) {
-
-        }
-    }
 }
 </script>

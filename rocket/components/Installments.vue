@@ -21,20 +21,14 @@
 </template>
 
 <script>
-import _get from 'lodash/get';
-import _isNil from 'lodash/isNil';
-import { debounce } from 'vue-debounce';
-import BaseInstallments from '@/components/product/BaseInstallments';
-import ModalInstallments from "./ModalInstallments.vue";
+import _ from '~lodash';
+import { debounce } from '~vue-debounce';
+import BaseInstallments from '@/components/product/BaseInstallments.vue';
 
 export default {
     name: 'Installments',
 
     extends: BaseInstallments,
-
-    componenets: {
-        ModalInstallments,
-    },
 
     props: {
         loaderHeight: {
@@ -61,7 +55,7 @@ export default {
         isSku() {
             // if there is product.id, than we should not look into the validSku.
             // validSku is used only for the main product.
-            return !this.product.id && !_isNil(this.validSku);
+            return !this.product.id && !_.isNil(this.validSku);
         },
     },
 

@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import _debounce from 'lodash/debounce';
-import { mapGetters } from 'vuex';
+import _ from '~lodash';
+import { mapGetters } from '~vuex';
 
 export default {
     name: 'FixedHeader',
@@ -56,7 +56,7 @@ export default {
 
             document.addEventListener(
                 'scroll',
-                _debounce(() => {
+                _.debounce(() => {
                     const needsHeaderFixed = (window.pageYOffset - header.clientHeight) > 0;
                     this.$store.dispatch('header/updateShowSearchBar', !needsHeaderFixed);
                     this.headerIsFixed = needsHeaderFixed;

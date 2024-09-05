@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import _delay from 'lodash/delay';
+import _ from '~lodash';
 
 export default {
     name: 'Modal',
@@ -110,7 +110,7 @@ export default {
 
             this.show = false;
             document.getElementById('app').style.overflow = '';
-            _delay(() => {
+            _.delay(() => {
                 document.getElementsByTagName('body')[0].classList.remove('block-scroll');
                 document.documentElement.classList.remove('block-scroll');
                 document.body.style.marginRight = `0px`;

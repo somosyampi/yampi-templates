@@ -144,24 +144,12 @@
 
 <script>
 /* eslint-disable max-len */
-import _get from 'lodash/get';
-import { Splide, SplideSlide } from '@splidejs/vue-splide';
-import PinchZoom from 'vue-pinch-zoom';
-import SmoothScroll from './SmoothScroll';
+import _ from '~lodash';
 import mobileMixin from '@/mixins/mobile';
 import productMixin from '@/mixins/product';
-import CustomImage from '@/components/generic/CustomImage';
 
 export default {
     name: 'ProductZoom',
-
-    components: {
-        CustomImage,
-        SmoothScroll,
-        SplideSlide,
-        Splide,
-        PinchZoom,
-    },
 
     mixins: [
         mobileMixin,
@@ -237,11 +225,11 @@ export default {
         },
 
         productImages() {
-            const selected = _get(this.validProduct, 'use_different_images')
+            const selected = _.get(this.validProduct, 'use_different_images')
                 ? (this.lastSku || this.validProduct)
                 : this.validProduct;
 
-            return _get(selected, 'images.data', []);
+            return _.get(selected, 'images.data', []);
         },
 
         imageIndicatorText() {

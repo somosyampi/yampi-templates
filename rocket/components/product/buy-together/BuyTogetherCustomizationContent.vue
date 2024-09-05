@@ -36,17 +36,12 @@
 </template>
 
 <script>
-import _omit from 'lodash/omit';
-import { mapActions, mapGetters } from 'vuex';
-import CustomizationContent from '@/components/product/CustomizationContent';
+import _ from '~lodash';
+import { mapActions, mapGetters } from '~vuex';
 import { smoothScroll } from '@/mixins/helpers';
 
 export default {
     name: 'BuyTogetherCustomizationContent',
-
-    components: {
-        CustomizationContent,
-    },
 
     props: {
         sku: {
@@ -85,7 +80,7 @@ export default {
 
         if (this.customizedProducts[this.sku.id]) {
             this.showContent = this.customizedProducts[this.sku.id].isPersonalized;
-            this.values = _omit(this.customizedProducts[this.sku.id], ['isPersonalized']);
+            this.values = _.omit(this.customizedProducts[this.sku.id], ['isPersonalized']);
         }
     },
 

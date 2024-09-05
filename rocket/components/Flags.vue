@@ -15,9 +15,7 @@
 </template>
 
 <script>
-import _get from 'lodash/get';
-import _isNil from 'lodash/isNil';
-import _isEmpty from 'lodash/isEmpty';
+import _ from '~lodash';
 import api from '@/modules/axios/api';
 import productMixin from '@/mixins/product';
 
@@ -41,15 +39,15 @@ export default {
     }),
 
     mounted() {
-        if (!_isEmpty(this.defaultFlags)) {
+        if (!_.isEmpty(this.defaultFlags)) {
             this.flags = this.defaultFlags;
 
             return;
         }
 
-        const loadedFlags = _get(this.validProduct, 'flags.data');
+        const loadedFlags = _.get(this.validProduct, 'flags.data');
 
-        if (!_isNil(loadedFlags)) {
+        if (!_.isNil(loadedFlags)) {
             this.flags = loadedFlags;
             return;
         }

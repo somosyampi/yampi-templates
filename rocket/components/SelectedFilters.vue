@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters } from '~vuex';
 import queryParams from '@/mixins/queryParams';
 
 export default {

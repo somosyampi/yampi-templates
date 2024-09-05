@@ -168,17 +168,10 @@
 </template>
 
 <script>
-import BaseCart from '@/components/BaseCart';
-import ProductCartBox from '@/components/product/ProductCartBox';
-import RocketEmitter from '@/components/RocketEmitter';
+import BaseCart from '@/components/BaseCart.vue';
 
 export default {
     name: 'DropdownCart',
-
-    components: {
-        ProductCartBox,
-        RocketEmitter,
-    },
 
     extends: BaseCart,
 

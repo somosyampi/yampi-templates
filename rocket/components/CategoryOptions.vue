@@ -45,7 +45,6 @@
 </template>
 
 <script>
-import SideBarTrigger from './SideBarTrigger.vue';
 import mobileMixin from '@/mixins/mobile';
 
 export default {
@@ -55,7 +54,6 @@ export default {
         mobileMixin,
     ],
 
-    components: { SideBarTrigger },
 
     props: {
         isMosaic: {

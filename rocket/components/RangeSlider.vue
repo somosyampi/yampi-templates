@@ -22,15 +22,10 @@
 </template>
 
 <script>
-import VueSlider from 'vue-slider-component';
-import _get from 'lodash/get';
+import _ from '~lodash';
 
 export default {
     name: 'RangeSlider',
-
-    components: {
-        VueSlider,
-    },
 
     props: {
         min: {
@@ -70,8 +65,8 @@ export default {
     },
 
     mounted() {
-        this.selectedMin = _get(this.value, 0, this.min);
-        this.selectedMax = _get(this.value, 1, this.max);
+        this.selectedMin = _.get(this.value, 0, this.min);
+        this.selectedMax = _.get(this.value, 1, this.max);
     },
 
     computed: {

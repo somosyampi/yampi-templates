@@ -15,12 +15,9 @@
 </template>
 
 <script>
-import Modal from '@/components/generic/Modal';
 
 export default {
     name: 'ModalReview',
-
-    components: { Modal },
 
     methods: {
         showModal() {

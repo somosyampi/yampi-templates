@@ -46,16 +46,9 @@
 </template>
 
 <script>
-import ReviewContent from '@/components/reviews/ReviewContent';
-import QuestionContent from '@/components/reviews/QuestionContent';
 
 export default {
     name: 'ProductReviews',
-
-    components: {
-        ReviewContent,
-        QuestionContent,
-    },
 
     props: {
         order: {

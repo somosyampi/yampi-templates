@@ -41,19 +41,13 @@
 </template>
 
 <script>
-import 'external-svg-loader';
-import { Splide, SplideSlide } from '@splidejs/vue-splide';
+import '~external-svg-loader';
 
 // Mixins
 import mobileMixin from '@/mixins/mobile';
 
 export default {
     name: 'Highlight',
-
-    components: {
-        SplideSlide,
-        Splide,
-    },
 
     mixins: [
         mobileMixin,

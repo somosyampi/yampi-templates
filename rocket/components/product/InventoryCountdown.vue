@@ -21,15 +21,10 @@
 </template>
 
 <script>
-import _round from 'lodash/round';
-import Stopwatch from '@/components/generic/Stopwatch.vue';
+import _ from '~lodash';
 
 export default {
     name: 'InventoryCountdown',
-
-    components: {
-        Stopwatch,
-    },
 
     data: () => ({
         actual: 12,
@@ -41,7 +36,7 @@ export default {
 
     computed: {
         barStyle() {
-            const percentage = 10 + _round((this.actual / this.max) * 100, 2);
+            const percentage = 10 + _.round((this.actual / this.max) * 100, 2);
 
             return {
                 width: `${percentage}%`,

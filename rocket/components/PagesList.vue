@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import SideBarTrigger from './SideBarTrigger.vue';
 import mobileMixin from '@/mixins/mobile';
 
 export default {
@@ -28,8 +27,6 @@ export default {
     mixins: [
         mobileMixin,
     ],
-
-    components: { SideBarTrigger },
 
     props: {
         pageList: {

@@ -9,18 +9,13 @@
 </template>
 
 <script>
-import _get from 'lodash/get';
-import { mapGetters } from 'vuex';
-import Grid from '@/components/generic/Grid';
+import _ from '~lodash';
+import { mapGetters } from '~vuex';
 import api from '@/modules/axios/api';
 import rocket from '@/modules/axios/rocket';
 
 export default {
     name: 'Collection',
-
-    components: {
-        Grid,
-    },
 
     props: {
         desktopLayout: {
@@ -66,7 +61,7 @@ export default {
 
         link() {
             return this.showLink
-                ? _get(this.collection, 'url_path', '')
+                ? _.get(this.collection, 'url_path', '')
                 : '';
         },
 
@@ -111,7 +106,7 @@ export default {
                 return result;
             }
 
-            return _get(this.collection, 'products.data', []);
+            return _.get(this.collection, 'products.data', []);
         },
 
         isCarousel() {
@@ -143,7 +138,7 @@ export default {
 
                 const { data } = await api.get(url);
 
-                this.collection = _get(data, 'data.0', {});
+                this.collection = _.get(data, 'data.0', {});
             } finally {
                 this.loading = false;
             }
@@ -155,7 +150,7 @@ export default {
                 url: '/placeholders/collections',
             });
 
-            this.collection = _get(payload, 'data.0', {});
+            this.collection = _.get(payload, 'data.0', {});
         },
     },
 };

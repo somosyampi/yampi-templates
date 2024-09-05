@@ -51,14 +51,8 @@
 </template>
 
 <script>
-import CustomImage from '@/components/generic/CustomImage';
-
 export default {
     name: 'BannerProduct',
-
-    components: {
-        CustomImage,
-    },
 
     props: {
         product: {

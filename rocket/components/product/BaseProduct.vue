@@ -1,5 +1,5 @@
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters } from '~vuex';
 import api from '@/modules/axios/api';
 import rocket from '@/modules/axios/rocket';
 import productMixin from '@/mixins/product';

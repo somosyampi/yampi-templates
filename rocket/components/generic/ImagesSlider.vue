@@ -43,18 +43,10 @@
 </template>
 
 <script>
-import PinchZoom from 'vue-pinch-zoom';
-import { Splide, SplideSlide } from '@splidejs/vue-splide';
-import touchableMixin from '../../mixins/touchable';
+import touchableMixin from '@/mixins/touchable';
 
 export default {
     name: 'Touchable',
-
-    components: {
-        PinchZoom,
-        Splide,
-        SplideSlide,
-    },
 
     mixins: [touchableMixin],
 

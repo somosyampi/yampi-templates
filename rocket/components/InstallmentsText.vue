@@ -6,11 +6,9 @@
 </template>
 
 <script>
-import Vue from 'vue';
-import Component from 'vue-class-component';
-import BaseInstallments from '@/components/product/BaseInstallments';
-import {debounce} from "vue-debounce";
-import _isNil from "lodash/isNil";
+import BaseInstallments from '@/components/product/BaseInstallments.vue';
+import { debounce } from '~vue-debounce';
+import _ from '~lodash';
 
 export default  {
     name: 'InstallmentsText',
@@ -28,7 +26,7 @@ export default  {
         isSku() {
             // if there is product.id, than we should not look into the validSku.
             // validSku is used only for the main product.
-            return !this.product.id && !_isNil(this.validSku);
+            return !this.product.id && !_.isNil(this.validSku);
         },
     },
 

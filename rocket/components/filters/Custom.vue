@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import BaseFilter from './BaseFilter';
+import BaseFilter from '@/components/filters/BaseFilter.vue';
 
 export default {
     name: 'FilterCustom',

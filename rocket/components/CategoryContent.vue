@@ -27,21 +27,15 @@
 </template>
 
 <script>
-import _get from 'lodash/get';
-import _debounce from 'lodash/debounce';
-import { mapGetters } from 'vuex';
+import _ from '~lodash';
+import { mapGetters } from '~vuex';
 import rocket from '@/modules/axios/rocket';
 import api from '@/modules/axios/api';
 import queryParamsMixin from '@/mixins/queryParams';
 import mobileMixin from '@/mixins/mobile';
-import AddToCart from './product/AddToCart';
 
 export default {
     name: 'CategoryContent',
-
-    components: {
-        AddToCart,
-    },
 
     mixins: [
         queryParamsMixin,
@@ -131,7 +125,7 @@ export default {
     },
 
     methods: {
-        updateFilters: _debounce(async function () {
+        updateFilters: _.debounce(async function () {
             this.loading = true;
 
             const { queryParams } = this;
@@ -280,7 +274,7 @@ export default {
                 const url = this.$applyQueriesToUrl('search/products/count', queryParams);
                 const { data } = await api.get(url);
 
-                this.paginate.pageCount = _get(data, 'data.total_pages', 1);
+                this.paginate.pageCount = _.get(data, 'data.total_pages', 1);
             } catch (e) {
                 console.error(e);
             } finally {

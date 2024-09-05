@@ -12,11 +12,6 @@ import RocketDesktopCategoriesNav from '@/components/RocketDesktopCategoriesNav.
 export default {
     name: 'RocketCategoriesNav',
 
-    components: {
-        RocketDesktopCategoriesNav,
-        RocketMobileCategoriesNav,
-    },
-
     mixins: [
         mobileMixin,
     ],

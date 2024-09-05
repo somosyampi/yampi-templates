@@ -35,9 +35,7 @@
 </template>
 
 <script>
-import _find from 'lodash/find';
-import _trimEnd from 'lodash/trimEnd';
-import Modal from '@/components/generic/Modal';
+import _ from '~lodash';
 
 export default {
     name: 'ModalZipcode',
@@ -49,17 +47,13 @@ export default {
         },
     },
 
-    components: {
-        Modal,
-    },
-
     data: () => ({
         subtitle: '',
     }),
 
     computed: {
         firstQuote() {
-            return _find(this.data) || {};
+            return _.find(this.data) || {};
         },
     },
 

@@ -35,18 +35,11 @@
 </template>
 
 <script>
-import _get from 'lodash/get';
-import AtomSVG from '@/components/atoms/AtomSVG';
-import ShoppingPageRow from '@/components/molecules/ShoppingPageRow';
+import _ from '~lodash';
 import mobileMixin from '@/mixins/mobile';
 
 export default {
     name: 'MoleculeShoppingPageRedirect',
-
-    components: {
-        AtomSVG,
-        ShoppingPageRow,
-    },
 
     mixins: [
         mobileMixin,
@@ -61,7 +54,7 @@ export default {
         return {
             visible: false,
             shopperUrl: this.$shopperUrl(
-                _get(this.$store.getters, 'merchant/merchant.checkout.shopper_url'),
+                _.get(this.$store.getters, 'merchant/merchant.checkout.shopper_url'),
                 true,
             ),
         };

@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import AtomLink from '@/components/atoms/AtomLink';
 
 export default {
     name: 'ShoppingPageRow',
@@ -20,10 +19,6 @@ export default {
             type: String,
             required: true
         }
-    },
-
-    components: {
-        AtomLink,
     },
 };
 </script>

@@ -9,7 +9,7 @@
     </transition>
 </template>
 <script>
-import Cookies from 'js-cookie';
+import Cookies from '~js-cookie';
 
 export default {
     name: 'CookiesWarning',

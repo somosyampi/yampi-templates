@@ -55,18 +55,11 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import _omit from 'lodash/omit';
-import Trashcan from '@/components/icons/Trashcan.vue';
-import ProductCartBox from '@/components/product/ProductCartBox';
+import { mapGetters } from '~vuex';
+import _ from '~lodash';
 
 export default {
     name: 'BuyTogetherCartGroup',
-
-    components: {
-        Trashcan,
-        ProductCartBox,
-    },
 
     props: {
         buyTogetherItems: {
@@ -119,7 +112,7 @@ export default {
 
         getCombo(kitId) {
             if (this.combos.length > 0) {
-                this.comboByKitId[kitId] = _omit(
+                this.comboByKitId[kitId] = _.omit(
                     this.combos.filter(combo => combo.id === parseInt(kitId, 10))[0],
                     ['products'],
                 );

@@ -50,16 +50,9 @@
 </template>
 
 <script>
-import RocketAnchor from '@/components/atoms/RocketAnchor';
-import RocketButton from '@/components/atoms/RocketButton';
 
 export default {
     name: 'RocketMobileCategoriesNav',
-
-    components: {
-        RocketAnchor,
-        RocketButton,
-    },
 
     inject: ['mainCategory'],
 
