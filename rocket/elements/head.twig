@@ -19,8 +19,8 @@
 {% include 'scripts/head.twig' %}
 {% include 'elements/variables.twig' %}
 
-<script type="module" src="/dist/vendor/windowVue.js"></script>
+<script type="module" src="{{ '/vendor/windowVue.js' | assets_url }}"></script>
 
 {% include 'scripts/components.twig' ignore missing %}
 
-<script type="module" src="/dist/vendor/app.js"></script>
+<script type="module" src="{{ '/vendor/app.js' | assets_url }}"></script>

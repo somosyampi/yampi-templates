@@ -1,1 +1,0 @@
-import"../../base.js";import{a as o}from"../../index.js";/* empty css          */import"../../_commonjsHelpers.js";const n=o.create({baseURL:window.location.origin||`${window.location.protocol}//${window.location.hostname}`,headers:{"X-CSRF-TOKEN":window.Yampi.csrf_token}});export{n as default};

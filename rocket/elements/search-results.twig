@@ -8,7 +8,7 @@
 
 <div class="flex -between -vtop">
     <h1 class="theme-title">
-        {{ pageName }}
+        {{ strip_mustache(pageName) }}
     </h1>
     {% if customData.config.params.show_sort and content.data | length %}
         <div class="select-order flex -vcenter -hend">

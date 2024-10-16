@@ -24,6 +24,9 @@
 {% set menuBgColorMapValue = layoutMenuBgColorMap[headerLayout] %}
 {% set menuBgColor = menuBgColorMapValue %}
 
+{% set cartIconColor = section.params.cart_icon_color %}
+{% set headerIconColor = section.params.header_icon_color ?? section.params.cart_icon_color %}
+
 <section class="section-header {{ "#{section.section_alias}-#{section.order}" }} {{ section.params.fixed_header ? '-fixed' : '' }}" id="section-header">
     <rocket-emitter emits="header" label="Cabeçalho" order="{{ section.order }}">
         <header-provider :config="{{ section | json_encode }}">
@@ -33,11 +36,11 @@
                 style="
                     --header-font-color: {{ headerTextColor }};
                     --header-bg-color: {{ headerBgColor }};
-                    --header-icon-color: {{ section.params.header_icon_color }};
+                    --header-icon-color: {{ headerIconColor }};
                     --menu-text-color: {{ menuTextColor }};
                     --menu-bg-color: {{ menuBgColor }};"
             >
-                {% if section.params.highlightbar_enabled and section.params.highlightbar_text and (not section.params.highlightbar_only_home or pageConfig.page == 'home') %}
+                {% if section.params.highlightbar_enabled and section.params.highlightbar_text and (not section.params.highlightbar_only_home or page == 'home') %}
                     <div class="header-hightlightbar" style="background-color: {{ section.params.highlightbar_background }}; color: {{ section.params.highlightbar_text_color }}">
                         <div class="container">
                             {{ section.params.highlightbar_text }}

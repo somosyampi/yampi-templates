@@ -11,7 +11,7 @@
             <li>
                 <a href="{{ level.link ?: '#' }}">
                     {% if level.useHtml is defined and level.useHtml %}
-                        {{ level.name|raw }}
+                        {{ strip_mustache(level.name) }}
                     {% else %}
                         {{ level.name }}
                     {% endif %}

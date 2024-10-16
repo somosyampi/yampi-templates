@@ -1,1 +1,0 @@
-import a from"../../modules/axios/rocket.js";import"../../base.js";import"../../index.js";import"../../_commonjsHelpers.js";/* empty css          */const s={methods:{async handleTrackApi(o,r={}){try{await a.post("api/track",{event:o,params:r})}catch(t){throw console.error(t),t}}}};export{s as default};

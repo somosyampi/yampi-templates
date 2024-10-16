@@ -7,7 +7,7 @@
     {% include "elements/head.twig" %}
 </head>
 <body class="{{ merchantData.alias }} {{ previewClass }} {{ page }} {{ pageConfig.data.theme.params.show_dark_mode ? 'dark-mode' : '' }}">
-
+    <h1>Teste Twig</h1>
     <div id="app">
         {% for section in sections %}
             {% if section.visible %}

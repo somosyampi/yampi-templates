@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ooops. Algo errado.</title>
+
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+
+        <style>
+            html, body {
+                height: 100%;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                color: #999;
+                display: table;
+                font-weight: 300;
+                font-family: 'Rubik', sans-serif;
+            }
+
+            .container {
+                text-align: center;
+                display: table-cell;
+                vertical-align: middle;
+            }
+
+            .content {
+                text-align: center;
+                display: inline-block;
+            }
+
+            .title {
+                font-size: 30px;
+                margin-bottom: 40px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </body>
+</html>

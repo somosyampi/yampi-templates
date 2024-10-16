@@ -1,0 +1,15 @@
+{% extends 'errors/layout.twig' %}
+
+{% block content %}
+
+    <h1 class="title">Ooops. Aconteceu um erro.</h1>
+
+    <p>
+        Nossa equipe já foi notificada.<br>
+
+        {% if errorId %}
+            Código do erro: <strong>{{ errorId }}</strong>
+        {% endif %}
+    </p>
+
+{% endblock %}

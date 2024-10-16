@@ -1,1 +1,0 @@
-import"../../base.js";import{a}from"../../index.js";/* empty css          */import"../../_commonjsHelpers.js";const m=a.create({baseURL:`${window.Yampi.api_domain}/v2/${window.merchant.alias}/public/`});export{m as default};

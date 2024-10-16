@@ -42,13 +42,14 @@
     {% if not product %}slot-scope="data"{% endif %}
 >
     <a
-        {{ product
-            ? "href='#{product['url_path']}'"
-            : ':href="data.product.url_path"'
-        }}
+        {% if product %}
+            href="{{ product.url_path|escape }}"
+        {% else %}
+            :href="data.product.url_path"
+        {% endif %}
         class="block -clean"
     >
-        <div class="holder-images relative-tags">
+        <div class="holder-image relative-tags">
             <discount-tag :value="{{ vuetify(product, 'product', 'prices.data.percent_discount', false) }}"></discount-tag>
 
             <div class="image-ratio">
@@ -118,11 +119,13 @@
 
             <div class="product-prices">
                 <div class="flex -vcenter -wrap">
-                    <span class="product-old-price old-price"
-                        {% if not product %}v-if="data.product.prices.data.has_promotion"{% endif %}
-                    >
-                        {{ vuetify(product, 'product', 'prices.data.price_sale_formated') }}
-                    </span>
+                    {% if vuetify(product, 'product','prices.data.has_promotion', false) %}
+                        <span class="product-old-price old-price"
+                            {% if not product %} v-if="data.product.prices.data.has_promotion" {% endif %}
+                        >   
+                            {{ vuetify(product, 'product', 'prices.data.price_sale_formated') }}
+                        </span>
+                    {% endif %}
 
                     <span class="product-actual-price price">
                         {% if product %}
@@ -135,8 +138,8 @@
                         {% endif %}
 
                         {% if not product %}
-                            <div {% if 'data.product.' ~ price.path %}v-if="data.product.{{ price.path }}"{% endif %}>
-                                {{ '{{ data.product.' ~ price.path ~ '}}' }} <span class="payment-type">{{ priceText }}</span>
+                            <div {% if 'data.product.' ~ pricePath[highlightTypePayment].path %}v-if="data.product.{{ pricePath[highlightTypePayment].path }}"{% endif %}>
+                                {{ '{{ data.product.' ~ pricePath[highlightTypePayment].path ~ '}}' }} <span class="payment-type">{{ priceText }}</span>
                             </div>
                             <div v-else>
                                 {{ '{{ data.product.prices.data.price_formated }}' }}
