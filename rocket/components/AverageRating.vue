@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import _ from 'lodash';
+import _ from '~lodash';
 import { mapGetters } from '~vuex';
 import { smoothScroll, uuidv4 } from '@/mixins/helpers';
 
