@@ -1,4 +1,4 @@
-import { mapGetters as a, mapActions as u } from "../vendor/vuex.js";
+import { mapGetters as a, mapActions as u } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vuex.js";
 function c(e, t, o, i, p, z, v, P) {
   var s = typeof e == "function" ? e.options : e;
   return t && (s.render = t, s.staticRenderFns = o, s._compiled = !0), {
@@ -23,7 +23,7 @@ const d = {
       return this.active + 1 === this.productsForCustomization.length;
     },
     primaryButtonText() {
-      return this.isLastProductActive ? "Salvar" : "PrÃ³ximo";
+      return this.isLastProductActive ? "Salvar" : "Próximo";
     },
     currentProductRef() {
       return this.$refs[`CustomizationContent-${this.productsForCustomization[this.active].id}`][0];

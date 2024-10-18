@@ -1,6 +1,6 @@
-import a from "lodash/omit";
-import { mapGetters as l, mapActions as r } from "../vendor/vuex.js";
-import { smoothScroll as d } from "../vendor/mixins/helpers.js";
+import a from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
+import { mapGetters as l, mapActions as r } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vuex.js";
+import { smoothScroll as d } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/helpers.js";
 function m(s, t, e, o, C, g, z, v) {
   var i = typeof s == "function" ? s.options : s;
   return t && (i.render = t, i.staticRenderFns = e, i._compiled = !0), {
@@ -35,7 +35,7 @@ const c = {
     }
   },
   mounted() {
-    !this.sku.allow_sell_without_customization && !this.customizedProducts[this.sku.id] && this.$refs.customizationContent.updateAllCustomizations(""), this.customizedProducts[this.sku.id] && (this.showContent = this.customizedProducts[this.sku.id].isPersonalized, this.values = a(this.customizedProducts[this.sku.id], ["isPersonalized"]));
+    !this.sku.allow_sell_without_customization && !this.customizedProducts[this.sku.id] && this.$refs.customizationContent.updateAllCustomizations(""), this.customizedProducts[this.sku.id] && (this.showContent = this.customizedProducts[this.sku.id].isPersonalized, this.values = a.omit(this.customizedProducts[this.sku.id], ["isPersonalized"]));
   },
   methods: {
     ...r("buyTogether", ["addSkuCustomization", "removeCustomization"]),

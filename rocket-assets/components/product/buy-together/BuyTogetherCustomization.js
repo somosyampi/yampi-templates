@@ -1,4 +1,4 @@
-import { mapGetters as n } from "../vendor/vuex.js";
+import { mapGetters as n } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vuex.js";
 function u(o, t, e, a, f, z, _, y) {
   var s = typeof o == "function" ? o.options : o;
   return t && (s.render = t, s.staticRenderFns = e, s._compiled = !0), {
@@ -51,7 +51,7 @@ var c = function() {
   var t = this, e = t._self._c;
   return e("div", [e("div", { staticClass: "products-customization", class: { error: t.customizationError }, on: { click: function(a) {
     return t.$emit("click");
-  } } }, [t.productsForCustomization.length && !Object.keys(t.customizedProducts).length ? e("div", [e("p", { staticClass: "mt-12 mb-7" }, [t._v(" VocÃª tem "), e("span", [t._v(t._s(t.productsForCustomization.length))]), t._v(" " + t._s(t.$tc("common.product", t.productsForCustomization.length)) + " "), e("br"), t._v(" para personalizar ")]), e("p", { staticClass: "helper-text" }, [t._v(" Personalizar ")])]) : e("div", [e("p", { class: {
+  } } }, [t.productsForCustomization.length && !Object.keys(t.customizedProducts).length ? e("div", [e("p", { staticClass: "mt-12 mb-7" }, [t._v(" Você tem "), e("span", [t._v(t._s(t.productsForCustomization.length))]), t._v(" " + t._s(t.$tc("common.product", t.productsForCustomization.length)) + " "), e("br"), t._v(" para personalizar ")]), e("p", { staticClass: "helper-text" }, [t._v(" Personalizar ")])]) : e("div", [e("p", { class: {
     "none-products": t.productsUserAlreadyCustomized === 0,
     "already-customized-products": t.productsUserAlreadyCustomized > 0,
     "mt-12": t.shouldChangeMargin
