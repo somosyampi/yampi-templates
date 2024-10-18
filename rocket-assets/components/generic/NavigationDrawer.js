@@ -45,8 +45,7 @@ const l = {
       );
     },
     beforeEnter() {
-      const t = window.innerWidth - document.documentElement.clientWidth;
-      document.body.style.marginRight = `${t}px`, this.scrollY = window.scrollY, this.syncHeight(), document.documentElement.classList.add("block-scroll"), document.getElementsByTagName("body")[0].classList.add("drawer-active"), document.getElementsByTagName("body")[0].classList.add("block-scroll"), this.$emit("beforeEnter");
+      window.innerWidth - document.documentElement.clientWidth, this.scrollY = window.scrollY, this.syncHeight(), document.documentElement.classList.add("block-scroll"), document.getElementsByTagName("body")[0].classList.add("drawer-active"), document.getElementsByTagName("body")[0].classList.add("block-scroll"), this.$emit("beforeEnter");
     },
     afterEnter() {
       this.$emit("afterEnter");

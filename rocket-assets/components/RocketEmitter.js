@@ -62,7 +62,8 @@ const d = {
       t.preventDefault(), this.handleTagPosition(), this.setActiveSection(`${this.emits}-${this.order}`), window.parent.postMessage(
         {
           selectMenu: this.emits,
-          order: this.order
+          order: this.order,
+          from: "rocket-emitter"
         },
         "*"
       ), t.stopPropagation();
@@ -110,16 +111,16 @@ var l = function() {
   l,
   m
 );
-const h = u.exports;
+const f = u.exports;
 function r(t) {
-  r.installed || (r.installed = !0, t.component("RocketEmitter", h));
+  r.installed || (r.installed = !0, t.component("RocketEmitter", f));
 }
-const f = {
+const h = {
   install: r
 };
 let n = null;
 typeof window < "u" ? n = window.Vue : typeof global < "u" && (n = global.Vue);
-n && n.use(f);
+n && n.use(h);
 export {
-  h as default
+  f as default
 };

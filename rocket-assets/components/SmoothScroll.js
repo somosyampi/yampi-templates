@@ -1,4 +1,4 @@
-import w from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vue-debounce.js";
+import w from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
 function p(n, e, i, s, f, o, a, d) {
   var t = typeof n == "function" ? n.options : n;
   return e && (t.render = e, t.staticRenderFns = i, t._compiled = !0), {
@@ -62,7 +62,7 @@ const h = {
       };
       n(), document.addEventListener(
         "scroll",
-        w(() => {
+        w.debounce(() => {
           n();
         }, 40),
         { passive: !0 }

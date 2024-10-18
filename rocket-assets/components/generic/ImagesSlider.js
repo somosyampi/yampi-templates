@@ -1,4 +1,4 @@
-(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".touchable[data-v-84f92119]{height:100%;width:100%}")),document.head.appendChild(e)}}catch(t){console.error("vite-plugin-css-injected-by-js",t)}})();
+(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".touchable[data-v-6b3349af]{height:100%;width:100%}")),document.head.appendChild(e)}}catch(t){console.error("vite-plugin-css-injected-by-js",t)}})();
 import r from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/touchable.js";
 function d(t, e, i, o, v, l, _, g) {
   var n = typeof t == "function" ? t.options : t;
@@ -60,7 +60,7 @@ var u = function() {
   f,
   !1,
   null,
-  "84f92119"
+  "6b3349af"
 );
 const h = m.exports;
 function a(t) {
