@@ -102,10 +102,7 @@
 </template>
 
 <script>
-import _ from 'lodash';
-import _ from 'lodash/_.times';
-import _ from 'lodash/isEmpty';
-import _ from 'lodash/constant';
+import _ from '~lodash';
 import BaseCustomization from '@/components/product/BaseCustomization.vue';
 import { smoothScroll } from '@/mixins/helpers';
 import errorsMixin from '@/mixins/errors';

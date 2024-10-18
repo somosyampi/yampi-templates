@@ -132,9 +132,15 @@ export default {
         formatCustomShippingPrice() {
             const shippingOptions = Object.keys(this.data);
             let deliveryTime = 0;
+            let city = '';
+            let zipcode = '';
+            let uf = '';
             shippingOptions.forEach(shippingOption => {
                 if (this.data[shippingOption].delivery_time > deliveryTime) {
                     deliveryTime = this.data[shippingOption].delivery_time;
+                    city = this.data[shippingOption].city;
+                    zipcode = this.data[shippingOption].zipcode;
+                    uf = this.data[shippingOption].uf;
                 }
             });
 
@@ -152,6 +158,9 @@ export default {
                         : 'Grátis',
                     delivery_time: deliveryTime,
                     formated_delivery_time: `até ${deliveryTime} dias úteis`,
+                    zipcode,
+                    city,
+                    uf,
                 },
             };
         },

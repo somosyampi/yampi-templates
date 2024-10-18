@@ -91,7 +91,6 @@ export default {
 
         beforeEnter() {
             const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-            document.body.style.marginRight = `${scrollbarWidth}px`;
             this.scrollY = window.scrollY;
             this.syncHeight();
             document.documentElement.classList.add('block-scroll');

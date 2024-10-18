@@ -116,6 +116,7 @@ export default {
                 {
                     selectMenu: this.emits,
                     order: this.order,
+                    from: 'rocket-emitter',
                 },
                 '*',
             );

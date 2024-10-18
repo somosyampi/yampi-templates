@@ -53,7 +53,7 @@ export default {
     },
 
     methods: {
-        _.times,
+        times: _.times,
 
         handleModal() {
             this.show = !this.show;

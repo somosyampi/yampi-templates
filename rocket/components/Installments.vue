@@ -22,7 +22,7 @@
 
 <script>
 import _ from '~lodash';
-import { debounce } from '~vue-debounce';
+import debounce from '~vue-debounce';
 import BaseInstallments from '@/components/product/BaseInstallments.vue';
 
 export default {
