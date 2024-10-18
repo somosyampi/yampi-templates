@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import debounce from '~vue-debounce';
+import _ from '~lodash';
 
 export default {
     name: 'SmoothScroll',
@@ -107,7 +107,7 @@ export default {
 
             document.addEventListener(
                 'scroll',
-                debounce(() => {
+                _.debounce(() => {
                     displayElement();
                 }, 40),
                 { passive: true },
