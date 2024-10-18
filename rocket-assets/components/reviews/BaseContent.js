@@ -1,6 +1,6 @@
-import { mapGetters as s } from "../vendor/vuex.js";
-import r from "lodash/get";
-import l from "../vendor/modules/axios/api.js";
+import { mapGetters as s } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vuex.js";
+import r from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
+import l from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/modules/axios/api.js";
 function u(t, o, a, i, m, g, w, y) {
   var d = typeof t == "function" ? t.options : t;
   return {
@@ -81,7 +81,7 @@ const p = {
           product_id: this.product.id,
           limit: this.pagination.limit
         }), { data: o } = await l.get(t);
-        this.pagination.total = r(o, "data.total", 0), this.$emit("update:count", this.pagination.total);
+        this.pagination.total = r.get(o, "data.total", 0), this.$emit("update:count", this.pagination.total);
       } catch (t) {
         console.error(t);
       }

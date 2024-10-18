@@ -1,13 +1,12 @@
-import d from "lodash/chunk";
-import h from "lodash/omit";
-function f(t, e, s, o, n, i, r, c) {
-  var a = typeof t == "function" ? t.options : t;
-  return e && (a.render = e, a.staticRenderFns = s, a._compiled = !0), {
+import d from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
+function h(t, e, s, o, n, i, a, c) {
+  var r = typeof t == "function" ? t.options : t;
+  return e && (r.render = e, r.staticRenderFns = s, r._compiled = !0), {
     exports: t,
-    options: a
+    options: r
   };
 }
-const m = {
+const f = {
   name: "RocketDesktopCategoriesNav",
   inject: ["mainCategory", "categoriesDisplay"],
   data() {
@@ -24,9 +23,9 @@ const m = {
       return this.subcategories.slice(0, 27);
     },
     chunkedSubcategories() {
-      return d([
+      return d.chunk([
         {
-          ...h(this.mainCategory, ["children"]),
+          ...d.omit(this.mainCategory, ["children"]),
           name: "Todos os produtos"
         },
         ...this.filteredSubcategories
@@ -41,7 +40,7 @@ const m = {
       const n = this.chunkedSubcategories.length * 200 + 80 + (this.chunkedSubcategories.length - 1) * 40;
       return {
         rightDraw: () => {
-          const i = n + e - o, r = 40 + (this.chunkedSubcategories.length - 1) * 200, c = e > i + r ? e - (i + r) : e - i;
+          const i = n + e - o, a = 40 + (this.chunkedSubcategories.length - 1) * 200, c = e > i + a ? e - (i + a) : e - i;
           return i > 0 ? c : e - (n - 140);
         },
         leftDraw: () => {
@@ -77,28 +76,28 @@ const m = {
     }
   }
 };
-var g = function() {
+var m = function() {
   var e = this, s = e._self._c;
   return s("div", { staticClass: "h-anchor-container", on: { mouseenter: e.handleMouseEnter, mouseleave: e.handleMouseLeave } }, [s("rocket-anchor", { attrs: { "custom-ref": "menuitem", href: e.mainCategory.url_path, label: e.mainCategory.name, "custom-classes": "main-category" } }), e.hasDropdown ? s("transition", { attrs: { name: "fade" } }, [s("ul", { directives: [{ name: "show", rawName: "v-show", value: e.isVisible, expression: "isVisible" }], ref: "submenu", staticClass: "subcategories-list", on: { mouseenter: e.handleMouseEnter, mouseleave: e.handleMouseLeave } }, e._l(e.chunkedSubcategories, function(o, n) {
-    return s("li", { key: n, staticClass: "subcategory-container" }, e._l(o, function(i, r) {
-      return s("a", { key: i.id, class: `subcategory ${r === 0 && n === 0 ? "--all-products" : ""}`, attrs: { href: i.url_path } }, [e._v(" " + e._s(i.name) + " ")]);
+    return s("li", { key: n, staticClass: "subcategory-container" }, e._l(o, function(i, a) {
+      return s("a", { key: i.id, class: `subcategory ${a === 0 && n === 0 ? "--all-products" : ""}`, attrs: { href: i.url_path } }, [e._v(" " + e._s(i.name) + " ")]);
     }), 0);
   }), 0)]) : e._e()], 1);
-}, p = [], w = /* @__PURE__ */ f(
+}, g = [], p = /* @__PURE__ */ h(
+  f,
   m,
-  g,
-  p
+  g
 );
-const b = w.exports;
+const w = p.exports;
 function l(t) {
-  l.installed || (l.installed = !0, t.component("RocketDesktopCategoriesNav", b));
+  l.installed || (l.installed = !0, t.component("RocketDesktopCategoriesNav", w));
 }
-const _ = {
+const b = {
   install: l
 };
 let u = null;
 typeof window < "u" ? u = window.Vue : typeof global < "u" && (u = global.Vue);
-u && u.use(_);
+u && u.use(b);
 export {
-  b as default
+  w as default
 };

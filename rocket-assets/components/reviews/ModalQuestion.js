@@ -1,7 +1,7 @@
-import { mapGetters as i } from "../vendor/vuex.js";
-import "lodash/get";
-import m from "../vendor/modules/axios/rocket.js";
-import l from "../vendor/mixins/errors.js";
+import { mapGetters as i } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vuex.js";
+import "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
+import m from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/modules/axios/rocket.js";
+import l from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/errors.js";
 function u(o, e, t, s, h, _, x, b) {
   var r = typeof o == "function" ? o.options : o;
   return e && (r.render = e, r.staticRenderFns = t, r._compiled = !0), {

@@ -1,8 +1,8 @@
-import { mapGetters as r } from "../vendor/vuex.js";
-import n from "lodash/pick";
-import l from "../vendor/modules/axios/api.js";
-import d from "../vendor/modules/axios/rocket.js";
-import u from "../vendor/mixins/queryParams.js";
+import { mapGetters as r } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vuex.js";
+import n from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
+import l from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/modules/axios/api.js";
+import d from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/modules/axios/rocket.js";
+import u from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/queryParams.js";
 function f(e, t, a, y, w, P, g, v) {
   var s = typeof e == "function" ? e.options : e;
   return {
@@ -32,7 +32,7 @@ const c = {
     async loadData() {
       try {
         this.loading = !0;
-        const e = n(this.queryParams, ["slug", "q", "context"]), t = this.$applyQueriesToUrl(`search/products/${this.route}`, e), { data: a } = await l.get(t);
+        const e = n.pick(this.queryParams, ["slug", "q", "context"]), t = this.$applyQueriesToUrl(`search/products/${this.route}`, e), { data: a } = await l.get(t);
         if (this.isPreview && !a.data.length) {
           await this.loadPlaceholders();
           return;

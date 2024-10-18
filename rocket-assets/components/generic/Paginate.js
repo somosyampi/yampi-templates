@@ -1,4 +1,4 @@
-import f from "../vendor/mixins/queryParams.js";
+import f from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/queryParams.js";
 function d(s, e, t, a, i, r, l, n) {
   var o = typeof s == "function" ? s.options : s;
   return e && (o.render = e, o.staticRenderFns = t, o._compiled = !0), {

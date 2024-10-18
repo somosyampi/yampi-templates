@@ -1,23 +1,20 @@
-import m from "lodash/times";
-import l from "lodash/compact";
-import d from "lodash/lastIndexOf";
-import { mapGetters as c } from "../vendor/vuex.js";
-import u from "../vendor/modules/axios/rocket.js";
-import f from "../vendor/mixins/errors.js";
-import g from "../vendor/mixins/tracking/api.js";
-import "lodash/get";
-function p(t, e, r, a, n, E, y, A) {
-  var o = typeof t == "function" ? t.options : t;
-  return e && (o.render = e, o.staticRenderFns = r, o._compiled = !0), {
+import { mapGetters as l } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vuex.js";
+import d from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/modules/axios/rocket.js";
+import c from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/errors.js";
+import u from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/tracking/api.js";
+import i from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
+function f(t, e, r, a, m, b, x, E) {
+  var s = typeof t == "function" ? t.options : t;
+  return e && (s.render = e, s.staticRenderFns = r, s._compiled = !0), {
     exports: t,
-    options: o
+    options: s
   };
 }
-const v = {
+const g = {
   name: "ModalReview",
   mixins: [
-    f,
-    g
+    c,
+    u
   ],
   data: () => ({
     sending: !1,
@@ -32,12 +29,12 @@ const v = {
     showError: !1
   }),
   computed: {
-    ...c("product", [
+    ...l("product", [
       "product"
     ])
   },
   methods: {
-    times: m,
+    times: i.times,
     handleUploading(t) {
       this.uploading = t;
     },
@@ -48,7 +45,7 @@ const v = {
         },
         APPEND: () => {
           if (this.form.images.length < 3) {
-            const a = this.form.images.length ? d(this.form.images) : 0;
+            const a = this.form.images.length ? i.lastIndexOf(this.form.images) : 0;
             this.$set(this.form.images, a, r);
           }
         }
@@ -73,7 +70,7 @@ const v = {
       this.sending = !0;
       try {
         const t = { ...this.form };
-        t.images = l(t.images), await u.post(`products/${this.product.id}/reviews`, t), this.closeModal(), this.handleTrackApi("product-review-entered", {
+        t.images = i.compact(t.images), await d.post(`products/${this.product.id}/reviews`, t), this.closeModal(), this.handleTrackApi("product-review-entered", {
           "photo-entered": this.form.images.length,
           "review-grade": this.form.rating
         }), this.$emit("success");
@@ -85,12 +82,12 @@ const v = {
     }
   }
 };
-var h = function() {
+var p = function() {
   var e = this, r = e._self._c;
   return r("modal", { ref: "reviewBaseModal", attrs: { name: "review", title: "Avalie o produto" }, scopedSlots: e._u([{ key: "subtitle", fn: function() {
     return [e._v(" " + e._s(e.product.name) + " ")];
   }, proxy: !0 }]) }, [r("form", { ref: "ReviewFormRef" }, [r("label", { attrs: { for: "review-rating" } }, [e._v("QUANTIDADE DE ESTRELAS")]), r("br"), e._l(e.times(5), function(a) {
-    return r("i", { key: a, staticClass: "icon", class: `icon-star-${a < e.form.rating ? "gold" : "grey"}`, on: { click: function(n) {
+    return r("i", { key: a, staticClass: "icon", class: `icon-star-${a < e.form.rating ? "gold" : "grey"}`, on: { click: function(m) {
       e.form.rating = a + 1;
     } } });
   }), r("br"), r("label", { staticClass: "custom-margin", attrs: { for: "review-name" } }, [e._v("NOME")]), r("input", { directives: [{ name: "model", rawName: "v-model", value: e.form.name, expression: "form.name" }], class: { error: e.hasError("name") }, attrs: { id: "review-name", type: "text", name: "name", placeholder: "Ex.: Adriana", maxlength: "60" }, domProps: { value: e.form.name }, on: { input: function(a) {
@@ -100,21 +97,21 @@ var h = function() {
   } } }), r("ErrorText", { attrs: { text: e.getError("email") } }), r("label", { attrs: { for: "review-message" } }, [e._v("AVALIAÇÃO")]), r("textarea", { directives: [{ name: "model", rawName: "v-model", value: e.form.message, expression: "form.message" }], class: { error: e.hasError("message") }, attrs: { id: "review-message", type: "text", name: "review", placeholder: "Escreva o que você achou deste produto...", rows: "4", maxlength: "250" }, domProps: { value: e.form.message }, on: { input: function(a) {
     a.target.composing || e.$set(e.form, "message", a.target.value);
   } } }), r("CharacterLimitText", { staticClass: "text-left inline-block", attrs: { limit: 250, "current-text-length": e.form.message.length } }), r("ErrorText", { attrs: { text: e.getError("message") } }), r("image-selector", { ref: "ImageUploader", attrs: { amount: "3", "images-urls": e.form.images }, on: { changeImageUrls: e.handleImageUrls, uploading: e.handleUploading } }), r("div", { staticClass: "alert -yellow" }, [e._v(" • Sua avaliação está sujeita à aprovação por nossa equipe "), r("br"), e._v(" • Seus dados não serão divulgados "), r("br"), e._v(" • Não publicaremos termos ofensivos ou de baixo calão. ")]), e.showError ? r("div", { staticClass: "alert -red" }, [r("b", [e._v("Opa! Você está enviando muitas avaliações seguidas.")]), r("br"), e._v(" Aguarde 1 minuto para enviar mais. ")]) : e._e()], 2), r("template", { slot: "footer" }, [r("loader-button", { staticClass: "btn -block btn-secundary", attrs: { sending: e.sending, disabled: e.uploading }, on: { click: e.submit } }, [e._v(" Enviar avaliação ")])], 1)], 2);
-}, w = [], _ = /* @__PURE__ */ p(
-  v,
-  h,
-  w
+}, v = [], h = /* @__PURE__ */ f(
+  g,
+  p,
+  v
 );
-const b = _.exports;
-function i(t) {
-  i.installed || (i.installed = !0, t.component("ModalReview", b));
+const w = h.exports;
+function n(t) {
+  n.installed || (n.installed = !0, t.component("ModalReview", w));
 }
-const x = {
-  install: i
+const _ = {
+  install: n
 };
-let s = null;
-typeof window < "u" ? s = window.Vue : typeof global < "u" && (s = global.Vue);
-s && s.use(x);
+let o = null;
+typeof window < "u" ? o = window.Vue : typeof global < "u" && (o = global.Vue);
+o && o.use(_);
 export {
-  b as default
+  w as default
 };

@@ -1,8 +1,8 @@
-import i from "lodash/get";
-import { mapGetters as s } from "../vendor/vuex.js";
-import c from "../vendor/modules/axios/api.js";
-import d from "../vendor/modules/axios/rocket.js";
-function u(t, e, o, a, g, w, v, k) {
+import i from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
+import { mapGetters as s } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vuex.js";
+import c from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/modules/axios/api.js";
+import d from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/modules/axios/rocket.js";
+function u(t, e, o, a, y, w, v, k) {
   var l = typeof t == "function" ? t.options : t;
   return e && (l.render = e, l.staticRenderFns = o, l._compiled = !0), {
     exports: t,
@@ -47,7 +47,7 @@ const p = {
   computed: {
     ...s("preview", ["isPreview"]),
     link() {
-      return this.showLink ? i(this.collection, "url_path", "") : "";
+      return this.showLink ? i.get(this.collection, "url_path", "") : "";
     },
     collectionProducts() {
       if (this.loading) {
@@ -85,7 +85,7 @@ const p = {
           t.push(e);
         return t;
       }
-      return i(this.collection, "products.data", []);
+      return i.get(this.collection, "products.data", []);
     },
     isCarousel() {
       return this.desktopLayout === "carousel";
@@ -105,7 +105,7 @@ const p = {
           id: [this.collectionId],
           limit: this.totalProducts
         }), { data: e } = await c.get(t);
-        this.collection = i(e, "data.0", {});
+        this.collection = i.get(e, "data.0", {});
       } finally {
         this.loading = !1;
       }
@@ -115,7 +115,7 @@ const p = {
         method: "get",
         url: "/placeholders/collections"
       });
-      this.collection = i(t, "data.0", {});
+      this.collection = i.get(t, "data.0", {});
     }
   }
 };
@@ -133,12 +133,12 @@ const _ = h.exports;
 function r(t) {
   r.installed || (r.installed = !0, t.component("Collection", _));
 }
-const y = {
+const g = {
   install: r
 };
 let n = null;
 typeof window < "u" ? n = window.Vue : typeof global < "u" && (n = global.Vue);
-n && n.use(y);
+n && n.use(g);
 export {
   _ as default
 };

@@ -1,22 +1,21 @@
-import u from "lodash/get";
-import m from "lodash/debounce";
-import { mapGetters as p } from "../vendor/vuex.js";
-import h from "../vendor/modules/axios/rocket.js";
-import g from "../vendor/modules/axios/api.js";
-import f from "../vendor/mixins/queryParams.js";
-import y from "../vendor/mixins/mobile.js";
-function C(e, t, i, a, o, s, n, d) {
+import u from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
+import { mapGetters as m } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vuex.js";
+import p from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/modules/axios/rocket.js";
+import h from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/modules/axios/api.js";
+import g from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/queryParams.js";
+import f from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/mobile.js";
+function y(e, t, i, a, o, s, n, d) {
   var r = typeof e == "function" ? e.options : e;
   return t && (r.render = t, r.staticRenderFns = i, r._compiled = !0), {
     exports: e,
     options: r
   };
 }
-const P = {
+const C = {
   name: "CategoryContent",
   mixins: [
-    f,
-    y
+    g,
+    f
   ],
   props: {
     productsPerPage: {
@@ -47,7 +46,7 @@ const P = {
         "name_desc"
       ].includes(this.queryParams.sort_by) ? this.queryParams.sort_by : "relevance";
     },
-    ...p("merchant", [
+    ...m("merchant", [
       "merchant"
     ])
   },
@@ -65,12 +64,12 @@ const P = {
     }), this.displayMosaicGrid();
   },
   methods: {
-    updateFilters: m(async function() {
+    updateFilters: u.debounce(async function() {
       this.loading = !0;
       const { queryParams: e } = this;
       e.resultsOnly = !0, this.paginate.currentPage !== this.queryParams.page && (this.paginate.currentPage = this.queryParams.page || 1);
       try {
-        const t = this.$applyQueriesToUrl(window.location.pathname, e), { data: i } = await h.get(t);
+        const t = this.$applyQueriesToUrl(window.location.pathname, e), { data: i } = await p.get(t);
         this.newHtml = `<div>${i}</div>`, this.scrollToTop();
       } catch (t) {
         console.error(t);
@@ -132,8 +131,8 @@ const P = {
       const { queryParams: e } = this;
       e.limit = this.productsPerPage;
       try {
-        const t = this.$applyQueriesToUrl("search/products/count", e), { data: i } = await g.get(t);
-        this.paginate.pageCount = u(i, "data.total_pages", 1);
+        const t = this.$applyQueriesToUrl("search/products/count", e), { data: i } = await h.get(t);
+        this.paginate.pageCount = u.get(i, "data.total_pages", 1);
       } catch (t) {
         console.error(t);
       } finally {
@@ -162,24 +161,24 @@ const P = {
     }
   }
 };
-var M = function() {
+var P = function() {
   var t = this, i = t._self._c;
   return i("div", { ref: "content", class: { "grid-list": !t.isMosaic } }, [t.loading ? i("div", { staticClass: "over-background -loader" }, [i("i", { staticClass: "icon icon-general-loader" })]) : t._e(), t._t("default", null, { isMosaic: t.isMosaic, isMobile: t.isMobile, newHtml: t.newHtml, updateFilters: t.updateFilters, updateOrderBy: t.updateOrderBy, updateCurrentPage: t.updateCurrentPage, updateGrid: t.updateGrid, selectedOrder: t.selectedOrder, paginate: t.paginate }), i("AddToCart")], 2);
-}, _ = [], w = /* @__PURE__ */ C(
+}, M = [], _ = /* @__PURE__ */ y(
+  C,
   P,
-  M,
-  _
+  M
 );
-const b = w.exports;
+const w = _.exports;
 function c(e) {
-  c.installed || (c.installed = !0, e.component("CategoryContent", b));
+  c.installed || (c.installed = !0, e.component("CategoryContent", w));
 }
-const v = {
+const b = {
   install: c
 };
 let l = null;
 typeof window < "u" ? l = window.Vue : typeof global < "u" && (l = global.Vue);
-l && l.use(v);
+l && l.use(b);
 export {
-  b as default
+  w as default
 };

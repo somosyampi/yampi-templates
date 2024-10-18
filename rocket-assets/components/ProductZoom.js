@@ -1,6 +1,6 @@
-import m from "lodash/get";
-import u from "../vendor/mixins/mobile.js";
-import h from "../vendor/mixins/product.js";
+import m from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
+import u from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/mobile.js";
+import h from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/product.js";
 function d(t, e, i, s, o, n, I, y) {
   var a = typeof t == "function" ? t.options : t;
   return e && (a.render = e, a.staticRenderFns = i, a._compiled = !0), {
@@ -74,8 +74,8 @@ const c = {
       };
     },
     productImages() {
-      const t = m(this.validProduct, "use_different_images") ? this.lastSku || this.validProduct : this.validProduct;
-      return m(t, "images.data", []);
+      const t = m.get(this.validProduct, "use_different_images") ? this.lastSku || this.validProduct : this.validProduct;
+      return m.get(t, "images.data", []);
     },
     imageIndicatorText() {
       return `<span class='-active'>${this.imageIndicator + 1}</span><span class="-total">${this.productImages.length}</span>`;

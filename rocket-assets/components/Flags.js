@@ -1,19 +1,17 @@
-import i from "lodash/get";
-import r from "lodash/isNil";
-import d from "lodash/isEmpty";
-import f from "../vendor/modules/axios/api.js";
-import c from "../vendor/mixins/product.js";
-function u(t, e, a, o, v, F, w, b) {
+import s from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
+import r from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/modules/axios/api.js";
+import d from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/product.js";
+function f(t, e, a, o, h, y, v, F) {
   var l = typeof t == "function" ? t.options : t;
   return e && (l.render = e, l.staticRenderFns = a, l._compiled = !0), {
     exports: t,
     options: l
   };
 }
-const g = {
+const c = {
   name: "Flags",
   mixins: [
-    c
+    d
   ],
   props: {
     defaultFlags: {
@@ -26,12 +24,12 @@ const g = {
     loading: !1
   }),
   mounted() {
-    if (!d(this.defaultFlags)) {
+    if (!s.isEmpty(this.defaultFlags)) {
       this.flags = this.defaultFlags;
       return;
     }
-    const t = i(this.validProduct, "flags.data");
-    if (!r(t)) {
+    const t = s.get(this.validProduct, "flags.data");
+    if (!s.isNil(t)) {
       this.flags = t;
       return;
     }
@@ -48,7 +46,7 @@ const g = {
       try {
         if (!this.validProduct) return;
         this.loading = !0;
-        const { data: t } = await f.get(`catalog/products/${this.validProduct.id}/flags`);
+        const { data: t } = await r.get(`catalog/products/${this.validProduct.id}/flags`);
         this.flags = t.data.filter((e) => e.active);
       } finally {
         this.loading = !1;
@@ -56,26 +54,26 @@ const g = {
     }
   }
 };
-var m = function() {
+var u = function() {
   var e = this, a = e._self._c;
   return e.flags.length ? a("div", { staticClass: "holder-flags", class: { "not-mosaic": !e.$parent.isMosaic } }, e._l(e.flags, function(o) {
     return a("span", { key: o.id, staticClass: "flag", style: e.getStyle(o), domProps: { textContent: e._s(o.name) } });
   }), 0) : e._e();
-}, p = [], _ = /* @__PURE__ */ u(
-  g,
-  m,
-  p
+}, g = [], m = /* @__PURE__ */ f(
+  c,
+  u,
+  g
 );
-const h = _.exports;
-function s(t) {
-  s.installed || (s.installed = !0, t.component("Flags", h));
+const p = m.exports;
+function i(t) {
+  i.installed || (i.installed = !0, t.component("Flags", p));
 }
-const y = {
-  install: s
+const _ = {
+  install: i
 };
 let n = null;
 typeof window < "u" ? n = window.Vue : typeof global < "u" && (n = global.Vue);
-n && n.use(y);
+n && n.use(_);
 export {
-  h as default
+  p as default
 };

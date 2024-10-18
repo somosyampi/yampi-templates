@@ -1,7 +1,7 @@
-import c from "lodash/get";
-import f from "../vendor/modules/axios/api.js";
-import m from "../vendor/mixins/product.js";
-import g from "../vendor/mixins/merchant.js";
+import c from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
+import f from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/modules/axios/api.js";
+import g from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/product.js";
+import m from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/merchant.js";
 function h(t, a, n, e, o, r, u, s) {
   var i = typeof t == "function" ? t.options : t;
   return {
@@ -11,7 +11,7 @@ function h(t, a, n, e, o, r, u, s) {
 }
 const p = {
   name: "BaseProduct",
-  mixins: [m, g],
+  mixins: [g, m],
   data: () => ({
     installments: {},
     loading: !1
@@ -45,10 +45,10 @@ const p = {
       const a = t || ((i = this.defaultCard) == null ? void 0 : i.alias);
       if (!a)
         return {};
-      const n = this.isSku && c(this.validSku, "id") ? this.validSku : void 0, e = c(
+      const n = this.isSku && c.get(this.validSku, "id") ? this.validSku : void 0, e = c.get(
         n || this.validProduct,
         "prices.data.price"
-      ), o = c(this.validProduct, "id"), r = this.getLocalStorageCache(e, t);
+      ), o = c.get(this.validProduct, "id"), r = this.getLocalStorageCache(e, t);
       if (r)
         return this.loading = !1, r;
       if (!e || !o)

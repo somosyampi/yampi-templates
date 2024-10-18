@@ -1,18 +1,15 @@
-import n from "lodash/get";
-import a from "lodash/isEmpty";
-import l from "lodash/times";
-import m from "lodash/constant";
-import h from "../vendor/mixins/errors.js";
-function d(t, i, e, s, z, v, w, C) {
+import s from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
+import r from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/errors.js";
+function l(t, i, e, n, f, p, z, _) {
   var u = typeof t == "function" ? t.options : t;
   return {
     exports: t,
     options: u
   };
 }
-const c = {
+const m = {
   name: "BaseCustomization",
-  mixins: [h],
+  mixins: [r],
   data: () => ({
     values: {},
     priceSum: 0,
@@ -26,10 +23,10 @@ const c = {
       );
     },
     customizations() {
-      return n(this.sku, "customizations.data", []);
+      return s.get(this.sku, "customizations.data", []);
     },
     hasCustomizations() {
-      return !a(this.customizations);
+      return !s.isEmpty(this.customizations);
     }
   },
   watch: {
@@ -42,7 +39,7 @@ const c = {
     sku: {
       immediate: !0,
       handler() {
-        this.showContent = !n(
+        this.showContent = !s.get(
           this.sku,
           "allow_sell_without_customization",
           !0
@@ -57,15 +54,15 @@ const c = {
         numbers: /[0-9 ]/,
         all: /[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ.!@#$%^&*()_\-?"{}0-9 ]/
       };
-      return l(
+      return s.times(
         t.max_chars,
-        m(i[t.allowed_values])
+        s.constant(i[t.allowed_values])
       );
     },
     calculateSum(t) {
       this.priceSum = t.reduce((i, e) => {
-        let s = i;
-        return this.values[e.id] && (s += e.price), s;
+        let n = i;
+        return this.values[e.id] && (n += e.price), n;
       }, 0);
     },
     setCustomizationValue(t, i, e = !1) {
@@ -74,15 +71,15 @@ const c = {
     checkValues(t = void 0, i) {
       t ? this.setError(t.id, "") : this.clearErrors();
       const e = this.getInvalidCustomizations(i);
-      return a(e) ? !0 : (e.forEach((s) => {
-        (!t || n(t, "id") === s.id) && this.setError(s.id, "Campo obrigatório");
+      return s.isEmpty(e) ? !0 : (e.forEach((n) => {
+        (!t || s.get(t, "id") === n.id) && this.setError(n.id, "Campo obrigatório");
       }), !1);
     },
     getInvalidCustomizations(t) {
       if (this.customizations.length === 0)
         return [];
       const i = this.customizations.filter(
-        (e) => a(t[e.id])
+        (e) => s.isEmpty(t[e.id])
       );
       return this.sku.allow_sell_without_customization && i.length === this.customizations.length && !this.showContent ? [] : i.every(
         (e) => !e.required
@@ -92,19 +89,19 @@ const c = {
     }
   }
 };
-var f = /* @__PURE__ */ d(
-  c
+var h = /* @__PURE__ */ l(
+  m
 );
-const p = f.exports;
-function r(t) {
-  r.installed || (r.installed = !0, t.component("BaseCustomization", p));
+const d = h.exports;
+function a(t) {
+  a.installed || (a.installed = !0, t.component("BaseCustomization", d));
 }
-const _ = {
-  install: r
+const c = {
+  install: a
 };
 let o = null;
 typeof window < "u" ? o = window.Vue : typeof global < "u" && (o = global.Vue);
-o && o.use(_);
+o && o.use(c);
 export {
-  p as default
+  d as default
 };

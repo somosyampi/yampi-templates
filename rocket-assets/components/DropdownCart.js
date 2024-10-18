@@ -1,4 +1,4 @@
-import n from "../components/BaseCart";
+import n from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/components/BaseCart.js";
 function l(a, t, e, s, _, m, f, g) {
   var i = typeof a == "function" ? a.options : a;
   return t && (i.render = t, i.staticRenderFns = e, i._compiled = !0), {

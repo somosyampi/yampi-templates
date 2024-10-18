@@ -1,23 +1,18 @@
-import u from "lodash/get";
-import d from "lodash/times";
-import f from "lodash/difference";
-import p from "lodash/constant";
-import h from "lodash/sortBy";
-import m from "lodash/isEqual";
-import v from "../vendor/mixins/product.js";
-import { smoothScroll as S } from "../vendor/mixins/helpers.js";
-import _ from "../components/CustomSelect";
-import k from "../components/VariantButton";
-function b(e, t, i, s, o, a, l, W) {
+import a from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
+import d from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/product.js";
+import { smoothScroll as h } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/helpers.js";
+import f from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/components/CustomSelect.js";
+import p from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/components/VariantButton.js";
+function m(e, t, s, i, o, n, u, y) {
   var r = typeof e == "function" ? e.options : e;
-  return t && (r.render = t, r.staticRenderFns = i, r._compiled = !0), {
+  return t && (r.render = t, r.staticRenderFns = s, r._compiled = !0), {
     exports: e,
     options: r
   };
 }
-const y = {
+const v = {
   name: "SelectSku",
-  mixins: [v],
+  mixins: [d],
   props: {
     shouldScrollOnError: {
       type: Boolean,
@@ -35,15 +30,15 @@ const y = {
   }),
   computed: {
     variations() {
-      return u(this.validProduct, "variations.data", []);
+      return a.get(this.validProduct, "variations.data", []);
     },
     skus() {
-      return u(this.validProduct, "skus.data", []);
+      return a.get(this.validProduct, "skus.data", []);
     },
     variationsSelectStyle() {
       return {
-        list: _,
-        buttons: k
+        list: f,
+        buttons: p
       }[this.variationsStyle];
     }
   },
@@ -56,28 +51,28 @@ const y = {
     this.bootSelected();
   },
   methods: {
-    smoothScroll: S,
+    smoothScroll: h,
     bootSelected() {
-      if (this.selected = d(this.variations.length, p(0)), this.variationsStyle === "list" || this.variations.length === 1) {
-        this.options = d(this.variations.length, () => []), this.loadOptions();
+      if (this.selected = a.times(this.variations.length, a.constant(0)), this.variationsStyle === "list" || this.variations.length === 1) {
+        this.options = a.times(this.variations.length, () => []), this.loadOptions();
         return;
       }
       this.options = this.variations.map((e) => e.values.data);
     },
     updateSelected(e, t) {
       this.selectWithErrors = !1, this.$set(this.selected, e, t);
-      for (let i = e + 1; i < this.variations.length; i++)
-        this.$set(this.selected, i, 0);
+      for (let s = e + 1; s < this.variations.length; s++)
+        this.$set(this.selected, s, 0);
       e < this.variations.length - 1 && this.loadOptions(e + 1), this.checkIfValidSkuSelected();
     },
     updateVariation(e) {
       if (this.product.skus !== void 0) {
-        for (let i of this.product.skus.data)
-          for (let s of i.variations)
-            if (s.value_id === e) {
+        for (let s of this.product.skus.data)
+          for (let i of s.variations)
+            if (i.value_id === e) {
               this.$emit("updateVariation", {
-                imageUrl: i.images.data[0].url,
-                productId: i.product_id
+                imageUrl: s.images.data[0].url,
+                productId: s.product_id
               });
               return;
             }
@@ -87,8 +82,8 @@ const y = {
       if (this.selected.some((t) => t === 0))
         return this.$emit("update");
       const e = this.skus.find((t) => {
-        const i = t.combinations.split("-").map((s) => parseInt(s, 10));
-        return m(h(this.selected), h(i));
+        const s = t.combinations.split("-").map((i) => parseInt(i, 10));
+        return a.isEqual(a.sortBy(this.selected), a.sortBy(s));
       });
       return this.$emit("update", e);
     },
@@ -97,37 +92,37 @@ const y = {
       this.$set(this.options, e, t);
     },
     mapUnavailableVariationOptions(e) {
-      return this.variations[e].values.data.map((i) => (i.unavailable = !1, (i.blocked_sale === 1 || !this.skus.some((s) => this.skuHasOption(s, i))) && (i.unavailable = !0), i));
+      return this.variations[e].values.data.map((s) => (s.unavailable = !1, (s.blocked_sale === 1 || !this.skus.some((i) => this.skuHasOption(i, s))) && (s.unavailable = !0), s));
     },
     filterVariationOptions(e) {
-      const t = u(this.variations, `${e}.values.data`, []);
-      let i = [];
-      return i = this.availabilitySkuVariationsWithoutCache(t), e === 0 ? i.filter((s) => s.blocked_sale != !0) : i.filter((s) => s.blocked_sale === !0 || t.blocked_sale === 1 ? !1 : this.skus.some((o) => this.skuHasOption(o, s)));
+      const t = a.get(this.variations, `${e}.values.data`, []);
+      let s = [];
+      return s = this.availabilitySkuVariationsWithoutCache(t), e === 0 ? s.filter((i) => i.blocked_sale != !0) : s.filter((i) => i.blocked_sale === !0 || t.blocked_sale === 1 ? !1 : this.skus.some((o) => this.skuHasOption(o, i)));
     },
     availabilitySkuVariationsWithoutCache(e) {
       let t = [];
-      for (let i of e) {
-        let s = !0;
+      for (let s of e) {
+        let i = !0;
         for (let o of this.skus)
           if (o.variations.some(
-            (l) => l.value_id === i.id && o.blocked_sale == !1
+            (u) => u.value_id === s.id && o.blocked_sale == !1
           )) {
-            s = !1;
+            i = !1;
             break;
           }
-        i.blocked_sale = s, t.push(i);
+        s.blocked_sale = i, t.push(s);
       }
       return t;
     },
     skuHasOption(e, t) {
       if (e.blocked_sale)
         return !1;
-      const i = e.combinations.split("-").map((o) => parseInt(o, 10)), s = [
+      const s = e.combinations.split("-").map((o) => parseInt(o, 10)), i = [
         ...this.selected.filter((o) => o),
         // get only valid selected ids
         t.id
       ];
-      return f(s, i).length === 0;
+      return a.difference(i, s).length === 0;
     },
     verifySelect() {
       const e = this.$refs.customSelect.filter((t) => !t.selectedValue);
@@ -135,32 +130,32 @@ const y = {
     }
   }
 };
-var g = function() {
-  var t = this, i = t._self._c;
-  return i("div", { staticClass: "sku-select" }, [t.variations.length ? i("p", { staticClass: "helper-text", class: { "-error": t.selectWithErrors } }, [t._v(" Selecione uma opção ")]) : t._e(), t._l(t.variations, function(s, o) {
-    return i("div", { key: s.id, staticClass: "sku-option", class: t.variationsStyle }, [i("label", { attrs: { for: `${s.id}-${s.name}` }, domProps: { textContent: t._s(s.name) } }), i(t.variationsSelectStyle, { ref: "customSelect", refInFor: !0, tag: "component", attrs: { id: `${s.id}-${s.name}`, name: `${s.id}-${s.name}`, value: t.selected[o], disabled: o > 0 && t.selected[o - 1] === 0, error: t.selectWithErrors, options: t.options[o] }, on: { change: function(a) {
-      return t.updateSelected(o, a);
-    } } }, [t.variationsStyle === "list" ? [i("option", { domProps: { value: 0 } }, [t._v(" Selecionar... ")]), t._l(t.options[o], function(a) {
-      return i("option", { key: a.id, domProps: { value: a.id, textContent: t._s(a.value) }, on: { click: function(l) {
-        return t.updateVariation(a.id);
+var S = function() {
+  var t = this, s = t._self._c;
+  return s("div", { staticClass: "sku-select" }, [t.variations.length ? s("p", { staticClass: "helper-text", class: { "-error": t.selectWithErrors } }, [t._v(" Selecione uma opção ")]) : t._e(), t._l(t.variations, function(i, o) {
+    return s("div", { key: i.id, staticClass: "sku-option", class: t.variationsStyle }, [s("label", { attrs: { for: `${i.id}-${i.name}` }, domProps: { textContent: t._s(i.name) } }), s(t.variationsSelectStyle, { ref: "customSelect", refInFor: !0, tag: "component", attrs: { id: `${i.id}-${i.name}`, name: `${i.id}-${i.name}`, value: t.selected[o], disabled: o > 0 && t.selected[o - 1] === 0, error: t.selectWithErrors, options: t.options[o] }, on: { change: function(n) {
+      return t.updateSelected(o, n);
+    } } }, [t.variationsStyle === "list" ? [s("option", { domProps: { value: 0 } }, [t._v(" Selecionar... ")]), t._l(t.options[o], function(n) {
+      return s("option", { key: n.id, domProps: { value: n.id, textContent: t._s(n.value) }, on: { click: function(u) {
+        return t.updateVariation(n.id);
       } } });
     })] : t._e()], 2)], 1);
   })], 2);
-}, V = [], $ = /* @__PURE__ */ b(
-  y,
-  g,
-  V
+}, k = [], _ = /* @__PURE__ */ m(
+  v,
+  S,
+  k
 );
-const C = $.exports;
+const b = _.exports;
 function c(e) {
-  c.installed || (c.installed = !0, e.component("SelectSku", C));
+  c.installed || (c.installed = !0, e.component("SelectSku", b));
 }
-const O = {
+const g = {
   install: c
 };
-let n = null;
-typeof window < "u" ? n = window.Vue : typeof global < "u" && (n = global.Vue);
-n && n.use(O);
+let l = null;
+typeof window < "u" ? l = window.Vue : typeof global < "u" && (l = global.Vue);
+l && l.use(g);
 export {
-  C as default
+  b as default
 };

@@ -1,7 +1,7 @@
-import { mapGetters as c } from "../vendor/vuex.js";
-import f from "../vendor/modules/axios/api.js";
-import p from "../vendor/modules/axios/rocket.js";
-import g from "../vendor/mixins/mobile.js";
+import { mapGetters as c } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vuex.js";
+import f from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/modules/axios/api.js";
+import p from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/modules/axios/rocket.js";
+import g from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/mobile.js";
 function m(t, e, i, s, n, l, o, d) {
   var a = typeof t == "function" ? t.options : t;
   return e && (a.render = e, a.staticRenderFns = i, a._compiled = !0), {

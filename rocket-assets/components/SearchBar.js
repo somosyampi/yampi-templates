@@ -1,4 +1,4 @@
-import { mapGetters as i } from "../vendor/vuex.js";
+import { mapGetters as i } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vuex.js";
 function c(a, e, t, r, f, _, v, g) {
   var n = typeof a == "function" ? a.options : a;
   return e && (n.render = e, n.staticRenderFns = t, n._compiled = !0), {

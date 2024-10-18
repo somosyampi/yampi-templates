@@ -1,5 +1,5 @@
-import d from "lodash/lastIndexOf";
-import u from "../vendor/modules/axios/rocket.js";
+import d from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
+import u from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/modules/axios/rocket.js";
 function m(t, e, i, a, l, s, I, U) {
   var n = typeof t == "function" ? t.options : t;
   return e && (n.render = e, n.staticRenderFns = i, n._compiled = !0), {
@@ -26,7 +26,7 @@ const c = {
   },
   computed: {
     lastIndexUrl() {
-      return this.imagesUrls.length ? d(this.imagesUrls) : 0;
+      return this.imagesUrls.length ? d.lastIndexOf(this.imagesUrls) : 0;
     }
   },
   methods: {

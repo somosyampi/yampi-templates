@@ -1,4 +1,4 @@
-import o from "lodash/get";
+import o from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
 function r(t, e, a, l, p, v, _, x) {
   var s = typeof t == "function" ? t.options : t;
   return e && (s.render = e, s.staticRenderFns = a, s._compiled = !0), {
@@ -39,7 +39,7 @@ const d = {
     }
   },
   mounted() {
-    this.selectedMin = o(this.value, 0, this.min), this.selectedMax = o(this.value, 1, this.max);
+    this.selectedMin = o.get(this.value, 0, this.min), this.selectedMax = o.get(this.value, 1, this.max);
   },
   computed: {
     formatedMin() {

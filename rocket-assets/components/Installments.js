@@ -1,7 +1,6 @@
-import "lodash/get";
-import o from "lodash/isNil";
-import { debounce as d } from "../vendor/vue-debounce.js";
-import r from "../components/product/BaseInstallments";
+import o from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
+import d from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vue-debounce.js";
+import r from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/components/product/BaseInstallments.js";
 function m(e, t, n, i, _, w, v, y) {
   var l = typeof e == "function" ? e.options : e;
   return t && (l.render = t, l.staticRenderFns = n, l._compiled = !0), {
@@ -31,7 +30,7 @@ const u = {
   }),
   computed: {
     isSku() {
-      return !this.product.id && !o(this.validSku);
+      return !this.product.id && !o.isNil(this.validSku);
     }
   },
   mounted() {

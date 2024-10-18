@@ -1,21 +1,16 @@
-import r from "lodash/get";
-import h from "lodash/some";
-import d from "lodash/sumBy";
-import m from "lodash/debounce";
-import p from "lodash/groupBy";
-import f from "lodash/map";
-import { mapGetters as l, mapActions as g } from "../vendor/vuex.js";
-import y from "../vendor/mixins/tracking/api.js";
-function _(t, e, i, a, s, o, L, b) {
+import a from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
+import { mapGetters as l, mapActions as h } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vuex.js";
+import d from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/tracking/api.js";
+function p(t, e, i, n, r, o, w, C) {
   var c = typeof t == "function" ? t.options : t;
   return {
     exports: t,
     options: c
   };
 }
-const w = {
+const m = {
   name: "BaseCart",
-  mixins: [y],
+  mixins: [d],
   props: {
     showCartSavings: {
       type: Boolean,
@@ -39,7 +34,7 @@ const w = {
     ...l("cart", ["cart"]),
     ...l("preview", ["isPreview"]),
     items() {
-      return r(this.cart, "items", []);
+      return a.get(this.cart, "items", []);
     },
     buttonText() {
       return window.merchant.checkout.skip_cart ? "Finalizar compra" : "Ver carrinho";
@@ -48,19 +43,19 @@ const w = {
       return this.$formatMoney(this.cart.prices.total - this.cart.prices.shipment);
     },
     cartQuantity() {
-      return d(this.items, "quantity");
+      return a.sumBy(this.items, "quantity");
     },
     anyLoading() {
-      return h(this.loading);
+      return a.some(this.loading);
     },
     redirectUrl() {
       return this.$checkoutUrl(
-        r(this.$store.getters, "merchant/merchant.checkout.redirect_to"),
+        a.get(this.$store.getters, "merchant/merchant.checkout.redirect_to"),
         !0
       );
     },
     buyTogetherItems() {
-      return p(
+      return a.groupBy(
         this.items.filter((t) => t.kit_id),
         (t) => t.kit_id
       );
@@ -69,7 +64,7 @@ const w = {
       return this.items.reduce((t, e) => e.customizations.length ? e.customizations.filter(
         (i) => i.selected_value !== null
       ).reduce(
-        (i, a) => parseFloat(a.price) + i,
+        (i, n) => parseFloat(n.price) + i,
         t
       ) : t, 0);
     },
@@ -88,8 +83,8 @@ const w = {
       for (const e in t)
         if (t[e].alias === this.highlightedPrice)
           return {
-            value: parseFloat(r(t[e], "prices.total")),
-            percentage: parseFloat(r(t[e], "percent_discount")),
+            value: parseFloat(a.get(t[e], "prices.total")),
+            percentage: parseFloat(a.get(t[e], "percent_discount")),
             configured: !0
           };
       return {
@@ -98,9 +93,9 @@ const w = {
     }
   },
   methods: {
-    ...g("cart", ["redirectToCart", "loadCart", "updateItemQuantity", "removeItem"]),
+    ...h("cart", ["redirectToCart", "loadCart", "updateItemQuantity", "removeItem"]),
     handleRemoveCombo({ kitId: t, totalPrice: e }) {
-      const i = this.items.filter((a) => a.kit_id === parseInt(t, 10));
+      const i = this.items.filter((n) => n.kit_id === parseInt(t, 10));
       this.remove({ items: i, totalPrice: e });
     },
     async bootCart() {
@@ -108,7 +103,7 @@ const w = {
         this.setLoading(t.id, !1);
       }), this.setLoading("all", !1);
     },
-    handleQuantityChange: m(function(t, e) {
+    handleQuantityChange: a.debounce(function(t, e) {
       this.updateQuantity(t, e);
     }, 300),
     redirect() {
@@ -119,7 +114,7 @@ const w = {
       this.handleTrackApi(e, {
         location: "side-cart",
         quick_buy_button_enabled: t.show_add_to_cart_button,
-        items: f(this.items, "name"),
+        items: a.map(this.items, "name"),
         amount: this.cartValue
       }), this.redirectToCart(), setTimeout(() => this.setLoading("all", !1), 200);
     },
@@ -128,13 +123,13 @@ const w = {
         return;
       const i = t.quantity;
       this.$set(t, "quantity", e), this.setLoading(t.id, !0);
-      const a = {};
-      t.customizations.length > 0 && (a.customization = {
+      const n = {};
+      t.customizations.length > 0 && (n.customization = {
         [t.product_option_id]: t.customizations.reduce(
-          (s, o) => (s[o.id] = o.selected_value, s),
+          (r, o) => (r[o.id] = o.selected_value, r),
           {}
         )
-      }), await this.updateItemQuantity({ item: t, quantity: e, extras: a }), t.error && this.$set(t, "quantity", i), this.setLoading(t.id, !1);
+      }), await this.updateItemQuantity({ item: t, quantity: e, extras: n }), t.error && this.$set(t, "quantity", i), this.setLoading(t.id, !1);
     },
     async remove({ item: t, items: e, totalPrice: i }) {
       t = t || e[0], !this.loading[t.id] && (this.setLoading(t.id, !0), await this.removeItem({ item: t, items: e, totalPrice: i }), this.setLoading(t.id, !1));
@@ -162,19 +157,19 @@ const w = {
     }
   }
 };
-var C = /* @__PURE__ */ _(
-  w
+var f = /* @__PURE__ */ p(
+  m
 );
-const v = C.exports;
+const g = f.exports;
 function u(t) {
-  u.installed || (u.installed = !0, t.component("BaseCart", v));
+  u.installed || (u.installed = !0, t.component("BaseCart", g));
 }
-const k = {
+const y = {
   install: u
 };
-let n = null;
-typeof window < "u" ? n = window.Vue : typeof global < "u" && (n = global.Vue);
-n && n.use(k);
+let s = null;
+typeof window < "u" ? s = window.Vue : typeof global < "u" && (s = global.Vue);
+s && s.use(y);
 export {
-  v as default
+  g as default
 };

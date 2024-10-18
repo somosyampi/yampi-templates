@@ -1,5 +1,5 @@
-import l from "lodash/isEmpty";
-import u from "../components/product/BaseCustomization";
+import l from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
+import u from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/components/product/BaseCustomization.js";
 function c(e, t, s, a, o, v, C, z) {
   var i = typeof e == "function" ? e.options : e;
   return t && (i.render = t, i.staticRenderFns = s, i._compiled = !0), {
@@ -52,7 +52,7 @@ const d = {
     getInvalidCustomizations() {
       if (this.customizations.length === 0)
         return;
-      const e = this.customizations.filter((t) => l(this.values[t.id]));
+      const e = this.customizations.filter((t) => l.isEmpty(this.values[t.id]));
       if (!(this.sku.allow_sell_without_customization && e.length === this.customizations.length && !this.showContent) && !e.every((t) => !t.required))
         return e.filter((t) => t.required);
     }

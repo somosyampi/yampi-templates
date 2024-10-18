@@ -1,4 +1,4 @@
-import a from "../vendor/js-cookie.js";
+import a from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/js-cookie.js";
 function c(o, e, t, m, _, k, v, y) {
   var n = typeof o == "function" ? o.options : o;
   return e && (n.render = e, n.staticRenderFns = t, n._compiled = !0), {

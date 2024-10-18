@@ -1,5 +1,5 @@
-import a from "lodash/padStart";
-function l(t, n, e, d, _, h, w, g) {
+import a from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
+function l(t, n, e, d, _, h, w, S) {
   var o = typeof t == "function" ? t.options : t;
   return n && (o.render = n, o.staticRenderFns = e, o._compiled = !0), {
     exports: t,
@@ -16,7 +16,7 @@ const u = {
   }),
   methods: {
     loadCountdown() {
-      const t = /* @__PURE__ */ new Date(), n = a(23 - t.getHours(), 2, "0"), e = a(59 - t.getMinutes(), 2, "0"), d = a(59 - t.getSeconds(), 2, "0");
+      const t = /* @__PURE__ */ new Date(), n = a.padStart(23 - t.getHours(), 2, "0"), e = a.padStart(59 - t.getMinutes(), 2, "0"), d = a.padStart(59 - t.getSeconds(), 2, "0");
       this.html = `${n} : ${e} : ${d}`, setTimeout(() => {
         this.loadCountdown();
       }, 500);

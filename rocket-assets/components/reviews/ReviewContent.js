@@ -1,7 +1,7 @@
-import l from "lodash/times";
-import c from "../vendor/modules/axios/api.js";
-import u from "../components/reviews/BaseContent";
-function v(a, e, t, s, n, d, m, C) {
+import l from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
+import c from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/modules/axios/api.js";
+import u from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/components/reviews/BaseContent.js";
+function v(a, e, t, s, n, d, w, C) {
   var r = typeof a == "function" ? a.options : a;
   return e && (r.render = e, r.staticRenderFns = t, r._compiled = !0), {
     exports: a,
@@ -55,7 +55,7 @@ const g = {
         this.$refs.ReviewCardRef[e].resizeAllGridItems();
   },
   methods: {
-    times: l,
+    times: l.times,
     async getAllRatings() {
       const a = `catalog/products/reviews/ratings?product_id=${this.product.id}`;
       try {
@@ -107,12 +107,12 @@ const _ = f.exports;
 function o(a) {
   o.installed || (o.installed = !0, a.component("ReviewContent", _));
 }
-const w = {
+const m = {
   install: o
 };
 let i = null;
 typeof window < "u" ? i = window.Vue : typeof global < "u" && (i = global.Vue);
-i && i.use(w);
+i && i.use(m);
 export {
   _ as default
 };

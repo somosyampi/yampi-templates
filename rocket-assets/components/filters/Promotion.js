@@ -1,4 +1,4 @@
-import s from "../components/filters/BaseFilter";
+import s from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/components/filters/BaseFilter.js";
 function c(t, e, n, o, r, v, y, g) {
   var i = typeof t == "function" ? t.options : t;
   return e && (i.render = e, i.staticRenderFns = n, i._compiled = !0), {

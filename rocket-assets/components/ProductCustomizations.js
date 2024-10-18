@@ -1,21 +1,19 @@
-import { mapActions as m } from "../vendor/vuex.js";
-import f from "lodash/get";
-import h from "lodash/omitBy";
-import o from "lodash/isEmpty";
-import p from "../vendor/mixins/product.js";
-import y from "../vendor/mixins/tracking/api.js";
-function _(e, t, i, s, u, r, d, c) {
+import { mapActions as m } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vuex.js";
+import o from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
+import h from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/product.js";
+import f from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/tracking/api.js";
+function p(e, t, i, s, u, r, d, c) {
   var a = typeof e == "function" ? e.options : e;
   return t && (a.render = t, a.staticRenderFns = i, a._compiled = !0), {
     exports: e,
     options: a
   };
 }
-const S = {
+const y = {
   name: "ProductCustomizations",
   mixins: [
-    p,
-    y
+    h,
+    f
   ],
   props: {
     buyButtonText: {
@@ -62,10 +60,10 @@ const S = {
       return !!this.firstValidSku;
     },
     customizations() {
-      return f(this.selectedSku, "customizations.data", []);
+      return o.get(this.selectedSku, "customizations.data", []);
     },
     areCustomizationsValid() {
-      return !this.selectedSku || this.customizations.length === 0 ? !0 : this.selectedSku.allow_sell_without_customization ? this.customizations.every((e) => o(this.customizationValues[e.id])) : this.customizations.every((e) => e.required ? !o(this.customizationValues[e.id]) : !0);
+      return !this.selectedSku || this.customizations.length === 0 ? !0 : this.selectedSku.allow_sell_without_customization ? this.customizations.every((e) => o.isEmpty(this.customizationValues[e.id])) : this.customizations.every((e) => e.required ? !o.isEmpty(this.customizationValues[e.id]) : !0);
     }
   },
   mounted() {
@@ -98,8 +96,8 @@ const S = {
       ))
         return;
       this.loading = !0;
-      const t = {}, i = h(this.customizationValues, o);
-      this.customizations.every((c) => !c.required) && o(i) && !this.selectedSku.allow_sell_without_customization && (t[this.selectedSku.id] = this.customizationValues), o(i) || (t[this.selectedSku.id] = i);
+      const t = {}, i = o.omitBy(this.customizationValues, o.isEmpty);
+      this.customizations.every((c) => !c.required) && o.isEmpty(i) && !this.selectedSku.allow_sell_without_customization && (t[this.selectedSku.id] = this.customizationValues), o.isEmpty(i) || (t[this.selectedSku.id] = i);
       let s = !1;
       const { recomm_id: u } = window.Yampi.mago_config, r = [];
       u && (s = !0, r.push({ recomm_id: u })), await this.addProductsToCart({
@@ -122,7 +120,7 @@ const S = {
     }
   }
 };
-var k = function() {
+var S = function() {
   var t = this, i = t._self._c;
   return i("div", { staticClass: "product-customizations" }, [t.firstValidSku ? [t.validProduct.simple ? t._e() : i("SelectSku", { ref: "selectSku", attrs: { "variations-style": t.variationsStyle }, on: { update: function(s) {
     return t.setSelectedSku(s);
@@ -135,21 +133,21 @@ var k = function() {
   } } }), t.showMobileFloatingButton ? i("FloatingButton", { attrs: { quantity: t.quantity, "loading-button": t.loading, disabled: !t.canAddToCart }, on: { click: function(s) {
     return t.addToCart("floating-button");
   } } }) : t._e()], 1), t.firstValidSku ? t._e() : i("div", { staticClass: "main-product-unavailable alert -yellow" }, [t._v(" Produto indisponível. ")]), t.firstValidSku && t.showInventoryCountdown ? i("InventoryCountdown") : t._e(), t.showShippingForm ? i("Zipcode", { attrs: { quantity: t.quantity, disabled: !t.firstValidSku } }) : t._e()], 2);
-}, v = [], w = /* @__PURE__ */ _(
+}, _ = [], k = /* @__PURE__ */ p(
+  y,
   S,
-  k,
-  v
+  _
 );
-const C = w.exports;
+const v = k.exports;
 function l(e) {
-  l.installed || (l.installed = !0, e.component("ProductCustomizations", C));
+  l.installed || (l.installed = !0, e.component("ProductCustomizations", v));
 }
-const b = {
+const w = {
   install: l
 };
 let n = null;
 typeof window < "u" ? n = window.Vue : typeof global < "u" && (n = global.Vue);
-n && n.use(b);
+n && n.use(w);
 export {
-  C as default
+  v as default
 };

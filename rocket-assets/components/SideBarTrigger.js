@@ -1,5 +1,5 @@
-import { mapGetters as a } from "../vendor/vuex.js";
-import l from "../vendor/mixins/mobile.js";
+import { mapGetters as a } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vuex.js";
+import l from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/mobile.js";
 function c(t, e, i, r, h, _, g, y) {
   var s = typeof t == "function" ? t.options : t;
   return e && (s.render = e, s.staticRenderFns = i, s._compiled = !0), {

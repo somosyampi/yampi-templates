@@ -1,8 +1,8 @@
-import d from "lodash/get";
-import n from "../vendor/modules/axios/rocket.js";
-import p from "../vendor/mixins/errors.js";
-import c from "../vendor/mixins/product.js";
-import l from "../vendor/mixins/tracking/api.js";
+import d from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
+import n from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/modules/axios/rocket.js";
+import p from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/errors.js";
+import c from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/product.js";
+import l from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/tracking/api.js";
 function u(i, e, t, o, y, z, b, w) {
   var s = typeof i == "function" ? i.options : i;
   return e && (s.render = e, s.staticRenderFns = t, s._compiled = !0), {
@@ -55,7 +55,7 @@ const m = {
             total: i * this.quantity
           }
         );
-        if (this.data = d(e, "data", {}), Object.keys(this.data).length === 0) {
+        if (this.data = d.get(e, "data", {}), Object.keys(this.data).length === 0) {
           this.setError("zipcode", "Ocorreu um erro ao cotar o frete");
           return;
         }
@@ -64,7 +64,7 @@ const m = {
         console.error(i), this.setError(
           "zipcode",
           // eslint-disable-next-line
-          d(i, "response.data.message", "Ocorreu um erro ao cotar o frete")
+          d.get(i, "response.data.message", "Ocorreu um erro ao cotar o frete")
         );
       } finally {
         this.sending = !1;

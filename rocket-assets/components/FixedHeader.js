@@ -1,5 +1,5 @@
-import r from "lodash/debounce";
-import { mapGetters as a } from "../vendor/vuex.js";
+import r from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
+import { mapGetters as a } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vuex.js";
 function s(e, t, o, p, _, w, x, v) {
   var n = typeof e == "function" ? e.options : e;
   return t && (n.render = t, n.staticRenderFns = o, n._compiled = !0), {
@@ -43,7 +43,7 @@ const l = {
       const e = document.getElementById("section-header");
       document.addEventListener(
         "scroll",
-        r(() => {
+        r.debounce(() => {
           const t = window.pageYOffset - e.clientHeight > 0;
           this.$store.dispatch("header/updateShowSearchBar", !t), this.headerIsFixed = t;
         }, 0),

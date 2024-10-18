@@ -1,5 +1,5 @@
-(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".touchable[data-v-c5112091]{height:100%;width:100%}")),document.head.appendChild(e)}}catch(t){console.error("vite-plugin-css-injected-by-js",t)}})();
-import r from "../vendor/mixins/touchable.js";
+(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".touchable[data-v-84f92119]{height:100%;width:100%}")),document.head.appendChild(e)}}catch(t){console.error("vite-plugin-css-injected-by-js",t)}})();
+import r from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/touchable.js";
 function d(t, e, i, o, v, l, _, g) {
   var n = typeof t == "function" ? t.options : t;
   return e && (n.render = e, n.staticRenderFns = i, n._compiled = !0), n._scopeId = "data-v-" + l, {
@@ -60,7 +60,7 @@ var u = function() {
   f,
   !1,
   null,
-  "c5112091"
+  "84f92119"
 );
 const h = m.exports;
 function a(t) {

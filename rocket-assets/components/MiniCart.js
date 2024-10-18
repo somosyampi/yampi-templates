@@ -1,7 +1,7 @@
-import { mapGetters as s, mapMutations as u } from "../vendor/vuex.js";
-import c from "../components/BaseCart.js";
-import d from "../components/DropdownCart";
-import l from "../components/SideCart";
+import { mapGetters as s, mapMutations as u } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vuex.js";
+import c from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/components/BaseCart.js";
+import d from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/components/DropdownCart.js";
+import l from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/components/SideCart.js";
 function p(t, e, r, o, y, w, _, T) {
   var n = typeof t == "function" ? t.options : t;
   return e && (n.render = e, n.staticRenderFns = r, n._compiled = !0), {

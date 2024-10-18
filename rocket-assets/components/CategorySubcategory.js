@@ -1,4 +1,4 @@
-import c from "../vendor/mixins/mobile.js";
+import c from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/mobile.js";
 function u(e, t, s, o, i, r, a, b) {
   var l = typeof e == "function" ? e.options : e;
   return t && (l.render = t, l.staticRenderFns = s, l._compiled = !0), {

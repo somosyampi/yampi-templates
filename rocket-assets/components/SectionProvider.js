@@ -1,4 +1,4 @@
-import t from "../vendor/vue.js";
+import t from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vue.js";
 function i(e, d, u, f, m, c, g, b) {
   var a = typeof e == "function" ? e.options : e;
   return {

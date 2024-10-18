@@ -1,4 +1,4 @@
-import d from "lodash/delay";
+import d from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
 function c(t, e, o, i, n, g, b, v) {
   var l = typeof t == "function" ? t.options : t;
   return e && (l.render = e, l.staticRenderFns = o, l._compiled = !0), {
@@ -49,7 +49,7 @@ const r = {
         t.$options.name === "ImageSelector" && t.$children.map(function(i, n) {
           i.deleteInputFromClosingModal();
         });
-      }), this.show = !1, document.getElementById("app").style.overflow = "", d(() => {
+      }), this.show = !1, document.getElementById("app").style.overflow = "", d.delay(() => {
         document.getElementsByTagName("body")[0].classList.remove("block-scroll"), document.documentElement.classList.remove("block-scroll"), document.body.style.marginRight = "0px";
       }, 350, "later"), this.$emit("close");
     },

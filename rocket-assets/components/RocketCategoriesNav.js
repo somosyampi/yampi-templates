@@ -1,6 +1,6 @@
-import a from "../vendor/mixins/mobile.js";
-import s from "../components/RocketMobileCategoriesNav.js";
-import l from "../components/RocketDesktopCategoriesNav.js";
+import a from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/mobile.js";
+import s from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/components/RocketMobileCategoriesNav.js";
+import l from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/components/RocketDesktopCategoriesNav.js";
 function c(e, t, n, y, _, h, C, v) {
   var i = typeof e == "function" ? e.options : e;
   return t && (i.render = t, i.staticRenderFns = n, i._compiled = !0), {

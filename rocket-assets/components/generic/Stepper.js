@@ -1,4 +1,4 @@
-import { uuidv4 as u } from "../vendor/mixins/helpers.js";
+import { uuidv4 as u } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/helpers.js";
 function c(e, t, n, o, r, a, y, h) {
   var i = typeof e == "function" ? e.options : e;
   return t && (i.render = t, i.staticRenderFns = n, i._compiled = !0), {

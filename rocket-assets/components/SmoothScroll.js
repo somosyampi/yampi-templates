@@ -1,4 +1,4 @@
-import { debounce as w } from "../vendor/vue-debounce.js";
+import w from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vue-debounce.js";
 function p(n, e, i, s, f, o, a, d) {
   var t = typeof n == "function" ? n.options : n;
   return e && (t.render = e, t.staticRenderFns = i, t._compiled = !0), {

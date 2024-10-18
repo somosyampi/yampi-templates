@@ -1,14 +1,13 @@
-(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".hide[data-v-38de0eb7]{visibility:hidden}")),document.head.appendChild(e)}}catch(d){console.error("vite-plugin-css-injected-by-js",d)}})();
-import a from "lodash/times";
-import d from "lodash/delay";
-function r(t, e, o, _, p, l, w, y) {
+(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".hide[data-v-7ddb312b]{visibility:hidden}")),document.head.appendChild(e)}}catch(d){console.error("vite-plugin-css-injected-by-js",d)}})();
+import l from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
+function d(t, e, o, v, _, a, p, w) {
   var s = typeof t == "function" ? t.options : t;
-  return e && (s.render = e, s.staticRenderFns = o, s._compiled = !0), s._scopeId = "data-v-" + l, {
+  return e && (s.render = e, s.staticRenderFns = o, s._compiled = !0), s._scopeId = "data-v-" + a, {
     exports: t,
     options: s
   };
 }
-const c = {
+const r = {
   name: "ModalReviewDetailsMobile",
   props: {
     review: {
@@ -27,9 +26,9 @@ const c = {
     };
   },
   methods: {
-    times: a,
+    times: l.times,
     handleModal() {
-      this.show = !this.show, this.show ? (document.getElementById("app").style.overflow = "hidden", document.getElementsByTagName("body")[0].style = "overflow-y: hidden") : (document.getElementById("app").style.overflow = "", d(() => {
+      this.show = !this.show, this.show ? (document.getElementById("app").style.overflow = "hidden", document.getElementsByTagName("body")[0].style = "overflow-y: hidden") : (document.getElementById("app").style.overflow = "", l.delay(() => {
         document.getElementsByTagName("body")[0].style = "overflow-y: auto";
       }, 350, "later"), this.$emit("close"));
     },
@@ -38,30 +37,30 @@ const c = {
     }
   }
 };
-var m = function() {
+var c = function() {
   var e = this, o = e._self._c;
   return o("div", { staticClass: "modal-zoom-mobile", class: { "is-active": e.show } }, [o("div", { staticClass: "-header flex -between -vcenter" }, [e._m(0), o("div", { staticClass: "-close flex -vcenter -hcenter", on: { click: e.handleModal } }, [o("i", { staticClass: "icon icon-close-modal-white" })])]), e.show ? o("images-slider", { ref: "imagesSlider", attrs: { images: e.review.photos.data } }) : e._e(), o("div", { staticClass: "control-button" })], 1);
-}, f = [function() {
+}, m = [function() {
   var t = this, e = t._self._c;
   return e("div", { staticClass: "-message flex -vcenter" }, [e("i", { staticClass: "icon icon-pinch-zoom" }), t._v(" Arraste com os dedos ")]);
-}], u = /* @__PURE__ */ r(
+}], f = /* @__PURE__ */ d(
+  r,
   c,
   m,
-  f,
   !1,
   null,
-  "38de0eb7"
+  "7ddb312b"
 );
-const h = u.exports;
+const u = f.exports;
 function n(t) {
-  n.installed || (n.installed = !0, t.component("ModalReviewDetailsMobile", h));
+  n.installed || (n.installed = !0, t.component("ModalReviewDetailsMobile", u));
 }
-const v = {
+const h = {
   install: n
 };
 let i = null;
 typeof window < "u" ? i = window.Vue : typeof global < "u" && (i = global.Vue);
-i && i.use(v);
+i && i.use(h);
 export {
-  h as default
+  u as default
 };

@@ -1,4 +1,4 @@
-import i from "lodash/round";
+import i from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
 function u(e, t, n, p, _, v, h, w) {
   var o = typeof e == "function" ? e.options : e;
   return t && (o.render = t, o.staticRenderFns = n, o._compiled = !0), {
@@ -18,7 +18,7 @@ const c = {
   computed: {
     barStyle() {
       return {
-        width: `${10 + i(this.actual / this.max * 100, 2)}%`
+        width: `${10 + i.round(this.actual / this.max * 100, 2)}%`
       };
     }
   },

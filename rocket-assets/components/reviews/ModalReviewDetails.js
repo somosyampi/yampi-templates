@@ -1,5 +1,5 @@
-import r from "lodash/times";
-function l(s, e, t, a, f, m, h, _) {
+import r from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
+function l(s, e, t, a, w, f, _, h) {
   var i = typeof s == "function" ? s.options : s;
   return e && (i.render = e, i.staticRenderFns = t, i._compiled = !0), {
     exports: s,
@@ -26,7 +26,7 @@ const d = {
     };
   },
   methods: {
-    times: r,
+    times: r.times,
     handleModal() {
       this.ready = !this.ready, this.$refs.reviewsDetailsModal.handleModal();
     },
@@ -59,12 +59,12 @@ const p = v.exports;
 function n(s) {
   n.installed || (n.installed = !0, s.component("ModalReviewDetails", p));
 }
-const w = {
+const m = {
   install: n
 };
 let o = null;
 typeof window < "u" ? o = window.Vue : typeof global < "u" && (o = global.Vue);
-o && o.use(w);
+o && o.use(m);
 export {
   p as default
 };
