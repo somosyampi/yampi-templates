@@ -1,5 +1,7 @@
 .main-product {
     &-holder {
+        min-height: 600px;
+
         & > * + * {
             margin-left: 40px;
         }
@@ -7,8 +9,6 @@
         .splide__arrows {
             padding: 0 24px;
         }
-
-        min-height: 600px;
 
         @media screen and (min-width: 700px) and (max-width: 1000px) {
             width: 90vw;
