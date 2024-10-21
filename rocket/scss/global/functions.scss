@@ -1,3 +1,6 @@
+// temporary fix, find a way to get this value
+$assets: '';
+
 @function image($path) {
     @return $assets + '/img/' + $path;
 }
