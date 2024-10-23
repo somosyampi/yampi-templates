@@ -1,4 +1,4 @@
-import d from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/components/reviews/BaseContent.js";
+import d from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/components/reviews/BaseContent.js";
 function r(a, e, t, s, l, v, C, g) {
   var n = typeof a == "function" ? a.options : a;
   return e && (n.render = e, n.staticRenderFns = t, n._compiled = !0), {

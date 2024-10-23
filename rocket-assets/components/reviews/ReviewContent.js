@@ -1,6 +1,6 @@
-import l from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
-import c from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/modules/axios/api.js";
-import u from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/components/reviews/BaseContent.js";
+import l from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
+import c from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/api.js";
+import u from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/components/reviews/BaseContent.js";
 function v(a, e, t, s, n, d, w, C) {
   var r = typeof a == "function" ? a.options : a;
   return e && (r.render = e, r.staticRenderFns = t, r._compiled = !0), {
