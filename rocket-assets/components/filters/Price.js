@@ -1,4 +1,4 @@
-import { mapGetters as m, mapActions as l } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vuex.js";
+import { mapGetters as m, mapActions as l } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
 import u from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/components/filters/BaseFilter.js";
 function d(t, e, i, a, o, x, P, _) {
   var r = typeof t == "function" ? t.options : t;
