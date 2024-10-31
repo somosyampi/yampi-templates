@@ -1,8 +1,8 @@
 import a from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
 import d from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/product.js";
 import { smoothScroll as h } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/helpers.js";
-import f from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-sandbox/rocket-assets/components/CustomSelect.js";
-import p from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-sandbox/rocket-assets/components/VariantButton.js";
+import f from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-main/rocket-assets/components/CustomSelect.js";
+import p from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-main/rocket-assets/components/VariantButton.js";
 function m(e, t, s, i, o, n, u, y) {
   var r = typeof e == "function" ? e.options : e;
   return t && (r.render = t, r.staticRenderFns = s, r._compiled = !0), {

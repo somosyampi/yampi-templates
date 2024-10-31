@@ -1,4 +1,4 @@
-import c from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-sandbox/rocket-assets/components/BaseCart.js";
+import c from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-main/rocket-assets/components/BaseCart.js";
 function d(r, t, o, e, v, f, x, C) {
   var a = typeof r == "function" ? r.options : r;
   return t && (a.render = t, a.staticRenderFns = o, a._compiled = !0), {

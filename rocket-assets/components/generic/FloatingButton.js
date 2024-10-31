@@ -1,5 +1,5 @@
 import o from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-import r from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-sandbox/rocket-assets/components/product/BaseInstallments.js";
+import r from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-main/rocket-assets/components/product/BaseInstallments.js";
 import u from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/buttons.js";
 function c(e, t, n, l, h, v, b, y) {
   var s = typeof e == "function" ? e.options : e;
