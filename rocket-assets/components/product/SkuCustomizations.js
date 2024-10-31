@@ -1,5 +1,5 @@
 import a from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-import u from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/components/product/BaseCustomization.js";
+import u from "s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/components/product/BaseCustomization.js";
 import { smoothScroll as c } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/helpers.js";
 import d from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/errors.js";
 function m(s, t, e, i, o, w, g, k) {

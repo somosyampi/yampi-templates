@@ -1,4 +1,4 @@
-import a from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/components/product/BaseInstallments.js";
+import a from "s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/components/product/BaseInstallments.js";
 import o from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vue-debounce.js";
 import r from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
 function m(t, e, n, _, I, v, g, w) {

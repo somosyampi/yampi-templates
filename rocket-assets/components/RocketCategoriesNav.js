@@ -1,6 +1,6 @@
 import a from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/mobile.js";
-import s from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/components/RocketMobileCategoriesNav.js";
-import l from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/components/RocketDesktopCategoriesNav.js";
+import s from "s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/components/RocketMobileCategoriesNav.js";
+import l from "s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/components/RocketDesktopCategoriesNav.js";
 function c(e, t, n, y, _, h, C, v) {
   var i = typeof e == "function" ? e.options : e;
   return t && (i.render = t, i.staticRenderFns = n, i._compiled = !0), {

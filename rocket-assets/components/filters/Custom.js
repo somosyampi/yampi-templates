@@ -1,4 +1,4 @@
-import u from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/components/filters/BaseFilter.js";
+import u from "s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/components/filters/BaseFilter.js";
 function d(n, e, t, i, a, r, h, y) {
   var s = typeof n == "function" ? n.options : n;
   return e && (s.render = e, s.staticRenderFns = t, s._compiled = !0), {
