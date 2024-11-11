@@ -1,5 +1,5 @@
 <rocket-emitter emits="main_banner" label="Banner principal" order={{ section.order }}>
-    {% if section.params.resource.ids | length or isPreview %}
+    {% if section.params.resource.ids | length or isPreview or isEditing %}
         <banners
             class="main-banner {{ "#{section.section_alias}-#{section.order}" }}"
             section="main-banner"

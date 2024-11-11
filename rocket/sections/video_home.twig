@@ -2,7 +2,7 @@
 {% set data = youtubeLink ? youtubeLink | youtube_url : null %}
 
 <rocket-emitter emits="video_home" label="Vídeo do YouTube" order="{{ section.order }}">
-    {% if data.video or isPreview %}
+    {% if data.video or isPreview or isEditing %}
         <section class="video {{ "#{section.section_alias}-#{section.order}" }}">
             <div class="container -remove-overflow">
                 <div class="theme-title">{{ section.params.title }}</div>

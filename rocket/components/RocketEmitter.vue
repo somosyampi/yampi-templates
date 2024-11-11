@@ -27,24 +27,6 @@
 
 <script>
 import { mapGetters, mapActions } from '~/vuex';
-import IconEye from '@/theme/IconEye.vue';
-import IconEyeSlash from '@/theme/IconEyeSlash';
-import IconHeader from '@/theme/IconHeader.vue';
-import IconFooter from '@/theme/IconFooter';
-import IconBag from '@/theme/IconBag';
-import IconGrid from '@/theme/IconGrid';
-import IconImage from '@/theme/IconImage';
-import IconImageSlide from '@/theme/IconImageSlide';
-import IconPage from '@/theme/IconPage';
-import IconQuestion from '@/theme/IconQuestion';
-import IconShirt from '@/theme/IconShirt';
-import IconVideo from '@/theme/IconVideo';
-import IconHighlights from '@/theme/IconHighlights';
-import IconCategoryHighlight from '@/theme/IconCategoryHighlight';
-import IconComments from '@/theme/IconComments';
-import IconStar from '@/theme/IconStar';
-import IconCta from '@/theme/IconCta';
-import IconCart from '@/theme/IconCart';
 
 export default {
     name: 'RocketEmitter',
