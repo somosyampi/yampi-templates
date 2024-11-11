@@ -1,4 +1,4 @@
-import { mapGetters as n } from "http://rocket.test/dist/vendor/vuex.js";
+import { mapGetters as n } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
 function u(o, t, e, a, f, z, _, y) {
   var s = typeof o == "function" ? o.options : o;
   return t && (s.render = t, s.staticRenderFns = e, s._compiled = !0), {

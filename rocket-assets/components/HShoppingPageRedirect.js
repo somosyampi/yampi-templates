@@ -1,5 +1,5 @@
-import l from "http://rocket.test/dist/vendor/lodash.js";
-import s from "http://rocket.test/dist/vendor/mixins/mobile.js";
+import l from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
+import s from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/mobile.js";
 function c(o, e, n, a, m, v, C, g) {
   var i = typeof o == "function" ? o.options : o;
   return e && (i.render = e, i.staticRenderFns = n, i._compiled = !0), {

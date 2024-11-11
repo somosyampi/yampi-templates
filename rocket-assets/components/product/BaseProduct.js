@@ -1,7 +1,7 @@
-import { mapGetters as n, mapActions as r } from "http://rocket.test/dist/vendor/vuex.js";
-import d from "http://rocket.test/dist/vendor/modules/axios/api.js";
-import l from "http://rocket.test/dist/vendor/modules/axios/rocket.js";
-import m from "http://rocket.test/dist/vendor/mixins/product.js";
+import { mapGetters as n, mapActions as r } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
+import d from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/api.js";
+import l from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/rocket.js";
+import m from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/product.js";
 function c(e, t, o, y, g, w, P, _) {
   var s = typeof e == "function" ? e.options : e;
   return {

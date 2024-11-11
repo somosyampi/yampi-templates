@@ -1,6 +1,6 @@
-import u from "http://rocket.test/dist/vendor/lodash.js";
-import { mapGetters as c } from "http://rocket.test/dist/vendor/vuex.js";
-import { uuidv4 as m, smoothScroll as d } from "http://rocket.test/dist/vendor/mixins/helpers.js";
+import u from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
+import { mapGetters as c } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
+import { uuidv4 as m, smoothScroll as d } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/helpers.js";
 function f(e, t, i, n, o, r, y, R) {
   var s = typeof e == "function" ? e.options : e;
   return t && (s.render = t, s.staticRenderFns = i, s._compiled = !0), {

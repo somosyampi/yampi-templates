@@ -1,4 +1,4 @@
-import a from "http://rocket.test/dist/vendor/mixins/mobile.js";
+import a from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/mobile.js";
 function r(l, e, t, s, _, g, y, v) {
   var o = typeof l == "function" ? l.options : l;
   return e && (o.render = e, o.staticRenderFns = t, o._compiled = !0), {

@@ -1,5 +1,5 @@
-import "http://rocket.test/dist/vendor/external-svg-loader.js";
-import l from "http://rocket.test/dist/vendor/mixins/mobile.js";
+import "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/external-svg-loader.js";
+import l from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/mobile.js";
 function c(e, t, i, s, a, m, w, _) {
   var o = typeof e == "function" ? e.options : e;
   return t && (o.render = t, o.staticRenderFns = i, o._compiled = !0), {

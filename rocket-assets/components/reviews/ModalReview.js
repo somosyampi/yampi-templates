@@ -1,8 +1,8 @@
-import { mapGetters as l } from "http://rocket.test/dist/vendor/vuex.js";
-import d from "http://rocket.test/dist/vendor/modules/axios/rocket.js";
-import c from "http://rocket.test/dist/vendor/mixins/errors.js";
-import u from "http://rocket.test/dist/vendor/mixins/tracking/api.js";
-import i from "http://rocket.test/dist/vendor/lodash.js";
+import { mapGetters as l } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
+import d from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/rocket.js";
+import c from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/errors.js";
+import u from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/tracking/api.js";
+import i from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
 function f(t, e, r, a, m, b, x, E) {
   var s = typeof t == "function" ? t.options : t;
   return e && (s.render = e, s.staticRenderFns = r, s._compiled = !0), {

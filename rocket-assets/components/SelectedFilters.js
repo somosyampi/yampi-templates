@@ -1,5 +1,5 @@
-import { mapGetters as c, mapActions as l } from "http://rocket.test/dist/vendor/vuex.js";
-import m from "http://rocket.test/dist/vendor/mixins/queryParams.js";
+import { mapGetters as c, mapActions as l } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
+import m from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/queryParams.js";
 function u(e, t, n, i, a, y, h, g) {
   var o = typeof e == "function" ? e.options : e;
   return t && (o.render = t, o.staticRenderFns = n, o._compiled = !0), {

@@ -1,4 +1,4 @@
-import f from "http://rocket.test/dist/vendor/mixins/queryParams.js";
+import f from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/queryParams.js";
 function d(s, e, t, a, i, r, l, n) {
   var o = typeof s == "function" ? s.options : s;
   return e && (o.render = e, o.staticRenderFns = t, o._compiled = !0), {
