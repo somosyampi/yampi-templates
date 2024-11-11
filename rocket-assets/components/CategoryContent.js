@@ -1,9 +1,9 @@
-import u from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
-import { mapGetters as m } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vuex.js";
-import p from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/modules/axios/rocket.js";
-import h from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/modules/axios/api.js";
-import g from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/queryParams.js";
-import f from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/mobile.js";
+import u from "http://rocket.test/dist/vendor/lodash.js";
+import { mapGetters as m } from "http://rocket.test/dist/vendor/vuex.js";
+import p from "http://rocket.test/dist/vendor/modules/axios/rocket.js";
+import h from "http://rocket.test/dist/vendor/modules/axios/api.js";
+import g from "http://rocket.test/dist/vendor/mixins/queryParams.js";
+import f from "http://rocket.test/dist/vendor/mixins/mobile.js";
 function y(e, t, i, a, o, s, n, d) {
   var r = typeof e == "function" ? e.options : e;
   return t && (r.render = t, r.staticRenderFns = i, r._compiled = !0), {

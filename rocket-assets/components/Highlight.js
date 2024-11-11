@@ -1,5 +1,5 @@
-import "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/external-svg-loader.js";
-import l from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/mobile.js";
+import "http://rocket.test/dist/vendor/external-svg-loader.js";
+import l from "http://rocket.test/dist/vendor/mixins/mobile.js";
 function c(e, t, i, s, a, m, w, _) {
   var o = typeof e == "function" ? e.options : e;
   return t && (o.render = t, o.staticRenderFns = i, o._compiled = !0), {

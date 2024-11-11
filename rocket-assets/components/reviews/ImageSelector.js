@@ -1,5 +1,5 @@
-import d from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
-import u from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/modules/axios/rocket.js";
+import d from "http://rocket.test/dist/vendor/lodash.js";
+import u from "http://rocket.test/dist/vendor/modules/axios/rocket.js";
 function m(t, e, i, a, l, s, I, U) {
   var n = typeof t == "function" ? t.options : t;
   return e && (n.render = e, n.staticRenderFns = i, n._compiled = !0), {

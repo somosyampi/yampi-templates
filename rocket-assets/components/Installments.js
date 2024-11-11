@@ -1,6 +1,6 @@
-import o from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
-import d from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vue-debounce.js";
-import r from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/components/product/BaseInstallments.js";
+import o from "http://rocket.test/dist/vendor/lodash.js";
+import d from "http://rocket.test/dist/vendor/vue-debounce.js";
+import r from "/components/product/BaseInstallments.js";
 function m(e, t, n, i, _, w, v, y) {
   var l = typeof e == "function" ? e.options : e;
   return t && (l.render = t, l.staticRenderFns = n, l._compiled = !0), {

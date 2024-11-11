@@ -1,6 +1,6 @@
-import o from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
-import r from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/components/product/BaseInstallments.js";
-import u from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/buttons.js";
+import o from "http://rocket.test/dist/vendor/lodash.js";
+import r from "/components/product/BaseInstallments.js";
+import u from "http://rocket.test/dist/vendor/mixins/buttons.js";
 function c(e, t, n, l, h, v, b, y) {
   var s = typeof e == "function" ? e.options : e;
   return t && (s.render = t, s.staticRenderFns = n, s._compiled = !0), {

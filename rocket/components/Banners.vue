@@ -337,7 +337,7 @@ export default {
                     params,
                 });
 
-                if (!data.data.length && this.isPreview) {
+                if (!data.data.length && (this.isPreview || this.isEditing)) {
                     await this.loadPlaceholders();
 
                     return;

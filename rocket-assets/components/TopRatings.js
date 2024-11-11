@@ -1,8 +1,8 @@
-import l from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
-import { mapGetters as d } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vuex.js";
-import c from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/modules/axios/api.js";
-import u from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/modules/axios/rocket.js";
-import p from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/mobile.js";
+import l from "http://rocket.test/dist/vendor/lodash.js";
+import { mapGetters as d } from "http://rocket.test/dist/vendor/vuex.js";
+import c from "http://rocket.test/dist/vendor/modules/axios/api.js";
+import u from "http://rocket.test/dist/vendor/modules/axios/rocket.js";
+import p from "http://rocket.test/dist/vendor/mixins/mobile.js";
 function g(a, t, e, s, o, y, C, V) {
   var i = typeof a == "function" ? a.options : a;
   return t && (i.render = t, i.staticRenderFns = e, i._compiled = !0), {
@@ -40,7 +40,7 @@ const m = {
     ratings: []
   }),
   computed: {
-    ...d("preview", ["isPreview"]),
+    ...d("preview", ["isPreview", "isEditing"]),
     ratingsPerPage() {
       return this.isMobile ? 1 : 4;
     },
@@ -79,7 +79,7 @@ const m = {
     async loadRating() {
       this.loading = !0;
       try {
-        if (!this.ratingId.length && this.isPreview) {
+        if (!this.ratingId.length && (this.isPreview || this.isEditing)) {
           await this.loadPlaceholders();
           return;
         }

@@ -1,5 +1,5 @@
-import r from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
-import { mapGetters as a } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vuex.js";
+import r from "http://rocket.test/dist/vendor/lodash.js";
+import { mapGetters as a } from "http://rocket.test/dist/vendor/vuex.js";
 function s(e, t, o, p, _, w, x, v) {
   var n = typeof e == "function" ? e.options : e;
   return t && (n.render = t, n.staticRenderFns = o, n._compiled = !0), {

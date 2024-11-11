@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div :key="key">
         <div
             v-if="isPreview"
             ref="rocketEmitterRef"
@@ -95,6 +95,7 @@ export default {
     data() {
         return {
             actived: false,
+            key: 0,
         };
     },
 
@@ -110,6 +111,10 @@ export default {
                 this.$emit('openCategory');
             }
         },
+
+        isEditing() {
+            this.key += 1;
+        }
     },
 
     mounted() {

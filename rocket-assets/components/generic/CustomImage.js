@@ -1,5 +1,5 @@
-import { mapMutations as r } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vuex.js";
-import { uuidv4 as l, getImageMeta as s } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/helpers.js";
+import { mapMutations as r } from "http://rocket.test/dist/vendor/vuex.js";
+import { uuidv4 as l, getImageMeta as s } from "http://rocket.test/dist/vendor/mixins/helpers.js";
 function d(t, e, a, p, g, y, _, b) {
   var o = typeof t == "function" ? t.options : t;
   return e && (o.render = e, o.staticRenderFns = a, o._compiled = !0), {

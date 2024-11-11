@@ -1,6 +1,6 @@
-import a from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
-import { mapGetters as l, mapActions as h } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vuex.js";
-import d from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/tracking/api.js";
+import a from "http://rocket.test/dist/vendor/lodash.js";
+import { mapGetters as l, mapActions as h } from "http://rocket.test/dist/vendor/vuex.js";
+import d from "http://rocket.test/dist/vendor/mixins/tracking/api.js";
 function p(t, e, i, n, r, o, w, C) {
   var c = typeof t == "function" ? t.options : t;
   return {

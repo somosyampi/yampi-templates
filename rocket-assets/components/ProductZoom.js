@@ -1,6 +1,6 @@
-import m from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
-import u from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/mobile.js";
-import h from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/product.js";
+import m from "http://rocket.test/dist/vendor/lodash.js";
+import u from "http://rocket.test/dist/vendor/mixins/mobile.js";
+import h from "http://rocket.test/dist/vendor/mixins/product.js";
 function d(t, e, i, s, o, n, I, y) {
   var a = typeof t == "function" ? t.options : t;
   return e && (a.render = e, a.staticRenderFns = i, a._compiled = !0), {

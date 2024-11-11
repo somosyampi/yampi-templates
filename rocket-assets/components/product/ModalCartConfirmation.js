@@ -1,7 +1,7 @@
-import { mapGetters as r, mapActions as d } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vuex.js";
-import s from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
-import l from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/tracking/api.js";
-import c from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/modules/eventBus.js";
+import { mapGetters as r, mapActions as d } from "http://rocket.test/dist/vendor/vuex.js";
+import s from "http://rocket.test/dist/vendor/lodash.js";
+import l from "http://rocket.test/dist/vendor/mixins/tracking/api.js";
+import c from "http://rocket.test/dist/vendor/modules/eventBus.js";
 function m(o, e, t, v, w, M, y, b) {
   var a = typeof o == "function" ? o.options : o;
   return e && (a.render = e, a.staticRenderFns = t, a._compiled = !0), {

@@ -1,7 +1,7 @@
-import { mapGetters as l } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vuex.js";
-import n from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/mobile.js";
-import h from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/modules/axios/rocket.js";
-import d from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/modules/axios/api.js";
+import { mapGetters as l } from "http://rocket.test/dist/vendor/vuex.js";
+import n from "http://rocket.test/dist/vendor/mixins/mobile.js";
+import h from "http://rocket.test/dist/vendor/modules/axios/rocket.js";
+import d from "http://rocket.test/dist/vendor/modules/axios/api.js";
 function c(t, e, i, s, v, w, C, y) {
   var r = typeof t == "function" ? t.options : t;
   return e && (r.render = e, r.staticRenderFns = i, r._compiled = !0), {
@@ -24,7 +24,7 @@ const u = {
     };
   },
   computed: {
-    ...l("preview", ["isPreview"]),
+    ...l("preview", ["isPreview", "isEditing"]),
     highlightedCategoriesIds() {
       try {
         return JSON.parse(this.params.highlighted_category);
@@ -100,7 +100,7 @@ const u = {
   },
   methods: {
     getItemCover(t) {
-      return t || (!t && this.isPreview ? "http://cdn.yampi.io/rocket/helpers/placeholders/banner-3.png" : null);
+      return t || (!t && (this.isPreview || this.isEditing) ? "http://cdn.yampi.io/rocket/helpers/placeholders/banner-3.png" : null);
     },
     tagOrDiv(t) {
       return this.useVueSplide ? t : "div";
@@ -113,13 +113,13 @@ const u = {
             id: t
           }
         });
-        return !e.data.length && this.isPreview ? this.loadPlaceholders() : e.data;
+        return !e.data.length && (this.isPreview || this.isEditing) ? this.loadPlaceholders() : e.data;
       } finally {
         this.loading = !1;
       }
     },
     async loadPlaceholders() {
-      if (!this.isPreview)
+      if (!(this.isPreview || this.isEditing))
         return [];
       try {
         this.loading = !0;

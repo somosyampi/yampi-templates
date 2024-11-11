@@ -230,7 +230,7 @@ export default {
         },
 
         async loadPlaceholders() {
-            if (!this.isPreview) {
+            if (!(this.isPreview || this.isEditing)) {
                 return [];
             }
 

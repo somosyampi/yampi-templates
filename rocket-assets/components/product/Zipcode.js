@@ -1,8 +1,8 @@
-import c from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
-import p from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/modules/axios/rocket.js";
-import l from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/errors.js";
-import u from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/product.js";
-import m from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/mixins/tracking/api.js";
+import c from "http://rocket.test/dist/vendor/lodash.js";
+import p from "http://rocket.test/dist/vendor/modules/axios/rocket.js";
+import l from "http://rocket.test/dist/vendor/mixins/errors.js";
+import u from "http://rocket.test/dist/vendor/mixins/product.js";
+import m from "http://rocket.test/dist/vendor/mixins/tracking/api.js";
 function f(t, e, i, o, d, a, b, w) {
   var s = typeof t == "function" ? t.options : t;
   return e && (s.render = e, s.staticRenderFns = i, s._compiled = !0), {
