@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import _ from '~lodash';
+import _ from '~/lodash';
 import productMixin from '@/mixins/product';
 import { createPriceObjects } from '@/mixins/helpers';
 

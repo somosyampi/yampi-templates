@@ -54,8 +54,8 @@
 </template>
 
 <script>
-import { mapGetters } from '~vuex';
-import _ from '~lodash';
+import { mapGetters } from '~/vuex';
+import _ from '~/lodash';
 import rocket from '@/modules/axios/rocket';
 import errorsMixin from '@/mixins/errors';
 

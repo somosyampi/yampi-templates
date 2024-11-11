@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { mapGetters } from '~vuex';
+import { mapGetters } from '~/vuex';
 import mobileMixin from '@/mixins/mobile';
 
 export default {

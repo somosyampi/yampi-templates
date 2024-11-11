@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import '~external-svg-loader';
+import '~/external-svg-loader';
 
 // Mixins
 import mobileMixin from '@/mixins/mobile';

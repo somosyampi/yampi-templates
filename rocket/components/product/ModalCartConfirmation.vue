@@ -36,7 +36,6 @@
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                 >
-                    <!-- eslint-disable max-len -->
                     <path
                         fill-rule="evenodd"
                         clip-rule="evenodd"
@@ -58,8 +57,8 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from '~vuex';
-import _ from '~lodash';
+import { mapActions, mapGetters } from '~/vuex';
+import _ from '~/lodash';
 import trackingByApi from '@/mixins/tracking/api';
 import eventBus from '@/modules/eventBus';
 
@@ -89,7 +88,7 @@ export default {
         ]),
 
         ...mapGetters('preview', [
-            'isPreview'
+            'isPreview',
         ]),
     },
 

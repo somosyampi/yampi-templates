@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import { mapGetters } from '~vuex';
+import { mapGetters } from '~/vuex';
 import api from '@/modules/axios/api';
 import rocket from '@/modules/axios/rocket';
 import mobileMixin from '@/mixins/mobile';
@@ -153,7 +153,7 @@ export default {
     }),
 
     computed: {
-        ...mapGetters('preview', ['isPreview']),
+        ...mapGetters('preview', ['isPreview', 'isEditing']),
 
         carouselOptions() {
             return {
@@ -304,7 +304,7 @@ export default {
 
                 this.loading = true;
 
-                if (!ids.length && this.isPreview && !this.slug.length) {
+                if (!ids.length && (this.isPreview || this.isEditing) && !this.slug.length) {
                     await this.loadPlaceholders();
 
                     return;

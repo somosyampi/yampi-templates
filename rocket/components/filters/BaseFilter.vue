@@ -1,6 +1,6 @@
 <script>
-import { mapGetters } from '~vuex';
-import _ from '~lodash';
+import { mapGetters } from '~/vuex';
+import _ from '~/lodash';
 import api from '@/modules/axios/api';
 import rocket from '@/modules/axios/rocket';
 import queryParams from '@/mixins/queryParams';
@@ -19,7 +19,7 @@ export default {
     }),
 
     computed: {
-        ...mapGetters('preview', ['isPreview']),
+        ...mapGetters('preview', ['isPreview', 'isEditing']),
     },
 
     mounted() {
@@ -48,7 +48,7 @@ export default {
                 const url = this.$applyQueriesToUrl(`search/products/${this.route}`, filteredQueryParams);
                 const { data } = await api.get(url);
 
-                if (this.isPreview && !data.data.length) {
+                if ((this.isPreview || this.isEditing) && !data.data.length) {
                     await this.loadPlaceholders();
                     return;
                 }
@@ -57,7 +57,7 @@ export default {
 
                 this.parseFilterStatuses(this.payload);
             } catch (e) {
-                if (e.response.status >= 400 && this.isPreview) {
+                if (e.response.status >= 400 && (this.isPreview || this.isEditing)) {
                     await this.loadPlaceholders();
 
                     return;

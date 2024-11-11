@@ -1,6 +1,6 @@
 <script>
-import { mapGetters } from '~vuex';
-import _ from '~lodash';
+import { mapGetters } from '~/vuex';
+import _ from '~/lodash';
 import api from '@/modules/axios/api';
 
 export default {

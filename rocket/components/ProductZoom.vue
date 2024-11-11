@@ -1,4 +1,3 @@
-<!-- eslint-disable max-len -->
 <template>
     <div>
         <div class="main-product-image-wrapper relative flex -between">
@@ -143,8 +142,7 @@
 </template>
 
 <script>
-/* eslint-disable max-len */
-import _ from '~lodash';
+import _ from '~/lodash';
 import mobileMixin from '@/mixins/mobile';
 import productMixin from '@/mixins/product';
 

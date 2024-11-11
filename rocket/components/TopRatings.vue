@@ -99,8 +99,8 @@
 </template>
 
 <script>
-import _ from '~lodash';
-import { mapGetters } from '~vuex';
+import _ from '~/lodash';
+import { mapGetters } from '~/vuex';
 import api from '@/modules/axios/api';
 import rocket from '@/modules/axios/rocket';
 import mobileMixin from '@/mixins/mobile';
@@ -142,7 +142,7 @@ export default {
     }),
 
     computed: {
-        ...mapGetters('preview', ['isPreview']),
+        ...mapGetters('preview', ['isPreview', 'isEditing']),
 
         ratingsPerPage() {
             return this.isMobile ? 1 : 4;
@@ -193,7 +193,7 @@ export default {
             this.loading = true;
 
             try {
-                if (!this.ratingId.length && this.isPreview) {
+                if (!this.ratingId.length && (this.isPreview || this.isEditing)) {
                     await this.loadPlaceholders();
 
                     return;
@@ -220,7 +220,7 @@ export default {
                 this.ratings = data.data;
 
                 this.loading = false;
-            } catch(error) {
+            } catch (error) {
                 console.error(`Ops! Algo deu errado durante o carregamento das avaliações.
                  Por favor, tente novamente mais tarde.`);
             }
@@ -228,13 +228,13 @@ export default {
 
         async loadPlaceholders() {
             this.loading = true;
-            
+
             try {
                 const { data } = await rocket.get('/placeholders/reviews-home');
                 this.ratings = data.data.slice(0, this.totalRatings);
 
                 this.loading = false;
-            } catch(e) {
+            } catch (e) {
                 console.error(`Ops! Algo deu errado durante o carregamento das avaliações.
                  Por favor, tente novamente mais tarde.`);
             }

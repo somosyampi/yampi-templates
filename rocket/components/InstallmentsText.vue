@@ -7,8 +7,8 @@
 
 <script>
 import BaseInstallments from '@/components/product/BaseInstallments.vue';
-import debounce from '~vue-debounce';
-import _ from '~lodash';
+import debounce from '~/vue-debounce';
+import _ from '~/lodash';
 
 export default  {
     name: 'InstallmentsText',

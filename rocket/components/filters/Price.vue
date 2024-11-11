@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from '~vuex';
+import { mapActions, mapGetters } from '~/vuex';
 import BaseFilter from '@/components/filters/BaseFilter.vue';
 
 export default {

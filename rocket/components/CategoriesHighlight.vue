@@ -63,7 +63,7 @@
 
 <script>
 
-import { mapGetters } from '~vuex';
+import { mapGetters } from '~/vuex';
 import mobileMixin from '@/mixins/mobile';
 import rocket from '@/modules/axios/rocket';
 import api from '@/modules/axios/api';
@@ -87,7 +87,7 @@ export default {
     },
 
     computed: {
-        ...mapGetters('preview', ['isPreview']),
+        ...mapGetters('preview', ['isPreview', 'isEditing']),
 
         highlightedCategoriesIds() {
             try {
@@ -197,7 +197,7 @@ export default {
                 return cover;
             }
 
-            if (!cover && this.isPreview) {
+            if (!cover && (this.isPreview || this.isEditing)) {
                 return 'http://cdn.yampi.io/rocket/helpers/placeholders/banner-3.png';
             }
 
@@ -218,7 +218,7 @@ export default {
                     },
                 });
 
-                if (!data.data.length && this.isPreview) {
+                if (!data.data.length && (this.isPreview || this.isEditing)) {
                     const placeholders = this.loadPlaceholders();
                     return placeholders;
                 }

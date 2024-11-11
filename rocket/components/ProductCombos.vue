@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { mapMutations } from '~vuex';
+import { mapMutations } from '~/vuex';
 import BaseProduct from '@/components/product/BaseProduct.vue';
 
 export default {

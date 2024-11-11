@@ -15,11 +15,10 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from '~vuex';
+import { mapActions, mapGetters } from '~/vuex';
 import eventBus from '@/modules/eventBus';
 import api from '@/modules/axios/api';
 import rocket from '@/modules/axios/rocket';
-import _ from '~lodash';
 
 export default {
     name: 'AddToCart',
@@ -42,7 +41,7 @@ export default {
     computed: {
         ...mapGetters('cart', ['cartType']),
 
-        ...mapGetters('preview', ['isPreview']),
+        ...mapGetters('preview', ['isPreview', 'isEditing']),
 
         ...mapActions('cart', ['addProductsToCart']),
     },
@@ -68,8 +67,8 @@ export default {
         }
 
         window.addEventListener(
-            "message",
-            (event) => {
+            'message',
+            event => {
                 if (event.data?.show_modal_after_purchase?.value && event.target?.themeConfig?.page === 'product') {
                     if (this.cartType !== 'side_cart') {
                         this.$refs.modalCartConfirmation.showModal();
@@ -126,7 +125,7 @@ export default {
 
                 this.productData = data.data;
             } catch (error) {
-                if (error.response.status >= 400 && this.isPreview) {
+                if (error.response.status >= 400 && (this.isPreview || this.isEditing)) {
                     await this.loadPlaceholders();
                 }
             }
