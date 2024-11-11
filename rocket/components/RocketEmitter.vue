@@ -31,27 +31,6 @@ import { mapGetters, mapActions } from '~/vuex';
 export default {
     name: 'RocketEmitter',
 
-    components: {
-        IconEye,
-        IconEyeSlash,
-        IconHeader,
-        IconFooter,
-        IconBag,
-        IconGrid,
-        IconImage,
-        IconImageSlide,
-        IconPage,
-        IconQuestion,
-        IconShirt,
-        IconVideo,
-        IconHighlights,
-        IconCategoryHighlight,
-        IconComments,
-        IconStar,
-        IconCta,
-        IconCart,
-    },
-
     props: {
         emits: {
             type: String,
