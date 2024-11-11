@@ -1,5 +1,5 @@
-import { mapGetters as m, mapActions as l } from "http://rocket.test/dist/vendor/vuex.js";
-import u from "/components/filters/BaseFilter.js";
+import { mapGetters as m, mapActions as l } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
+import u from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-sandbox/rocket-assets/components/filters/BaseFilter.js";
 function d(t, e, i, a, o, x, P, _) {
   var r = typeof t == "function" ? t.options : t;
   return e && (r.render = e, r.staticRenderFns = i, r._compiled = !0), {

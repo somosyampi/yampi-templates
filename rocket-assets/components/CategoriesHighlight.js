@@ -1,7 +1,7 @@
-import { mapGetters as l } from "http://rocket.test/dist/vendor/vuex.js";
-import n from "http://rocket.test/dist/vendor/mixins/mobile.js";
-import h from "http://rocket.test/dist/vendor/modules/axios/rocket.js";
-import d from "http://rocket.test/dist/vendor/modules/axios/api.js";
+import { mapGetters as l } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
+import n from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/mobile.js";
+import h from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/rocket.js";
+import d from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/api.js";
 function c(t, e, i, s, v, w, C, y) {
   var r = typeof t == "function" ? t.options : t;
   return e && (r.render = e, r.staticRenderFns = i, r._compiled = !0), {

@@ -1,6 +1,6 @@
-import i from "http://rocket.test/dist/vendor/lodash.js";
-import o from "http://rocket.test/dist/vendor/mixins/product.js";
-import { createPriceObjects as s } from "http://rocket.test/dist/vendor/mixins/helpers.js";
+import i from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
+import o from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/product.js";
+import { createPriceObjects as s } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/helpers.js";
 function d(t, e, r, _, P, v, y, b) {
   var a = typeof t == "function" ? t.options : t;
   return e && (a.render = e, a.staticRenderFns = r, a._compiled = !0), {

@@ -1,4 +1,4 @@
-import { uuidv4 as u } from "http://rocket.test/dist/vendor/mixins/helpers.js";
+import { uuidv4 as u } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/helpers.js";
 function c(e, t, n, o, r, a, y, h) {
   var i = typeof e == "function" ? e.options : e;
   return t && (i.render = t, i.staticRenderFns = n, i._compiled = !0), {

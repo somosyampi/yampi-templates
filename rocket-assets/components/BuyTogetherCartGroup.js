@@ -1,5 +1,5 @@
-import { mapGetters as n } from "http://rocket.test/dist/vendor/vuex.js";
-import l from "http://rocket.test/dist/vendor/lodash.js";
+import { mapGetters as n } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
+import l from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
 function u(e, t, o, s, r, y, b, v) {
   var i = typeof e == "function" ? e.options : e;
   return t && (i.render = t, i.staticRenderFns = o, i._compiled = !0), {
