@@ -1,5 +1,5 @@
 <rocket-emitter emits="collection" label="Coleções" order={{ section.order }}>
-    {% if section.params.resource.ids.0 or isPreview %}
+    {% if section.params.resource.ids.0 or isPreview or isEditing %}
         <collection
             class="collection {{ "#{section.section_alias}-#{section.order}" }}"
             :show-link="{{ section.params.show_all_button | bool_text }}"
