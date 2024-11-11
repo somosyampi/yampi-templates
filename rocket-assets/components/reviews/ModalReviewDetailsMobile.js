@@ -1,8 +1,8 @@
-(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".hide[data-v-f2bcb2b1]{visibility:hidden}")),document.head.appendChild(e)}}catch(d){console.error("vite-plugin-css-injected-by-js",d)}})();
-import l from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-function d(t, e, o, v, _, a, p, w) {
+(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".hide[data-v-a6d9ce4f]{visibility:hidden}")),document.head.appendChild(e)}}catch(d){console.error("vite-plugin-css-injected-by-js",d)}})();
+import a from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/lodash.js";
+function d(t, e, o, v, _, l, p, w) {
   var s = typeof t == "function" ? t.options : t;
-  return e && (s.render = e, s.staticRenderFns = o, s._compiled = !0), s._scopeId = "data-v-" + a, {
+  return e && (s.render = e, s.staticRenderFns = o, s._compiled = !0), s._scopeId = "data-v-" + l, {
     exports: t,
     options: s
   };
@@ -26,9 +26,9 @@ const r = {
     };
   },
   methods: {
-    times: l.times,
+    times: a.times,
     handleModal() {
-      this.show = !this.show, this.show ? (document.getElementById("app").style.overflow = "hidden", document.getElementsByTagName("body")[0].style = "overflow-y: hidden") : (document.getElementById("app").style.overflow = "", l.delay(() => {
+      this.show = !this.show, this.show ? (document.getElementById("app").style.overflow = "hidden", document.getElementsByTagName("body")[0].style = "overflow-y: hidden") : (document.getElementById("app").style.overflow = "", a.delay(() => {
         document.getElementsByTagName("body")[0].style = "overflow-y: auto";
       }, 350, "later"), this.$emit("close"));
     },
@@ -49,7 +49,7 @@ var c = function() {
   m,
   !1,
   null,
-  "f2bcb2b1"
+  "a6d9ce4f"
 );
 const u = f.exports;
 function n(t) {

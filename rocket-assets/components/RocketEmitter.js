@@ -1,4 +1,4 @@
-import { mapGetters as s, mapActions as c } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
+import { mapGetters as s, mapActions as c } from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/rocket/assets/rocket-preview/vendor/vuex.js";
 function a(t, e, i, p, g, _, v, w) {
   var o = typeof t == "function" ? t.options : t;
   return e && (o.render = e, o.staticRenderFns = i, o._compiled = !0), {

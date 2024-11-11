@@ -1,4 +1,4 @@
-import l from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-sandbox/rocket-assets/components/product/BaseProduct.js";
+import l from "/components/product/BaseProduct.js";
 function r(t, e, n, i, _, v, g, b) {
   var a = typeof t == "function" ? t.options : t;
   return e && (a.render = e, a.staticRenderFns = n, a._compiled = !0), {
