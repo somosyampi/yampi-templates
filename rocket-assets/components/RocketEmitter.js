@@ -1,5 +1,5 @@
 import { mapGetters as s, mapActions as c } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
-function a(t, e, i, p, g, _, v, w) {
+function a(t, e, i, g, p, _, v, w) {
   var o = typeof t == "function" ? t.options : t;
   return e && (o.render = e, o.staticRenderFns = i, o._compiled = !0), {
     exports: t,
@@ -28,15 +28,19 @@ const d = {
   },
   data() {
     return {
-      actived: !1
+      actived: !1,
+      key: 0
     };
   },
   computed: {
-    ...s("preview", ["isPreview", "activeSection"])
+    ...s("preview", ["isPreview", "isEditing", "activeSection"])
   },
   watch: {
     activeSection(t) {
       this.isPreview && t === this.emits && this.$emit("openCategory");
+    },
+    isEditing() {
+      this.key += 1;
     }
   },
   mounted() {
@@ -49,7 +53,7 @@ const d = {
   },
   methods: {
     ...c("preview", ["setActiveSection"]),
-    handleTagPosition(t) {
+    handleTagPosition() {
       if (!this.$refs.rocketEmitterRef)
         return;
       if (this.$refs.rocketEmitterRef.getBoundingClientRect().top > 24) {
@@ -102,25 +106,25 @@ const d = {
 };
 var l = function() {
   var e = this, i = e._self._c;
-  return i("div", [e.isPreview ? i("div", { ref: "rocketEmitterRef", staticClass: "rocket-emitter", class: {
+  return i("div", { key: e.key }, [e.isPreview ? i("div", { ref: "rocketEmitterRef", staticClass: "rocket-emitter", class: {
     "--hide-stroke": !e.showStroke,
     "--active": e.activeSection === `${e.emits}-${e.order}` || e.activeSection === `${e.emits}`
   }, on: { click: e.handleClick } }, [e.showStroke ? i("div", { staticClass: "emitter-title" }, [i(e.getComponent(e.emits), { tag: "component" }), e._v(" " + e._s(e.label) + " ")], 1) : e._e(), e._t("default")], 2) : i("div", [e._t("default")], 2)]);
-}, m = [], u = /* @__PURE__ */ a(
+}, m = [], h = /* @__PURE__ */ a(
   d,
   l,
   m
 );
-const f = u.exports;
+const u = h.exports;
 function r(t) {
-  r.installed || (r.installed = !0, t.component("RocketEmitter", f));
+  r.installed || (r.installed = !0, t.component("RocketEmitter", u));
 }
-const h = {
+const f = {
   install: r
 };
 let n = null;
 typeof window < "u" ? n = window.Vue : typeof global < "u" && (n = global.Vue);
-n && n.use(h);
+n && n.use(f);
 export {
-  f as default
+  u as default
 };
