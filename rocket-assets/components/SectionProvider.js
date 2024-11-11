@@ -1,4 +1,4 @@
-import t from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vue.js";
+import t from "http://rocket.test/dist/vendor/vue.js";
 function i(e, d, u, f, m, c, g, b) {
   var a = typeof e == "function" ? e.options : e;
   return {

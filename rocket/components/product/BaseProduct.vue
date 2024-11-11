@@ -1,5 +1,5 @@
 <script>
-import { mapActions, mapGetters } from '~vuex';
+import { mapActions, mapGetters } from '~/vuex';
 import api from '@/modules/axios/api';
 import rocket from '@/modules/axios/rocket';
 import productMixin from '@/mixins/product';
@@ -18,7 +18,7 @@ export default {
     }),
 
     computed: {
-        ...mapGetters('preview', ['isPreview']),
+        ...mapGetters('preview', ['isPreview', 'isEditing']),
     },
 
     mounted() {
@@ -42,7 +42,7 @@ export default {
 
                 const { data } = await api.get(url);
 
-                if (!data.data.length && this.isPreview) {
+                if (!data.data.length && (this.isPreview || this.isEditing)) {
                     await this.loadPlaceholders();
 
                     return;
@@ -58,7 +58,7 @@ export default {
 
                 this.payload = data.data;
             } catch (e) {
-                if (e.response.status >= 400 && this.isPreview) {
+                if (e.response.status >= 400 && (this.isPreview || this.isEditing)) {
                     await this.loadPlaceholders();
 
                     return;

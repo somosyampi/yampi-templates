@@ -1,5 +1,5 @@
-import { mapGetters as a } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
-import l from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/mobile.js";
+import { mapGetters as a } from "http://rocket.test/dist/vendor/vuex.js";
+import l from "http://rocket.test/dist/vendor/mixins/mobile.js";
 function c(t, e, i, r, h, _, g, y) {
   var s = typeof t == "function" ? t.options : t;
   return e && (s.render = e, s.staticRenderFns = i, s._compiled = !0), {

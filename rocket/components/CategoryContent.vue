@@ -27,8 +27,8 @@
 </template>
 
 <script>
-import _ from '~lodash';
-import { mapGetters } from '~vuex';
+import _ from '~/lodash';
+import { mapGetters } from '~/vuex';
 import rocket from '@/modules/axios/rocket';
 import api from '@/modules/axios/api';
 import queryParamsMixin from '@/mixins/queryParams';

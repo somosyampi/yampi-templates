@@ -1,7 +1,7 @@
-import o from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-import { mapGetters as l, mapActions as c } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
-import d from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/tracking/api.js";
-import { createPriceObjects as h } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/helpers.js";
+import o from "http://rocket.test/dist/vendor/lodash.js";
+import { mapGetters as l, mapActions as c } from "http://rocket.test/dist/vendor/vuex.js";
+import d from "http://rocket.test/dist/vendor/mixins/tracking/api.js";
+import { createPriceObjects as h } from "http://rocket.test/dist/vendor/mixins/helpers.js";
 function m(s, t, e, i, a, v, y, z) {
   var r = typeof s == "function" ? s.options : s;
   return t && (r.render = t, r.staticRenderFns = e, r._compiled = !0), {

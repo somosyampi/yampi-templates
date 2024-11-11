@@ -104,11 +104,11 @@
 </template>
 
 <script>
-import { mapGetters } from '~vuex';
+import { mapGetters } from '~/vuex';
 import rocket from '@/modules/axios/rocket';
 import errorsMixin from '@/mixins/errors';
 import trackingByApi from '@/mixins/tracking/api';
-import _ from '~lodash';
+import _ from '~/lodash';
 
 export default {
     name: 'ModalReview',

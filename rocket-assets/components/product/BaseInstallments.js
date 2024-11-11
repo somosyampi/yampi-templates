@@ -1,7 +1,7 @@
-import c from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-import f from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/api.js";
-import g from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/product.js";
-import m from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/merchant.js";
+import c from "http://rocket.test/dist/vendor/lodash.js";
+import f from "http://rocket.test/dist/vendor/modules/axios/api.js";
+import g from "http://rocket.test/dist/vendor/mixins/product.js";
+import m from "http://rocket.test/dist/vendor/mixins/merchant.js";
 function h(t, a, n, e, o, r, u, s) {
   var i = typeof t == "function" ? t.options : t;
   return {

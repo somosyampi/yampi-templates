@@ -1,6 +1,6 @@
-import a from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/product.js";
-import r from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/eventBus.js";
-import c from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/tracking/api.js";
+import a from "http://rocket.test/dist/vendor/mixins/product.js";
+import r from "http://rocket.test/dist/vendor/modules/eventBus.js";
+import c from "http://rocket.test/dist/vendor/mixins/tracking/api.js";
 function s(n, t, e, l, b, v, h, k) {
   var o = typeof n == "function" ? n.options : n;
   return t && (o.render = t, o.staticRenderFns = e, o._compiled = !0), {

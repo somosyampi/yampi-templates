@@ -92,10 +92,10 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from '~vuex';
-import _ from '~lodash';
+import { mapActions, mapGetters } from '~/vuex';
+import _ from '~/lodash';
 import trackingByApi from '@/mixins/tracking/api';
-import Vue from '~vue';
+import Vue from '~/vue';
 import { createPriceObjects } from '@/mixins/helpers';
 
 export default {

@@ -1,4 +1,4 @@
-import a from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
+import a from "http://rocket.test/dist/vendor/lodash.js";
 function l(t, n, e, d, _, h, w, S) {
   var o = typeof t == "function" ? t.options : t;
   return n && (o.render = n, o.staticRenderFns = e, o._compiled = !0), {

@@ -1,9 +1,9 @@
-import { mapGetters as r } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
-import n from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-import l from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/api.js";
-import d from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/rocket.js";
-import u from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/queryParams.js";
-function f(e, t, a, y, w, P, g, v) {
+import { mapGetters as r } from "http://rocket.test/dist/vendor/vuex.js";
+import n from "http://rocket.test/dist/vendor/lodash.js";
+import l from "http://rocket.test/dist/vendor/modules/axios/api.js";
+import d from "http://rocket.test/dist/vendor/modules/axios/rocket.js";
+import u from "http://rocket.test/dist/vendor/mixins/queryParams.js";
+function f(e, t, i, y, g, w, P, v) {
   var s = typeof e == "function" ? e.options : e;
   return {
     exports: e,
@@ -21,7 +21,7 @@ const c = {
     payload: []
   }),
   computed: {
-    ...r("preview", ["isPreview"])
+    ...r("preview", ["isPreview", "isEditing"])
   },
   mounted() {
     this.loadData(), this.$store.subscribe(({ type: e, payload: t }) => {
@@ -32,14 +32,14 @@ const c = {
     async loadData() {
       try {
         this.loading = !0;
-        const e = n.pick(this.queryParams, ["slug", "q", "context"]), t = this.$applyQueriesToUrl(`search/products/${this.route}`, e), { data: a } = await l.get(t);
-        if (this.isPreview && !a.data.length) {
+        const e = n.pick(this.queryParams, ["slug", "q", "context"]), t = this.$applyQueriesToUrl(`search/products/${this.route}`, e), { data: i } = await l.get(t);
+        if ((this.isPreview || this.isEditing) && !i.data.length) {
           await this.loadPlaceholders();
           return;
         }
-        this.payload = this.parsePayload(a.data), this.parseFilterStatuses(this.payload);
+        this.payload = this.parsePayload(i.data), this.parseFilterStatuses(this.payload);
       } catch (e) {
-        if (e.response.status >= 400 && this.isPreview) {
+        if (e.response.status >= 400 && (this.isPreview || this.isEditing)) {
           await this.loadPlaceholders();
           return;
         }
@@ -55,7 +55,7 @@ const c = {
       }));
     },
     filterRemoved(e) {
-      const t = this.payload.find((a) => a.id === e.id);
+      const t = this.payload.find((i) => i.id === e.id);
       t && (t.active = !1);
     },
     async loadPlaceholders() {
@@ -64,19 +64,19 @@ const c = {
     }
   }
 };
-var p = /* @__PURE__ */ f(
+var h = /* @__PURE__ */ f(
   c
 );
-const m = p.exports;
+const p = h.exports;
 function o(e) {
-  o.installed || (o.installed = !0, e.component("BaseFilter", m));
+  o.installed || (o.installed = !0, e.component("BaseFilter", p));
 }
-const h = {
+const m = {
   install: o
 };
-let i = null;
-typeof window < "u" ? i = window.Vue : typeof global < "u" && (i = global.Vue);
-i && i.use(h);
+let a = null;
+typeof window < "u" ? a = window.Vue : typeof global < "u" && (a = global.Vue);
+a && a.use(m);
 export {
-  m as default
+  p as default
 };

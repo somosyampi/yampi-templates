@@ -55,8 +55,8 @@
 </template>
 
 <script>
-import { mapGetters } from '~vuex';
-import _ from '~lodash';
+import { mapGetters } from '~/vuex';
+import _ from '~/lodash';
 
 export default {
     name: 'BuyTogetherCartGroup',

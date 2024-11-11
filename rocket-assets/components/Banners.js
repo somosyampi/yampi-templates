@@ -1,7 +1,7 @@
-import { mapGetters as c } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
-import f from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/api.js";
-import p from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/rocket.js";
-import g from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/mobile.js";
+import { mapGetters as c } from "http://rocket.test/dist/vendor/vuex.js";
+import f from "http://rocket.test/dist/vendor/modules/axios/api.js";
+import p from "http://rocket.test/dist/vendor/modules/axios/rocket.js";
+import g from "http://rocket.test/dist/vendor/mixins/mobile.js";
 function m(t, e, i, s, n, l, o, d) {
   var a = typeof t == "function" ? t.options : t;
   return e && (a.render = e, a.staticRenderFns = i, a._compiled = !0), {
@@ -73,7 +73,7 @@ const y = {
     isPlaceholder: !1
   }),
   computed: {
-    ...c("preview", ["isPreview"]),
+    ...c("preview", ["isPreview", "isEditing"]),
     carouselOptions() {
       return {
         rewind: !0,
@@ -164,7 +164,7 @@ const y = {
     async loadBanners() {
       try {
         const t = [...this.ids];
-        if (this.loading = !0, !t.length && this.isPreview && !this.slug.length) {
+        if (this.loading = !0, !t.length && (this.isPreview || this.isEditing) && !this.slug.length) {
           await this.loadPlaceholders();
           return;
         }
@@ -186,7 +186,7 @@ const y = {
         const { data: i } = await f.get("catalog/banners", {
           params: e
         });
-        if (!i.data.length && this.isPreview) {
+        if (!i.data.length && (this.isPreview || this.isEditing)) {
           await this.loadPlaceholders();
           return;
         }

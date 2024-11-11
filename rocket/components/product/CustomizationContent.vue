@@ -115,7 +115,7 @@
 </template>
 
 <script>
-import _ from '~lodash';
+import _ from '~/lodash';
 import BaseCustomization from '@/components/product/BaseCustomization.vue';
 
 export default {

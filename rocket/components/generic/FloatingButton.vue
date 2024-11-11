@@ -24,7 +24,6 @@
                         <p>
                             {{ lastInstallment.installment }}x de
                             <span class="installment-price">
-                                <!-- eslint-disable-next-line max-len -->
                                 {{ lastInstallment.installment_value | formatMoney }}
                             </span>
                             <span v-if="lastInstallment.tax_value === 0">
@@ -55,7 +54,7 @@
 </template>
 
 <script>
-import _ from '~lodash';
+import _ from '~/lodash';
 import BaseInstallments from '@/components/product/BaseInstallments.vue';
 import buttonsMixin from '@/mixins/buttons.js';
 
@@ -91,7 +90,6 @@ export default {
         },
 
         originalPriceClass() {
-            // eslint-disable-next-line max-len
             return this.sku.prices.data.has_promotion || this.sku.prices.data.price_discount > 0
                 ? 'original-price-discount'
                 : 'original-price';

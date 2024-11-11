@@ -1,4 +1,4 @@
-import s from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-main/rocket-assets/components/filters/BaseFilter.js";
+import s from "/components/filters/BaseFilter.js";
 function c(t, e, n, i, r, v, y, g) {
   var o = typeof t == "function" ? t.options : t;
   return e && (o.render = e, o.staticRenderFns = n, o._compiled = !0), {

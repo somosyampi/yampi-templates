@@ -1,7 +1,14 @@
 <template>
-    <Grid :link="link" :show-link="showLink" :loading="loading" :title="collection.name"
-        :products-per-line="productsPerLine" :carousel="isCarousel" :products="collectionProducts"
-        :class="{ completed, 'has-carousel': isCarousel }">
+    <Grid
+        :link="link"
+        :show-link="showLink"
+        :loading="loading"
+        :title="collection.name"
+        :products-per-line="productsPerLine"
+        :carousel="isCarousel"
+        :products="collectionProducts"
+        :class="{ completed, 'has-carousel': isCarousel }"
+    >
         <template slot-scope="{ product }">
             <slot :product="product" />
         </template>
@@ -9,8 +16,8 @@
 </template>
 
 <script>
-import _ from '~lodash';
-import { mapGetters } from '~vuex';
+import _ from '~/lodash';
+import { mapGetters } from '~/vuex';
 import api from '@/modules/axios/api';
 import rocket from '@/modules/axios/rocket';
 
@@ -57,7 +64,7 @@ export default {
     }),
 
     computed: {
-        ...mapGetters('preview', ['isPreview']),
+        ...mapGetters('preview', ['isPreview', 'isEditing']),
 
         link() {
             return this.showLink
@@ -125,7 +132,7 @@ export default {
             try {
                 this.loading = true;
 
-                if (!this.collectionId && this.isPreview) {
+                if (!this.collectionId && (this.isPreview || this.isEditing)) {
                     await this.loadPlaceholders();
 
                     return;

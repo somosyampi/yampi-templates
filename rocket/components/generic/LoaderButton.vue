@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { mapMutations } from '~vuex';
+import { mapMutations } from '~/vuex';
 import buttonsMixin from '@/mixins/buttons.js';
 
 export default {

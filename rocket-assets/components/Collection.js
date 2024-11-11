@@ -1,12 +1,12 @@
-import i from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-import { mapGetters as s } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
-import c from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/api.js";
-import d from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/rocket.js";
+import l from "http://rocket.test/dist/vendor/lodash.js";
+import { mapGetters as s } from "http://rocket.test/dist/vendor/vuex.js";
+import c from "http://rocket.test/dist/vendor/modules/axios/api.js";
+import d from "http://rocket.test/dist/vendor/modules/axios/rocket.js";
 function u(t, e, o, a, y, w, v, k) {
-  var l = typeof t == "function" ? t.options : t;
-  return e && (l.render = e, l.staticRenderFns = o, l._compiled = !0), {
+  var i = typeof t == "function" ? t.options : t;
+  return e && (i.render = e, i.staticRenderFns = o, i._compiled = !0), {
     exports: t,
-    options: l
+    options: i
   };
 }
 const p = {
@@ -45,9 +45,9 @@ const p = {
     completed: !1
   }),
   computed: {
-    ...s("preview", ["isPreview"]),
+    ...s("preview", ["isPreview", "isEditing"]),
     link() {
-      return this.showLink ? i.get(this.collection, "url_path", "") : "";
+      return this.showLink ? l.get(this.collection, "url_path", "") : "";
     },
     collectionProducts() {
       if (this.loading) {
@@ -85,7 +85,7 @@ const p = {
           t.push(e);
         return t;
       }
-      return i.get(this.collection, "products.data", []);
+      return l.get(this.collection, "products.data", []);
     },
     isCarousel() {
       return this.desktopLayout === "carousel";
@@ -97,7 +97,7 @@ const p = {
   methods: {
     async loadCollection() {
       try {
-        if (this.loading = !0, !this.collectionId && this.isPreview) {
+        if (this.loading = !0, !this.collectionId && (this.isPreview || this.isEditing)) {
           await this.loadPlaceholders();
           return;
         }
@@ -105,7 +105,7 @@ const p = {
           id: [this.collectionId],
           limit: this.totalProducts
         }), { data: e } = await c.get(t);
-        this.collection = i.get(e, "data.0", {});
+        this.collection = l.get(e, "data.0", {});
       } finally {
         this.loading = !1;
       }
@@ -115,7 +115,7 @@ const p = {
         method: "get",
         url: "/placeholders/collections"
       });
-      this.collection = i.get(t, "data.0", {});
+      this.collection = l.get(t, "data.0", {});
     }
   }
 };

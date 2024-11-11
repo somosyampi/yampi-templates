@@ -125,8 +125,8 @@
 </template>
 
 <script>
-import _ from '~lodash';
-import { mapActions, mapGetters } from '~vuex';
+import _ from '~/lodash';
+import { mapActions, mapGetters } from '~/vuex';
 import trackingByApi from '@/mixins/tracking/api';
 import { createPriceObjects } from '@/mixins/helpers';
 

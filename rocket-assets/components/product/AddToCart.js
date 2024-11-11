@@ -1,16 +1,15 @@
-import { mapGetters as s, mapActions as c } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
-import l from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/eventBus.js";
-import u from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/api.js";
-import f from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/rocket.js";
-import "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-function p(e, t, r, i, d, y, v, g) {
+import { mapGetters as s, mapActions as c } from "http://rocket.test/dist/vendor/vuex.js";
+import l from "http://rocket.test/dist/vendor/modules/eventBus.js";
+import u from "http://rocket.test/dist/vendor/modules/axios/api.js";
+import f from "http://rocket.test/dist/vendor/modules/axios/rocket.js";
+function p(e, t, r, i, d, y, g, v) {
   var a = typeof e == "function" ? e.options : e;
   return t && (a.render = t, a.staticRenderFns = r, a._compiled = !0), {
     exports: e,
     options: a
   };
 }
-const m = {
+const h = {
   name: "AddToCart",
   props: {
     selectedPrice: {
@@ -27,7 +26,7 @@ const m = {
   },
   computed: {
     ...s("cart", ["cartType"]),
-    ...s("preview", ["isPreview"]),
+    ...s("preview", ["isPreview", "isEditing"]),
     ...c("cart", ["addProductsToCart"])
   },
   mounted() {
@@ -70,7 +69,7 @@ const m = {
         const t = `catalog/products/${e}`, { data: r } = await u.get(t);
         this.productData = r.data;
       } catch (t) {
-        t.response.status >= 400 && this.isPreview && await this.loadPlaceholders();
+        t.response.status >= 400 && (this.isPreview || this.isEditing) && await this.loadPlaceholders();
       }
     },
     async loadPlaceholders() {
@@ -79,12 +78,12 @@ const m = {
     }
   }
 };
-var h = function() {
+var m = function() {
   var t = this, r = t._self._c;
   return r("div", [r("ModalCartConfirmation", { ref: "modalCartConfirmation", attrs: { error: t.error, "quantity-added": t.quantity } }), r("ModalConfirmAddToCart", { ref: "ModalConfirmAddToCart", attrs: { product: t.productData, "selected-price": t.selectedPrice } })], 1);
 }, C = [], _ = /* @__PURE__ */ p(
-  m,
   h,
+  m,
   C
 );
 const w = _.exports;

@@ -1,4 +1,4 @@
-import a from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/js-cookie.js";
+import a from "http://rocket.test/dist/vendor/js-cookie.js";
 function c(o, e, t, m, _, k, v, y) {
   var n = typeof o == "function" ? o.options : o;
   return e && (n.render = e, n.staticRenderFns = t, n._compiled = !0), {

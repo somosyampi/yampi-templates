@@ -1,5 +1,5 @@
-import s from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-import r from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/errors.js";
+import s from "http://rocket.test/dist/vendor/lodash.js";
+import r from "http://rocket.test/dist/vendor/mixins/errors.js";
 function l(t, i, e, n, f, p, z, _) {
   var u = typeof t == "function" ? t.options : t;
   return {

@@ -1,8 +1,8 @@
-import { mapGetters as n, mapActions as r } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
-import d from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/api.js";
-import l from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/rocket.js";
-import m from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/product.js";
-function c(e, t, i, y, w, P, g, _) {
+import { mapGetters as n, mapActions as r } from "http://rocket.test/dist/vendor/vuex.js";
+import d from "http://rocket.test/dist/vendor/modules/axios/api.js";
+import l from "http://rocket.test/dist/vendor/modules/axios/rocket.js";
+import m from "http://rocket.test/dist/vendor/mixins/product.js";
+function c(e, t, o, y, g, w, P, _) {
   var s = typeof e == "function" ? e.options : e;
   return {
     exports: e,
@@ -20,7 +20,7 @@ const u = {
     alreadyViewed: !1
   }),
   computed: {
-    ...n("preview", ["isPreview"])
+    ...n("preview", ["isPreview", "isEditing"])
   },
   mounted() {
     this.loading = !0;
@@ -35,15 +35,15 @@ const u = {
         let e = `catalog/products/${this.validProduct.id}/${this.route}`;
         this.queryParams && (e = this.$applyQueriesToUrl(e, this.queryParams));
         const { data: t } = await d.get(e);
-        if (!t.data.length && this.isPreview) {
+        if (!t.data.length && (this.isPreview || this.isEditing)) {
           await this.loadPlaceholders();
           return;
         }
-        t.recomm_id && (this.setRecomm(t.recomm_id), t.data.forEach((i) => {
-          i.url_path += `?has_recomm=1&recomm_id=${t.recomm_id}`;
+        t.recomm_id && (this.setRecomm(t.recomm_id), t.data.forEach((o) => {
+          o.url_path += `?has_recomm=1&recomm_id=${t.recomm_id}`;
         })), this.payload = t.data;
       } catch (e) {
-        if (e.response.status >= 400 && this.isPreview) {
+        if (e.response.status >= 400 && (this.isPreview || this.isEditing)) {
           await this.loadPlaceholders();
           return;
         }
@@ -60,19 +60,19 @@ const u = {
     }
   }
 };
-var f = /* @__PURE__ */ c(
+var h = /* @__PURE__ */ c(
   u
 );
-const h = f.exports;
-function o(e) {
-  o.installed || (o.installed = !0, e.component("BaseProduct", h));
+const f = h.exports;
+function a(e) {
+  a.installed || (a.installed = !0, e.component("BaseProduct", f));
 }
 const p = {
-  install: o
+  install: a
 };
-let a = null;
-typeof window < "u" ? a = window.Vue : typeof global < "u" && (a = global.Vue);
-a && a.use(p);
+let i = null;
+typeof window < "u" ? i = window.Vue : typeof global < "u" && (i = global.Vue);
+i && i.use(p);
 export {
-  h as default
+  f as default
 };

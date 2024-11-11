@@ -36,8 +36,8 @@
 </template>
 
 <script>
-import _ from '~lodash';
-import { mapActions, mapGetters } from '~vuex';
+import _ from '~/lodash';
+import { mapActions, mapGetters } from '~/vuex';
 import { smoothScroll } from '@/mixins/helpers';
 
 export default {

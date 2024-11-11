@@ -59,8 +59,8 @@
 </template>
 
 <script>
-import { mapActions } from '~vuex';
-import _ from '~lodash';
+import { mapActions } from '~/vuex';
+import _ from '~/lodash';
 import productMixin from '@/mixins/product';
 import trackingByApi from '@/mixins/tracking/api';
 

@@ -1,5 +1,5 @@
-import { mapMutations as l } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
-import s from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-main/rocket-assets/components/product/BaseProduct.js";
+import { mapMutations as l } from "http://rocket.test/dist/vendor/vuex.js";
+import s from "/components/product/BaseProduct.js";
 function u(t, e, o, i, y, _, C, h) {
   var n = typeof t == "function" ? t.options : t;
   return e && (n.render = e, n.staticRenderFns = o, n._compiled = !0), {

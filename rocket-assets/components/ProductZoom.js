@@ -1,6 +1,6 @@
-import m from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-import u from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/mobile.js";
-import h from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/product.js";
+import m from "http://rocket.test/dist/vendor/lodash.js";
+import u from "http://rocket.test/dist/vendor/mixins/mobile.js";
+import h from "http://rocket.test/dist/vendor/mixins/product.js";
 function d(t, e, i, s, o, n, I, y) {
   var a = typeof t == "function" ? t.options : t;
   return e && (a.render = e, a.staticRenderFns = i, a._compiled = !0), {
