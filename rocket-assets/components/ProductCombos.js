@@ -1,6 +1,6 @@
 import { mapMutations as l } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
 import s from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-sandbox/rocket-assets/components/product/BaseProduct.js";
-function u(t, e, o, i, y, _, C, h) {
+function u(t, e, o, i, b, h, _, g) {
   var n = typeof t == "function" ? t.options : t;
   return e && (n.render = e, n.staticRenderFns = o, n._compiled = !0), {
     exports: t,
@@ -26,6 +26,10 @@ const d = {
     center: {
       type: Boolean,
       default: !1
+    },
+    highlightTypePayment: {
+      type: String,
+      default: "promotional"
     }
   },
   data: () => ({
@@ -53,23 +57,23 @@ var c = function() {
         callback: visibilityChanged,
         once: true,
     }` }], staticClass: "buy-together container" }, [o("div", { staticClass: "theme-title", class: { "-loading": e.loading } }, [e._v(" " + e._s(e.title) + " ")]), e._l(e.payload, function(i) {
-    return o("Combo", { key: i.id, attrs: { "current-combo-key": e.currentComboId, combo: i, "buy-button-text": e.buyButtonText, "show-modal-after-purchase": e.showModalAfterPurchase, center: e.center }, on: { updateCurrentComboKey: e.updateComboKey } });
+    return o("Combo", { key: i.id, attrs: { "current-combo-key": e.currentComboId, combo: i, "buy-button-text": e.buyButtonText, "show-modal-after-purchase": e.showModalAfterPurchase, center: e.center, "highlight-type-payment": e.highlightTypePayment }, on: { updateCurrentComboKey: e.updateComboKey } });
   })], 2) : e._e();
-}, m = [], f = /* @__PURE__ */ u(
+}, m = [], p = /* @__PURE__ */ u(
   d,
   c,
   m
 );
-const p = f.exports;
+const f = p.exports;
 function r(t) {
-  r.installed || (r.installed = !0, t.component("ProductCombos", p));
+  r.installed || (r.installed = !0, t.component("ProductCombos", f));
 }
-const b = {
+const y = {
   install: r
 };
 let a = null;
 typeof window < "u" ? a = window.Vue : typeof global < "u" && (a = global.Vue);
-a && a.use(b);
+a && a.use(y);
 export {
-  p as default
+  f as default
 };

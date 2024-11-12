@@ -103,8 +103,6 @@ export default {
 
     mixins: [trackingByApi],
 
-    inject: ['pageConfig'],
-
     props: {
         combo: {
             type: Object,

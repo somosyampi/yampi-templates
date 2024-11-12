@@ -13,7 +13,6 @@ function p(e, t, s, i, r, c, v, k) {
 const g = {
   name: "ProductCombo",
   mixins: [m],
-  inject: ["pageConfig"],
   props: {
     combo: {
       type: Object,
@@ -30,6 +29,10 @@ const g = {
     center: {
       type: Boolean,
       default: !1
+    },
+    highlightTypePayment: {
+      type: String,
+      default: "promotional"
     }
   },
   data() {
@@ -66,7 +69,7 @@ const g = {
       return this.products.length === this.selectedSkus.length && this.selectedSkus.every((e) => e);
     },
     price() {
-      return f({ basePath: "prices.data.", pricePath: "price" })[this.pageConfig.highlight_type_payment];
+      return f({ basePath: "prices.data.", pricePath: "price" })[this.highlightTypePayment];
     },
     fullPrice() {
       return this.selectedSkus.reduce((e, t, s) => {
@@ -167,7 +170,7 @@ const g = {
     }
   }
 };
-var b = function() {
+var y = function() {
   var t = this, s = t._self._c;
   return s("div", { staticClass: "buy-together-offer flex -between", class: { "-three": t.threeProducts, "-center-box": t.center } }, [t._l(t.products, function(i, r) {
     return [s("div", { key: i.id, staticClass: "buy-together-product" }, [s("a", { staticClass: "-clean", attrs: { href: i.url_path } }, [s("div", [s("CustomImage", { key: t.url[i.id] ? t.url[i.id] : t.$get(i, "images.data.0.url"), staticClass: "-loading", attrs: { src: t.url[i.id] ? t.url[i.id] : t.$get(i, "images.data.0.url"), alt: i.name, thumbor: t.thumborFilters } })], 1), s("div", { staticClass: "buy-together-quantity" }, [t._v(" 1 unidade ")]), s("div", { staticClass: "buy-together-product-name" }, [s("p", [t._v(t._s(i.name))])])]), s("SelectSku", { ref: "SelectSkuRef", refInFor: !0, attrs: { product: i }, on: { update: function(c) {
@@ -176,14 +179,14 @@ var b = function() {
   }), s("div", { staticClass: "buy-together-total" }, [t.discountTotal > 0 ? s("div", { staticClass: "total-value" }, [t._v(" Valor total: "), s("span", { staticClass: "old-price" }, [t._v(" " + t._s(t._f("formatMoney")(t.fullPrice)) + " ")])]) : t._e(), s("div", { staticClass: "final-value price" }, [t._v(" " + t._s(t._f("formatMoney")(t.priceWithDiscount)) + " "), s("br"), t.invalidSelectedPrice ? t._e() : s("span", { staticClass: "payment-type" }, [t._v(" " + t._s(t.price.text))])]), t.discountTotal > 0 ? s("div", { staticClass: "discount-value" }, [t._v(" Economize " + t._s(t._f("formatMoney")(t.discountTotal)) + " ")]) : t._e(), t.productsForCustomization.length && t.combo.id === t.currentCombo ? s("BuyTogetherCustomization", { ref: "BuyTogether", staticClass: "ma-2", on: { click: t.handleBuyTogetherCustomization, save: t.handleSave } }) : t._e(), s("LoaderButton", { staticClass: "btn btn-primary mt-14", staticStyle: { width: "100%" }, attrs: { sending: t.loading, title: t.buyButtonText }, on: { click: function(i) {
     return t.addToCart();
   } } })], 1)], 2);
-}, y = [], _ = /* @__PURE__ */ p(
+}, b = [], S = /* @__PURE__ */ p(
   g,
-  b,
-  y
+  y,
+  b
 );
-const S = _.exports;
+const _ = S.exports;
 function n(e) {
-  n.installed || (n.installed = !0, e.component("Combo", S));
+  n.installed || (n.installed = !0, e.component("Combo", _));
 }
 const C = {
   install: n
@@ -192,5 +195,5 @@ let u = null;
 typeof window < "u" ? u = window.Vue : typeof global < "u" && (u = global.Vue);
 u && u.use(C);
 export {
-  S as default
+  _ as default
 };
