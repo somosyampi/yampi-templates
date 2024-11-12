@@ -75,8 +75,6 @@ export default {
         mobileMixin,
     ],
 
-    inject: ['params'],
-
     data() {
         return {
             categories: [],

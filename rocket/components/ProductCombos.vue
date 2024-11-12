@@ -22,6 +22,7 @@
             :buy-button-text="buyButtonText"
             :show-modal-after-purchase="showModalAfterPurchase"
             :center="center"
+            :highlight-type-payment="highlightTypePayment"
             @updateCurrentComboKey="updateComboKey"
         />
     </section>
@@ -56,6 +57,11 @@ export default {
             type: Boolean,
             default: false,
         },
+
+        highlightTypePayment: {
+            type: String,
+            default: 'promotional'
+        }
     },
 
     data: () => ({

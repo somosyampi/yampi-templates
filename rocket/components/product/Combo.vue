@@ -103,8 +103,6 @@ export default {
 
     mixins: [trackingByApi],
 
-    inject: ['pageConfig'],
-
     props: {
         combo: {
             type: Object,
@@ -125,6 +123,11 @@ export default {
             type: Boolean,
             default: false,
         },
+      
+        highlightTypePayment: {
+            type: String,
+            default: 'promotional'
+        }
     },
 
     data () {
@@ -175,7 +178,7 @@ export default {
         },
 
         price() {
-            return createPriceObjects({ basePath: 'prices.data.', pricePath: 'price' })[this.pageConfig.highlight_type_payment];
+            return createPriceObjects({ basePath: 'prices.data.', pricePath: 'price' })[this.highlightTypePayment];
         },
 
         fullPrice() {
