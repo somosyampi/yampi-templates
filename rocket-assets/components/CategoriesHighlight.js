@@ -2,19 +2,36 @@ import { mapGetters as l } from "https://images-dev.yampi.me/rocket-sandbox/b/01
 import n from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/mobile.js";
 import h from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/rocket.js";
 import d from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/api.js";
-function c(t, e, i, s, v, w, C, y) {
+function u(t, e, i, s, v, w, y, C) {
   var r = typeof t == "function" ? t.options : t;
   return e && (r.render = e, r.staticRenderFns = i, r._compiled = !0), {
     exports: t,
     options: r
   };
 }
-const u = {
+const c = {
   name: "CategoriesHighlight",
   mixins: [
     n
   ],
-  inject: ["params"],
+  props: {
+    showCategoriesNames: {
+      type: Boolean,
+      default: !0
+    },
+    highlightedCategory: {
+      type: String,
+      default: "[]"
+    },
+    title: {
+      type: String,
+      default: ""
+    },
+    mobileLayout: {
+      type: String,
+      default: "carousel"
+    }
+  },
   data() {
     return {
       categories: [],
@@ -27,20 +44,20 @@ const u = {
     ...l("preview", ["isPreview", "isEditing"]),
     highlightedCategoriesIds() {
       try {
-        return JSON.parse(this.params.highlighted_category);
+        return JSON.parse(this.highlightedCategory);
       } catch {
         return [];
       }
     },
     sectionTitle() {
       try {
-        return this.params.title || (this.isPreview ? "Categorias" : null);
+        return this.title || (this.isPreview ? "Categorias" : null);
       } catch {
         return null;
       }
     },
     showCaroussel() {
-      return this.params.mobile_layout === "carousel";
+      return this.mobileLayout === "carousel";
     },
     carousselOptions() {
       return {
@@ -145,12 +162,12 @@ var g = function() {
   }, attrs: { options: e.useVueSplide ? e.carousselOptions : null, slides: e.useVueSplide ? e.categories : null } }, e._l(e.filterAmountCategories, function(s) {
     return i(e.tagOrDiv("splide-slide"), { key: s.id, tag: "component", class: {
       "category-item": !e.useVueSplide
-    } }, [s.url_path && s.name ? i("a", { staticClass: "c-highlight-content--slide", attrs: { href: `${e.$baseUrl}${s.url_path}` } }, [i("custom-image", { attrs: { src: e.getItemCover(s.category_cover) } }), e.params.show_categories_names ? i("div", [e._v(e._s(s.name))]) : e._e()], 1) : e._e()]);
+    } }, [s.url_path && s.name ? i("a", { staticClass: "c-highlight-content--slide", attrs: { href: `${e.$baseUrl}${s.url_path}` } }, [i("custom-image", { attrs: { src: e.getItemCover(s.category_cover) } }), e.showCategoriesNames ? i("div", [e._v(e._s(s.name))]) : e._e()], 1) : e._e()]);
   }), 1) : e._e(), e.showLoadMoreItems ? i("div", { staticClass: "load-more", on: { click: function(s) {
     e.showAll = !0;
   } } }, [e._v(" Carregar mais ")]) : e._e()], 1)]) : e._e();
-}, p = [], f = /* @__PURE__ */ c(
-  u,
+}, p = [], f = /* @__PURE__ */ u(
+  c,
   g,
   p
 );

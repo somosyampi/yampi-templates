@@ -1,7 +1,7 @@
 <template>
     <div :key="key">
         <div
-            v-if="isPreview"
+            v-if="isPreview && isIframe"
             ref="rocketEmitterRef"
             class="rocket-emitter"
             :class="{
@@ -57,6 +57,7 @@ export default {
         return {
             actived: false,
             key: 0,
+            isIframe: false,
         };
     },
 
@@ -73,12 +74,17 @@ export default {
             }
         },
 
-        isEditing() {
+        isPreview() {
             this.key += 1;
         }
     },
 
     mounted() {
+        if (window.self !== window.top) {
+            this.isIframe = true;
+            alert("Iframe");
+        }
+      
         if (!this.isPreview) {
             return;
         }
