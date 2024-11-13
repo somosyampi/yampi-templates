@@ -19,7 +19,7 @@ export default {
     }),
 
     computed: {
-        ...mapGetters('preview', ['isPreview', 'isEditing']),
+        ...mapGetters('preview', ['isPreview']),
     },
 
     mounted() {
@@ -48,7 +48,7 @@ export default {
                 const url = this.$applyQueriesToUrl(`search/products/${this.route}`, filteredQueryParams);
                 const { data } = await api.get(url);
 
-                if ((this.isPreview || this.isEditing) && !data.data.length) {
+                if (this.isPreview && !data.data.length) {
                     await this.loadPlaceholders();
                     return;
                 }
@@ -57,7 +57,7 @@ export default {
 
                 this.parseFilterStatuses(this.payload);
             } catch (e) {
-                if (e.response.status >= 400 && (this.isPreview || this.isEditing)) {
+                if (e.response.status >= 400 && this.isPreview) {
                     await this.loadPlaceholders();
 
                     return;

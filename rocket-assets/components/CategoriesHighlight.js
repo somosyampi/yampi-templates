@@ -41,7 +41,7 @@ const c = {
     };
   },
   computed: {
-    ...l("preview", ["isPreview", "isEditing"]),
+    ...l("preview", ["isPreview"]),
     highlightedCategoriesIds() {
       try {
         return JSON.parse(this.highlightedCategory);
@@ -117,7 +117,7 @@ const c = {
   },
   methods: {
     getItemCover(t) {
-      return t || (!t && (this.isPreview || this.isEditing) ? "http://cdn.yampi.io/rocket/helpers/placeholders/banner-3.png" : null);
+      return t || (!t && this.isPreview ? "http://cdn.yampi.io/rocket/helpers/placeholders/banner-3.png" : null);
     },
     tagOrDiv(t) {
       return this.useVueSplide ? t : "div";
@@ -130,13 +130,13 @@ const c = {
             id: t
           }
         });
-        return !e.data.length && (this.isPreview || this.isEditing) ? this.loadPlaceholders() : e.data;
+        return !e.data.length && this.isPreview ? this.loadPlaceholders() : e.data;
       } finally {
         this.loading = !1;
       }
     },
     async loadPlaceholders() {
-      if (!(this.isPreview || this.isEditing))
+      if (!this.isPreview)
         return [];
       try {
         this.loading = !0;

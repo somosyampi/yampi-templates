@@ -34,7 +34,7 @@ const d = {
     };
   },
   computed: {
-    ...s("preview", ["isPreview", "isEditing", "activeSection"])
+    ...s("preview", ["isPreview", "activeSection"])
   },
   watch: {
     activeSection(t) {

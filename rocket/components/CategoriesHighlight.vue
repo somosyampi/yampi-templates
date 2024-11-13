@@ -107,7 +107,7 @@ export default {
     },
 
     computed: {
-        ...mapGetters('preview', ['isPreview', 'isEditing']),
+        ...mapGetters('preview', ['isPreview']),
 
         highlightedCategoriesIds() {
             try {
@@ -217,7 +217,7 @@ export default {
                 return cover;
             }
 
-            if (!cover && (this.isPreview || this.isEditing)) {
+            if (!cover && this.isPreview) {
                 return 'http://cdn.yampi.io/rocket/helpers/placeholders/banner-3.png';
             }
 
@@ -238,7 +238,7 @@ export default {
                     },
                 });
 
-                if (!data.data.length && (this.isPreview || this.isEditing)) {
+                if (!data.data.length && this.isPreview) {
                     const placeholders = this.loadPlaceholders();
                     return placeholders;
                 }
@@ -250,7 +250,7 @@ export default {
         },
 
         async loadPlaceholders() {
-            if (!(this.isPreview || this.isEditing)) {
+            if (!this.isPreview) {
                 return [];
             }
 

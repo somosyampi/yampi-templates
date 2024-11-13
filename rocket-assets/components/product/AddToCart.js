@@ -2,14 +2,14 @@ import { mapGetters as s, mapActions as c } from "https://images-dev.yampi.me/ro
 import l from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/eventBus.js";
 import u from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/api.js";
 import f from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/rocket.js";
-function p(e, t, r, i, d, y, g, v) {
+function p(e, t, r, i, d, y, v, g) {
   var a = typeof e == "function" ? e.options : e;
   return t && (a.render = t, a.staticRenderFns = r, a._compiled = !0), {
     exports: e,
     options: a
   };
 }
-const h = {
+const m = {
   name: "AddToCart",
   props: {
     selectedPrice: {
@@ -26,7 +26,7 @@ const h = {
   },
   computed: {
     ...s("cart", ["cartType"]),
-    ...s("preview", ["isPreview", "isEditing"]),
+    ...s("preview", ["isPreview"]),
     ...c("cart", ["addProductsToCart"])
   },
   mounted() {
@@ -69,7 +69,7 @@ const h = {
         const t = `catalog/products/${e}`, { data: r } = await u.get(t);
         this.productData = r.data;
       } catch (t) {
-        t.response.status >= 400 && (this.isPreview || this.isEditing) && await this.loadPlaceholders();
+        t.response.status >= 400 && this.isPreview && await this.loadPlaceholders();
       }
     },
     async loadPlaceholders() {
@@ -78,12 +78,12 @@ const h = {
     }
   }
 };
-var m = function() {
+var h = function() {
   var t = this, r = t._self._c;
   return r("div", [r("ModalCartConfirmation", { ref: "modalCartConfirmation", attrs: { error: t.error, "quantity-added": t.quantity } }), r("ModalConfirmAddToCart", { ref: "ModalConfirmAddToCart", attrs: { product: t.productData, "selected-price": t.selectedPrice } })], 1);
 }, C = [], _ = /* @__PURE__ */ p(
-  h,
   m,
+  h,
   C
 );
 const w = _.exports;

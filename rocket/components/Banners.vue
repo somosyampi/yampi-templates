@@ -153,7 +153,7 @@ export default {
     }),
 
     computed: {
-        ...mapGetters('preview', ['isPreview', 'isEditing']),
+        ...mapGetters('preview', ['isPreview']),
 
         carouselOptions() {
             return {
@@ -304,7 +304,7 @@ export default {
 
                 this.loading = true;
 
-                if (!ids.length && (this.isPreview || this.isEditing) && !this.slug.length) {
+                if (!ids.length && this.isPreview && !this.slug.length) {
                     await this.loadPlaceholders();
 
                     return;
@@ -337,7 +337,7 @@ export default {
                     params,
                 });
 
-                if (!data.data.length && (this.isPreview || this.isEditing)) {
+                if (!data.data.length && this.isPreview) {
                     await this.loadPlaceholders();
 
                     return;

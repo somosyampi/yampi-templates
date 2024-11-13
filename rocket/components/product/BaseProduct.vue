@@ -18,7 +18,7 @@ export default {
     }),
 
     computed: {
-        ...mapGetters('preview', ['isPreview', 'isEditing']),
+        ...mapGetters('preview', ['isPreview']),
     },
 
     mounted() {
@@ -42,7 +42,7 @@ export default {
 
                 const { data } = await api.get(url);
 
-                if (!data.data.length && (this.isPreview || this.isEditing)) {
+                if (!data.data.length && this.isPreview) {
                     await this.loadPlaceholders();
 
                     return;
@@ -58,7 +58,7 @@ export default {
 
                 this.payload = data.data;
             } catch (e) {
-                if (e.response.status >= 400 && (this.isPreview || this.isEditing)) {
+                if (e.response.status >= 400 && this.isPreview) {
                     await this.loadPlaceholders();
 
                     return;

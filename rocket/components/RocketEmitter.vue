@@ -62,7 +62,7 @@ export default {
     },
 
     computed: {
-        ...mapGetters('preview', ['isPreview', 'isEditing', 'activeSection']),
+        ...mapGetters('preview', ['isPreview', 'activeSection']),
     },
 
     watch: {

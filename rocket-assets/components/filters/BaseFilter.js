@@ -3,7 +3,7 @@ import n from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/v
 import l from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/api.js";
 import d from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/rocket.js";
 import u from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/queryParams.js";
-function f(e, t, i, y, g, w, P, v) {
+function f(e, t, a, y, w, P, g, v) {
   var s = typeof e == "function" ? e.options : e;
   return {
     exports: e,
@@ -21,7 +21,7 @@ const c = {
     payload: []
   }),
   computed: {
-    ...r("preview", ["isPreview", "isEditing"])
+    ...r("preview", ["isPreview"])
   },
   mounted() {
     this.loadData(), this.$store.subscribe(({ type: e, payload: t }) => {
@@ -32,14 +32,14 @@ const c = {
     async loadData() {
       try {
         this.loading = !0;
-        const e = n.pick(this.queryParams, ["slug", "q", "context"]), t = this.$applyQueriesToUrl(`search/products/${this.route}`, e), { data: i } = await l.get(t);
-        if ((this.isPreview || this.isEditing) && !i.data.length) {
+        const e = n.pick(this.queryParams, ["slug", "q", "context"]), t = this.$applyQueriesToUrl(`search/products/${this.route}`, e), { data: a } = await l.get(t);
+        if (this.isPreview && !a.data.length) {
           await this.loadPlaceholders();
           return;
         }
-        this.payload = this.parsePayload(i.data), this.parseFilterStatuses(this.payload);
+        this.payload = this.parsePayload(a.data), this.parseFilterStatuses(this.payload);
       } catch (e) {
-        if (e.response.status >= 400 && (this.isPreview || this.isEditing)) {
+        if (e.response.status >= 400 && this.isPreview) {
           await this.loadPlaceholders();
           return;
         }
@@ -55,7 +55,7 @@ const c = {
       }));
     },
     filterRemoved(e) {
-      const t = this.payload.find((i) => i.id === e.id);
+      const t = this.payload.find((a) => a.id === e.id);
       t && (t.active = !1);
     },
     async loadPlaceholders() {
@@ -64,19 +64,19 @@ const c = {
     }
   }
 };
-var h = /* @__PURE__ */ f(
+var p = /* @__PURE__ */ f(
   c
 );
-const p = h.exports;
+const m = p.exports;
 function o(e) {
-  o.installed || (o.installed = !0, e.component("BaseFilter", p));
+  o.installed || (o.installed = !0, e.component("BaseFilter", m));
 }
-const m = {
+const h = {
   install: o
 };
-let a = null;
-typeof window < "u" ? a = window.Vue : typeof global < "u" && (a = global.Vue);
-a && a.use(m);
+let i = null;
+typeof window < "u" ? i = window.Vue : typeof global < "u" && (i = global.Vue);
+i && i.use(h);
 export {
-  p as default
+  m as default
 };

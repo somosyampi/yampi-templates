@@ -64,7 +64,7 @@ export default {
     }),
 
     computed: {
-        ...mapGetters('preview', ['isPreview', 'isEditing']),
+        ...mapGetters('preview', ['isPreview']),
 
         link() {
             return this.showLink
@@ -132,7 +132,7 @@ export default {
             try {
                 this.loading = true;
 
-                if (!this.collectionId && (this.isPreview || this.isEditing)) {
+                if (!this.collectionId && this.isPreview) {
                     await this.loadPlaceholders();
 
                     return;

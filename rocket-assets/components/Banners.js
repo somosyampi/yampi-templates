@@ -73,7 +73,7 @@ const y = {
     isPlaceholder: !1
   }),
   computed: {
-    ...c("preview", ["isPreview", "isEditing"]),
+    ...c("preview", ["isPreview"]),
     carouselOptions() {
       return {
         rewind: !0,
@@ -164,7 +164,7 @@ const y = {
     async loadBanners() {
       try {
         const t = [...this.ids];
-        if (this.loading = !0, !t.length && (this.isPreview || this.isEditing) && !this.slug.length) {
+        if (this.loading = !0, !t.length && this.isPreview && !this.slug.length) {
           await this.loadPlaceholders();
           return;
         }
@@ -186,7 +186,7 @@ const y = {
         const { data: i } = await f.get("catalog/banners", {
           params: e
         });
-        if (!i.data.length && (this.isPreview || this.isEditing)) {
+        if (!i.data.length && this.isPreview) {
           await this.loadPlaceholders();
           return;
         }

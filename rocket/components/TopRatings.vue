@@ -142,7 +142,7 @@ export default {
     }),
 
     computed: {
-        ...mapGetters('preview', ['isPreview', 'isEditing']),
+        ...mapGetters('preview', ['isPreview']),
 
         ratingsPerPage() {
             return this.isMobile ? 1 : 4;
@@ -193,7 +193,7 @@ export default {
             this.loading = true;
 
             try {
-                if (!this.ratingId.length && (this.isPreview || this.isEditing)) {
+                if (!this.ratingId.length && this.isPreview) {
                     await this.loadPlaceholders();
 
                     return;
