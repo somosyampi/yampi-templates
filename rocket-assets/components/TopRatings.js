@@ -40,7 +40,7 @@ const m = {
     ratings: []
   }),
   computed: {
-    ...d("preview", ["isPreview", "isEditing"]),
+    ...d("preview", ["isPreview"]),
     ratingsPerPage() {
       return this.isMobile ? 1 : 4;
     },
@@ -79,7 +79,7 @@ const m = {
     async loadRating() {
       this.loading = !0;
       try {
-        if (!this.ratingId.length && (this.isPreview || this.isEditing)) {
+        if (!this.ratingId.length && this.isPreview) {
           await this.loadPlaceholders();
           return;
         }

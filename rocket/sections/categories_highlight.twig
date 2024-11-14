@@ -1,7 +1,7 @@
 {% set categories = section.params.highlighted_category ?: '[]' %}
 
 <rocket-emitter emits="categories_highlight" label="Categorias em destaque" order={{ section.order }}>
-    {% if categories | json_decode | length or isPreview or isEditing %}
+    {% if categories | json_decode | length or isPreview %}
         <section class="categories_highlight {{ "#{section.section_alias}-#{section.order}" }}">
             <categories-highlight
                 show-categories-names="{{ section.params.show_categories_names }}"

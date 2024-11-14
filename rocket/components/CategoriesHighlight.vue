@@ -46,7 +46,7 @@
                         <custom-image
                             :src="getItemCover(item.category_cover)"
                         />
-                        <div v-if="params.show_categories_names">{{ item.name }}</div>
+                        <div v-if="showCategoriesNames">{{ item.name }}</div>
                     </a>
                 </component>
             </component>
@@ -75,6 +75,28 @@ export default {
         mobileMixin,
     ],
 
+    props: {
+        showCategoriesNames: {
+            type: Boolean,
+            default: true
+        },
+
+        highlightedCategory: {
+            type: String,
+            default: '[]'
+        },
+
+        title: {
+            type: String,
+            default: ''
+        },
+
+        mobileLayout: {
+            type: String,
+            default: 'carousel'
+        }
+    },
+
     data() {
         return {
             categories: [],
@@ -85,11 +107,11 @@ export default {
     },
 
     computed: {
-        ...mapGetters('preview', ['isPreview', 'isEditing']),
+        ...mapGetters('preview', ['isPreview']),
 
         highlightedCategoriesIds() {
             try {
-                return JSON.parse(this.params.highlighted_category);
+                return JSON.parse(this.highlightedCategory);
             } catch (e) {
                 return [];
             }
@@ -97,14 +119,14 @@ export default {
 
         sectionTitle() {
             try {
-                return this.params.title || (this.isPreview ? 'Categorias' : null);
+                return this.title || (this.isPreview ? 'Categorias' : null);
             } catch (e) {
                 return null;
             }
         },
 
         showCaroussel() {
-            return this.params.mobile_layout === 'carousel';
+            return this.mobileLayout === 'carousel';
         },
 
         carousselOptions() {
@@ -195,7 +217,7 @@ export default {
                 return cover;
             }
 
-            if (!cover && (this.isPreview || this.isEditing)) {
+            if (!cover && this.isPreview) {
                 return 'http://cdn.yampi.io/rocket/helpers/placeholders/banner-3.png';
             }
 
@@ -216,7 +238,7 @@ export default {
                     },
                 });
 
-                if (!data.data.length && (this.isPreview || this.isEditing)) {
+                if (!data.data.length && this.isPreview) {
                     const placeholders = this.loadPlaceholders();
                     return placeholders;
                 }
@@ -228,7 +250,7 @@ export default {
         },
 
         async loadPlaceholders() {
-            if (!(this.isPreview || this.isEditing)) {
+            if (!this.isPreview) {
                 return [];
             }
 

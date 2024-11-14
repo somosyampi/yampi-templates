@@ -41,7 +41,7 @@ export default {
     computed: {
         ...mapGetters('cart', ['cartType']),
 
-        ...mapGetters('preview', ['isPreview', 'isEditing']),
+        ...mapGetters('preview', ['isPreview']),
 
         ...mapActions('cart', ['addProductsToCart']),
     },
@@ -125,7 +125,7 @@ export default {
 
                 this.productData = data.data;
             } catch (error) {
-                if (error.response.status >= 400 && (this.isPreview || this.isEditing)) {
+                if (error.response.status >= 400 && this.isPreview) {
                     await this.loadPlaceholders();
                 }
             }

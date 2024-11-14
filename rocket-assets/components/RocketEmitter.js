@@ -1,5 +1,5 @@
 import { mapGetters as s, mapActions as c } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
-function a(t, e, i, g, p, _, v, w) {
+function a(t, e, i, p, g, _, v, w) {
   var o = typeof t == "function" ? t.options : t;
   return e && (o.render = e, o.staticRenderFns = i, o._compiled = !0), {
     exports: t,
@@ -29,22 +29,23 @@ const d = {
   data() {
     return {
       actived: !1,
-      key: 0
+      key: 0,
+      isIframe: !1
     };
   },
   computed: {
-    ...s("preview", ["isPreview", "isEditing", "activeSection"])
+    ...s("preview", ["isPreview", "activeSection"])
   },
   watch: {
     activeSection(t) {
       this.isPreview && t === this.emits && this.$emit("openCategory");
     },
-    isEditing() {
+    isPreview() {
       this.key += 1;
     }
   },
   mounted() {
-    this.isPreview && (this.$nextTick(this.handleTagPosition), window.addEventListener("scroll", this.handleTagPosition), window.addEventListener("load", this.handleTagPosition));
+    window.self !== window.top && (this.isIframe = !0, alert("Iframe")), this.isPreview && (this.$nextTick(this.handleTagPosition), window.addEventListener("scroll", this.handleTagPosition), window.addEventListener("load", this.handleTagPosition));
   },
   destroyed() {
     window.removeEventListener("scroll", () => {
@@ -106,25 +107,25 @@ const d = {
 };
 var l = function() {
   var e = this, i = e._self._c;
-  return i("div", { key: e.key }, [e.isPreview ? i("div", { ref: "rocketEmitterRef", staticClass: "rocket-emitter", class: {
+  return i("div", { key: e.key }, [e.isPreview && e.isIframe ? i("div", { ref: "rocketEmitterRef", staticClass: "rocket-emitter", class: {
     "--hide-stroke": !e.showStroke,
     "--active": e.activeSection === `${e.emits}-${e.order}` || e.activeSection === `${e.emits}`
   }, on: { click: e.handleClick } }, [e.showStroke ? i("div", { staticClass: "emitter-title" }, [i(e.getComponent(e.emits), { tag: "component" }), e._v(" " + e._s(e.label) + " ")], 1) : e._e(), e._t("default")], 2) : i("div", [e._t("default")], 2)]);
-}, m = [], h = /* @__PURE__ */ a(
+}, m = [], f = /* @__PURE__ */ a(
   d,
   l,
   m
 );
-const u = h.exports;
+const h = f.exports;
 function r(t) {
-  r.installed || (r.installed = !0, t.component("RocketEmitter", u));
+  r.installed || (r.installed = !0, t.component("RocketEmitter", h));
 }
-const f = {
+const u = {
   install: r
 };
 let n = null;
 typeof window < "u" ? n = window.Vue : typeof global < "u" && (n = global.Vue);
-n && n.use(f);
+n && n.use(u);
 export {
-  u as default
+  h as default
 };
