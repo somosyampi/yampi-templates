@@ -51,8 +51,6 @@
 import _ from '~/lodash';
 import productMixin from '@/mixins/product';
 import { smoothScroll } from '@/mixins/helpers';
-import CustomSelect from '@/components/CustomSelect.vue';
-import VariantButton from '@/components/VariantButton.vue';
 
 export default {
     name: 'SelectSku',
@@ -88,8 +86,8 @@ export default {
 
         variationsSelectStyle() {
             const mapComponents = {
-                list: CustomSelect,
-                buttons: VariantButton,
+                list: 'custom-select',
+                buttons: 'variant-button',
             };
 
             return mapComponents[this.variationsStyle];
