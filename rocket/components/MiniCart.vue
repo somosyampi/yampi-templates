@@ -55,8 +55,6 @@
 <script>
 import { mapGetters, mapMutations } from '~/vuex';
 import BaseCart from '@/components/BaseCart.vue';
-import DropdownCart from '@/components/DropdownCart.vue';
-import SideCart from '@/components/SideCart.vue';
 
 export default {
     name: 'MiniCart',
@@ -121,9 +119,11 @@ export default {
         ...mapGetters('preview', ['isPreview']),
 
         cartComponent() {
-            return {
-                side_cart: SideCart,
-            }[this.cartType] || DropdownCart;
+            const mapCartComponent = {
+                'suspended': 'dropdown-cart',
+                'side_cart': 'side-cart'
+            }
+            return mapCartComponent[this.cartType] || 'dropdown-cart';
         },
 
         cartRedirectAction() {
