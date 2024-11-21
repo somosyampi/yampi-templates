@@ -1,16 +1,14 @@
 import a from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
 import d from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/product.js";
 import { smoothScroll as h } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/helpers.js";
-import f from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-sandbox/rocket-assets/components/CustomSelect.js";
-import p from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-sandbox/rocket-assets/components/VariantButton.js";
-function m(e, t, s, i, o, n, u, y) {
+function f(e, t, s, i, o, n, u, b) {
   var r = typeof e == "function" ? e.options : e;
   return t && (r.render = t, r.staticRenderFns = s, r._compiled = !0), {
     exports: e,
     options: r
   };
 }
-const v = {
+const p = {
   name: "SelectSku",
   mixins: [d],
   props: {
@@ -37,8 +35,8 @@ const v = {
     },
     variationsSelectStyle() {
       return {
-        list: f,
-        buttons: p
+        list: "custom-select",
+        buttons: "variant-button"
       }[this.variationsStyle];
     }
   },
@@ -130,9 +128,9 @@ const v = {
     }
   }
 };
-var S = function() {
+var m = function() {
   var t = this, s = t._self._c;
-  return s("div", { staticClass: "sku-select" }, [t.variations.length ? s("p", { staticClass: "helper-text", class: { "-error": t.selectWithErrors } }, [t._v(" Selecione uma opção ")]) : t._e(), t._l(t.variations, function(i, o) {
+  return s("div", { staticClass: "sku-select" }, [t.variations.length ? s("p", { staticClass: "helper-text", class: { "-error": t.selectWithErrors } }, [t._v(" Selecione uma opÃ§Ã£o ")]) : t._e(), t._l(t.variations, function(i, o) {
     return s("div", { key: i.id, staticClass: "sku-option", class: t.variationsStyle }, [s("label", { attrs: { for: `${i.id}-${i.name}` }, domProps: { textContent: t._s(i.name) } }), s(t.variationsSelectStyle, { ref: "customSelect", refInFor: !0, tag: "component", attrs: { id: `${i.id}-${i.name}`, name: `${i.id}-${i.name}`, value: t.selected[o], disabled: o > 0 && t.selected[o - 1] === 0, error: t.selectWithErrors, options: t.options[o] }, on: { change: function(n) {
       return t.updateSelected(o, n);
     } } }, [t.variationsStyle === "list" ? [s("option", { domProps: { value: 0 } }, [t._v(" Selecionar... ")]), t._l(t.options[o], function(n) {
@@ -141,21 +139,21 @@ var S = function() {
       } } });
     })] : t._e()], 2)], 1);
   })], 2);
-}, k = [], _ = /* @__PURE__ */ m(
-  v,
-  S,
-  k
+}, v = [], S = /* @__PURE__ */ f(
+  p,
+  m,
+  v
 );
-const b = _.exports;
+const k = S.exports;
 function c(e) {
-  c.installed || (c.installed = !0, e.component("SelectSku", b));
+  c.installed || (c.installed = !0, e.component("SelectSku", k));
 }
-const g = {
+const _ = {
   install: c
 };
 let l = null;
 typeof window < "u" ? l = window.Vue : typeof global < "u" && (l = global.Vue);
-l && l.use(g);
+l && l.use(_);
 export {
-  b as default
+  k as default
 };
