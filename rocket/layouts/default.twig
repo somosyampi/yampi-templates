@@ -1,5 +1,5 @@
 {% set previewClass = isPreview ? 'main_preview' : '' %}
-
+{% set mainSections = sections | slice(1, sections | length - 2) %}
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -8,11 +8,15 @@
 </head>
 <body class="{{ merchantData.alias }} {{ previewClass }} {{ page }} {{ pageConfig.data.theme.params.show_dark_mode ? 'dark-mode' : '' }}">
     <div id="app">
-        {% for section in sections %}
+        {% include 'sections/header.twig' with { 'section': sections | first } %}
+      
+        {% for section in mainSections %}
             {% if section.visible %}
-                {% include 'sections/' ~ section.section_alias ~ '.twig' with section %}
+                {% include "pages/#{page}/#{section.section_alias}.twig" with section %}
             {% endif %}
         {% endfor %}
+
+        {% include 'sections/footer.twig' with { 'section': sections | last } %}
 
         <smooth-scroll :display-at="300">
             <template slot-scope="{ scroll }">
