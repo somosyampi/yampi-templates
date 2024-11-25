@@ -28,7 +28,7 @@
 {% set headerIconColor = section.params.header_icon_color ?? section.params.cart_icon_color %}
 
 {% if headerLayout == 'inline' %}
-    {% include 'header/header.inline.twig' %}
+    {% include "elements/header/header.inline.twig" %}
 {% else %}
-    {% include "header/header.default.twig" %}
+    {% include "elements/header/header.default.twig" %}
 {% endif %}
