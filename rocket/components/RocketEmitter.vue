@@ -57,17 +57,16 @@ export default {
         return {
             actived: false,
             key: 0,
-            isIframe: false,
         };
     },
 
     computed: {
-        ...mapGetters('preview', ['isPreview', 'activeSection']),
+        ...mapGetters('preview', ['isPreview', 'isIframe', 'activeSection']),
     },
 
     watch: {
         activeSection(newVal) {
-            if (!this.isPreview) return;
+            if (!this.isIframe) return;
 
             if (newVal === this.emits) {
                 this.$emit('openCategory');
@@ -80,12 +79,7 @@ export default {
     },
 
     mounted() {
-        if (window.self !== window.top) {
-            this.isIframe = true;
-            alert("Iframe");
-        }
-      
-        if (!this.isPreview) {
+        if (!this.isIframe) {
             return;
         }
 

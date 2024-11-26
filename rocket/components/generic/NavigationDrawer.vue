@@ -46,7 +46,7 @@ export default {
     },
 
     computed: {
-        ...mapGetters('preview', ['isPreview', 'activeSection']),
+        ...mapGetters('preview', ['activeSection']),
     },
 
     mounted() {
@@ -90,7 +90,6 @@ export default {
         },
 
         beforeEnter() {
-            const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
             this.scrollY = window.scrollY;
             this.syncHeight();
             document.documentElement.classList.add('block-scroll');

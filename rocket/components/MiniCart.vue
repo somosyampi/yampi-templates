@@ -106,7 +106,7 @@ export default {
 
     watch: {
         mouseHover(isEntering) {
-            if (!isEntering && this.isPreview && !this.items.length) {
+            if (!isEntering && this.isIframe && !this.items.length) {
                 this.bootCart();
             }
         }
@@ -116,20 +116,18 @@ export default {
     computed: {
         ...mapGetters('merchant', ['merchant']),
 
-        ...mapGetters('preview', ['isPreview']),
+        ...mapGetters('preview', ['isIframe']),
 
         cartComponent() {
-            const mapCartComponent = {
-                'suspended': 'dropdown-cart',
-                'side_cart': 'side-cart'
-            }
-            return mapCartComponent[this.cartType] || 'dropdown-cart';
+            return {
+                side_cart: SideCart,
+            }[this.cartType] || DropdownCart;
         },
 
         cartRedirectAction() {
             const actions = {
                 suspended: () => {
-                    if (this.isPreview) {
+                    if (this.isIframe) {
                         return;
                     }
 

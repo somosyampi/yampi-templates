@@ -37,7 +37,7 @@ export default {
 
     computed: {
         ...mapGetters('preview', [
-            'isPreview',
+            'isIframe',
         ]),
     },
 
@@ -55,7 +55,7 @@ export default {
         ]),
 
         updatePriceStatus([min, max]) {
-            if (this.isPreview) {
+            if (this.isIframe) {
                 return;
             }
 

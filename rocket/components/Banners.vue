@@ -252,9 +252,8 @@ export default {
 
         getHolderClass() {
             const container = this.container ? 'container' : '';
-            const isPreview = this.isPreview ? 'preview' : '';
 
-            return `holder-${this.section} ${container} ${isPreview} relative`;
+            return `holder-${this.section} ${container} relative`;
         },
 
         isValid(banner) {

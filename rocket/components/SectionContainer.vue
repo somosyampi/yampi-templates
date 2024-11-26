@@ -1,10 +1,10 @@
 <template>
-    <div :class="`section-container section-width--${params.width_section} align-content--${params.content_alignment}`" 
-        :style="`--background-color: ${params.background_color}; --button-color: ${params.button_color}; --text-color: ${params.text_color}; `"
+    <div :class="`section-container section-width--${widthSection} align-content--${contentAlignment}`" 
+        :style="`--background-color: ${backgroundColor}; --button-color: ${buttonColor}; --text-color: ${textColor}; `"
     >
         <slot 
-            :title-text="params.title_text"
-            :description-text="params.description_text"
+            :title-text="titleText"
+            :description-text="descriptionText"
         ></slot>
     </div>
 </template>
@@ -14,6 +14,14 @@
 export default {
     name: 'SectionContainer',
 
-    inject: ['params'],
+    props: [
+        'widthSection', 
+        'contentAlignment', 
+        'backgroundColor', 
+        'buttonColor', 
+        'textColor', 
+        'titleText', 
+        'descriptionText'
+    ]
 }
 </script>

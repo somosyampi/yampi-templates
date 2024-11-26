@@ -29,23 +29,22 @@ const d = {
   data() {
     return {
       actived: !1,
-      key: 0,
-      isIframe: !1
+      key: 0
     };
   },
   computed: {
-    ...s("preview", ["isPreview", "activeSection"])
+    ...s("preview", ["isPreview", "isIframe", "activeSection"])
   },
   watch: {
     activeSection(t) {
-      this.isPreview && t === this.emits && this.$emit("openCategory");
+      this.isIframe && t === this.emits && this.$emit("openCategory");
     },
     isPreview() {
       this.key += 1;
     }
   },
   mounted() {
-    window.self !== window.top && (this.isIframe = !0, alert("Iframe")), this.isPreview && (this.$nextTick(this.handleTagPosition), window.addEventListener("scroll", this.handleTagPosition), window.addEventListener("load", this.handleTagPosition));
+    this.isIframe && (this.$nextTick(this.handleTagPosition), window.addEventListener("scroll", this.handleTagPosition), window.addEventListener("load", this.handleTagPosition));
   },
   destroyed() {
     window.removeEventListener("scroll", () => {

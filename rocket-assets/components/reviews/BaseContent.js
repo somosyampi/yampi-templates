@@ -1,11 +1,11 @@
-import { mapGetters as s } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
+import { mapGetters as d } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
 import r from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-import l from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/api.js";
-function u(t, o, a, i, m, g, w, y) {
-  var d = typeof t == "function" ? t.options : t;
+import s from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/api.js";
+function u(t, o, a, i, m, g, y, w) {
+  var l = typeof t == "function" ? t.options : t;
   return {
     exports: t,
-    options: d
+    options: l
   };
 }
 const p = {
@@ -40,10 +40,9 @@ const p = {
     }
   }),
   computed: {
-    ...s("product", [
+    ...d("product", [
       "product"
     ]),
-    ...s("preview", ["isPreview"]),
     showLoadMore() {
       return this.pagination.loaded < this.pagination.total;
     }
@@ -67,7 +66,7 @@ const p = {
             limit: this.pagination.limit,
             page: this.pagination.currentPage,
             include: "photos"
-          }), { data: i } = await l.get(a);
+          }), { data: i } = await s.get(a);
           this.payload.push(...i.data), this.pagination.loaded += i.data.length;
         } catch (a) {
           console.error(a);
@@ -80,7 +79,7 @@ const p = {
         const t = this.$applyQueriesToUrl(`catalog/products/${this.route}/count`, {
           product_id: this.product.id,
           limit: this.pagination.limit
-        }), { data: o } = await l.get(t);
+        }), { data: o } = await s.get(t);
         this.pagination.total = r.get(o, "data.total", 0), this.$emit("update:count", this.pagination.total);
       } catch (t) {
         console.error(t);

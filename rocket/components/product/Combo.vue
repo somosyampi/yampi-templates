@@ -238,7 +238,12 @@ export default {
             Object.keys(this.customizedProducts).forEach(key => {
                 if (this.customizedProducts[key].isMandatory
                     || this.customizedProducts[key].isPersonalized) {
-                    customized = { ...customized, [key]: _.omit(this.customizedProducts[key], ['isPersonalized', 'isMandatory']) };
+                    customized = { 
+                        ...customized, 
+                        [key]: _.omit(
+                            this.customizedProducts[key], ['isPersonalized', 'isMandatory']
+                        ) 
+                    };
                 }
             });
 

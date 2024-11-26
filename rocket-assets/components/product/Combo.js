@@ -98,7 +98,13 @@ const g = {
     filteredCustomizations() {
       let e = {};
       return Object.keys(this.customizedProducts).forEach((t) => {
-        (this.customizedProducts[t].isMandatory || this.customizedProducts[t].isPersonalized) && (e = { ...e, [t]: o.omit(this.customizedProducts[t], ["isPersonalized", "isMandatory"]) });
+        (this.customizedProducts[t].isMandatory || this.customizedProducts[t].isPersonalized) && (e = {
+          ...e,
+          [t]: o.omit(
+            this.customizedProducts[t],
+            ["isPersonalized", "isMandatory"]
+          )
+        });
       }), e;
     }
   },

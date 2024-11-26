@@ -53,7 +53,7 @@ export default {
     }),
 
     computed: {
-        ...mapGetters('preview', ['isPreview']),
+        ...mapGetters('preview', ['isIframe']),
 
         selectType() {
             if (this.iconUrl) {
@@ -74,7 +74,7 @@ export default {
 
     methods: {
         change() {
-            if (this.isPreview) {
+            if (this.isIframe) {
                 return;
             }
 

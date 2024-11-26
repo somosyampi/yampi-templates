@@ -10,6 +10,7 @@
 <script>
 import { mapGetters } from '~/vuex';
 import mobileMixin from '@/mixins/mobile';
+import rocket from '@/modules/axios/rocket';
 
 export default {
     name: 'SideBarTrigger',
@@ -33,7 +34,7 @@ export default {
     mounted() {
         this.isActive = document.body.classList.contains(this.activeClass);
 
-        if (!this.isPreview) {
+        if (!this.isIframe) {
             return;
         }
 
@@ -58,7 +59,7 @@ export default {
 
     computed: {
         ...mapGetters('preview', [
-            'isPreview',
+            'isIframe',
         ]),
     },
 

@@ -1,8 +1,8 @@
-import o from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
+import a from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
 import { mapGetters as l, mapActions as c } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
 import d from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/tracking/api.js";
 import { createPriceObjects as h } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/helpers.js";
-function m(s, t, e, i, a, v, y, z) {
+function m(s, t, e, i, o, v, y, z) {
   var r = typeof s == "function" ? s.options : s;
   return t && (r.render = t, r.staticRenderFns = e, r._compiled = !0), {
     exports: s,
@@ -35,7 +35,7 @@ const p = {
   },
   computed: {
     ...l("environment", ["recomm"]),
-    ...l("preview", ["isPreview"]),
+    ...l("preview", ["isIframe"]),
     modalTitle() {
       return this.showCustomization && this.customizations.length ? "Produto com personalização" : "Adicionar ao carrinho";
     },
@@ -49,33 +49,33 @@ const p = {
       return h({ basePath: "prices.data.", pricePath: "price_formatted" });
     },
     skuPriceFormated() {
-      return this.selectedSku ? `${o.get(
+      return this.selectedSku ? `${a.get(
         this.selectedSku,
         this.price[this.selectedPrice].path,
         this.selectedSku.prices.data.price_formated
-      )}` : `${o.get(
+      )}` : `${a.get(
         this.product,
         this.price[this.selectedPrice].path,
         this.product.prices.data.price_formated
       )}`;
     },
     imageUrl() {
-      return this.selectedSku ? o.get(this.selectedSku, "images.data.0.url", null) : o.get(this.product, "images.data.0.url", null);
+      return this.selectedSku ? a.get(this.selectedSku, "images.data.0.url", null) : a.get(this.product, "images.data.0.url", null);
     },
     primaryButtonText() {
       return !this.showCustomization && this.customizations.length ? "Próximo" : this.showCustomization && this.customizations.length > 1 ? "Salvar" : "Adicionar";
     },
     customizations() {
-      return o.get(this.selectedSku, "customizations.data", []);
+      return a.get(this.selectedSku, "customizations.data", []);
     },
     validSku() {
       return this.selectedSku || this.firstValidSku || this.firstSku;
     },
     firstValidSku() {
-      return o.get(this.product, "skus.data", []).find((s) => !s.blocked_sale);
+      return a.get(this.product, "skus.data", []).find((s) => !s.blocked_sale);
     },
     firstSku() {
-      return o.get(this.product, "skus.data", []);
+      return a.get(this.product, "skus.data", []);
     },
     ellipsisClass() {
       return this.selectedSku ? {
@@ -111,7 +111,7 @@ const p = {
         this.showCustomization = !0;
         return;
       }
-      if (!this.isPreview)
+      if (!this.isIframe)
         try {
           await this.addToCart();
         } catch (s) {
@@ -154,8 +154,8 @@ const p = {
       }
       if (!this.customizationsAreValid())
         return;
-      const s = {}, t = o.omitBy(this.customizationValues, o.isEmpty);
-      this.customizations.every((a) => !a.required) && o.isEmpty(t) && !this.selectedSku.allow_sell_without_customization && (s[this.selectedSku.id] = this.customizationValues), o.isEmpty(t) || (s[this.selectedSku.id] = t);
+      const s = {}, t = a.omitBy(this.customizationValues, a.isEmpty);
+      this.customizations.every((o) => !o.required) && a.isEmpty(t) && !this.selectedSku.allow_sell_without_customization && (s[this.selectedSku.id] = this.customizationValues), a.isEmpty(t) || (s[this.selectedSku.id] = t);
       let e = !1;
       const i = [];
       this.recomm && (e = !0, i.push({ recomm_id: this.recomm })), this.sending = !0;
@@ -173,8 +173,8 @@ const p = {
           items: this.product.name,
           amount: this.quantity * this.selectedSku.prices.data.price
         });
-      } catch (a) {
-        this.error = a, console.error(a);
+      } catch (o) {
+        this.error = o, console.error(o);
       } finally {
         this.sending = !1, this.closeModal(), this.resetComponent();
       }

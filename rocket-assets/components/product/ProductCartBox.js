@@ -58,7 +58,7 @@ var n = function() {
   }), 0), t._l(t.filteredCustomizations, function(e) {
     return o("div", { key: e.name + e.selected_value, staticClass: "product-cart-box__text--customization" }, [t._v(" " + t._s(e.name) + ": " + t._s(e.selected_value) + " "), o("span", { staticClass: "product-cart-box__text--customization--price" }, [t._v(" (+ " + t._s(e.price_formated) + ") ")])]);
   })], 2), t.showProductQuantity ? o("div", { staticClass: "product-cart-box__text--quantity" }, [t._v(" Qtd.: " + t._s(t.product.quantity) + " ")]) : t._e(), t.showProductTotalPrice ? o("div", [t.shouldShowProductSavings ? o("div", [o("div", { staticClass: "product-cart-box__text--price-discount" }, [t._v(" " + t._s(t._f("formatMoney")(t.originalProductPrice)) + " ")]), o("div", { staticClass: "product-cart-box__text--price" }, [t._v(" " + t._s(t.product.price_total_formated) + " ")]), t.showProductCartSavings ? o("div", { staticClass: "product-cart-box__discount-tag mt-10" }, [o("div", { staticClass: "product-cart-box__discount-tag-text" }, [t._v(" " + t._s(t._f("formatMoney")(t.originalProductPrice - t.product.price)) + " mais barato ")])]) : t._e()]) : o("div", { staticClass: "product-cart-box__text--price" }, [t._v(" " + t._s(t._f("formatMoney")(t.product.price_total)) + " ")])]) : t._e()]), t.product.kit_id ? t._e() : o("div", { staticClass: "product-cart-box__holder-actions" }, [o("QuantitySelector", { class: {
-    "is-preview": t.isPreview
+    "is-preview": t.isIframe
   }, attrs: { value: t.product.quantity, disabled: t.loading[t.product.id] }, on: { change: function(e) {
     return t.handleQuantityChange(t.product, e);
   } } }), o("div", { staticClass: "product-cart-box__text--remove", class: { loading: t.loading[t.product.id] }, on: { click: function(e) {

@@ -27,7 +27,7 @@ const f = {
     internalError: !1
   }),
   computed: {
-    ...u("preview", ["isPreview"]),
+    ...u("preview", ["isIframe"]),
     selectType() {
       return this.iconUrl ? "custom-select-image-prefix relative" : "custom-select relative";
     }
@@ -42,7 +42,7 @@ const f = {
   },
   methods: {
     change() {
-      this.isPreview || (this.validateInternal(), this.$emit("change", this.selectedValue));
+      this.isIframe || (this.validateInternal(), this.$emit("change", this.selectedValue));
     },
     validateInternal() {
       if (!this.selectedValue) {

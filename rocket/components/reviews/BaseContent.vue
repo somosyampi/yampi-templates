@@ -45,8 +45,6 @@ export default {
             'product',
         ]),
 
-        ...mapGetters('preview', ['isPreview']),
-
         showLoadMore() {
             return this.pagination.loaded < this.pagination.total;
         },

@@ -133,8 +133,8 @@ const y = {
       return this.carousel ? t : "div";
     },
     getHolderClass() {
-      const t = this.container ? "container" : "", e = this.isPreview ? "preview" : "";
-      return `holder-${this.section} ${t} ${e} relative`;
+      const t = this.container ? "container" : "";
+      return `holder-${this.section} ${t} relative`;
     },
     isValid(t) {
       return t.type === "product" ? !1 : !!t.image_url;
@@ -220,16 +220,16 @@ var b = function() {
   b,
   _
 );
-const v = A.exports;
+const B = A.exports;
 function u(t) {
-  u.installed || (u.installed = !0, t.component("Banners", v));
+  u.installed || (u.installed = !0, t.component("Banners", B));
 }
-const B = {
+const v = {
   install: u
 };
 let r = null;
 typeof window < "u" ? r = window.Vue : typeof global < "u" && (r = global.Vue);
-r && r.use(B);
+r && r.use(v);
 export {
-  v as default
+  B as default
 };

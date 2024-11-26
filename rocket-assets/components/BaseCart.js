@@ -1,14 +1,14 @@
 import a from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
 import { mapGetters as l, mapActions as h } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
 import d from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/tracking/api.js";
-function p(t, e, i, n, r, o, w, C) {
+function m(t, e, i, n, r, o, C, _) {
   var c = typeof t == "function" ? t.options : t;
   return {
     exports: t,
     options: c
   };
 }
-const m = {
+const p = {
   name: "BaseCart",
   mixins: [d],
   props: {
@@ -32,7 +32,7 @@ const m = {
   },
   computed: {
     ...l("cart", ["cart"]),
-    ...l("preview", ["isPreview"]),
+    ...l("preview", ["isIframe"]),
     items() {
       return a.get(this.cart, "items", []);
     },
@@ -119,7 +119,7 @@ const m = {
       }), this.redirectToCart(), setTimeout(() => this.setLoading("all", !1), 200);
     },
     async updateQuantity(t, e) {
-      if (this.loading[t.id] || t.quantity === e || this.isPreview)
+      if (this.loading[t.id] || t.quantity === e || this.isIframe)
         return;
       const i = t.quantity;
       this.$set(t, "quantity", e), this.setLoading(t.id, !0);
@@ -145,20 +145,20 @@ const m = {
     linkValidation() {
       (this.emptyCartLinkButton === "0" || this.emptyCartLinkButton === "/") && (this.emptyCartLinkButton = this.$baseUrl);
       const t = this.$baseUrl.concat(this.emptyCartLinkButton), e = this.emptyCartLinkButton.startsWith("/"), i = this.emptyCartLinkButton.startsWith("http");
-      if (e && !this.isPreview) {
+      if (e && !this.isIframe) {
         window.location.href = t;
         return;
       }
-      if (i && !this.emptyCartLinkButton.startsWith(this.$baseUrl) && !this.isPreview) {
+      if (i && !this.emptyCartLinkButton.startsWith(this.$baseUrl) && !this.isIframe) {
         window.location.href = this.$baseUrl;
         return;
       }
-      this.isPreview || (window.location.href = this.emptyCartLinkButton);
+      this.isIframe || (window.location.href = this.emptyCartLinkButton);
     }
   }
 };
-var f = /* @__PURE__ */ p(
-  m
+var f = /* @__PURE__ */ m(
+  p
 );
 const g = f.exports;
 function u(t) {
