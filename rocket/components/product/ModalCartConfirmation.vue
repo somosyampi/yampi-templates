@@ -88,7 +88,7 @@ export default {
         ]),
 
         ...mapGetters('preview', [
-            'isPreview',
+            'isIframe',
         ]),
     },
 
@@ -113,7 +113,7 @@ export default {
         },
 
         async handleRedirectoToCart() {
-            if (this.isPreview) {
+            if (this.isIframe) {
                 this.closeModal();
             }
 

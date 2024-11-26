@@ -1,11 +1,14 @@
 {% set categories = section.params.highlighted_category ?: '[]' %}
 
 <rocket-emitter emits="categories_highlight" label="Categorias em destaque" order={{ section.order }}>
-    {% if categories | json_decode | length or isPreview %}
+    {% if categories | json_decode | length or isPreview or isEditing %}
         <section class="categories_highlight {{ "#{section.section_alias}-#{section.order}" }}">
-            <section-provider :config="{{ section | json_encode }}">
-                <categories-highlight></categories-highlight>
-            </section-provider>
+            <categories-highlight
+                show-categories-names="{{ section.params.show_categories_names }}"
+                highlighted-category="{{ section.params.highlighted_category }}"
+                title="{{ section.params.title }}"
+                mobile-layout="{{ section.params.mobile_layout }}"
+            ></categories-highlight>
         </section>
     {% endif %}
 </rocket-emitter>

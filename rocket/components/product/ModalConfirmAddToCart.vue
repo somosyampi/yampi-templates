@@ -161,7 +161,7 @@ export default {
     computed: {
         ...mapGetters('environment', ['recomm']),
 
-        ...mapGetters('preview', ['isPreview']),
+        ...mapGetters('preview', ['isIframe']),
 
         modalTitle() {
             if (this.showCustomization && this.customizations.length) {
@@ -290,7 +290,7 @@ export default {
                 return;
             }
 
-            if (this.isPreview) {
+            if (this.isIframe) {
                 return;
             }
 

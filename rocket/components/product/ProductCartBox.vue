@@ -96,7 +96,7 @@
                     :value="product.quantity"
                     :disabled="loading[product.id]"
                     :class="{
-                        'is-preview': isPreview
+                        'is-preview': isIframe
                     }"
                     @change="handleQuantityChange(product, $event)"
                 />

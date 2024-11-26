@@ -32,7 +32,7 @@ export default {
 
     computed: {
         ...mapGetters('cart', ['cart']),
-        ...mapGetters('preview', ['isPreview']),
+        ...mapGetters('preview', ['isIframe']),
 
         items() {
             return _.get(this.cart, 'items', []);
@@ -166,7 +166,7 @@ export default {
         },
 
         async updateQuantity(item, quantity) {
-            if (this.loading[item.id] || item.quantity === quantity || this.isPreview) {
+            if (this.loading[item.id] || item.quantity === quantity || this.isIframe) {
                 return;
             }
 
@@ -233,7 +233,7 @@ export default {
             const notAbsolutLink = this.emptyCartLinkButton.startsWith('/');
             const initialLink = this.emptyCartLinkButton.startsWith('http' || 'https');
 
-            if (notAbsolutLink && !this.isPreview) {
+            if (notAbsolutLink && !this.isIframe) {
                 window.location.href = concat;
 
                 return;
@@ -241,13 +241,13 @@ export default {
 
             if (initialLink &&
                 !this.emptyCartLinkButton.startsWith(this.$baseUrl) &&
-                !this.isPreview) {
+                !this.isIframe) {
                 window.location.href = this.$baseUrl;
 
                 return;
             }
 
-            if (this.isPreview) {
+            if (this.isIframe) {
                 return;
             }
 

@@ -15,7 +15,7 @@ const l = {
     };
   },
   computed: {
-    ...s("preview", ["isPreview", "activeSection"])
+    ...s("preview", ["activeSection"])
   },
   mounted() {
     this.$store.subscribe(({ type: t, payload: e }) => {
@@ -45,7 +45,7 @@ const l = {
       );
     },
     beforeEnter() {
-      window.innerWidth - document.documentElement.clientWidth, this.scrollY = window.scrollY, this.syncHeight(), document.documentElement.classList.add("block-scroll"), document.getElementsByTagName("body")[0].classList.add("drawer-active"), document.getElementsByTagName("body")[0].classList.add("block-scroll"), this.$emit("beforeEnter");
+      this.scrollY = window.scrollY, this.syncHeight(), document.documentElement.classList.add("block-scroll"), document.getElementsByTagName("body")[0].classList.add("drawer-active"), document.getElementsByTagName("body")[0].classList.add("block-scroll"), this.$emit("beforeEnter");
     },
     afterEnter() {
       this.$emit("afterEnter");
