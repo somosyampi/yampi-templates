@@ -1,6 +1,6 @@
-import { mapGetters as o, mapMutations as u } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
-import c from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-sandbox/rocket-assets/components/BaseCart.js";
-function d(t, e, r, i, v, g, y, _) {
+import { mapGetters as i, mapMutations as c } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
+import d from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-sandbox/rocket-assets/components/BaseCart.js";
+function u(t, e, r, s, v, g, y, _) {
   var n = typeof t == "function" ? t.options : t;
   return e && (n.render = e, n.staticRenderFns = r, n._compiled = !0), {
     exports: t,
@@ -9,7 +9,7 @@ function d(t, e, r, i, v, g, y, _) {
 }
 const l = {
   name: "MiniCart",
-  extends: c,
+  extends: d,
   props: {
     cartType: {
       type: String,
@@ -55,12 +55,13 @@ const l = {
     }
   },
   computed: {
-    ...o("merchant", ["merchant"]),
-    ...o("preview", ["isIframe"]),
+    ...i("merchant", ["merchant"]),
+    ...i("preview", ["isIframe"]),
     cartComponent() {
       return {
-        side_cart: SideCart
-      }[this.cartType] || DropdownCart;
+        suspended: "dropdown-cart",
+        side_cart: "side-cart"
+      }[this.cartType] || "dropdown-cart";
     },
     cartRedirectAction() {
       const t = {
@@ -78,27 +79,27 @@ const l = {
     this.SET_CART_TYPE(this.cartType), await this.bootCart();
   },
   methods: {
-    ...u("cart", ["SET_CART_TYPE"])
+    ...c("cart", ["SET_CART_TYPE"])
   }
 };
 var p = function() {
   var e = this, r = e._self._c;
-  return r("div", { staticClass: "dropdown-holder", on: { mouseenter: function(i) {
+  return r("div", { staticClass: "dropdown-holder", on: { mouseenter: function(s) {
     e.mouseHover = !0;
-  }, mouseleave: function(i) {
+  }, mouseleave: function(s) {
     e.mouseHover = !1;
   } } }, [r("div", { staticClass: "-align -clean", on: { click: e.cartRedirectAction } }, [r("svg", { staticClass: "cart-icon", attrs: { width: "23", height: "21" } }, [r("defs", [r("path", { attrs: { id: "reuse-1", d: "M9.705 15.205a2.423 2.423 0 00-2.423 2.443C7.282 19.005 8.36 20 9.705 20a2.423 2.423 0 002.423-2.443c0-1.357-1.077-2.352-2.423-2.352zm1.167 2.352c0 .634-.539 1.176-1.167 1.176s-1.167-.543-1.167-1.176c0-.633.539-1.176 1.167-1.176s1.167.543 1.167 1.176zM16.167 15.205a2.423 2.423 0 00-2.423 2.443 2.423 2.423 0 104.846 0 2.423 2.423 0 00-2.423-2.443zm1.166 2.352c0 .634-.538 1.176-1.166 1.176-.629 0-1.167-.543-1.167-1.176 0-.633.539-1.176 1.167-1.176s1.166.543 1.166 1.176z" } }), r("path", { attrs: { id: "reuse-0", "clip-rule": "evenodd", d: "M1.718 1C1.359 1 1 1.362 1 1.724s.359.724.718.724h1.885l1.525 5.79 1.077 4.524c.18.724.808 1.267 1.526 1.267H18.5c.718 0 1.346-.453 1.526-1.177L21.91 6.52c.18-.452.09-.995-.269-1.448-.27-.452-.808-.633-1.256-.633H5.577l-.718-2.895v-.09C4.679 1.18 4.41 1 4.141 1H1.718zm18.936 4.795l-1.974 6.696H7.64L6.026 5.795h14.628z" } })]), r("use", { attrs: { "clip-rule": "evenodd", "xlink:href": "#reuse-0" } }), r("use", { attrs: { "xlink:href": "#reuse-1" } }), r("use", { attrs: { "clip-rule": "evenodd", "xlink:href": "#reuse-0" } }), r("use", { attrs: { "xlink:href": "#reuse-1" } })]), r("span", { staticClass: "cart-quantity", class: { "-loading": e.anyLoading }, domProps: { textContent: e._s(e.cartQuantity) } })]), r(e.cartComponent, { ref: "cartComponent", tag: "component", attrs: { "show-cart-savings": e.showCartSavings, "show-product-cart-savings": e.showProductCartSavings, "mouse-hover": e.mouseHover, "empty-cart-helper-text": e.emptyCartHelperText, "empty-cart-text-button": e.emptyCartTextButton, "empty-cart-link-button": e.emptyCartLinkButton, "highlighted-price": e.highlightedPrice } })], 1);
-}, m = [], h = /* @__PURE__ */ d(
+}, m = [], h = /* @__PURE__ */ u(
   l,
   p,
   m
 );
 const f = h.exports;
-function s(t) {
-  s.installed || (s.installed = !0, t.component("MiniCart", f));
+function o(t) {
+  o.installed || (o.installed = !0, t.component("MiniCart", f));
 }
 const C = {
-  install: s
+  install: o
 };
 let a = null;
 typeof window < "u" ? a = window.Vue : typeof global < "u" && (a = global.Vue);

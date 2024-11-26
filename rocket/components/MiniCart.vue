@@ -119,9 +119,11 @@ export default {
         ...mapGetters('preview', ['isIframe']),
 
         cartComponent() {
-            return {
-                side_cart: SideCart,
-            }[this.cartType] || DropdownCart;
+            const mapCartComponent = {
+                'suspended': 'dropdown-cart',
+                'side_cart': 'side-cart'
+            }
+            return mapCartComponent[this.cartType] || 'dropdown-cart';
         },
 
         cartRedirectAction() {
