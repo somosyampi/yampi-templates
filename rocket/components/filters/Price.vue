@@ -26,7 +26,6 @@ import BaseFilter from '@/components/filters/BaseFilter.vue';
 export default {
     name: 'FilterPrice',
 
-
     extends: BaseFilter,
 
     data: () => ({
