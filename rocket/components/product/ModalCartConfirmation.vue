@@ -92,19 +92,26 @@ export default {
         ]),
     },
 
+    data() {
+        return {
+            cartConfirmBaseModalRef: null,
+        }
+    },  
+
     mounted() {
         eventBus.$on('addedToCart', this.showModal);
+        this.cartConfirmBaseModalRef = this.$refs.cartConfirmBaseModal;
     },
 
     methods: {
         ...mapActions('cart', ['redirectToCart']),
 
         showModal() {
-            this.$refs.cartConfirmBaseModal.showModal();
+            this.cartConfirmBaseModalRef.showModal();
         },
 
         closeModal() {
-            this.$refs.cartConfirmBaseModal.closeModal();
+            this.cartConfirmBaseModalRef.closeModal();
         },
 
         handleKeepBuying() {
