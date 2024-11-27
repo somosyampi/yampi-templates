@@ -47,6 +47,7 @@ export default {
     },
 
     mounted() {
+        const modalCartConfirmationRef = this.$refs.modalCartConfirmation;
         eventBus.$on('addToCartClicked', this.handleAddToCartClick);
 
         this.$store.subscribe(({ type, payload }) => {
@@ -55,7 +56,7 @@ export default {
             }
 
             if (this.isPreview && this.cartType !== 'side_cart') {
-                this.$refs.modalCartConfirmation.showModal();
+                modalCartConfirmationRef.showModal();
                 return;
             }
 

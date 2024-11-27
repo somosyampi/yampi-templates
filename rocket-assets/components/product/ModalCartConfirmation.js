@@ -2,11 +2,11 @@ import { mapGetters as r, mapActions as d } from "https://images-dev.yampi.me/ro
 import s from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
 import l from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/tracking/api.js";
 import c from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/eventBus.js";
-function m(o, e, t, v, w, M, y, b) {
-  var a = typeof o == "function" ? o.options : o;
-  return e && (a.render = e, a.staticRenderFns = t, a._compiled = !0), {
-    exports: o,
-    options: a
+function m(a, e, t, v, w, M, y, b) {
+  var o = typeof a == "function" ? a.options : a;
+  return e && (o.render = e, o.staticRenderFns = t, o._compiled = !0), {
+    exports: a,
+    options: o
   };
 }
 const f = {
@@ -34,26 +34,31 @@ const f = {
       "isIframe"
     ])
   },
+  data() {
+    return {
+      cartConfirmBaseModalRef: null
+    };
+  },
   mounted() {
-    c.$on("addedToCart", this.showModal);
+    c.$on("addedToCart", this.showModal), this.cartConfirmBaseModalRef = this.$refs.cartConfirmBaseModal;
   },
   methods: {
     ...d("cart", ["redirectToCart"]),
     showModal() {
-      this.$refs.cartConfirmBaseModal.showModal();
+      this.cartConfirmBaseModalRef.showModal();
     },
     closeModal() {
-      this.$refs.cartConfirmBaseModal.closeModal();
+      this.cartConfirmBaseModalRef.closeModal();
     },
     handleKeepBuying() {
       this.handleTrackApi("keep-buying-clicked"), this.closeModal();
     },
     async handleRedirectoToCart() {
       this.isIframe && this.closeModal();
-      const o = window.themeConfig.theme.params;
+      const a = window.themeConfig.theme.params;
       await this.handleTrackApi("checkout-intended", {
         location: "modal-cart-confirm",
-        quick_buy_button_enabled: o.show_add_to_cart_button,
+        quick_buy_button_enabled: a.show_add_to_cart_button,
         items: s.map(this.cart.items, "name"),
         amount: s.sumBy(this.cart.items, "price_total")
       }), this.redirectToCart();
@@ -69,8 +74,8 @@ var u = function() {
   p
 );
 const C = h.exports;
-function i(o) {
-  i.installed || (i.installed = !0, o.component("ModalCartConfirmation", C));
+function i(a) {
+  i.installed || (i.installed = !0, a.component("ModalCartConfirmation", C));
 }
 const _ = {
   install: i

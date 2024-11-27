@@ -1,15 +1,15 @@
-import { mapGetters as s, mapActions as c } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
-import l from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/eventBus.js";
-import u from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/api.js";
-import f from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/rocket.js";
-function p(e, t, r, i, d, y, v, g) {
+import { mapGetters as c, mapActions as l } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
+import u from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/eventBus.js";
+import f from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/api.js";
+import m from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/rocket.js";
+function p(e, t, r, i, d, n, v, g) {
   var a = typeof e == "function" ? e.options : e;
   return t && (a.render = t, a.staticRenderFns = r, a._compiled = !0), {
     exports: e,
     options: a
   };
 }
-const m = {
+const h = {
   name: "AddToCart",
   props: {
     selectedPrice: {
@@ -25,30 +25,31 @@ const m = {
     };
   },
   computed: {
-    ...s("cart", ["cartType"]),
-    ...s("preview", ["isPreview"]),
-    ...c("cart", ["addProductsToCart"])
+    ...c("cart", ["cartType"]),
+    ...c("preview", ["isPreview"]),
+    ...l("cart", ["addProductsToCart"])
   },
   mounted() {
-    l.$on("addToCartClicked", this.handleAddToCartClick), this.$store.subscribe(({ type: e, payload: t }) => {
-      if (e === "cart/EVENT_ADDED_TO_CART") {
+    const e = this.$refs.modalCartConfirmation;
+    u.$on("addToCartClicked", this.handleAddToCartClick), this.$store.subscribe(({ type: t, payload: r }) => {
+      if (t === "cart/EVENT_ADDED_TO_CART") {
         if (this.isPreview && this.cartType !== "side_cart") {
-          this.$refs.modalCartConfirmation.showModal();
+          e.showModal();
           return;
         }
-        this.addedToCart(t);
+        this.addedToCart(r);
       }
     }), this.isPreview && window.addEventListener(
       "message",
-      (e) => {
-        var t, r, i, d;
-        (r = (t = e.data) == null ? void 0 : t.show_modal_after_purchase) != null && r.value && ((d = (i = e.target) == null ? void 0 : i.themeConfig) == null ? void 0 : d.page) === "product" && this.cartType !== "side_cart" && this.$refs.modalCartConfirmation.showModal();
+      (t) => {
+        var r, i, d, n;
+        (i = (r = t.data) == null ? void 0 : r.show_modal_after_purchase) != null && i.value && ((n = (d = t.target) == null ? void 0 : d.themeConfig) == null ? void 0 : n.page) === "product" && this.cartType !== "side_cart" && this.$refs.modalCartConfirmation.showModal();
       },
       !1
     );
   },
   methods: {
-    ...c("cart", [
+    ...l("cart", [
       "redirectToCart"
     ]),
     async handleAddToCartClick(e) {
@@ -66,36 +67,36 @@ const m = {
     },
     async loadProductSkus(e) {
       try {
-        const t = `catalog/products/${e}`, { data: r } = await u.get(t);
+        const t = `catalog/products/${e}`, { data: r } = await f.get(t);
         this.productData = r.data;
       } catch (t) {
         t.response.status >= 400 && this.isPreview && await this.loadPlaceholders();
       }
     },
     async loadPlaceholders() {
-      const { data: e } = await f.get("/placeholders/productDetail");
+      const { data: e } = await m.get("/placeholders/productDetail");
       this.productData = e;
     }
   }
 };
-var h = function() {
+var C = function() {
   var t = this, r = t._self._c;
   return r("div", [r("ModalCartConfirmation", { ref: "modalCartConfirmation", attrs: { error: t.error, "quantity-added": t.quantity } }), r("ModalConfirmAddToCart", { ref: "ModalConfirmAddToCart", attrs: { product: t.productData, "selected-price": t.selectedPrice } })], 1);
-}, C = [], _ = /* @__PURE__ */ p(
-  m,
+}, _ = [], w = /* @__PURE__ */ p(
   h,
-  C
+  C,
+  _
 );
-const w = _.exports;
-function n(e) {
-  n.installed || (n.installed = !0, e.component("AddToCart", w));
+const T = w.exports;
+function s(e) {
+  s.installed || (s.installed = !0, e.component("AddToCart", T));
 }
-const T = {
-  install: n
+const y = {
+  install: s
 };
 let o = null;
 typeof window < "u" ? o = window.Vue : typeof global < "u" && (o = global.Vue);
-o && o.use(T);
+o && o.use(y);
 export {
-  w as default
+  T as default
 };
