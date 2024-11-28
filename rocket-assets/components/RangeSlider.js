@@ -1,9 +1,9 @@
 import o from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-function r(t, e, a, l, p, v, _, x) {
-  var s = typeof t == "function" ? t.options : t;
-  return e && (s.render = e, s.staticRenderFns = a, s._compiled = !0), {
+function r(t, e, s, l, p, v, _, x) {
+  var a = typeof t == "function" ? t.options : t;
+  return e && (a.render = e, a.staticRenderFns = s, a._compiled = !0), {
     exports: t,
-    options: s
+    options: a
   };
 }
 const d = {
@@ -73,10 +73,10 @@ const d = {
   }
 };
 var u = function() {
-  var e = this, a = e._self._c;
-  return a("div", { staticClass: "holder-price-slider" }, [a("vue-slider", { attrs: { min: e.min, max: e.max, lazy: !0, interval: 0.01, height: e.height, "dot-size": e.dotSize, tooltip: "none" }, on: { dragging: e.updateValues, change: e.change }, model: { value: e.values, callback: function(l) {
+  var e = this, s = e._self._c;
+  return s("div", { staticClass: "holder-price-slider" }, [s("vue-slider", { attrs: { min: e.min, max: e.max, lazy: !0, step: 0.01, height: e.height, "dot-size": e.dotSize, tooltip: "none" }, on: { input: e.updateValues, change: e.change }, model: { value: e.values, callback: function(l) {
     e.values = l;
-  }, expression: "values" } }), a("div", { staticClass: "step-values" }, [a("span", { staticClass: "selected-min", domProps: { textContent: e._s(e.formatedMin) } }), a("span", { staticClass: "divisor" }, [e._v(" - ")]), a("span", { staticClass: "selected-max", domProps: { textContent: e._s(e.formatedMax) } })])], 1);
+  }, expression: "values" } }), s("div", { staticClass: "step-values" }, [s("span", { staticClass: "selected-min", domProps: { textContent: e._s(e.formatedMin) } }), s("span", { staticClass: "divisor" }, [e._v(" - ")]), s("span", { staticClass: "selected-max", domProps: { textContent: e._s(e.formatedMax) } })])], 1);
 }, c = [], m = /* @__PURE__ */ r(
   d,
   u,

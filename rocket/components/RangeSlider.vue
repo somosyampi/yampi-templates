@@ -4,12 +4,12 @@
             :min="min"
             :max="max"
             :lazy="true"
-            :interval="0.01"
+            :step="0.01"
             :height="height"
             :dot-size="dotSize"
             tooltip="none"
             v-model="values"
-            @dragging="updateValues"
+            @input="updateValues"
             @change="change"
         ></vue-slider>
 

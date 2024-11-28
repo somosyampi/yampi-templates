@@ -38,7 +38,7 @@ var d = function() {
 );
 const _ = p.exports;
 function l(o) {
-  l.installed || (l.installed = !0, o.component("Category", _));
+  l.installed || (l.installed = !0, o.component("FilterCategory", _));
 }
 const m = {
   install: l

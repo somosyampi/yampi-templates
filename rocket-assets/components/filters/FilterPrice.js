@@ -75,7 +75,7 @@ const c = {
 };
 var p = function() {
   var e = this, a = e._self._c;
-  return a("div", { staticClass: "filter filter-price" }, [a("div", { staticClass: "-title" }, [e._v(" Faixa de preço ")]), e.loading ? [a("loader", { attrs: { margin: 33 } }), a("loader", { staticStyle: { display: "block", margin: "20px auto 54px", width: "50%" } })] : e.payload.max ? a("range-slider", { attrs: { max: e.payload.max, "remove-prefix": !0 }, on: { input: e.updatePriceStatus }, model: { value: e.value, callback: function(i) {
+  return a("div", { staticClass: "filter filter-price" }, [a("div", { staticClass: "-title" }, [e._v(" Faixa de preÃ§o ")]), e.loading ? [a("loader", { attrs: { margin: 33 } }), a("loader", { staticStyle: { display: "block", margin: "20px auto 54px", width: "50%" } })] : e.payload.max ? a("range-slider", { attrs: { max: e.payload.max, "remove-prefix": !0 }, on: { input: e.updatePriceStatus }, model: { value: e.value, callback: function(i) {
     e.value = i;
   }, expression: "value" } }) : e._e()], 2);
 }, f = [], h = /* @__PURE__ */ d(
@@ -85,7 +85,7 @@ var p = function() {
 );
 const v = h.exports;
 function n(t) {
-  n.installed || (n.installed = !0, t.component("Price", v));
+  n.installed || (n.installed = !0, t.component("FilterPrice", v));
 }
 const y = {
   install: n

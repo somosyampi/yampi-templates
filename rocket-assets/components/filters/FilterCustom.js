@@ -54,7 +54,7 @@ var f = function() {
 );
 const v = _.exports;
 function l(n) {
-  l.installed || (l.installed = !0, n.component("Custom", v));
+  l.installed || (l.installed = !0, n.component("FilterCustom", v));
 }
 const p = {
   install: l

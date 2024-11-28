@@ -1,6 +1,6 @@
 input,
 textarea {
-    &:not([type='checkbox'], [type='radio']) {
+    &:not([type='checkbox'], [type='radio'], [type='range']) {
         border: 1px solid var(--black-lightest);
         border-radius: var(--theme-border-radius);
         font-family: inherit;

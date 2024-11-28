@@ -64,7 +64,7 @@ body.dark-mode {
 
     input,
     textarea {
-        &:not([type="checkbox"], [type="radio"]) {
+        &:not([type="checkbox"], [type="radio"], [type="range"]) {
             background-color: var(--input-background);
             border-color: var(--input-background);
             color: var(--white);
@@ -310,11 +310,11 @@ body.dark-mode {
     }
 
     .holder-price-slider {
-        .vue-slider-rail {
+        .vue-slider__background {
             background-color: var(--black-medium);
         }
 
-        .vue-slider-dot-handle {
+        input[type="range"]::-webkit-slider-thumb {
             background-color: var(--front-end-f5f5f5);
         }
     }

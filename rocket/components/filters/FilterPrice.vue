@@ -58,14 +58,14 @@ export default {
                 return;
             }
 
-            if (min === 0 && this.queryParams.min) {
+            if (min === 0 && Number(this.queryParams.min)) {
                 this.removeQueryParams('min');
                 this.parseActiveFilter();
 
                 return;
             }
 
-            if (max === this.payload.max && this.queryParams.max) {
+            if (max === this.payload.max && Number(this.queryParams.max)) {
                 this.removeQueryParams('max');
                 this.parseActiveFilter();
 
@@ -74,11 +74,11 @@ export default {
 
             const queries = {};
 
-            if (min !== this.queryParams.min && min > 0) {
+            if (min !== Number(this.queryParams.min) && min > 0) {
                 queries.min = min;
             }
 
-            if (max !== this.queryParams.max && max < this.payload.max) {
+            if (max !== Number(this.queryParams.max) && max < this.payload.max) {
                 queries.max = max;
             }
 
