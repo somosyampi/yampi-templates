@@ -1,13 +1,13 @@
-import { mapGetters as r } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
-import n from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
+import { mapGetters as n } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
+import s from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
 import l from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/api.js";
 import d from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/rocket.js";
 import u from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/queryParams.js";
 function f(e, t, a, y, w, P, g, v) {
-  var s = typeof e == "function" ? e.options : e;
+  var r = typeof e == "function" ? e.options : e;
   return {
     exports: e,
-    options: s
+    options: r
   };
 }
 const c = {
@@ -21,7 +21,7 @@ const c = {
     payload: []
   }),
   computed: {
-    ...r("preview", ["isPreview"])
+    ...n("preview", ["isPreview"])
   },
   mounted() {
     this.loadData(), this.$store.subscribe(({ type: e, payload: t }) => {
@@ -32,8 +32,8 @@ const c = {
     async loadData() {
       try {
         this.loading = !0;
-        const e = n.pick(this.queryParams, ["slug", "q", "context"]), t = this.$applyQueriesToUrl(`search/products/${this.route}`, e), { data: a } = await l.get(t);
-        if (this.isPreview && !a.data.length) {
+        const e = s.pick(this.queryParams, ["slug", "q", "context"]), t = this.$applyQueriesToUrl(`search/products/${this.route}`, e), { data: a } = await l.get(t);
+        if (this.isPreview && s.isEmpty(a.data)) {
           await this.loadPlaceholders();
           return;
         }

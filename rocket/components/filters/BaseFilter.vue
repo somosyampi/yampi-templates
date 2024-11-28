@@ -4,7 +4,6 @@ import _ from '~/lodash';
 import api from '@/modules/axios/api';
 import rocket from '@/modules/axios/rocket';
 import queryParams from '@/mixins/queryParams';
-import { isEmpty } from '@/mixins/helpers';
 
 export default {
     name: 'BaseFilter',
@@ -49,7 +48,7 @@ export default {
                 const url = this.$applyQueriesToUrl(`search/products/${this.route}`, filteredQueryParams);
                 const { data } = await api.get(url);
 
-                if (this.isPreview && isEmpty(data.data)) {
+                if (this.isPreview && _.isEmpty(data.data)) {
                     await this.loadPlaceholders();
                     return;
                 }
