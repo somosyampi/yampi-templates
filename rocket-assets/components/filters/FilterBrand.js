@@ -1,5 +1,5 @@
 import s from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-sandbox/rocket-assets/components/filters/BaseFilter.js";
-function c(t, e, n, i, r, v, y, g) {
+function c(t, e, n, i, r, v, y, F) {
   var o = typeof t == "function" ? t.options : t;
   return e && (o.render = e, o.staticRenderFns = n, o._compiled = !0), {
     exports: t,
@@ -28,7 +28,7 @@ var u = function() {
 );
 const m = _.exports;
 function l(t) {
-  l.installed || (l.installed = !0, t.component("Brand", m));
+  l.installed || (l.installed = !0, t.component("FilterBrand", m));
 }
 const p = {
   install: l
