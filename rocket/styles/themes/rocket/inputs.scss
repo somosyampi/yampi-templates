@@ -1,6 +1,6 @@
 input,
 textarea {
-    &:not([type='checkbox'], [type='radio'], [type='range']) {
+    &:not([type="checkbox"], [type="radio"], [type="range"]) {
         border: 1px solid var(--black-lightest);
         border-radius: var(--theme-border-radius);
         font-family: inherit;
@@ -90,8 +90,8 @@ select {
     }
 
     &::after {
-        background-image: url(image('themes/rocket/icons/select-arrow.svg'));
-        content: '';
+        background-image: url(image("themes/rocket/icons/select-arrow.svg"));
+        content: "";
         height: 7px;
         width: 11px;
     }
@@ -215,7 +215,7 @@ option {
         width: 20px;
 
         &::after {
-            content: '';
+            content: "";
             display: none;
             position: absolute;
         }
@@ -303,11 +303,11 @@ option {
 }
 
 .custom-checkbox input:checked ~ .checkmark::after {
-    content: '';
+    content: "";
 }
 
 .custom-checkbox .checkmark::after {
-    background-image: url(image('themes/rocket/icons/checkbox-check.svg'));
+    background-image: url(image("themes/rocket/icons/checkbox-check.svg"));
     background-position: 3px 4px;
     background-repeat: no-repeat;
     display: block;

@@ -563,7 +563,7 @@ body.dark-mode {
 
             .menu-trigger {
                 svg {
-                    fill: #FFFFFF;
+                    fill: #ffffff;
                 }
             }
 
@@ -628,7 +628,7 @@ body.dark-mode {
     }
 
     .subcategories-list > .subcategory-container {
-        .subcategory{
+        .subcategory {
             color: var(--front-end-front-end-black-medium, #999);
 
             &.--all-products {
@@ -642,10 +642,10 @@ body.dark-mode {
     }
 
     .nav-drawer-content {
-        background: #2D2D2D;
+        background: #2d2d2d;
 
         & > .selected-category-name {
-            color: #FFFFFF;
+            color: #ffffff;
         }
 
         .spacer {
@@ -679,7 +679,7 @@ body.dark-mode {
 
     .rkt-header-shopping-page-redirect {
         svg {
-            fill: #F5F5F5;
+            fill: #f5f5f5;
         }
 
         .rkt-link-container {
@@ -687,7 +687,8 @@ body.dark-mode {
             border: 1px solid #333;
         }
 
-        .rkt-link-container::before, .rkt-link-container::after {
+        .rkt-link-container::before,
+        .rkt-link-container::after {
             border-bottom-color: #333;
         }
 
@@ -710,4 +711,3 @@ body.dark-mode {
         }
     }
 }
-

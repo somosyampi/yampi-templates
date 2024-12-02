@@ -1,146 +1,197 @@
-$prefix: '.grid';
-$row-prefix: '#{$prefix}-row';
-$col-prefix: '#{$prefix}-col';
-$container-prefix: '#{$prefix}-container';
-$flex-container-prefix: '#{$container-prefix}-flex';
-$flex-row-prefix: '#{$row-prefix}-flex';
-$flex-justifies: ('start', 'end', 'center', 'space-around', 'space-between');
-$flex-aligns: (
-    'top': 'flex-start',
-    'middle': 'center',
-    'bottom': 'flex-end'
-);
+@use '../tokens/tokens';
 
-$grid-col: 24;
-$grid-gutter: 15px;
-
-/**
-    *SIZES
-*/
-$full--size: 100%;
-
-@mixin generate-container {
-    #{$container-prefix} {
-        display: block;
-        position: relative;
-        margin: 0 $grid-gutter;
-        height: auto;
-        zoom: 1;
-        overflow: hidden;
-    }
-    #{$flex-container-prefix} {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        box-sizing: border-box;
-    }
-    @each $justify in $flex-justifies {
-        #{$flex-container-prefix}-#{$justify} {
-            justify-content: #{$justify};
-        }
-    }
-    @each $key, $value in $flex-aligns {
-        #{$flex-container-prefix}-#{$key} {
-            align-items: #{$value};
-        }
-    }
+.grid {
+  display: grid;
 }
 
-@mixin generate-row {
-    #{$row-prefix} {
-        display: block;
-        position: relative;
-        margin: 0;
-        padding-bottom: 12px;
-        height: auto;
-        zoom: 1;
-        overflow: hidden;
-    }
-    #{$flex-row-prefix} {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-    #{$col-prefix} {
-        display: block;
-        position: relative;
-    }
-    #{$flex-row-prefix},
-    #{$flex-row-prefix},
-    #{$col-prefix} {
-        box-sizing: border-box;
-    }
-    @each $justify in $flex-justifies {
-        #{$flex-row-prefix}-#{$justify} {
-            justify-content: #{$justify};
-        }
-    }
-    @each $key, $value in $flex-aligns {
-        #{$flex-row-prefix}-#{$key} {
-            align-items: #{$value};
-        }
-    }
+@for $i from 1 to 13 {
+  .grid-cols-#{$i} {
+    grid-template-columns: repeat($i, minmax(0, 1fr));
+  }
+
+  .col-span-#{$i} {
+    grid-column: span $i / span $i;
+  }
+
+  .grid-rows-#{$i} {
+    grid-template-rows: repeat($i, minmax(0, 1fr));
+  }
+
+  .row-span-#{$i} {
+    grid-row: span $i / span $i;
+  }
+
+  .gap-#{$i} {
+    gap: "#{$i}px"
+  }
+
+  .gap-y-#{$i} {
+    column-gap: "#{$i}px"
+  }
+
+  .gap-x-#{$i} {
+    row-gap: "#{$i}px"
+  }
 }
 
-@mixin generate-float-col($viewport: '') {
-    $cols: '#{$col-prefix}-span#{$viewport}-1';
-    @for $i from 2 through $grid-col {
-        $cols: '#{$cols},#{$col-prefix}-span#{$viewport}-#{$i},';
+.grid-rows-none {
+  grid-template-rows: none;
+}
+
+.grid-rows-subgrid {
+  grid-template-rows: subgrid;
+}
+
+.col-auto {
+  grid-column: auto;
+}
+
+.col-span-full {
+  grid-column: 1 / -1;
+}
+
+.grid-cols-none {
+  grid-template-columns: none;
+}
+
+.grid-cols-subgrid {
+  grid-template-columns: subgrid;
+}
+
+@for $i from 1 to 14 {
+  .col-start-#{$i} {
+    grid-column-start: $i;
+  }
+
+  .col-end-#{$i} {
+    grid-column-end: $i;
+  }
+
+  .row-start-#{$i} {
+    grid-row-start: $i;
+  }
+
+  .row-end-#{$i} {
+    grid-row-end: $i;
+  }
+}
+
+.row-end-auto {
+  grid-row-end: auto;
+}
+
+.row-auto {
+  grid-row: auto;
+}
+
+.row-span-full {
+  grid-row: 1 / -1;
+}
+
+.grid-start-auto {
+  grid-column-start: auto;
+}
+
+.grid-end-auto {
+  grid-column-end: auto;
+}
+
+@each $bpKey, $minWidth in tokens.$sizes-min {
+  @media (min-width: $minWidth) {
+    .#{$bpKey}\:grid {
+      display: grid;
     }
-    #{$cols} {
-        float: left;
-        flex: 0 0 auto;
-        margin-top: 10px;
-        padding-right: $grid-gutter;
-        padding-left: $grid-gutter;
+    
+    @for $i from 1 to 13 {
+      .#{$bpKey}\:grid-cols-#{$i} {
+        grid-template-columns: repeat($i, minmax(0, 1fr));
+      }
+    
+      .#{$bpKey}\:col-span-#{$i} {
+        grid-column: span $i / span $i;
+      }
+    
+      .#{$bpKey}\:grid-rows-#{$i} {
+        grid-template-rows: repeat($i, minmax(0, 1fr));
+      }
+    
+      .#{$bpKey}\:row-span-#{$i} {
+        grid-row: span $i / span $i;
+      }
+
+      .#{$bpKey}\:gap-#{$i} {
+        gap: #{$i}px
+      }
+    
+      .#{$bpKey}\:gap-y-#{$i} {
+        column-gap: #{$i}px
+      }
+    
+      .#{$bpKey}\:gap-x-#{$i} {
+        row-gap: #{$i}px
+      }
     }
-}
-
-@mixin generate-col($viewport: '') {
-    @for $i from 1 through $grid-col {
-        #{$col-prefix}-span#{$viewport}-#{$i} {
-            width: percentage($i / $grid-col);
-        }
-
-        #{$col-prefix}-push#{$viewport}-#{$i} {
-            left: percentage($i / $grid-col);
-        }
-
-        #{$col-prefix}-pull#{$viewport}-#{$i} {
-            right: percentage($i / $grid-col);
-        }
-
-        #{$col-prefix}-offset#{$viewport}-#{$i} {
-            margin-left: percentage($i / $grid-col);
-        }
-
-        #{$col-prefix}-order#{$viewport}-#{$i} {
-            order: #{$i};
-        }
+    
+    .#{$bpKey}\:grid-rows-none {
+      grid-template-rows: none;
     }
-}
-
-@mixin generate-grid($viewport) {
-    @include generate-float-col($viewport);
-    @include generate-col($viewport);
-}
-
-@include generate-row();
-@include generate-container();
-@include generate-grid('');
-
-@media (max-width: 576px) {
-    @include generate-grid('-xs');
-}
-
-@media (min-width: 577px) {
-    @include generate-grid('-sm');
-}
-
-@media (min-width: 992px) {
-    @include generate-grid('-md');
-}
-
-@media (min-width: 1200px) {
-    @include generate-grid('-lg');
+    
+    .#{$bpKey}\:grid-rows-subgrid {
+      grid-template-rows: subgrid;
+    }
+    
+    .#{$bpKey}\:col-auto {
+      grid-column: auto;
+    }
+    
+    .#{$bpKey}\:col-span-full {
+      grid-column: 1 / -1;
+    }
+    
+    .#{$bpKey}\:grid-cols-none {
+      grid-template-columns: none;
+    }
+    
+    .#{$bpKey}\:grid-cols-subgrid {
+      grid-template-columns: subgrid;
+    }
+    
+    @for $i from 1 to 14 {
+      .#{$bpKey}\:col-start-#{$i} {
+        grid-column-start: $i;
+      }
+    
+      .#{$bpKey}\:col-end-#{$i} {
+        grid-column-end: $i;
+      }
+    
+      .#{$bpKey}\:row-start-#{$i} {
+        grid-row-start: $i;
+      }
+    
+      .#{$bpKey}\:row-end-#{$i} {
+        grid-row-end: $i;
+      }
+    }
+    
+    .#{$bpKey}\:row-end-auto {
+      grid-row-end: auto;
+    }
+    
+    .#{$bpKey}\:row-auto {
+      grid-row: auto;
+    }
+    
+    .#{$bpKey}\:row-span-full {
+      grid-row: 1 / -1;
+    }
+    
+    .#{$bpKey}\:grid-start-auto {
+      grid-column-start: auto;
+    }
+    
+    .#{$bpKey}\:grid-end-auto {
+      grid-column-end: auto;
+    }
+  }
 }
