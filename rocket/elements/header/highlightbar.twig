@@ -1,0 +1,10 @@
+<div class="header-hightlightbar" style="background-color: {{ section.params.highlightbar_background }}; color: {{ section.params.highlightbar_text_color }}">
+    <div class="container">
+        {{ section.params.highlightbar_text }}
+    </div>
+    {% if section.params.highlightbar_link %}
+        <a href="{{ section.params.highlightbar_link }}" class="full-link">
+            <span class="-invisible">link</span>
+        </a>
+    {% endif %}
+</div>

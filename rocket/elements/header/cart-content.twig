@@ -1,0 +1,21 @@
+<div class="header-content-right">
+    {% if section.params.enable_shopping_page %}
+        <h-shopping-page-redirect
+            section="header"
+            header-icon-color="{{ section.params.header_icon_color }}"
+            cart-icon-color="{{ section.params.cart_icon_color }}"
+        ></h-shopping-page-redirect>
+    {% endif %}
+
+    <div class="mini-cart-holder" style="--cart-icon-color: {{ section.params.header_icon_color }};">
+            <mini-cart
+                :cart-type="'{{ pageConfig.data.theme.params.cart_type }}'"
+                :show-cart-savings="{{ pageConfig.data.theme.params.show_cart_savings ? 'true' : 'false' }}"
+                :show-product-cart-savings="{{ pageConfig.data.theme.params.show_product_cart_savings ? 'true' : 'false' }}"
+                :empty-cart-helper-text="'{{ pageConfig.data.theme.params.empty_cart_helper_text }}'"
+                :empty-cart-text-button="'{{ pageConfig.data.theme.params.empty_cart_text_button }}'"
+                :empty-cart-link-button="'{{ pageConfig.data.theme.params.empty_cart_link_button }}'"
+                :highlighted-price="'{{ pageConfig.data.theme.params.highlight_type_payment | default('promotional') }}'"
+            />
+    </div>
+</div>

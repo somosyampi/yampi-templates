@@ -1,0 +1,17 @@
+<div class="header-topbar">
+    <div class="header-topbar--content">
+        {% if section.params.topbar_show_whatsapp or section.params.topbar_show_phone %}
+            <div class="header-topbar_contact flex">
+                <span>Atendimento: </span>
+                {% include 'elements/phones.twig' %}
+            </div>
+        {% endif %}
+
+        {% if section.params.topbar_tracking_url %}
+            <a href="{{ section.params.topbar_tracking_url }}" class="header-topbar_tracking flex -vcenter" rel="nofollow">
+                <i class="icon icon-tracker"></i>
+                Rastreie seu pedido
+            </a>
+        {% endif %}
+    </div>
+</div>

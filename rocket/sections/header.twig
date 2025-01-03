@@ -27,8 +27,17 @@
 {% set cartIconColor = section.params.cart_icon_color %}
 {% set headerIconColor = section.params.header_icon_color ?? section.params.cart_icon_color %}
 
-{% if headerLayout == 'inline' %}
-    {% include "elements/header/header.inline.twig" %}
-{% else %}
-    {% include "elements/header/header.default.twig" %}
-{% endif %}
+{% set showHighlightbar = section.params.highlightbar_enabled and 
+            section.params.highlightbar_text and 
+            (not section.params.highlightbar_only_home or page == 'home') 
+%}
+
+{% set showTopbar = section.params.topbar_enabled and 
+                (
+                    section.params.topbar_show_whatsapp or 
+                    section.params.topbar_show_phone or 
+                    section.params.topbar_tracking_url
+                ) 
+%}
+
+{% include "elements/header.twig" %}
