@@ -3,7 +3,7 @@
     flex-wrap: wrap;
 
     &.flex,
-    & > .flex {       
+    & > .flex {
         margin-left: -16px;
         margin-right: -16px;
 
@@ -31,7 +31,7 @@
             width: 45px !important;
             height: 45px !important;
             box-shadow: initial !important;
-            
+
             &,
             &:hover {
                 background-color: var(--default-background-color) !important;
@@ -39,28 +39,6 @@
 
             &.splide__arrow--prev {
                 margin-right: 16px;
-            }
-        }
-    }
-
-    .owl-theme {
-        .owl-nav {
-            top: -76px;
-            right: 0;
-
-            [class*='owl-'] {
-                width: 45px;
-                height: 45px;
-                box-shadow: initial;
-                
-                &,
-                &:hover {
-                    background-color: var(--default-background-color);
-                }
-
-                &.owl-prev {
-                    margin-right: 16px;
-                }
             }
         }
     }

@@ -1,6 +1,7 @@
 @import '../../global/functions';
 @import './mixins/buttons.scss';
 @import './mixins/breakpoints';
+@import './mixins/grid.scss';
 @import 'icons';
 @import 'header';
 @import 'buttons';
@@ -92,9 +93,11 @@
 .logo {
     flex: 0 1 auto;
     font-size: 0;
-    width: 150px;
+    width: 100%;
+    max-width: 150px;
 
     img {
+        width: 100%;
         max-width: 150px;
         max-height: 150px;
     }
@@ -113,7 +116,6 @@ body {
     overflow-x: hidden;
 
     @media screen and (min-width: 701px) {
-        min-width: 1000px;
         overflow-x: auto;
     }
 
@@ -194,7 +196,6 @@ div > section:not(.main-banner):not(.category-content):not(.main-product-content
 
 .container {
     max-width: var(--container-max-width);
-    min-width: 1000px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 10px;
@@ -435,7 +436,6 @@ div > section:not(.main-banner):not(.category-content):not(.main-product-content
 @media only screen and (max-width: 1220px) {
     .container {
         --container-max-width: 1000px;
-        width: 1000px;
     }
 
     .main-banner .holder-main-banner .splide__arrows {

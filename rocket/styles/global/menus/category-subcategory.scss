@@ -234,7 +234,6 @@
 }
 
 .subcategories-list {
-    
     border-radius: var(--theme-border-radius);
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.05);
     border: 1px solid var(--front-end-front-end-f-5-f-5-f-5, #F5F5F5);
@@ -248,7 +247,6 @@
     font-size: var(--font-14);
     margin: 15px 0 0 0 !important;
     z-index: 3;
-
     &::before {
         content: "";
         display: block;

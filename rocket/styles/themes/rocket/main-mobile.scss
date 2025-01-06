@@ -15,6 +15,7 @@
 @media only screen and (max-width: 700px) {
     body {
         overflow-x: hidden;
+        max-width: 100vw;
 
         &.active-menu {
             max-width: 100vw;
@@ -164,8 +165,8 @@
         line-height: 1.08;
     }
 
-    .header-topbar,
-    .holder-account {
+    .holder-account,
+    .header-topbar {
         display: none;
     }
 
@@ -205,10 +206,6 @@
     }
 
     .section-header {
-        .h-left-container, .h-center-container {
-            padding: 0 16px;
-        }
-
         &.-fixed {
             position: sticky;
             top: 0;
@@ -224,6 +221,7 @@
 
                 .logo img {
                     max-height: 81px;
+                    width: auto;
                 }
 
                 &.-drop-menu {
@@ -273,19 +271,14 @@
                 }
             }
         }
-    }
 
-    .h-center-container {
-        .header-content > .menu-trigger-holder {
-            width: 95px;
-
-            @media screen and (max-width: 700px) {
-                width: 23%;
-            }
+        .holder-search {
+            display: none;
+            transition: all 0.5s;
         }
     }
 
-    .h-inline-container, .h-left-container {
+    .h-inline-container {
         .header-content {
             gap: 0;
             align-items: center;
@@ -312,6 +305,10 @@
 
             .mini-cart-holder {
                 margin: 0;
+            }
+
+            .logo {
+                margin: 0 auto 0 0;
             }
         }
 
@@ -386,7 +383,6 @@
 
             .logo {
                 padding-bottom: 0;
-                margin: 0;
             }
 
             .search {
@@ -404,12 +400,10 @@
         }
 
         .logo {
-            margin-left: 0;
-            margin-right: auto;
             z-index: 1;
 
             img {
-                max-width: 130px;
+                max-width: 100%;
                 max-height: 130px;
             }
         }
@@ -970,8 +964,26 @@
         margin: 0 0 8px 0;
     }
 
-    .rkt-header-shopping-page-redirect {
-        margin: 0 auto;
+    .section-header:has(.h-left-container) {
+        .header-topbar {
+            display: none;
+        }
+
+        .header-row.--left {
+            display: grid;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-content-right {
+            justify-content: end;
+        }
+    }
+
+    .section-header:has(.h-center-container) {
+        .header-topbar {
+            display: none;
+        }
     }
 }
 

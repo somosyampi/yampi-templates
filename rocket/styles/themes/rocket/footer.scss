@@ -5,7 +5,7 @@
 
     &.-full-columns {
         --column-max-width: 220px;
-        --column-contact-max-width: 180px;
+        --column-contact-max-width: 210px;
         --default-flex: 0 1 auto;
         --right-column-justify: space-between;
     }
@@ -62,7 +62,7 @@
             justify-content: space-evenly;
 
             & > * + * {
-                margin-left: 30px;
+                margin-left: min(4%, 30px);
             }
 
             & > div:not(.holder-contact):not(.-social-midia) {
@@ -88,7 +88,7 @@
                 padding-bottom: 80px;
 
                 & > * + * {
-                    margin-left: 80px;
+                    margin-left: clamp(0px, 2%, 80px);
                 }
             }
 
