@@ -2,7 +2,7 @@
 <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-{% include 'scripts/preload.twig' %}
+{% include 'elements/scripts/preload.twig' %}
 {% include 'elements/icons.twig' %}
 
 <link rel="manifest" href="/manifest.json" />
@@ -21,12 +21,12 @@
 
 {{ generate_seo() | raw }}
 
-{% include 'scripts/head.twig' %}
+{% include 'elements/scripts/head.twig' %}
 {% include 'elements/variables.twig' %}
 
 <script type="module" src="{{ '/dist/vendor/windowVue.js' | assets_url }}"></script>
 <script type="module" src="{{ '/dist/vendor/icons.js' | assets_url }}"></script>
 
-{% include 'scripts/components.twig' ignore missing %}
+{% include 'elements/scripts/components.twig' ignore missing %}
 
 <script type="module" src="{{ '/dist/vendor/app.js' | assets_url }}"></script>
