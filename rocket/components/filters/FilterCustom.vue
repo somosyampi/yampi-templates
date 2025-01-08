@@ -1,17 +1,20 @@
 <template>
     <div class="filter">
         <div
-            class="filter filter-generic"
             v-for="filterGroup in payload"
             :key="filterGroup.id"
+            class="filter filter-generic"
         >
-            <div class="-title" v-text="filterGroup.name"></div>
+            <div
+                class="-title"
+                v-text="filterGroup.name"
+            />
 
             <ul>
                 <li
-                    class="filter-option"
                     v-for="filter in filterGroup.values"
                     :key="filter.id"
+                    class="filter-option"
                 >
                     <custom-checkbox
                         :text="filter.name"
@@ -19,7 +22,7 @@
                         :image="filter.image_url"
                         :checked="filter.active"
                         @change="updateFilterStatus(filter, $event)"
-                    ></custom-checkbox>
+                    />
                 </li>
             </ul>
         </div>
@@ -53,8 +56,7 @@ export default {
 
         parseFilterStatuses(filters) {
             filters.forEach(filter => filter.values
-                .forEach(value => this.checkFilterStatus(value, false))
-            );
+                .forEach(value => this.checkFilterStatus(value, false)));
         },
 
         filterRemoved(filter) {
@@ -66,6 +68,8 @@ export default {
 
                     return true;
                 }
+
+                return false;
             });
         },
     },

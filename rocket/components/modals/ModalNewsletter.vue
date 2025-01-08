@@ -3,7 +3,7 @@
         ref="newsletterBaseModal"
         name="newsletter"
     >
-        <i class="icon icon-success"></i>
+        <i class="icon icon-success" />
         <div class="theme-title modal-success-title">
             Sucesso!
         </div>
@@ -12,7 +12,12 @@
             Seu e-mail foi cadastrado.
         </div>
 
-        <button class="btn btn-secundary -success" @click="closeModal">Fechar</button>
+        <button
+            class="btn btn-secundary -success"
+            @click="closeModal"
+        >
+            Fechar
+        </button>
     </modal>
 </template>
 

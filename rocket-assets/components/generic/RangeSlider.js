@@ -38,9 +38,11 @@ const d = {
       default: 17
     }
   },
-  mounted() {
-    this.selectedMin = o.get(this.value, 0, this.min), this.selectedMax = o.get(this.value, 1, this.max);
-  },
+  data: () => ({
+    selectedMin: 0,
+    selectedMax: 0,
+    values: []
+  }),
   computed: {
     formatedMin() {
       return this.currency ? this.$formatMoney(this.selectedMin, this.removePrefix) : this.selectedMin;
@@ -58,11 +60,9 @@ const d = {
       }
     }
   },
-  data: () => ({
-    selectedMin: 0,
-    selectedMax: 0,
-    values: []
-  }),
+  mounted() {
+    this.selectedMin = o.get(this.value, 0, this.min), this.selectedMax = o.get(this.value, 1, this.max);
+  },
   methods: {
     updateValues([t, e]) {
       this.selectedMin = t, this.selectedMax = e;

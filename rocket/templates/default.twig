@@ -12,7 +12,7 @@
       
         {% for section in mainSections %}
             {% if section.visible %}
-                {% include "pages/#{page}/#{section.section_alias}.twig" with section %}
+                {% include getSectionFile(section.section_alias, page) with section %}
             {% endif %}
         {% endfor %}
 

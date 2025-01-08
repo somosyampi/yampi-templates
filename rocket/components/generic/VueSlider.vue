@@ -1,32 +1,32 @@
 <template>
-    <div 
+    <div
         class="vue-slider"
         :style="`height: ${height}px;`"
     >
         <div class="vue-slider__wrapper">
-            <div class="vue-slider__background"></div>
-            <div 
+            <div class="vue-slider__background" />
+            <div
                 class="vue-slider__track"
                 :style="trackStyle"
-            ></div>
+            />
             <input
+                v-model="localMin"
                 type="range"
                 :min="min"
                 :max="max"
                 :step="step"
-                v-model="localMin"
                 @input="updateMin"
                 @change="onSliderChange"
-            />
+            >
             <input
+                v-model="localMax"
                 type="range"
                 :min="min"
                 :max="max"
                 :step="step"
-                v-model="localMax"
                 @input="updateMax"
                 @change="onSliderChange"
-            />
+            >
         </div>
     </div>
 </template>
@@ -52,8 +52,8 @@ export default {
         },
         height: {
             type: Number,
-            default: 5
-        }
+            default: 5,
+        },
     },
 
     data() {
@@ -102,12 +102,12 @@ export default {
         },
 
         emitValues() {
-            this.$emit("input", [this.localMin, this.localMax]);
+            this.$emit('input', [this.localMin, this.localMax]);
         },
 
         onSliderChange() {
             this.$emit('change', [this.localMin, this.localMax]);
-        }
+        },
     },
 };
 </script>
@@ -136,7 +136,7 @@ export default {
 
 .vue-slider {
     margin: 0 -7px;
-    
+
     input[type="range"] {
         position: absolute;
         width: 100%;

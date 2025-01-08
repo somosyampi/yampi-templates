@@ -21,7 +21,7 @@ const c = {
       default: 1
     },
     value: {
-      type: [],
+      type: Array,
       default: () => []
     },
     height: {
@@ -67,17 +67,17 @@ const c = {
     }
   }
 };
-var u = function() {
+var r = function() {
   var e = this, a = e._self._c;
   return a("div", { staticClass: "vue-slider", style: `height: ${e.height}px;` }, [a("div", { staticClass: "vue-slider__wrapper" }, [a("div", { staticClass: "vue-slider__background" }), a("div", { staticClass: "vue-slider__track", style: e.trackStyle }), a("input", { directives: [{ name: "model", rawName: "v-model", value: e.localMin, expression: "localMin" }], attrs: { type: "range", min: e.min, max: e.max, step: e.step }, domProps: { value: e.localMin }, on: { input: e.updateMin, change: e.onSliderChange, __r: function(i) {
     e.localMin = i.target.value;
   } } }), a("input", { directives: [{ name: "model", rawName: "v-model", value: e.localMax, expression: "localMax" }], attrs: { type: "range", min: e.min, max: e.max, step: e.step }, domProps: { value: e.localMax }, on: { input: e.updateMax, change: e.onSliderChange, __r: function(i) {
     e.localMax = i.target.value;
   } } })])]);
-}, r = [], d = /* @__PURE__ */ o(
+}, u = [], d = /* @__PURE__ */ o(
   c,
-  u,
-  r
+  r,
+  u
 );
 const m = d.exports;
 function s(t) {

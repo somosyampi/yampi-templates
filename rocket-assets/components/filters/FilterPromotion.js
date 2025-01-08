@@ -22,7 +22,7 @@ const u = {
 };
 var d = function() {
   var e = this, n = e._self._c;
-  return e.payload.length ? n("div", { staticClass: "filter filter-category" }, [n("div", { staticClass: "-title" }, [e._v(" PromoÃ§Ãµes ")]), n("ul", e._l(e.payload, function(o) {
+  return e.payload.length ? n("div", { staticClass: "filter filter-category" }, [n("div", { staticClass: "-title" }, [e._v(" Promoções ")]), n("ul", e._l(e.payload, function(o) {
     return n("li", { key: o.id, staticClass: "filter-option" }, [n("custom-checkbox", { attrs: { text: o.name, checked: o.active }, on: { change: function(r) {
       return e.updateFilterStatus(o, r);
     } } })], 1);

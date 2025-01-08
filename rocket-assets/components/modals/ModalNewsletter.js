@@ -18,7 +18,7 @@ const i = {
 };
 var c = function() {
   var e = this, s = e._self._c;
-  return s("modal", { ref: "newsletterBaseModal", attrs: { name: "newsletter" } }, [s("i", { staticClass: "icon icon-success" }), s("div", { staticClass: "theme-title modal-success-title" }, [e._v(" Sucesso! ")]), s("div", { staticClass: "modal-success-subtitle" }, [e._v(" Seu e-mail foi cadastrado. ")]), s("button", { staticClass: "btn btn-secundary -success", on: { click: e.closeModal } }, [e._v("Fechar")])]);
+  return s("modal", { ref: "newsletterBaseModal", attrs: { name: "newsletter" } }, [s("i", { staticClass: "icon icon-success" }), s("div", { staticClass: "theme-title modal-success-title" }, [e._v(" Sucesso! ")]), s("div", { staticClass: "modal-success-subtitle" }, [e._v(" Seu e-mail foi cadastrado. ")]), s("button", { staticClass: "btn btn-secundary -success", on: { click: e.closeModal } }, [e._v(" Fechar ")])]);
 }, d = [], r = /* @__PURE__ */ a(
   i,
   c,

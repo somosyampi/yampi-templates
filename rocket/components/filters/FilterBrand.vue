@@ -1,18 +1,20 @@
 <template>
     <div class="filter filter-brand">
-        <div class="-title">Marca</div>
+        <div class="-title">
+            Marca
+        </div>
 
         <ul>
             <li
-                class="filter-option"
                 v-for="brand in payload"
                 :key="brand.id"
+                class="filter-option"
             >
                 <custom-checkbox
                     :text="brand.name"
                     :checked="brand.active"
                     @change="updateFilterStatus(brand, $event)"
-                ></custom-checkbox>
+                />
             </li>
         </ul>
     </div>

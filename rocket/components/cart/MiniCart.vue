@@ -54,7 +54,7 @@
 
 <script>
 import { mapGetters, mapMutations } from '~/vuex';
-import BaseCart from '@/components/BaseCart.vue';
+import BaseCart from '@/components/cart/BaseCart.vue';
 
 export default {
     name: 'MiniCart',

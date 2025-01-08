@@ -1,6 +1,11 @@
 <template>
-    <div class="filter filter-category" v-if="payload.length">
-        <div class="-title">Categorias</div>
+    <div
+        v-if="payload.length"
+        class="filter filter-category"
+    >
+        <div class="-title">
+            Categorias
+        </div>
 
         <ul :class="{ '-category': !showCheckbox }">
             <li
@@ -13,14 +18,14 @@
                     :text="category.name"
                     :checked="category.active"
                     @change="updateFilterStatus(category, $event)"
-                ></custom-checkbox>
+                />
 
                 <a
                     v-else
                     :class="{ active: category.name === activeCategory}"
                     :href="category.url_path"
                     v-text="category.name"
-                ></a>
+                />
             </li>
         </ul>
     </div>
@@ -42,8 +47,8 @@ export default {
 
         activeCategory: {
             type: String,
-            default: ''
-        }
+            default: '',
+        },
     },
 
     data: () => ({

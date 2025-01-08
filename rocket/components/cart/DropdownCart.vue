@@ -168,7 +168,7 @@
 </template>
 
 <script>
-import BaseCart from '@/components/BaseCart.vue';
+import BaseCart from '@/components/cart/BaseCart.vue';
 
 export default {
     name: 'DropdownCart',

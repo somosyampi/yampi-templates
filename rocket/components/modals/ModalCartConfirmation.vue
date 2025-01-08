@@ -95,8 +95,8 @@ export default {
     data() {
         return {
             cartConfirmBaseModalRef: null,
-        }
-    },  
+        };
+    },
 
     mounted() {
         eventBus.$on('addedToCart', this.showModal);

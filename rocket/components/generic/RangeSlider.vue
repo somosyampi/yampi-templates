@@ -1,6 +1,7 @@
 <template>
     <div class="holder-price-slider">
         <vue-slider
+            v-model="values"
             :min="min"
             :max="max"
             :lazy="true"
@@ -8,15 +9,20 @@
             :height="height"
             :dot-size="dotSize"
             tooltip="none"
-            v-model="values"
             @input="updateValues"
             @change="change"
-        ></vue-slider>
+        />
 
         <div class="step-values">
-            <span class="selected-min" v-text="formatedMin"></span>
+            <span
+                class="selected-min"
+                v-text="formatedMin"
+            />
             <span class="divisor"> - </span>
-            <span class="selected-max" v-text="formatedMax"></span>
+            <span
+                class="selected-max"
+                v-text="formatedMax"
+            />
         </div>
     </div>
 </template>
@@ -64,10 +70,11 @@ export default {
         },
     },
 
-    mounted() {
-        this.selectedMin = _.get(this.value, 0, this.min);
-        this.selectedMax = _.get(this.value, 1, this.max);
-    },
+    data: () => ({
+        selectedMin: 0,
+        selectedMax: 0,
+        values: [],
+    }),
 
     computed: {
         formatedMin() {
@@ -94,11 +101,10 @@ export default {
         },
     },
 
-    data: () => ({
-        selectedMin: 0,
-        selectedMax: 0,
-        values: [],
-    }),
+    mounted() {
+        this.selectedMin = _.get(this.value, 0, this.min);
+        this.selectedMax = _.get(this.value, 1, this.max);
+    },
 
     methods: {
         updateValues([min, max]) {
@@ -107,7 +113,7 @@ export default {
         },
 
         change(values) {
-            this.updateValues(values)
+            this.updateValues(values);
             this.$emit('input', values);
         },
     },

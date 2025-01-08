@@ -7,6 +7,11 @@
 
 <link rel="manifest" href="/manifest.json" />
 
+<script defer src="{{ '/js/manifest.js' | vendor_url}}"></script>
+<script defer src="{{ '/js/vendor.js' | vendor_url}}"></script>
+<script defer src="{{ '/js/components.js' | vendor_url}}"></script>
+<script defer src="{{ '/js/app.js' | vendor_url}}"></script>
+
 <!-- robots -->
 <meta name="robots" content="{{ environment == 'production' ? 'index,follow' : 'nofollow' }}" />
 
@@ -19,9 +24,10 @@
 {% include 'scripts/head.twig' %}
 {% include 'elements/variables.twig' %}
 
-<script type="module" src="{{ '/dist/vendor/windowVue.js' | assets_url }}"></script>
-<script type="module" src="{{ '/dist/vendor/icons.js' | assets_url }}"></script>
+{# OPEN STORE CODE #}
+
+{# <script type="module" src="/dist/vendor/windowVue.js"></script>
 
 {% include 'scripts/components.twig' ignore missing %}
 
-<script type="module" src="{{ '/dist/vendor/app.js' | assets_url }}"></script>
+<script type="module" src="/dist/vendor/app.js"></script> #}
