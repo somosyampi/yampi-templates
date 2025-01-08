@@ -1,4 +1,4 @@
-@use 'tokens/tokens';
+@use "tokens/tokens";
 @use "sass:map";
 
 body:not(.home) {
@@ -35,6 +35,8 @@ body:not(.home) {
     line-height: 1.68;
     color: var(--black-dark);
     font-size: var(--font-12);
+    display: flex;
+    justify-content: center;
 
     i {
         margin-right: 7px;
@@ -69,21 +71,20 @@ body:not(.home) {
     }
 }
 
+.header-topbar--content {
+    display: flex;
+    justify-content: space-between;
+    width: min(100%, 1200px);
+}
+
 .section-header:has(.h-left-container) {
     .logo {
-        @extend .col-start-2, .col-span-4;
         align-self: center;
     }
 
     .header-content-right {
-        @extend .col-start-10, .col-end-13;
         align-self: center;
-
         justify-content: end;
-    }
-
-    .mobile-categories {
-        @extend .col-start-1;
     }
 
     .header-content {
@@ -92,18 +93,10 @@ body:not(.home) {
         flex-direction: column;
     }
 
-    .header-row {
-        padding: 0 16px 0;
-    }
-    
     .header-row.--left {
         display: flex;
         justify-content: center;
         width: min(100%, 1200px);
-    }
-
-    .header-row.--left.categories {
-        width: 100%;
     }
 
     .header-hightlightbar {
@@ -111,24 +104,11 @@ body:not(.home) {
         justify-content: center;
     }
 
-    .header-topbar {
-        display: flex;
-        justify-content: center;
-    }
-
-    .header-topbar--content {
-        display: flex;
-        justify-content: space-between;
-        width: min(100%, 1200px);
-        padding: 0 16px 0 16px;
-    }
-
     .header-topbar_tracking {
         justify-content: end;
     }
 
     .holder-search {
-        @extend .col-start-1, .col-end-13;
         align-self: center;
 
         @media (min-width: map.get(tokens.$sizes-min, "md")) {
@@ -140,6 +120,12 @@ body:not(.home) {
     .categories-menu {
         width: min(100%, 1200px);
         padding: 0 16px 0;
+    }
+}
+@media screen and (min-width: 701px) {
+    .h-center-container,
+    .h-left-container {
+        padding-bottom: 14px;
     }
 }
 
@@ -158,7 +144,7 @@ body:not(.home) {
     .header-row {
         padding: 0 16px 0;
     }
-    
+
     .header-row.--center:not(.categories) {
         @extend .grid, .grid-cols-12;
         justify-content: center;
@@ -171,34 +157,24 @@ body:not(.home) {
         width: 100%;
     }
 
-    .header-topbar {
-        display: flex;
-        justify-content: center;
-    }
-
-    .header-topbar--content {
-        display: flex;
-        justify-content: space-between;
-        width: min(100%, 1200px);
-        padding: 0 16px 0 16px;
-    }
-
     .header-topbar_tracking {
         justify-content: end;
     }
 
     .logo {
-        @extend .col-start-5, .col-end-9,
-                .md\:col-start-6, .md\:col-end-8;
+        @extend .col-start-5, .col-end-9, .md\:col-start-6, .md\:col-end-8;
 
         display: flex;
         justify-content: center;
     }
 
     .holder-search {
-        @extend .col-start-1, .col-end-13,
-                .md\:col-start-8, .md\:col-end-11,
-                .lg\:col-start-9, .lg\:col-end-12;
+        @extend .col-start-1,
+            .col-end-13,
+            .md\:col-start-8,
+            .md\:col-end-11,
+            .lg\:col-start-9,
+            .lg\:col-end-12;
 
         justify-self: end;
 
@@ -208,8 +184,7 @@ body:not(.home) {
     }
 
     .header-content-right {
-        @extend .col-start-10, .col-end-13,
-                .md\:col-start-12, .md\:col-end-13;
+        @extend .col-start-10, .col-end-13, .md\:col-start-12, .md\:col-end-13;
         justify-content: end;
     }
 
@@ -226,6 +201,32 @@ body:not(.home) {
 .header-row.categories {
     color: var(--menu-text-color);
     background-color: var(--menu-bg-color);
+    margin-top: 9px;
+}
+
+.header-row.--inline {
+    display: flex;
+    gap: 0 16px;
+    justify-content: space-between;
+    align-items: center;
+
+    .categories-menu {
+        display: flex;
+        align-items: center;
+
+        .categories-menu {
+            gap: 0 32px;
+
+            > li {
+                padding: 9px 0;
+            }
+        }
+
+        a,
+        span.padding {
+            padding: 0px;
+        }
+    }
 }
 
 .header-row.--center {
@@ -250,38 +251,12 @@ body:not(.home) {
         display: flex;
     }
 
-    &.inline-header {
-        padding: 25px 0 0;
-        gap: 0 16px;
-
-        .categories {
-            display: flex;
-            align-items: center;
-            margin: 0 10px 0 26px;
-
-            .categories-menu {
-                gap: 0 32px;
-
-                > li {
-                    padding: 9px 0;
-                }
-            }
-
-            a, span.padding {
-                padding: 0px;
-            }
-        }
-    }
-
     .mini-cart-holder {
         margin: 0;
         flex: 0 1 auto;
     }
 
     .categories {
-        margin-top: 9px;
-        flex: 1;
-
         svg {
             margin-right: 10px;
         }
@@ -303,15 +278,15 @@ body:not(.home) {
             flex-wrap: wrap;
             flex-direction: row;
             gap: 0 32px;
+            flex: 1;
             --category-spacing: 16px;
-
             margin-top: -4px;
             font-size: 0;
 
             li {
                 font-size: var(--fonts-texts-size);
                 list-style-type: none;
-                margin: auto 0;
+                margin: 9px 0;
 
                 .promotions-nav-text {
                     cursor: pointer;
@@ -373,14 +348,21 @@ body:not(.home) {
 }
 
 .h-inline-container {
-    padding: 0 0 25px 0;
+    --container-padding: 0px;
+    @extend .container;
+    padding-left: var(--container-padding) !important;
+    padding-right: var(--container-padding) !important;
+    padding-bottom: 25px;
+
+    .categories {
+        flex: 1;
+    }
 }
 
 .categories-list {
     display: flex;
     align-items: center;
 }
-
 
 @media screen and (max-width: 700px) {
     .categories-list {
@@ -398,7 +380,7 @@ body:not(.home) {
         background-color: var(--default-background-color);
         background-repeat: no-repeat;
         background-position: 16px center;
-        background-image: url(image('themes/rocket/icons/arrow-left-grey.svg'));
+        background-image: url(image("themes/rocket/icons/arrow-left-grey.svg"));
     }
 
     .selected-category-name {
@@ -428,7 +410,7 @@ body:not(.home) {
         width: 200px;
         line-height: 20px;
         padding: 8px 0;
-        background-color: #FFFFFF;
+        background-color: #ffffff;
     }
 
     .rocket-button.main-link {
@@ -439,7 +421,7 @@ body:not(.home) {
         padding: 0;
         border: none;
         background-color: transparent;
-        background-image: url(image('themes/rocket/icons/arrow-right.svg'));
+        background-image: url(image("themes/rocket/icons/arrow-right.svg"));
         background-repeat: no-repeat;
         background-position: 100% center;
         font-size: var(--font-14);

@@ -1,4 +1,4 @@
-@import '../../global/functions';
+@import "../../global/functions";
 
 [class^="main_category_content"] {
     @media only screen and (max-width: 700px) {
@@ -77,10 +77,12 @@
 
         .over-background {
             &:after {
-                content: '';
+                content: "";
                 width: 16px;
                 height: 16px;
-                background-image: url(image('themes/rocket/icons/x-close-white.svg'));
+                background-image: url(image(
+                    "themes/rocket/icons/x-close-white.svg"
+                ));
                 background-repeat: no-repeat;
                 position: absolute;
                 top: 50%;
@@ -182,10 +184,12 @@
 
         .over-background {
             &:after {
-                content: '';
+                content: "";
                 width: 16px;
                 height: 16px;
-                background-image: url(image('themes/rocket/icons/x-close-white.svg'));
+                background-image: url(image(
+                    "themes/rocket/icons/x-close-white.svg"
+                ));
                 background-repeat: no-repeat;
                 position: absolute;
                 top: 50%;
@@ -240,7 +244,7 @@
         .h-anchor-text {
             padding: 0;
             line-height: 40px;
-            background-image: url(image('themes/rocket/icons/arrow-right.svg'));
+            background-image: url(image("themes/rocket/icons/arrow-right.svg"));
             background-repeat: no-repeat;
             background-position: 100% center;
         }
@@ -383,6 +387,7 @@
 
             .logo {
                 padding-bottom: 0;
+                margin-right: auto;
             }
 
             .search {
@@ -506,7 +511,7 @@
 
             .phone-link,
             .phone-link_whatsapp {
-                padding: 12px 0;
+                padding: 12px 0 !important;
                 font-size: var(--font-12);
                 line-height: 18px;
             }
@@ -862,7 +867,8 @@
             }
         }
 
-        &#modal-review, &#modal-question {
+        &#modal-review,
+        &#modal-question {
             & > *:not(.modal-content) {
                 padding-right: 20px;
             }
@@ -964,15 +970,37 @@
         margin: 0 0 8px 0;
     }
 
+    .h-inline-container {
+        --container-padding: 16px;
+
+        .header-content {
+            padding: 25px 0 0;
+        }
+
+        .categories {
+            margin-top: 0;
+        }
+    }
+
+    .header-row.--inline {
+        flex-wrap: wrap;
+        gap: 0;
+
+        .logo {
+            margin: 0 auto 0 0;
+        }
+    }
+
     .section-header:has(.h-left-container) {
         .header-topbar {
             display: none;
         }
 
         .header-row.--left {
-            display: grid;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            padding: 0 16px;
         }
 
         .header-content-right {
