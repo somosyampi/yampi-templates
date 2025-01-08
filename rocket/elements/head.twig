@@ -19,9 +19,9 @@
 {% include 'scripts/head.twig' %}
 {% include 'elements/variables.twig' %}
 
-<script type="module" src="{{ '/dist/vendor/windowVue.js' | assets_url }}"></script>
-<script type="module" src="{{ '/dist/vendor/icons.js' | assets_url }}"></script>
+<script type="module" src="{{ '/dist/vendor/windowVue.js' | vendor_url }}"></script>
+<script type="module" src="{{ '/dist/vendor/icons.js' | vendor_url }}"></script>
 
 {% include 'scripts/components.twig' ignore missing %}
 
-<script type="module" src="{{ '/dist/vendor/app.js' | assets_url }}"></script>
+<script type="module" src="{{ '/dist/vendor/app.js' | vendor_url }}"></script>
