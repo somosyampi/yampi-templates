@@ -1,0 +1,46 @@
+@import "../global/functions.scss";
+
+.section-pages {
+    .holder-content {
+        display: flex;
+        margin-top: 7px;
+
+        .pages {
+            flex: 1 0 200px;
+            max-width: 360px;
+            padding-left: 9%;
+
+            .-title {
+                font-weight: var(--font-bold);
+                font-size: var(--font-16);
+                margin-top: 5px;
+                margin-bottom: 11px;
+            }
+
+            .is-active {
+                a {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        .content {
+            flex: 1;
+            margin-left: 32px;
+            max-width: 700px;
+            line-height: 28px;
+
+            .theme-title {
+                color: var(--black-dark);
+                margin-bottom: 24px;
+            }
+
+            h1 {
+                font-size: var(--font-30);
+                font-family: var(--fonts-titles-family);
+                font-weight: var(--fonts-titles-weight);
+                text-transform: var(--fonts-titles-uppercase);
+            }
+        }
+    }
+}

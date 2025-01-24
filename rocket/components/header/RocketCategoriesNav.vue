@@ -6,8 +6,8 @@
 
 <script>
 import mobileMixin from '@/mixins/mobile';
-import RocketMobileCategoriesNav from '@/components/RocketMobileCategoriesNav.vue';
-import RocketDesktopCategoriesNav from '@/components/RocketDesktopCategoriesNav.vue';
+import RocketMobileCategoriesNav from '@/components/header/RocketMobileCategoriesNav.vue';
+import RocketDesktopCategoriesNav from '@/components/header/RocketDesktopCategoriesNav.vue';
 
 export default {
     name: 'RocketCategoriesNav',
