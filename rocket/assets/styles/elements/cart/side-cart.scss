@@ -202,11 +202,11 @@
     }
 
     @media screen and (max-width: 450px) {
+        padding: 32.5px 20px 0;
+
         hr {
             margin: 0 -20px 20px !important;
         }
-
-        padding: 32.5px 20px 0;
     }
 
     &.--overflows {
