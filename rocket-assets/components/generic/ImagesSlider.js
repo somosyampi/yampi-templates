@@ -1,4 +1,4 @@
-(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".touchable[data-v-265dd04a]{height:100%;width:100%}")),document.head.appendChild(e)}}catch(t){console.error("vite-plugin-css-injected-by-js",t)}})();
+(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".touchable[data-v-8d56549a]{height:100%;width:100%}")),document.head.appendChild(e)}}catch(t){console.error("vite-plugin-css-injected-by-js",t)}})();
 import r from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/touchable.js";
 function d(t, e, i, o, v, l, _, g) {
   var n = typeof t == "function" ? t.options : t;
@@ -60,7 +60,7 @@ var u = function() {
   f,
   !1,
   null,
-  "265dd04a"
+  "8d56549a"
 );
 const h = m.exports;
 function a(t) {

@@ -16,7 +16,7 @@ const d = {
 };
 var u = function() {
   var e = this, n = e._self._c;
-  return n("div", { staticClass: "filter filter-brand" }, [n("div", { staticClass: "-title" }, [e._v("Marca")]), n("ul", e._l(e.payload, function(i) {
+  return n("div", { staticClass: "filter filter-brand" }, [n("div", { staticClass: "-title" }, [e._v(" Marca ")]), n("ul", e._l(e.payload, function(i) {
     return n("li", { key: i.id, staticClass: "filter-option" }, [n("custom-checkbox", { attrs: { text: i.name, checked: i.active }, on: { change: function(r) {
       return e.updateFilterStatus(i, r);
     } } })], 1);

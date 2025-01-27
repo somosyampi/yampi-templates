@@ -1,0 +1,254 @@
+.icon {
+    display: inline-block;
+
+    &,
+    &.-block {
+        background-size: 100%;
+        background-repeat: no-repeat;
+    }
+
+    &.-block {
+        display: block;
+    }
+
+    &-categories {
+        background-image: url(image("themes/rocket/icons/categories.svg"));
+        width: 15px;
+        height: 11px;
+    }
+
+    &-search {
+        background-image: url(image("themes/rocket/icons/search.svg"));
+        width: 16px;
+        height: 18px;
+    }
+
+    &-empty-cart {
+        background-image: url(image("themes/rocket/icons/empty-cart.svg"));
+        width: 56px;
+        height: 44px;
+    }
+
+    &-loader {
+        display: none;
+        background-image: url(image("themes/rocket/loader.svg"));
+        background-position: center;
+        width: 36px;
+        height: 8px;
+    }
+
+    &-loader-dark {
+        background-image: url(image("themes/rocket/loader-dark.svg"));
+        background-position: center;
+        width: 36px;
+        height: 8px;
+    }
+
+    &-security {
+        background-image: url(image("global/icons/security-label.svg"));
+        width: 165px;
+        height: 46px;
+    }
+
+    &-stopwatch {
+        background-image: url(image("themes/rocket/icons/stopwatch.svg"));
+        width: 17px;
+        height: 17px;
+    }
+
+    &-phone {
+        background-image: url(image("themes/rocket/icons/phone.svg"));
+        width: 17px;
+        height: 17px;
+    }
+
+    &-whatsapp {
+        background-image: url(image("themes/rocket/icons/whatsapp.svg"));
+        width: 19px;
+        height: 19px;
+    }
+
+    &-scroll-top {
+        background-image: url(image("themes/rocket/icons/scroll-top.svg"));
+        width: 12px;
+        height: 15px;
+    }
+
+    &-video-play {
+        background-image: url(image("themes/rocket/icons/video-play.svg"));
+        width: 30px;
+        height: 31px;
+    }
+
+    &-yt-play {
+        background-image: url(image("themes/rocket/icons/yt-play.svg"));
+        width: 30px;
+        height: 31px;
+    }
+
+    &-more {
+        background-image: url(image("themes/rocket/icons/plus.svg"));
+        width: 14px;
+        height: 14px;
+    }
+
+    &-minus {
+        background-image: url(image("themes/rocket/icons/minus.svg"));
+        width: 14px;
+        height: 2px;
+    }
+
+    &-select-arrow {
+        width: 11px;
+        height: 7px;
+        fill: #222;
+
+        &.-error {
+            fill: var(--error-color);
+        }
+
+        &.-left {
+            transform: rotate(90deg);
+        }
+
+        &.-up {
+            transform: rotate(-180deg);
+        }
+    }
+
+    &-big-plus {
+        background-image: url(image("themes/rocket/icons/big-plus.svg"));
+        width: 35px;
+        height: 35px;
+    }
+
+    &-big-equal {
+        background-image: url(image("themes/rocket/icons/big-equal.svg"));
+        width: 35px;
+        height: 21px;
+    }
+
+    &-star-gold {
+        background-image: url(image("themes/rocket/icons/filled-star.svg"));
+        width: 14px;
+        height: 13px;
+    }
+
+    &-star-grey {
+        background-image: url(image("themes/rocket/icons/empty-star.svg"));
+        width: 14px;
+        height: 13px;
+    }
+
+    &-close-modal {
+        background-image: url(image("themes/rocket/icons/close-modal.svg"));
+        width: 40px;
+        height: 41px;
+    }
+
+    &-close-modal-white {
+        background-image: url(image("themes/rocket/icons/x-close-white.svg"));
+        width: 10px;
+        height: 10px;
+    }
+
+    &-pinch-zoom {
+        background-image: url(image("themes/rocket/icons/pinch-zoom.svg"));
+        width: 21px;
+        height: 21px;
+    }
+
+    &-success {
+        background-image: url(image("themes/rocket/icons/modal-success.svg"));
+        width: 77px;
+        height: 77px;
+    }
+
+    &-security-lock {
+        background-image: url(image("themes/rocket/icons/security-lock.svg"));
+        margin-right: 3px;
+        margin-bottom: -1px;
+        width: 11px;
+        height: 14px;
+    }
+
+    &-404 {
+        background-image: url(image("themes/rocket/icons/404.svg"));
+        width: 55px;
+        height: 63px;
+    }
+
+    &-tracker {
+        background-image: url(image("themes/rocket/icons/tracker.svg"));
+        width: 11px;
+        height: 11px;
+    }
+
+    &-checklist {
+        background-image: url(image("themes/rocket/icons/checklist.svg"));
+        width: 16px;
+        height: 17px;
+    }
+
+    &-order {
+        background-image: url(image("themes/rocket/icons/order.svg"));
+        width: 14px;
+        height: 10px;
+    }
+
+    &-filters {
+        background-image: url(image("themes/rocket/icons/filters.svg"));
+        width: 15px;
+        height: 12px;
+    }
+
+    &-mosaic {
+        background-image: url(image("themes/rocket/icons/mosaic.svg"));
+        width: 11px;
+        height: 11px;
+    }
+
+    &-list {
+        background-image: url(image("themes/rocket/icons/list.svg"));
+        width: 10px;
+        height: 8px;
+    }
+
+    &-general-loader {
+        width: 92px;
+        height: 92px;
+        border-radius: 50%;
+        border: 4px solid transparent;
+        border-top-color: #fff;
+        border-left-color: #fff;
+        animation: load 1s linear 0s infinite;
+    }
+
+    // Correct icons (32x32)
+    &-account {
+        background-image: url(image("themes/rocket/icons/account.svg"));
+        width: 32px;
+        height: 32px;
+    }
+
+    &-login {
+        background-image: url(image("themes/rocket/icons/login.svg"));
+        width: 32px;
+        height: 32px;
+    }
+
+    &-sign-up {
+        background-image: url(image("themes/rocket/icons/sign-up.svg"));
+        width: 32px;
+        height: 32px;
+    }
+}
+
+@keyframes load {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}

@@ -26,7 +26,7 @@ const u = {
 };
 var d = function() {
   var e = this, t = e._self._c;
-  return e.payload.length ? t("div", { staticClass: "filter filter-category" }, [t("div", { staticClass: "-title" }, [e._v("Categorias")]), t("ul", { class: { "-category": !e.showCheckbox } }, e._l(e.payload, function(n) {
+  return e.payload.length ? t("div", { staticClass: "filter filter-category" }, [t("div", { staticClass: "-title" }, [e._v(" Categorias ")]), t("ul", { class: { "-category": !e.showCheckbox } }, e._l(e.payload, function(n) {
     return t("li", { key: n.id, class: { "filter-option": e.showCheckbox } }, [e.showCheckbox ? t("custom-checkbox", { attrs: { text: n.name, checked: n.active }, on: { change: function(s) {
       return e.updateFilterStatus(n, s);
     } } }) : t("a", { class: { active: n.name === e.activeCategory }, attrs: { href: n.url_path }, domProps: { textContent: e._s(n.name) } })], 1);
