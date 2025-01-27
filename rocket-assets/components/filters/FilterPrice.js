@@ -1,6 +1,6 @@
-import { mapGetters as m, mapActions as l } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
-import u from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-sandbox/rocket-assets/components/filters/BaseFilter.js";
-function d(t, e, a, i, o, x, P, _) {
+import { mapGetters as o, mapActions as u } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
+import l from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-sandbox/rocket-assets/components/filters/BaseFilter.js";
+function d(t, e, a, i, m, x, P, _) {
   var r = typeof t == "function" ? t.options : t;
   return e && (r.render = e, r.staticRenderFns = a, r._compiled = !0), {
     exports: t,
@@ -9,14 +9,14 @@ function d(t, e, a, i, o, x, P, _) {
 }
 const c = {
   name: "FilterPrice",
-  extends: u,
+  extends: l,
   data: () => ({
     mainQueryString: "price",
     route: "prices",
     value: []
   }),
   computed: {
-    ...m("preview", [
+    ...o("preview", [
       "isIframe"
     ])
   },
@@ -24,22 +24,22 @@ const c = {
     this.value.push(this.queryParams.min || 0), this.queryParams.max && this.value.push(this.queryParams.max);
   },
   methods: {
-    ...l("queryParams", [
+    ...u("queryParams", [
       "removeQueryParams"
     ]),
     updatePriceStatus([t, e]) {
       if (this.isIframe)
         return;
-      if (t === 0 && this.queryParams.min) {
+      if (t === 0 && Number(this.queryParams.min)) {
         this.removeQueryParams("min"), this.parseActiveFilter();
         return;
       }
-      if (e === this.payload.max && this.queryParams.max) {
+      if (e === this.payload.max && Number(this.queryParams.max)) {
         this.removeQueryParams("max"), this.parseActiveFilter();
         return;
       }
       const a = {};
-      t !== this.queryParams.min && t > 0 && (a.min = t), e !== this.queryParams.max && e < this.payload.max && (a.max = e), this.setQueryParams({ ...a, page: 1 }), this.parseActiveFilter();
+      t !== Number(this.queryParams.min) && t > 0 && (a.min = t), e !== Number(this.queryParams.max) && e < this.payload.max && (a.max = e), this.setQueryParams({ ...a, page: 1 }), this.parseActiveFilter();
     },
     parsePayload(t) {
       const e = Number(t.max);
@@ -54,13 +54,13 @@ const c = {
         return;
       const a = {};
       t !== 0 && (a.min = t), e !== this.payload.max && (a.max = e);
-      const i = this.$formatMoney(Number(t)), o = this.$formatMoney(Number(e));
+      const i = this.$formatMoney(Number(t)), m = this.$formatMoney(Number(e));
       this.addActiveFilter({
         id: this.$randomString(),
         key: "price",
         query: a,
         alias: "price",
-        name: `${i} - ${o}`
+        name: `${i} - ${m}`
       });
     },
     parseActiveFilter() {

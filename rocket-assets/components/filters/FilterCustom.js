@@ -25,15 +25,12 @@ const c = {
       }));
     },
     parseFilterStatuses(n) {
-      n.forEach(
-        (e) => e.values.forEach((t) => this.checkFilterStatus(t, !1))
-      );
+      n.forEach((e) => e.values.forEach((t) => this.checkFilterStatus(t, !1)));
     },
     filterRemoved(n) {
       this.payload.some((e) => {
         const t = e.values.find((i) => i.id === n.id);
-        if (t)
-          return t.active = !1, !0;
+        return t ? (t.active = !1, !0) : !1;
       });
     }
   }
