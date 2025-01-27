@@ -262,12 +262,11 @@ body:not(.home) {
         }
 
         .category-dropdown-holder {
-            cursor: default;
-
             .padding {
                 padding-top: 12px;
             }
 
+            cursor: default;
             > span {
                 font-weight: var(--font-bold);
             }

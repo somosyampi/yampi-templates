@@ -3,6 +3,10 @@
 }
 
 .floating-button-container {
+    @include lg {
+        display: none;
+    }
+
     display: flex;
     line-height: 15px;
     justify-content: space-between;
