@@ -1,4 +1,8 @@
 .video {
+    text-align: center;
+    background-color: var(--default-background-color);
+    padding: 60px 0 130px;
+    
     .embed-container {
         position: relative;
         padding-bottom: 56.25%;
@@ -16,10 +20,6 @@
         width: 100%;
         height: 100%;
     }
-
-    text-align: center;
-    background-color: var(--default-background-color);
-    padding: 60px 0 130px;
 
     .theme-title:empty {
         height: 37px;
