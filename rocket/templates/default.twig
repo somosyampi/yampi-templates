@@ -12,7 +12,7 @@
       
         {% for section in mainSections %}
             {% if section.visible %}
-                {% include getSectionFile(section.section_alias, page) with section %}
+                {% include get_section_file(section.section_alias, page) with section %}
             {% endif %}
         {% endfor %}
 
