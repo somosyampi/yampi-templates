@@ -1,16 +1,20 @@
-import a from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-import { mapGetters as l, mapActions as h } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
+import s from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
+import { mapGetters as c, mapActions as h } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
 import d from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/tracking/api.js";
-function m(t, e, i, n, r, o, C, _) {
-  var c = typeof t == "function" ? t.options : t;
+import m from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/cashback.js";
+function p(t, e, i, a, n, o, b, _) {
+  var l = typeof t == "function" ? t.options : t;
   return {
     exports: t,
-    options: c
+    options: l
   };
 }
-const p = {
+const f = {
   name: "BaseCart",
-  mixins: [d],
+  mixins: [
+    d,
+    m
+  ],
   props: {
     showCartSavings: {
       type: Boolean,
@@ -19,6 +23,10 @@ const p = {
     showProductCartSavings: {
       type: Boolean,
       default: !0
+    },
+    cashbacks: {
+      type: Array,
+      default: () => []
     }
   },
   data() {
@@ -31,10 +39,10 @@ const p = {
     };
   },
   computed: {
-    ...l("cart", ["cart"]),
-    ...l("preview", ["isIframe"]),
+    ...c("cart", ["cart"]),
+    ...c("preview", ["isIframe"]),
     items() {
-      return a.get(this.cart, "items", []);
+      return s.get(this.cart, "items", []);
     },
     buttonText() {
       return window.merchant.checkout.skip_cart ? "Finalizar compra" : "Ver carrinho";
@@ -43,19 +51,19 @@ const p = {
       return this.$formatMoney(this.cart.prices.total - this.cart.prices.shipment);
     },
     cartQuantity() {
-      return a.sumBy(this.items, "quantity");
+      return s.sumBy(this.items, "quantity");
     },
     anyLoading() {
-      return a.some(this.loading);
+      return s.some(this.loading);
     },
     redirectUrl() {
       return this.$checkoutUrl(
-        a.get(this.$store.getters, "merchant/merchant.checkout.redirect_to"),
+        s.get(this.$store.getters, "merchant/merchant.checkout.redirect_to"),
         !0
       );
     },
     buyTogetherItems() {
-      return a.groupBy(
+      return s.groupBy(
         this.items.filter((t) => t.kit_id),
         (t) => t.kit_id
       );
@@ -64,12 +72,21 @@ const p = {
       return this.items.reduce((t, e) => e.customizations.length ? e.customizations.filter(
         (i) => i.selected_value !== null
       ).reduce(
-        (i, n) => parseFloat(n.price) + i,
+        (i, a) => parseFloat(a.price) + i,
         t
       ) : t, 0);
     },
+    sortedByFreebies() {
+      return s.cloneDeep(this.items).sort((e, i) => i.is_freebie - e.is_freebie);
+    },
+    totalFreebieValue() {
+      return this.items.reduce((t, e) => {
+        const i = Number(e.price_sale);
+        return e.is_freebie && !Number.isNaN(i) ? t + i : t;
+      }, 0);
+    },
     totalCartValue() {
-      return parseFloat(this.cart.prices.items_amount) + this.totalValueCustomizations;
+      return this.cart.prices ? parseFloat(this.cart.prices.items_amount) + this.totalValueCustomizations - this.totalFreebieValue : 0;
     },
     totalCartSavings() {
       const t = parseFloat(this.cart.prices.subtotal), e = parseFloat(this.cart.prices.discount);
@@ -83,19 +100,26 @@ const p = {
       for (const e in t)
         if (t[e].alias === this.highlightedPrice)
           return {
-            value: parseFloat(a.get(t[e], "prices.total")),
-            percentage: parseFloat(a.get(t[e], "percent_discount")),
+            value: parseFloat(_get(t[e], "prices.total")),
+            percentage: parseFloat(_get(t[e], "percent_discount")),
             configured: !0
           };
       return {
         configured: !1
       };
+    },
+    validCashback() {
+      const t = parseFloat(this.cart.prices.subtotal);
+      return this.getValidCashback(this.cashbacks, t);
+    },
+    hasCashbackValid() {
+      return _isEmpty(this.validCashback) ? !1 : this.validCashback.percent_amount > 0;
     }
   },
   methods: {
     ...h("cart", ["redirectToCart", "loadCart", "updateItemQuantity", "removeItem"]),
     handleRemoveCombo({ kitId: t, totalPrice: e }) {
-      const i = this.items.filter((n) => n.kit_id === parseInt(t, 10));
+      const i = this.items.filter((a) => a.kit_id === parseInt(t, 10));
       this.remove({ items: i, totalPrice: e });
     },
     async bootCart() {
@@ -103,7 +127,7 @@ const p = {
         this.setLoading(t.id, !1);
       }), this.setLoading("all", !1);
     },
-    handleQuantityChange: a.debounce(function(t, e) {
+    handleQuantityChange: s.debounce(function(t, e) {
       this.updateQuantity(t, e);
     }, 300),
     redirect() {
@@ -114,7 +138,7 @@ const p = {
       this.handleTrackApi(e, {
         location: "side-cart",
         quick_buy_button_enabled: t.show_add_to_cart_button,
-        items: a.map(this.items, "name"),
+        items: s.map(this.items, "name"),
         amount: this.cartValue
       }), this.redirectToCart(), setTimeout(() => this.setLoading("all", !1), 200);
     },
@@ -123,13 +147,13 @@ const p = {
         return;
       const i = t.quantity;
       this.$set(t, "quantity", e), this.setLoading(t.id, !0);
-      const n = {};
-      t.customizations.length > 0 && (n.customization = {
+      const a = {};
+      t.customizations.length > 0 && (a.customization = {
         [t.product_option_id]: t.customizations.reduce(
-          (r, o) => (r[o.id] = o.selected_value, r),
+          (n, o) => (n[o.id] = o.selected_value, n),
           {}
         )
-      }), await this.updateItemQuantity({ item: t, quantity: e, extras: n }), t.error && this.$set(t, "quantity", i), this.setLoading(t.id, !1);
+      }), await this.updateItemQuantity({ item: t, quantity: e, extras: a }), t.error && this.$set(t, "quantity", i), this.setLoading(t.id, !1);
     },
     async remove({ item: t, items: e, totalPrice: i }) {
       t = t || e[0], !this.loading[t.id] && (this.setLoading(t.id, !0), await this.removeItem({ item: t, items: e, totalPrice: i }), this.setLoading(t.id, !1));
@@ -149,7 +173,7 @@ const p = {
         window.location.href = t;
         return;
       }
-      if (i && !this.emptyCartLinkButton.startsWith(this.$baseUrl) && !this.isIframe) {
+      if (i && !this.emptyCartLinkButton.startsWith(this.$baseUrl) && !this.isPreview) {
         window.location.href = this.$baseUrl;
         return;
       }
@@ -157,19 +181,19 @@ const p = {
     }
   }
 };
-var f = /* @__PURE__ */ m(
-  p
+var g = /* @__PURE__ */ p(
+  f
 );
-const g = f.exports;
+const y = g.exports;
 function u(t) {
-  u.installed || (u.installed = !0, t.component("BaseCart", g));
+  u.installed || (u.installed = !0, t.component("BaseCart", y));
 }
-const y = {
+const C = {
   install: u
 };
-let s = null;
-typeof window < "u" ? s = window.Vue : typeof global < "u" && (s = global.Vue);
-s && s.use(y);
+let r = null;
+typeof window < "u" ? r = window.Vue : typeof global < "u" && (r = global.Vue);
+r && r.use(C);
 export {
-  g as default
+  y as default
 };

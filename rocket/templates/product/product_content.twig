@@ -118,6 +118,7 @@
                         :show-mobile-floating-button="{{ section.params.show_mobile_floating_button ? 'true' : 'false' }}"
                         :cart-type="{{ pageConfig.data.theme.params.cart_type|json_encode }}"
                         variations-style="{{ section.params.product_variations_style|default('list') }}"
+                        :cashbacks="{{ merchantData.cashbacks | json_encode }}"
                     ></product-customizations>
                 </product-info>
             </div>

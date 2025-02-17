@@ -99,7 +99,8 @@ const d = {
         product_similars: "icon-grid",
         main_pages_content: "icon-page",
         main_promotion_content: "icon-marketing",
-        cart: "icon-cart"
+        cart: "icon-cart",
+        text_button_2_banners: "icon-text-banners"
       }[t];
     }
   }
@@ -115,16 +116,16 @@ var l = function() {
   l,
   m
 );
-const h = f.exports;
+const u = f.exports;
 function r(t) {
-  r.installed || (r.installed = !0, t.component("RocketEmitter", h));
+  r.installed || (r.installed = !0, t.component("RocketEmitter", u));
 }
-const u = {
+const h = {
   install: r
 };
 let n = null;
 typeof window < "u" ? n = window.Vue : typeof global < "u" && (n = global.Vue);
-n && n.use(u);
+n && n.use(h);
 export {
-  h as default
+  u as default
 };

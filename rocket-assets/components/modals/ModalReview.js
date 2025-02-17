@@ -87,7 +87,7 @@ var p = function() {
   return r("modal", { ref: "reviewBaseModal", attrs: { name: "review", title: "Avalie o produto" }, scopedSlots: e._u([{ key: "subtitle", fn: function() {
     return [e._v(" " + e._s(e.product.name) + " ")];
   }, proxy: !0 }]) }, [r("form", { ref: "ReviewFormRef" }, [r("label", { attrs: { for: "review-rating" } }, [e._v("QUANTIDADE DE ESTRELAS")]), r("br"), e._l(e.times(5), function(a) {
-    return r("i", { key: a, staticClass: "icon", class: `icon-star-${a < e.form.rating ? "gold" : "grey"}`, on: { click: function(m) {
+    return r("i", { key: a, staticClass: "icon", class: `icon-star-${a < e.form.rating ? "dynamic" : "grey"}`, on: { click: function(m) {
       e.form.rating = a + 1;
     } } });
   }), r("br"), r("label", { staticClass: "custom-margin", attrs: { for: "review-name" } }, [e._v("NOME")]), r("input", { directives: [{ name: "model", rawName: "v-model", value: e.form.name, expression: "form.name" }], class: { error: e.hasError("name") }, attrs: { id: "review-name", type: "text", name: "name", placeholder: "Ex.: Adriana", maxlength: "60" }, domProps: { value: e.form.name }, on: { input: function(a) {

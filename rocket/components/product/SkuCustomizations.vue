@@ -35,7 +35,7 @@
                     <span
                         v-if="isMandatoryCustomization(customization, sku.allow_sell_without_customization)"
                         class="required"
-                    >*</span>
+                    />
                 </label>
 
                 <input
@@ -48,7 +48,6 @@
                     :class="{ error: hasError(customization.id) }"
                     :value="values[customization.id]"
                     @input="setCustomizationValue(customization, $event.target.value, true)"
-                    @change="checkValues(customization, values)"
                 >
 
                 <custom-select
@@ -198,10 +197,6 @@ export default {
 
         setCustomizationValue(customization, payload, checkError = false) {
             this.$set(this.values, customization.id, payload);
-
-            if (checkError) {
-                this.checkValues(customization);
-            }
         },
 
         checkValues(context = undefined) {
@@ -220,8 +215,6 @@ export default {
             invalidCustomizations.forEach(customization => {
                 this.setError(customization.id, 'Campo obrigatório');
             });
-
-            this.smoothScroll(document.body, 0, this.$el.offsetTop);
 
             return false;
         },
@@ -250,7 +243,7 @@ export default {
             }
 
             return customization.required;
-        }
+        },
     },
 };
 </script>

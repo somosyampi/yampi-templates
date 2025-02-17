@@ -17,7 +17,7 @@
                 v-for="index in times(5)"
                 :key="index"
                 class="icon"
-                :class="`icon-star-${index < form.rating ? 'gold' : 'grey'}`"
+                :class="`icon-star-${index < form.rating ? 'dynamic' : 'grey'}`"
                 @click="form.rating = index + 1"
             />
 

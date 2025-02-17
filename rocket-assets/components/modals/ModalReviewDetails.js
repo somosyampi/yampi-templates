@@ -48,7 +48,7 @@ var c = function() {
   }, slides: e.review.photos.data } }, e._l(e.review.photos.data, function(a) {
     return t("splide-slide", { key: a.url, staticClass: "review-details-photo-container" }, [t("img", { attrs: { src: a.url } })]);
   }), 1), t("div", { staticClass: "review-details-content" }, [t("div", { staticClass: "review-details-message-title" }, [e._v(" Avaliação ")]), t("div", { staticClass: "-rating" }, e._l(e.times(5), function(a) {
-    return t("i", { key: a, staticClass: "icon", class: `icon-star-${a < e.review.rating ? "gold" : "grey"}` });
+    return t("i", { key: a, staticClass: "icon", class: `icon-star-${a < e.review.rating ? "dynamic" : "grey"}` });
   }), 0), t("span", { staticClass: "-name", domProps: { textContent: e._s(e.review.name) } }), e.showDates ? t("Timeago", { staticClass: "-time-ago", attrs: { date: e.review.created_at.date } }) : e._e(), t("div", { staticClass: "-text review-details-message", domProps: { textContent: e._s(e.review.message) } })], 1)], 1) : e._e()])], 1);
 }, u = [], v = /* @__PURE__ */ l(
   d,

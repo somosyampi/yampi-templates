@@ -1,8 +1,8 @@
-(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".hide[data-v-8be7d875]{visibility:hidden}")),document.head.appendChild(e)}}catch(d){console.error("vite-plugin-css-injected-by-js",d)}})();
-import l from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-function d(t, e, o, v, _, a, p, w) {
+(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".hide[data-v-452bad4a]{visibility:hidden}")),document.head.appendChild(e)}}catch(d){console.error("vite-plugin-css-injected-by-js",d)}})();
+import n from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
+function d(t, e, o, v, _, l, p, w) {
   var s = typeof t == "function" ? t.options : t;
-  return e && (s.render = e, s.staticRenderFns = o, s._compiled = !0), s._scopeId = "data-v-" + a, {
+  return e && (s.render = e, s.staticRenderFns = o, s._compiled = !0), s._scopeId = "data-v-" + l, {
     exports: t,
     options: s
   };
@@ -26,9 +26,9 @@ const r = {
     };
   },
   methods: {
-    times: l.times,
+    times: n.times,
     handleModal() {
-      this.show = !this.show, this.show ? (document.getElementById("app").style.overflow = "hidden", document.getElementsByTagName("body")[0].style = "overflow-y: hidden") : (document.getElementById("app").style.overflow = "", l.delay(() => {
+      this.show = !this.show, this.show ? (document.getElementById("app").style.overflow = "hidden", document.getElementsByTagName("body")[0].style = "overflow-y: hidden") : (document.getElementById("app").style.overflow = "", n.delay(() => {
         document.getElementsByTagName("body")[0].style = "overflow-y: auto";
       }, 350, "later"), this.$emit("close"));
     },
@@ -49,18 +49,18 @@ var c = function() {
   m,
   !1,
   null,
-  "8be7d875"
+  "452bad4a"
 );
 const u = f.exports;
-function n(t) {
-  n.installed || (n.installed = !0, t.component("ModalReviewDetailsMobile", u));
+function i(t) {
+  i.installed || (i.installed = !0, t.component("ModalReviewDetailsMobile", u));
 }
 const h = {
-  install: n
+  install: i
 };
-let i = null;
-typeof window < "u" ? i = window.Vue : typeof global < "u" && (i = global.Vue);
-i && i.use(h);
+let a = null;
+typeof window < "u" ? a = window.Vue : typeof global < "u" && (a = global.Vue);
+a && a.use(h);
 export {
   u as default
 };

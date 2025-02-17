@@ -1,26 +1,15 @@
 <rocket-emitter emits="text_button" label="Texto e botão" order={{ section.order }}>
-    <section class="section-text-button {{ "#{section.section_alias}-#{section.order}" }}">
-        <section-container 
-            v-slot="{ titleText, descriptionText, textInButton }"
-            width-section="{{ section.params.width_section }}"
-            content-alignment="{{ section.params.content_alignment }}"
-            background-color="{{ section.params.background_color }}"
-            button-color="{{ section.params.button_color }}"
-            text-color="{{ section.params.text_color }}"
-            title-text="{{ section.params.title_text }}"
-            description-text="{{ section.params.description_text }}"
-        >
-            <div class="__header ellipsis-multiline" v-html="titleText"></div>
-            <div class="__body ellipsis-multiline" v-html="descriptionText"></div>
-            {% if section.params.show_button %}
-                <div class="__footer">
-                    <rocket-anchor
-                        href="{{ section.params.link_in_button }}"
-                        label="{{ section.params.text_in_button | default('CLIQUE PARA CONFERIR') }}"
-                        custom-classes="rocket-button ellipsis-multiline"
-                    ><rocket-anchor>
-                </div>
-            {% endif %}
-        </section-container>
-    </section>
-</rocket-emitter>
+	<section class="section-text-button {{ " #{section.section_alias}-#{section.order}" }}">
+		<section-provider :config="{{ section | json_encode }}" :page-config="{{ pageConfig | json_encode }}">
+			<section-container v-slot="{ titleText, descriptionText, textInButton }">
+				<div class="__header ellipsis-multiline" v-html="titleText"></div>
+				<div class="__body ellipsis-multiline" v-html="descriptionText"></div>
+				{% if section.params.show_button %}
+					<div class="__footer">
+						<rocket-anchor href="{{ section.params.link_in_button | default('javascript:void(0)') }}" label="{{ section.params.text_in_button | default('CLIQUE PARA CONFERIR') }}" target-type="{{ section.params.link_in_button ? '_blank' : '_self' }}" custom-classes="rocket-button ellipsis-multiline">
+							<rocket-anchor></div>
+						{% endif %}
+					</section-container>
+				</section-provider>
+			</section>
+		</rocket-emitter>

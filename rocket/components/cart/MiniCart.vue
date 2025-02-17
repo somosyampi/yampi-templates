@@ -48,6 +48,7 @@
             :empty-cart-text-button="emptyCartTextButton"
             :empty-cart-link-button="emptyCartLinkButton"
             :highlighted-price="highlightedPrice"
+            :cashbacks="cashbacks"
         />
     </div>
 </template>
@@ -95,6 +96,10 @@ export default {
             type: String,
             required: true,
             default: '',
+        },
+        cashbacks: {
+            type: Array,
+            default: () => [],
         },
     },
 

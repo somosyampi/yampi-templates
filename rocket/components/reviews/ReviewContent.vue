@@ -32,7 +32,7 @@
                         class="grade"
                     >
                         <span>{{ rating.index }}</span>
-                        <i class="icon icon-star-gold" />
+                        <i class="icon icon-star-dynamic" />
                         <div
                             class="bar"
                             :class="getReviewBarClass(rating.index)"

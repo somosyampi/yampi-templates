@@ -53,11 +53,15 @@ export default {
             }
 
             const header = document.getElementById('section-header');
+            const tolerance = 1;
 
             document.addEventListener(
                 'scroll',
                 _.debounce(() => {
-                    const needsHeaderFixed = (window.pageYOffset - header.clientHeight) > 0;
+                    const scrollOffset = window.pageYOffset;
+                    const headerHeight = header.clientHeight;
+                    const needsHeaderFixed = (scrollOffset - headerHeight) > tolerance;
+
                     this.$store.dispatch('header/updateShowSearchBar', !needsHeaderFixed);
                     this.headerIsFixed = needsHeaderFixed;
                 }, 0),

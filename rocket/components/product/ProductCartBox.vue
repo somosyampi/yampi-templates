@@ -2,7 +2,8 @@
     <div
         :class="{
             'product-cart-box__container': !isCombo,
-            'product-cart-box__container--combo': isCombo
+            'product-cart-box__container--combo': isCombo,
+            '--is-freebie': isFreebie,
         }"
     >
         <div class="product-cart-box__metadata">
@@ -18,11 +19,21 @@
 
             <div class="product-cart-box__text--holder-info">
                 <div
+                    v-if="isFreebie"
+                    class="product-cart-box__freebie--tag"
+                >
+                    Brinde
+                </div>
+
+                <div
                     class="product-cart-box__text--product-name"
-                    v-text="product.name"
+                    v-text="decodedProductName"
                 />
 
-                <div class="product-cart-box__text--product-extra">
+                <div
+                    v-if="!isFreebie"
+                    class="product-cart-box__text--product-extra"
+                >
                     <ul class="mb-3">
                         <li
                             v-for="grid in product.grids"
@@ -33,16 +44,20 @@
                         </li>
                     </ul>
 
-                    <div
-                        v-for="customization in filteredCustomizations"
-                        :key="customization.name + customization.selected_value"
-                        class="product-cart-box__text--customization"
+                    <template
+                        v-if="!isFreebie"
                     >
-                        {{ customization.name }}: {{ customization.selected_value }}
-                        <span class="product-cart-box__text--customization--price">
-                            (+ {{ customization.price_formated }})
-                        </span>
-                    </div>
+                        <div
+                            v-for="customization in filteredCustomizations"
+                            :key="customization.name + customization.selected_value"
+                            class="product-cart-box__text--customization"
+                        >
+                            {{ customization.name }}: {{ customization.selected_value }}
+                            <span class="product-cart-box__text--customization--price">
+                                (+ {{ customization.price_formated }})
+                            </span>
+                        </div>
+                    </template>
                 </div>
 
                 <div
@@ -52,44 +67,46 @@
                     Qtd.: {{ product.quantity }}
                 </div>
 
-                <div v-if="showProductTotalPrice">
-                    <div v-if="shouldShowProductSavings">
-                        <div class="product-cart-box__text--price-discount">
-                            {{
-                                originalProductPrice
-                                    | formatMoney
-                            }}
-                        </div>
-                        <div class="product-cart-box__text--price">
-                            {{ product.price_total_formated }}
+                <template v-if="!isFreebie">
+                    <div v-if="showProductTotalPrice">
+                        <div v-if="shouldShowProductSavings">
+                            <div class="product-cart-box__text--price-discount">
+                                {{
+                                    originalProductPrice
+                                        | formatMoney
+                                }}
+                            </div>
+                            <div class="product-cart-box__text--price">
+                                {{ product.price_total_formated }}
+                            </div>
+
+                            <div
+                                v-if="showProductCartSavings"
+                                class="product-cart-box__discount-tag mt-10"
+                            >
+                                <div class="product-cart-box__discount-tag-text">
+                                    {{
+                                        (originalProductPrice -
+                                            product.price)
+                                            | formatMoney
+                                    }}
+                                    mais barato
+                                </div>
+                            </div>
                         </div>
 
                         <div
-                            v-if="showProductCartSavings"
-                            class="product-cart-box__discount-tag mt-10"
+                            v-else
+                            class="product-cart-box__text--price"
                         >
-                            <div class="product-cart-box__discount-tag-text">
-                                {{
-                                    (originalProductPrice -
-                                        product.price)
-                                        | formatMoney
-                                }}
-                                mais barato
-                            </div>
+                            {{ product.price_total | formatMoney }}
                         </div>
                     </div>
-
-                    <div
-                        v-else
-                        class="product-cart-box__text--price"
-                    >
-                        {{ product.price_total | formatMoney }}
-                    </div>
-                </div>
+                </template>
             </div>
 
             <div
-                v-if="!product.kit_id"
+                v-if="!isCombo && !isFreebie"
                 class="product-cart-box__holder-actions"
             >
                 <QuantitySelector
@@ -149,6 +166,10 @@ export default {
             return !!this.product.kit_id;
         },
 
+        isFreebie() {
+            return !!this.product.is_freebie;
+        },
+
         filteredCustomizations() {
             return this.product.customizations.filter(
                 customization => customization.selected_value !== null,
@@ -162,6 +183,11 @@ export default {
 
         shouldShowProductSavings() {
             return (this.originalProductPrice - this.product.price) > 0;
+        },
+
+        decodedProductName() {
+            const parser = new DOMParser();
+            return parser.parseFromString(this.product.name, 'text/html').body.textContent;
         },
     },
 

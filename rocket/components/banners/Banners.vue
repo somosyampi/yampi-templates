@@ -17,6 +17,9 @@
                         :key="banner.id"
                         ref="holderBanners"
                         class="banner"
+                        :class="{
+                            '--first': index === 0
+                        }"
                     >
                         <div
                             v-if="banner.stopwatch"

@@ -1,9 +1,9 @@
-<rocket-emitter emits="banner_3" label="3 Banner" order={{ section.order }}>
+<rocket-emitter emits="banner_3" label="3 Banners" order={{ section.order }}>
     {% if section.params.resource.ids | length or isPreview %}
         <banners
             class="banner-3 {{ "#{section.section_alias}-#{section.order}" }}"
             section="banner-3"
-            custom-class="flex"
+            custom-class="{{ "#{section.params.banner_style | default('online')} #{section.params.banner_position | default('left')}" }}"
             :ids="{{ section.params.resource.ids | json_encode }}"
             :carousel="false"
             :quantity="3"

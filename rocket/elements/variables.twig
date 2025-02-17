@@ -54,7 +54,46 @@
         --theme-border-radius: {{ type_border_radius(params.buttons_general_format) }};
         --slides-border-radius: {{ type_border_radius_slide(params.buttons_general_format) }};
 
-        --label-radius: {{ type_border_radius(params.grids_label_format) }};
+        --product-name-size: {{ params.grids_product_name_size | default('14px') }};
+        --product-name-color: {{ params.grids_product_name_color | default('#000000') }};
+
+        --product-price-size: {{ params.grids_product_price_size | default('14px') }};
+        --product-price-font-weight: {{ params.grids_product_price_bold | default(false) ? 700 : 500 }};
+        --product-price-color: {{ params.grids_product_prices_color | default('custom') != 'primary' ? params.grids_product_price_color | default('#000000') : params.color_general_primary | default('#705BC2') }};
+        --product-old-price-color: {{ params.grids_product_old_price_color | default('#000000') }};
+
+        --product-installment-price-highlight-font-weight : {{ params.grids_product_installment_price_highlight | default(false) ? 700 : 500 }};
+        --product-installment-price-highlight-color  : {{ params.grids_product_installment_price_highlight | default(false) ? params.color_general_primary : 'var(--black-medium)' }};
+
+        --add-to-cart-button-color: {{ params.grids_add_to_cart_button_color | default('#FFFFFF') }};
+
+        {% set addToCartIconTextButtonColorMapping = {
+            'primary': {
+                'button': params.color_btn_primary_background,
+                'text': 'var(--color-btn-primary-text)'
+            },
+            'secondary': {
+                'button': params.color_btn_secundary_background,
+                'text': 'var(--color-btn-secundary-text)'
+            },
+            'custom': {
+                'button': params.grids_add_to_cart_icon_text_button_color | default('#282829'),
+                'text': params.grids_add_to_cart_icon_text_button_text_color | default('#282829')
+            }
+        } %}
+
+        {% set addToCartIconTextButtonColor = addToCartIconTextButtonColorMapping[params.grids_quickbuy_prices_color].button %}
+        {% set addToCartIconTextButtonTextColor = addToCartIconTextButtonColorMapping[params.grids_quickbuy_prices_color].text %}
+
+        --add-to-cart-icon-text-button-color: {{ params.grids_add_to_cart_icon_text_button_border_style | default(false) ? 'transparent' : addToCartIconTextButtonColor }};
+        --add-to-cart-icon-text-button-border-color: {{ addToCartIconTextButtonColor }};
+        --add-to-cart-icon-text-button-text-color: {{ addToCartIconTextButtonTextColor }};
+        --add-to-cart-icon-text-button-width: {{ params.grids_add_to_cart_icon_text_button_full_width | default(false) ? '100%' : 'auto' }};
+
+        --review-average-star-color: {{ params.grids_review_average_star_color | default('#FFC01E') }};
+
+        --brand-name-color: {{ params.grids_brand_name_color | default('#94929E') }};
+        --brand-name-text-case: {{ params.grids_brand_name_uppercase | default(false) ? 'uppercase' : 'initial' }};
 
         /* Font size with base 14px */
         --font-10: .7143rem;

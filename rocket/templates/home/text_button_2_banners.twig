@@ -1,0 +1,17 @@
+<rocket-emitter emits="text_button_2_banners" label="Texto e banners" order="{{ section.order }}">
+    <section class="section-text-button-2-banners {{ "#{section.section_alias}-#{section.order}" }}">
+        <section-text-button2-banners
+            section="text-button-2-banners"
+            :number-banner="{{ section.params.number_banner | default("1")  }}"
+            :resource-ids="{{ section.params.resource.ids | json_encode }}"
+            text-align="{{ section.params.text_align | default("left") }}"
+            title-text="{{ section.params.title_text | default("Título legal") }}"
+            description-text="{{ section.params.description_text | default("Escreva seu texto aqui, falando um pouco sobre sua marca, produto, empresa ou promoção. Solte sua imaginação!") }}"
+            text-position="{{ section.params.text_position | default("left") }}"
+            button-style="{{ section.params.button_style | default("primary") }}"
+            button-switch="{{ section.params.show_cta_text_button_2_banners is defined or section.params.show_cta_text_button_2_banners != null ? section.params.show_cta_text_button_2_banners : 1 }}"
+            text-in-button="{{ section.params.text_in_button | default("Saiba mais") }}"
+            link-in-button="{{ section.params.link_in_button_text_button_2_banners | default('javascript:void(0)') }}"
+        ></section-text-button2-banners>
+    </section>
+</rocket-emitter>

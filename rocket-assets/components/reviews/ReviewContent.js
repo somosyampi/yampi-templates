@@ -1,7 +1,7 @@
 import l from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
 import c from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/api.js";
-import u from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-sandbox/rocket-assets/components/reviews/BaseContent.js";
-function v(a, e, t, s, n, d, w, C) {
+import u from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/undefined/assets/rocket-preview/components/reviews/BaseContent.js";
+function v(a, e, t, s, o, d, w, C) {
   var r = typeof a == "function" ? a.options : a;
   return e && (r.render = e, r.staticRenderFns = t, r._compiled = !0), {
     exports: a,
@@ -90,11 +90,11 @@ var p = function() {
   return t("div", { staticClass: "tab-content" }, [t("div", { staticClass: "holder-reviews", class: { grid: e.showAverageElement } }, [e.showAverageElement ? t("div", { staticClass: "average-reviews" }, [t("p", { staticClass: "average-reviews__number" }, [e._v(" " + e._s(e.roundedAverage) + " ")]), t("div", { staticClass: "stars" }, e._l(e.times(5), function(s) {
     return t("FilledStar", { key: s, attrs: { width: "23", height: "22", "fill-id": s, "filled-percentage": e.getStarPercentage(s) } });
   }), 1), t("p", { staticClass: "helper-text mt-5" }, [e._v(" baseada em "), t("strong", [e._v(e._s(e.$tc("reviews.total-reviews", e.count)))])]), t("div", { staticClass: "holder-grades mt-30" }, e._l(e.groupedRatings, function(s) {
-    return t("div", { key: s.index, staticClass: "grade" }, [t("span", [e._v(e._s(s.index))]), t("i", { staticClass: "icon icon-star-gold" }), t("div", { staticClass: "bar", class: e.getReviewBarClass(s.index) }), t("span", { staticClass: "review-count" }, [e._v(e._s(s.count))])]);
+    return t("div", { key: s.index, staticClass: "grade" }, [t("span", [e._v(e._s(s.index))]), t("i", { staticClass: "icon icon-star-dynamic" }), t("div", { staticClass: "bar", class: e.getReviewBarClass(s.index) }), t("span", { staticClass: "review-count" }, [e._v(e._s(s.count))])]);
   }), 0), t("div", { staticClass: "btn btn-secundary -block mt-43", on: { click: e.showModal } }, [e._v(" Avaliar produto ")])]) : t("div", { staticClass: "btn btn-secundary", on: { click: e.showModal } }, [e._v(" Avaliar produto ")]), t("div", [e.payload.length ? [t("masonry-layout", { scopedSlots: e._u([{ key: "header", fn: function() {
     return [t("div", { staticClass: "select-order flex -vcenter -hend" }, [t("span", { staticClass: "-title mr-12" }, [e._v(" ORDENAR POR: ")]), t("custom-select", { tag: "select", attrs: { id: "reviews-order-select", name: "reviews-order", value: e.order }, on: { change: e.updateOrderBy } }, [t("option", { attrs: { value: "newest" } }, [e._v(" Mais Recentes ")]), t("option", { attrs: { value: "oldest" } }, [e._v(" Mais Antigas ")]), t("option", { attrs: { value: "best_rating" } }, [e._v(" Notas Positivas ")]), t("option", { attrs: { value: "worst_rating" } }, [e._v(" Notas Negativas ")])])], 1)];
-  }, proxy: !0 }], null, !1, 43242722) }, e._l(e.payload, function(s, n) {
-    return t("review-card", { key: s.id, ref: "ReviewCardRef", refInFor: !0, attrs: { review: s, "show-dates": e.showDates, loading: e.isLoading }, on: { error: (d) => e.handleReviewCardError(d, n) } });
+  }, proxy: !0 }], null, !1, 43242722) }, e._l(e.payload, function(s, o) {
+    return t("review-card", { key: s.id, ref: "ReviewCardRef", refInFor: !0, attrs: { review: s, "show-dates": e.showDates, loading: e.isLoading }, on: { error: (d) => e.handleReviewCardError(d, o) } });
   }), 1), t("br"), e.showLoadMore ? t("div", { staticClass: "load-more", on: { click: function(s) {
     return e.loadData(!0, e.order);
   } } }, [e._v(" + Ver mais avaliações ")]) : e._e()] : e._e(), e.isLoading ? t("div", { staticClass: "text-center" }, [t("br"), t("i", { staticClass: "icon icon-loader-dark" })]) : e._e()], 2), !e.loading && !e.payload.length ? [t("br"), t("div", { staticClass: "alert -yellow" }, [e._v(" Esse produto ainda não possui nenhuma avaliação. "), t("b", { staticClass: "link-alike", on: { click: e.showModal } }, [e._v("Seja o primeiro a avaliar")])])] : e._e()], 2), t("modal-review", { ref: "modal", on: { success: e.showModalSuccess } }), t("modal-review-success", { ref: "modalSuccess" })], 1);
@@ -104,11 +104,11 @@ var p = function() {
   h
 );
 const _ = f.exports;
-function o(a) {
-  o.installed || (o.installed = !0, a.component("ReviewContent", _));
+function n(a) {
+  n.installed || (n.installed = !0, a.component("ReviewContent", _));
 }
 const m = {
-  install: o
+  install: n
 };
 let i = null;
 typeof window < "u" ? i = window.Vue : typeof global < "u" && (i = global.Vue);

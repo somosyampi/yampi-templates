@@ -2,11 +2,15 @@
 import _ from '~/lodash';
 import { mapActions, mapGetters } from '~/vuex';
 import trackingByApi from '@/mixins/tracking/api';
+import cashbackMixin from '@/mixins/cashback';
 
 export default {
     name: 'BaseCart',
 
-    mixins: [trackingByApi],
+    mixins: [
+        trackingByApi,
+        cashbackMixin,
+    ],
 
     props: {
         showCartSavings: {
@@ -17,6 +21,11 @@ export default {
         showProductCartSavings: {
             type: Boolean,
             default: true,
+        },
+
+        cashbacks: {
+            type: Array,
+            default: () => [],
         },
     },
 
@@ -83,9 +92,36 @@ export default {
             }, 0);
         },
 
+        sortedByFreebies() {
+            const itemsArrayCopy = _.cloneDeep(this.items);
+            return itemsArrayCopy.sort((a, b) => b.is_freebie - a.is_freebie);
+        },
+
+        totalFreebieValue() {
+            return this.items.reduce((totalFreebiesPrice, item) => {
+                const priceSale = Number(item.price_sale);
+                const canCalculate = item.is_freebie
+                    && !Number.isNaN(priceSale);
+
+                if (canCalculate) {
+                    return totalFreebiesPrice + priceSale;
+                }
+
+                return totalFreebiesPrice;
+            }, 0);
+        },
+
         totalCartValue() {
-            return parseFloat(this.cart.prices.items_amount)
-            + this.totalValueCustomizations;
+            if (!this.cart.prices) {
+                return 0;
+            }
+
+            const itemsAmountWithCustomizationValue = (
+                parseFloat(this.cart.prices.items_amount)
+                + this.totalValueCustomizations
+            );
+
+            return itemsAmountWithCustomizationValue - this.totalFreebieValue;
         },
 
         totalCartSavings() {
@@ -100,19 +136,33 @@ export default {
 
         getCartValueByPaymentMethod() {
             const paymentMethods = this.cart.cart_discounts;
+            // eslint-disable-next-line no-restricted-syntax
             for (const iterator in paymentMethods) {
                 if (paymentMethods[iterator].alias === this.highlightedPrice) {
                     return {
-                        value: parseFloat(_.get(paymentMethods[iterator], 'prices.total')),
-                        percentage: parseFloat(_.get(paymentMethods[iterator], 'percent_discount')),
-                        configured: true
-                    }
+                        value: parseFloat(_get(paymentMethods[iterator], 'prices.total')),
+                        percentage: parseFloat(_get(paymentMethods[iterator], 'percent_discount')),
+                        configured: true,
+                    };
                 }
             }
 
             return {
-                configured: false
+                configured: false,
+            };
+        },
+
+        validCashback() {
+            const subtotal = parseFloat(this.cart.prices.subtotal);
+            return this.getValidCashback(this.cashbacks, subtotal);
+        },
+
+        hasCashbackValid() {
+            if (_isEmpty(this.validCashback)) {
+                return false;
             }
+
+            return this.validCashback.percent_amount > 0;
         },
     },
 
@@ -239,9 +289,11 @@ export default {
                 return;
             }
 
-            if (initialLink &&
-                !this.emptyCartLinkButton.startsWith(this.$baseUrl) &&
-                !this.isIframe) {
+            if (
+                initialLink
+                && !this.emptyCartLinkButton.startsWith(this.$baseUrl)
+                && !this.isPreview
+            ) {
                 window.location.href = this.$baseUrl;
 
                 return;

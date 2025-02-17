@@ -1,8 +1,8 @@
-import n from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-sandbox/rocket-assets/components/cart/BaseCart.js";
-function l(a, t, e, s, _, m, f, g) {
-  var i = typeof a == "function" ? a.options : a;
-  return t && (i.render = t, i.staticRenderFns = e, i._compiled = !0), {
-    exports: a,
+import n from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/undefined/assets/rocket-preview/components/cart/BaseCart.js";
+function l(e, t, a, s, _, m, h, f) {
+  var i = typeof e == "function" ? e.options : e;
+  return t && (i.render = t, i.staticRenderFns = a, i._compiled = !0), {
+    exports: e,
     options: i
   };
 }
@@ -40,8 +40,8 @@ const c = {
     };
   },
   watch: {
-    mouseHover(a) {
-      if (a) {
+    mouseHover(e) {
+      if (e) {
         this.interval = setInterval(() => {
           this.animate = !this.animate;
         }, 1300);
@@ -52,15 +52,15 @@ const c = {
   }
 };
 var d = function() {
-  var t = this, e = t._self._c;
-  return e("div", { staticClass: "dropdown" }, [e("rocket-emitter", { staticClass: "child-emitter", attrs: { emits: "cart", label: "Carrinho de compras" } }, [t.items.length ? e("div", { staticClass: "products-cart" }, [e("div", { staticClass: "cart-header flex -between" }, [e("span", { staticClass: "-title" }, [t._v("MEU CARRINHO")]), t.shouldShowCartSavings ? t._e() : e("span", { staticClass: "cart-value price" }, [t._v(t._s(t._f("formatMoney")(t.totalCartValue)))])]), e("div", { staticClass: "cart-products-list" }, [e("buy-together-cart-group", { staticClass: "buy-together-dropdown", attrs: { "buy-together-items": t.buyTogetherItems, loading: t.loading }, on: { removeCombo: t.handleRemoveCombo } }), t._l(t.items.filter((s) => !s.kit_id), function(s) {
-    return e("div", { key: s.id, staticClass: "cart-product flex -between -wrap", class: {
+  var t = this, a = t._self._c;
+  return a("div", { staticClass: "dropdown" }, [a("rocket-emitter", { staticClass: "child-emitter", attrs: { emits: "cart", label: "Carrinho de compras" } }, [t.items.length ? a("div", { staticClass: "products-cart" }, [a("div", { staticClass: "cart-header flex -between" }, [a("span", { staticClass: "-title" }, [t._v("MEU CARRINHO")]), t.shouldShowCartSavings ? t._e() : a("span", { staticClass: "cart-value price" }, [t._v(t._s(t._f("formatMoney")(t.totalCartValue)))])]), a("div", { staticClass: "cart-products-list" }, [a("buy-together-cart-group", { staticClass: "buy-together-dropdown", attrs: { "buy-together-items": t.buyTogetherItems, loading: t.loading }, on: { removeCombo: t.handleRemoveCombo } }), t._l(t.sortedByFreebies.filter((s) => !s.kit_id), function(s) {
+    return a("div", { key: s.id, staticClass: "cart-product flex -between -wrap", class: {
       loading: t.loading[s.id],
       "-vcenter": s.kit_id
-    } }, [e("product-cart-box", { attrs: { product: s, "show-product-quantity": !1, "show-product-cart-savings": t.showProductCartSavings } })], 1);
-  })], 2), t.shouldShowCartSavings ? e("div", { staticClass: "side-cart-total-value mt-21" }, [e("div", { staticClass: "side-cart-row mb-15" }, [e("div", { staticClass: "side-cart-total-text" }, [t._v(" PRODUTOS (" + t._s(t.$tc("cart.amount-of-products", parseInt(t.cart.prices.total_items), { count: parseInt(t.cart.prices.total_items) })) + ") ")]), e("div", { staticClass: "side-cart-subtotal" }, [t._v(" " + t._s(t._f("formatMoney")(t.totalCartValue)) + " ")])]), e("div", { staticClass: "side-cart-row mb-21", class: { shake: t.animate } }, [e("div", { staticClass: "side-cart-savings-text" }, [t._v(" VOCÊ ESTÁ ECONOMIZANDO ")]), e("div", { staticClass: "side-cart-savings-price" }, [t._v(" " + t._s(t._f("formatMoney")(t.totalCartSavings)) + " ")])])]) : t._e(), t.shouldShowCartSavings ? e("hr", { staticClass: "mb-22" }) : t._e(), t.shouldShowCartSavings ? e("div", { staticClass: "side-cart-total-value mb-24" }, [e("div", { staticClass: "side-cart-row" }, [e("span", { staticClass: "side-cart-total-text" }, [t._v("SUBTOTAL")]), e("span", { staticClass: "side-cart-subtotal-after-discounts" }, [t._v(t._s(t.cartValue) + " ")])])]) : t._e(), t.highlightedPrice === "billet" && t.getCartValueByPaymentMethod.configured ? e("div", { staticClass: "side-cart-total-value mb-24" }, [e("div", { staticClass: "side-cart-row" }, [e("span", { staticClass: "side-cart-total-text" }, [e("b", [t._v(t._s(t.getCartValueByPaymentMethod.percentage) + "% DE DESCONTOS")]), t._v(" NO BOLETO")]), e("span", [e("b", [t._v(t._s(t._f("formatMoney")(t.getCartValueByPaymentMethod.value)))])])])]) : t._e(), t.highlightedPrice === "pix" && t.getCartValueByPaymentMethod.configured ? e("div", { staticClass: "side-cart-total-value mb-24" }, [e("div", { staticClass: "side-cart-row" }, [e("span", { staticClass: "side-cart-total-text" }, [e("b", [t._v(t._s(t.getCartValueByPaymentMethod.percentage) + "% DE DESCONTOS")]), t._v(" NO PIX")]), e("span", [e("b", [t._v(t._s(t._f("formatMoney")(t.getCartValueByPaymentMethod.value)))])])])]) : t._e(), e("LoaderButton", { staticClass: "btn btn-primary -block btn-cart-product", attrs: { title: t.buttonText, sending: t.anyLoading, disabled: t.anyLoading }, on: { click: function(s) {
+    } }, [a("product-cart-box", { attrs: { product: s, "show-product-quantity": !1, "show-product-cart-savings": t.showProductCartSavings } })], 1);
+  })], 2), t.shouldShowCartSavings ? a("div", { staticClass: "side-cart-total-value mt-21" }, [a("div", { staticClass: "side-cart-row mb-15" }, [a("div", { staticClass: "side-cart-total-text" }, [t._v(" PRODUTOS (" + t._s(t.$tc("cart.amount-of-products", parseInt(t.cart.prices.total_items), { count: parseInt(t.cart.prices.total_items) })) + ") ")]), a("div", { staticClass: "side-cart-subtotal" }, [t._v(" " + t._s(t._f("formatMoney")(t.totalCartValue)) + " ")])]), a("div", { staticClass: "side-cart-row mb-21", class: { shake: t.animate } }, [a("div", { staticClass: "side-cart-savings-text" }, [t._v(" VOCÊ ESTÁ ECONOMIZANDO ")]), a("div", { staticClass: "side-cart-savings-price" }, [t._v(" " + t._s(t._f("formatMoney")(t.totalCartSavings)) + " ")])])]) : t._e(), t.shouldShowCartSavings ? a("hr", { staticClass: "mb-22" }) : t._e(), t.shouldShowCartSavings ? a("div", { staticClass: "side-cart-total-value mb-24" }, [a("div", { staticClass: "side-cart-row" }, [a("span", { staticClass: "side-cart-total-text" }, [t._v("SUBTOTAL")]), a("span", { staticClass: "side-cart-subtotal-after-discounts" }, [t._v(t._s(t.cartValue) + " ")])])]) : t._e(), t.highlightedPrice === "billet" && t.getCartValueByPaymentMethod.configured ? a("div", { staticClass: "side-cart-total-value mb-24" }, [a("div", { staticClass: "side-cart-row" }, [a("span", { staticClass: "side-cart-total-text" }, [a("b", [t._v(t._s(t.getCartValueByPaymentMethod.percentage) + "% DE DESCONTOS")]), t._v(" NO BOLETO")]), a("span", [a("b", [t._v(t._s(t._f("formatMoney")(t.getCartValueByPaymentMethod.value)))])])])]) : t._e(), t.highlightedPrice === "pix" && t.getCartValueByPaymentMethod.configured ? a("div", { staticClass: "side-cart-total-value mb-24" }, [a("div", { staticClass: "side-cart-row" }, [a("span", { staticClass: "side-cart-total-text" }, [a("b", [t._v(t._s(t.getCartValueByPaymentMethod.percentage) + "% DE DESCONTOS")]), t._v(" NO PIX")]), a("span", [a("b", [t._v(t._s(t._f("formatMoney")(t.getCartValueByPaymentMethod.value)))])])])]) : t._e(), a("LoaderButton", { staticClass: "btn btn-primary -block btn-cart-product", attrs: { title: t.buttonText, sending: t.anyLoading, disabled: t.anyLoading }, on: { click: function(s) {
     return t.redirect();
-  } } })], 1) : e("div", { staticClass: "empty-cart" }, [e("i", { staticClass: "icon icon-empty-cart" }), e("div", { staticClass: "-title" }, [t._v(" Seu carrinho está vazio ")]), e("span", [t.emptyCartHelperText ? e("div", { staticClass: "-subtitle", domProps: { innerHTML: t._s(t.emptyCartHelperText) } }) : e("div", { staticClass: "-subtitle" }, [t._v(" Navegue pela loja e adicione produtos. ")])]), t.emptyCartTextButton ? e("div", { staticClass: "-cta-holder" }, [e("a", { staticClass: "-cta", on: { click: function(s) {
+  } } }), t.hasCashbackValid ? a("Cashback", { staticClass: "mt-21", attrs: { "percent-amount": t.validCashback.percent_amount, "text-align": "center" } }) : t._e()], 1) : a("div", { staticClass: "empty-cart" }, [a("i", { staticClass: "icon icon-empty-cart" }), a("div", { staticClass: "-title" }, [t._v(" Seu carrinho está vazio ")]), a("span", [t.emptyCartHelperText ? a("div", { staticClass: "-subtitle", domProps: { innerHTML: t._s(t.emptyCartHelperText) } }) : a("div", { staticClass: "-subtitle" }, [t._v(" Navegue pela loja e adicione produtos. ")])]), t.emptyCartTextButton ? a("div", { staticClass: "-cta-holder" }, [a("a", { staticClass: "-cta", on: { click: function(s) {
     return t.linkValidation();
   } } }, [t._v(" " + t._s(t.emptyCartTextButton) + " ")])]) : t._e()])])], 1);
 }, u = [], v = /* @__PURE__ */ l(
@@ -69,8 +69,8 @@ var d = function() {
   u
 );
 const p = v.exports;
-function o(a) {
-  o.installed || (o.installed = !0, a.component("DropdownCart", p));
+function o(e) {
+  o.installed || (o.installed = !0, e.component("DropdownCart", p));
 }
 const C = {
   install: o
