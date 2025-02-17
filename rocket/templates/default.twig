@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
+<head>  
     {% include "elements/head.twig" %}
 </head>
 <body class="{{ merchantData.alias }} {{ previewClass }} {{ page }} {{ pageConfig.data.theme.params.show_dark_mode ? 'dark-mode' : '' }}">
@@ -36,6 +36,9 @@
             <add-to-cart selected-price="{{ pageConfig.data.theme.params.highlight_type_payment }}"> </add-to-cart>
         {% endif %}
 
+        {% if isPreview %}
+            <preview-warning></preview-warning>
+        {% endif %}
     </div>
     {% include "elements/footer.twig" %}
 </body>
