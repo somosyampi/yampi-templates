@@ -450,7 +450,7 @@
             }
         }
 
-        .icon-star-gold {
+        .icon-star-dynamic {
             margin: 0 13px 3px 5px;
             flex: 0 0 14px;
             height: 13px;
@@ -469,7 +469,7 @@
                 top: 0;
                 left: 0;
                 height: 100%;
-                background-color: #ffc01e;
+                background-color: var(--review-average-star-color);
             }
 
             @for $size from 0 to 101 {

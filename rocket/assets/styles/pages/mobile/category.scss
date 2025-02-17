@@ -160,6 +160,7 @@
                     display: flex;
 
                     .holder-image {
+                        align-self: flex-start;
                         padding-right: 6px;
 
                         .discount-tag {
@@ -168,8 +169,13 @@
                     }
 
                     .holder-info {
+                        padding-top: 0;
                         padding-left: 6px;
                         max-width: 50%;
+
+                        & > *:first-child {
+                            margin-top: 3px;
+                        }
                     }
                 }
 

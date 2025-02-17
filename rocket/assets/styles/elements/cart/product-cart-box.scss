@@ -8,6 +8,24 @@
         &:first-child {
             margin: 10.5px 0 21px 0;
         }
+
+        &.--is-freebie {
+            background-color: #F4FBF6;
+            border: 1px dashed #D0D0D0;
+            border-radius: 4px;
+            padding: 12px;
+        }
+    }
+
+    &__freebie--tag {
+        border: 1px solid #3FC583;
+        padding: 4px;
+        border-radius: 4px;
+        color: #3FC583;
+        display: inline-block;
+        margin-bottom: 6px;
+        font-size: 12px;
+        line-height: 11px;
     }
 
     &__container--combo {
