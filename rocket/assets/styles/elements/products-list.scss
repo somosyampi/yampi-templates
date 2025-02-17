@@ -2,6 +2,10 @@
     font-size: 0;
     flex-wrap: wrap;
 
+    &:not(:has(.holder-flags)) .box-product .holder-info > *:first-child {
+        margin-top: 0;
+    }
+
     &.flex,
     & > .flex {
         margin-left: -16px;

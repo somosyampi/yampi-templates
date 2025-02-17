@@ -796,6 +796,18 @@
         }
     }
 
+    .box-product {
+        &.--flag-above-image {
+            .holder-image .holder-flags {
+                display: none;
+            }
+
+            .holder-info .holder-flags {
+                display: block;
+            }
+        }
+    }
+
     .product-old-price {
         width: 100%;
     }

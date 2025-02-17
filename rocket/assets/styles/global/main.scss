@@ -1,14 +1,14 @@
 @import "settings/_index";
-@import "./functions";
+@import "functions";
 @import "modal";
 @import "dropdown";
 @import "typographic";
 @import "../elements/menus/category-subcategory";
 @import "mixins/_index";
 @import "spacer";
-@import "./mixins/buttons";
-@import "./mixins/_breakpoints";
-@import "./mixins/grid";
+@import "mixins/buttons";
+@import "mixins/_breakpoints";
+@import "mixins/grid";
 @import "icons";
 @import "../sections/header";
 @import "buttons";
@@ -40,6 +40,8 @@
 @import "../sections/categories-highlight";
 @import "../elements/rocket-emitter";
 @import "../sections/text-button-section";
+@import '../sections/text-button-2-banners';
+@import '../sections/cashback';
 
 :root {
     --flag-color: #333333;

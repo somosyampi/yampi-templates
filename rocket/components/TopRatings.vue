@@ -38,7 +38,7 @@
                                             v-for="index in times(5)"
                                             :key="index"
                                             class="icon"
-                                            :class="`icon-star-${index < rating.rating ? 'gold' : 'grey'}`"
+                                            :class="`icon-star-${index < rating.rating ? 'dynamic' : 'grey'}`"
                                         />
                                     </div>
 

@@ -1,9 +1,9 @@
-import c from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-sandbox/rocket-assets/components/cart/BaseCart.js";
-function d(r, t, o, e, v, f, x, C) {
-  var a = typeof r == "function" ? r.options : r;
-  return t && (a.render = t, a.staticRenderFns = o, a._compiled = !0), {
+import c from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/undefined/assets/rocket-preview/components/cart/BaseCart.js";
+function d(r, t, e, o, v, f, b, x) {
+  var i = typeof r == "function" ? r.options : r;
+  return t && (i.render = t, i.staticRenderFns = e, i._compiled = !0), {
     exports: r,
-    options: a
+    options: i
   };
 }
 const u = {
@@ -27,6 +27,9 @@ const u = {
     isCombo() {
       return !!this.product.kit_id;
     },
+    isFreebie() {
+      return !!this.product.is_freebie;
+    },
     filteredCustomizations() {
       return this.product.customizations.filter(
         (r) => r.selected_value !== null
@@ -37,6 +40,9 @@ const u = {
     },
     shouldShowProductSavings() {
       return this.originalProductPrice - this.product.price > 0;
+    },
+    decodedProductName() {
+      return new DOMParser().parseFromString(this.product.name, "text/html").body.textContent;
     }
   },
   methods: {
@@ -49,21 +55,22 @@ const u = {
   }
 };
 var n = function() {
-  var t = this, o = t._self._c;
-  return o("div", { class: {
+  var t = this, e = t._self._c;
+  return e("div", { class: {
     "product-cart-box__container": !t.isCombo,
-    "product-cart-box__container--combo": t.isCombo
-  } }, [o("div", { staticClass: "product-cart-box__metadata" }, [o("div", { staticClass: "product-cart-box__holder-image" }, [o("div", { staticClass: "image-ratio" }, [o("CustomImage", { attrs: { src: t.product.small, alt: "Imagem do Produto", thumbor: { resize: "60x60" } } })], 1)]), o("div", { staticClass: "product-cart-box__text--holder-info" }, [o("div", { staticClass: "product-cart-box__text--product-name", domProps: { textContent: t._s(t.product.name) } }), o("div", { staticClass: "product-cart-box__text--product-extra" }, [o("ul", { staticClass: "mb-3" }, t._l(t.product.grids, function(e) {
-    return o("li", { key: e.name + e.value, staticClass: "product-cart-box__text--sku" }, [t._v(" " + t._s(e.name) + ": " + t._s(e.value) + " ")]);
-  }), 0), t._l(t.filteredCustomizations, function(e) {
-    return o("div", { key: e.name + e.selected_value, staticClass: "product-cart-box__text--customization" }, [t._v(" " + t._s(e.name) + ": " + t._s(e.selected_value) + " "), o("span", { staticClass: "product-cart-box__text--customization--price" }, [t._v(" (+ " + t._s(e.price_formated) + ") ")])]);
-  })], 2), t.showProductQuantity ? o("div", { staticClass: "product-cart-box__text--quantity" }, [t._v(" Qtd.: " + t._s(t.product.quantity) + " ")]) : t._e(), t.showProductTotalPrice ? o("div", [t.shouldShowProductSavings ? o("div", [o("div", { staticClass: "product-cart-box__text--price-discount" }, [t._v(" " + t._s(t._f("formatMoney")(t.originalProductPrice)) + " ")]), o("div", { staticClass: "product-cart-box__text--price" }, [t._v(" " + t._s(t.product.price_total_formated) + " ")]), t.showProductCartSavings ? o("div", { staticClass: "product-cart-box__discount-tag mt-10" }, [o("div", { staticClass: "product-cart-box__discount-tag-text" }, [t._v(" " + t._s(t._f("formatMoney")(t.originalProductPrice - t.product.price)) + " mais barato ")])]) : t._e()]) : o("div", { staticClass: "product-cart-box__text--price" }, [t._v(" " + t._s(t._f("formatMoney")(t.product.price_total)) + " ")])]) : t._e()]), t.product.kit_id ? t._e() : o("div", { staticClass: "product-cart-box__holder-actions" }, [o("QuantitySelector", { class: {
+    "product-cart-box__container--combo": t.isCombo,
+    "--is-freebie": t.isFreebie
+  } }, [e("div", { staticClass: "product-cart-box__metadata" }, [e("div", { staticClass: "product-cart-box__holder-image" }, [e("div", { staticClass: "image-ratio" }, [e("CustomImage", { attrs: { src: t.product.small, alt: "Imagem do Produto", thumbor: { resize: "60x60" } } })], 1)]), e("div", { staticClass: "product-cart-box__text--holder-info" }, [t.isFreebie ? e("div", { staticClass: "product-cart-box__freebie--tag" }, [t._v(" Brinde ")]) : t._e(), e("div", { staticClass: "product-cart-box__text--product-name", domProps: { textContent: t._s(t.decodedProductName) } }), t.isFreebie ? t._e() : e("div", { staticClass: "product-cart-box__text--product-extra" }, [e("ul", { staticClass: "mb-3" }, t._l(t.product.grids, function(o) {
+    return e("li", { key: o.name + o.value, staticClass: "product-cart-box__text--sku" }, [t._v(" " + t._s(o.name) + ": " + t._s(o.value) + " ")]);
+  }), 0), t.isFreebie ? t._e() : t._l(t.filteredCustomizations, function(o) {
+    return e("div", { key: o.name + o.selected_value, staticClass: "product-cart-box__text--customization" }, [t._v(" " + t._s(o.name) + ": " + t._s(o.selected_value) + " "), e("span", { staticClass: "product-cart-box__text--customization--price" }, [t._v(" (+ " + t._s(o.price_formated) + ") ")])]);
+  })], 2), t.showProductQuantity ? e("div", { staticClass: "product-cart-box__text--quantity" }, [t._v(" Qtd.: " + t._s(t.product.quantity) + " ")]) : t._e(), t.isFreebie ? t._e() : [t.showProductTotalPrice ? e("div", [t.shouldShowProductSavings ? e("div", [e("div", { staticClass: "product-cart-box__text--price-discount" }, [t._v(" " + t._s(t._f("formatMoney")(t.originalProductPrice)) + " ")]), e("div", { staticClass: "product-cart-box__text--price" }, [t._v(" " + t._s(t.product.price_total_formated) + " ")]), t.showProductCartSavings ? e("div", { staticClass: "product-cart-box__discount-tag mt-10" }, [e("div", { staticClass: "product-cart-box__discount-tag-text" }, [t._v(" " + t._s(t._f("formatMoney")(t.originalProductPrice - t.product.price)) + " mais barato ")])]) : t._e()]) : e("div", { staticClass: "product-cart-box__text--price" }, [t._v(" " + t._s(t._f("formatMoney")(t.product.price_total)) + " ")])]) : t._e()]], 2), !t.isCombo && !t.isFreebie ? e("div", { staticClass: "product-cart-box__holder-actions" }, [e("QuantitySelector", { class: {
     "is-preview": t.isIframe
-  }, attrs: { value: t.product.quantity, disabled: t.loading[t.product.id] }, on: { change: function(e) {
-    return t.handleQuantityChange(t.product, e);
-  } } }), o("div", { staticClass: "product-cart-box__text--remove", class: { loading: t.loading[t.product.id] }, on: { click: function(e) {
+  }, attrs: { value: t.product.quantity, disabled: t.loading[t.product.id] }, on: { change: function(o) {
+    return t.handleQuantityChange(t.product, o);
+  } } }), e("div", { staticClass: "product-cart-box__text--remove", class: { loading: t.loading[t.product.id] }, on: { click: function(o) {
     return t.remove({ item: t.product });
-  } } }, [t._v(" Remover ")])], 1)]), t.product.error ? o("div", { staticClass: "product-cart-box__text--error", domProps: { textContent: t._s(t.product.error) } }) : t._e()]);
+  } } }, [t._v(" Remover ")])], 1) : t._e()]), t.product.error ? e("div", { staticClass: "product-cart-box__text--error", domProps: { textContent: t._s(t.product.error) } }) : t._e()]);
 }, l = [], _ = /* @__PURE__ */ d(
   u,
   n,
@@ -76,9 +83,9 @@ function s(r) {
 const m = {
   install: s
 };
-let i = null;
-typeof window < "u" ? i = window.Vue : typeof global < "u" && (i = global.Vue);
-i && i.use(m);
+let a = null;
+typeof window < "u" ? a = window.Vue : typeof global < "u" && (a = global.Vue);
+a && a.use(m);
 export {
   p as default
 };

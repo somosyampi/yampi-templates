@@ -32,16 +32,10 @@ body.dark-mode {
         color: #222222;
     }
 
-    .product {
-        &-brand {
-            color: var(--black-medium);
-        }
-
-        &-name {
-            color: var(--black-light);
-        }
+    .section-text-button-2-banners .title-text {
+        color: var(--black-dark);
     }
-
+    
     .installment-text {
         &,
         .price {

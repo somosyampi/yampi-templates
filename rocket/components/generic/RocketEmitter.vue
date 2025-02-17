@@ -75,7 +75,7 @@ export default {
 
         isPreview() {
             this.key += 1;
-        }
+        },
     },
 
     mounted() {
@@ -156,6 +156,7 @@ export default {
                 main_pages_content: 'icon-page',
                 main_promotion_content: 'icon-marketing',
                 cart: 'icon-cart',
+                text_button_2_banners: 'icon-text-banners',
             };
 
             return componentList[componentName];

@@ -12,7 +12,7 @@
                     v-for="index in times(5)"
                     :key="index"
                     class="icon"
-                    :class="`icon-star-${index < review.rating ? 'gold' : 'grey'}`"
+                    :class="`icon-star-${index < review.rating ? 'dynamic' : 'grey'}`"
                 />
             </div>
             <div class="flex">

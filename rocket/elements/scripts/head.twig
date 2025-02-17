@@ -1,69 +1,87 @@
 <link href="{{ pageConfig.data.theme.params.fonts_texts_family | font_link }}" rel="stylesheet" media="screen" async>
 <link href="{{ pageConfig.data.theme.params.fonts_titles_family | font_link }}" rel="stylesheet" media="screen" async>
 
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PNCZP452');</script>
-
- <script>
-    window.merchant = {{ merchantData | json_encode | raw }}
-    window.themeConfig = {{ pageConfig.data | json_encode | raw }}
-    window.Yampi = {
-        "api_domain": "{{ yampi_api_url }}",
-        "page": "{{ page }}",
-        "cart_token": '{{ cart_token }}',
-        "env": "{{ environment }}",
-        "csrf_token": '{{ csrf_token }}',
-        "session": {
-            "utm_source": '{{ utm_source }}',
-            "utm_campaign": '{{ utm_campaign }}',
-            "utm_medium": '{{ utm_medium }}',
-            "utm_term": '{{ utm_term }}',
-            "utm_content": '{{ utm_content }}',
-            "utm_name": '{{ utm_name }}',
-            "utm_email": '{{ utm_email }}',
-            "zipcode": '{{ zipcode }}',
-            "customer": {
-                "name": '{{ customer_name }}',
-                "email": '{{ customer_email }}',
-            },
-        },
-        "mixpanel": {
-            "key": '{{ mixpanel_key }}'
-        },
-        "thumbor": {
-            "enabled": '{{ thumbor_enabled }}',
-            "url": '{{ thumbor_url }}',
-            "default": {{ thumbor_default | raw }}
-        },
-        "sentry": {
-            "enabled": '{{ sentry_enabled }}',
-            "tracing": '{{ sentry_tracing }}',
-            "dsn": '{{ sentry_dsn }}'
-        },
-        "cache": {
-            "js": '{{ cache_js }}'
-        },
-        "icon_url": '{{ icon_url }}',
-        "mago_config": {
-            "user_id": '{{ cart_token }}',
-            "recomm_id": '{{ recomm_id }}'
-        }
-    }
-    window.data = {{ customData | json_encode() | raw }}
+<script>
+	(function (w, d, s, l, i) {
+w[l] = w[l] || [];
+w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+var f = d.getElementsByTagName(s)[0],
+j = d.createElement(s),
+dl = l != 'dataLayer' ? '&l=' + l : '';
+j.async = true;
+j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-PNCZP452');
 </script>
 
-<link rel="stylesheet" href="{{ '/css/global.css' | components_url }}" media="screen">
+<script>
+	window.merchant = {{ merchantData | json_encode | raw }}
+window.themeConfig = {{ pageConfig.data | json_encode | raw }}
+window.Yampi = {
+"api_domain": "{{ yampi_api_url }}",
+"page": "{{ page }}",
+"cart_token": '{{ cart_token }}',
+"env": "{{ environment }}",
+"csrf_token": '{{ csrf_token }}',
+"session": {
+"utm_source": '{{ utm_source }}',
+"utm_campaign": '{{ utm_campaign }}',
+"utm_medium": '{{ utm_medium }}',
+"utm_term": '{{ utm_term }}',
+"utm_content": '{{ utm_content }}',
+"utm_name": '{{ utm_name }}',
+"utm_email": '{{ utm_email }}',
+"zipcode": '{{ zipcode }}',
+"customer": {
+"name": '{{ customer_name }}',
+"email": '{{ customer_email }}'
+}
+},
+"mixpanel": {
+"key": '{{ mixpanel_key }}'
+},
+"thumbor": {
+"enabled": '{{ thumbor_enabled }}',
+"url": '{{ thumbor_url }}',
+"default": {{ thumbor_default | raw }}
+},
+"sentry": {
+"enabled": '{{ sentry_enabled }}',
+"tracing": '{{ sentry_tracing }}',
+"dsn": '{{ sentry_dsn }}'
+},
+"cache": {
+"js": '{{ cache_js }}'
+},
+"icon_url": '{{ icon_url }}',
+"mago_config": {
+"user_id": '{{ cart_token }}',
+"recomm_id": '{{ recomm_id }}'
+}
+}
+window.data = {{ customData | json_encode() | raw }}
+</script>
+
+<link rel="stylesheet" href="{{ '/css/global.css' | vendor_url }}" media="screen">
+<link rel="stylesheet" href="{{ "/css/themes/rocket-#{page}.css" | vendor_url }}" media="screen">
+<link rel="stylesheet" href="{{ "/css/themes/rocket-#{page}-mobile.css" | vendor_url }}" media="screen and (max-width: 700px)">
+<link rel="stylesheet" href="{{ '/css/themes/rocket.css' | vendor_url }}" media="screen">
+<link rel="stylesheet" href="{{'/css/themes/rocket-mobile.css' | vendor_url }}" media="screen and (max-width: 700px)">
+<link rel="preload" href="{{ '/css/global.css' | vendor_url }}" as="style"/>
+<link rel="preload" href="{{ '/css/themes/rocket.css' | vendor_url }}" as="style"/>
+
+{# OPEN STORE CODE #}
+
+{# <link rel="stylesheet" href="{{ '/css/global.css' | components_url }}" media="screen">
 <link rel="stylesheet" href="{{ "/css/themes/rocket-#{page}.css" | components_url }}" media="screen">
 <link rel="stylesheet" href="{{ "/css/themes/rocket-#{page}-mobile.css" | components_url }}" media="screen and (max-width: 700px)">
+<link rel="stylesheet" href="{{ '/css/themes/rocket.css' | components_url }}" media="screen">
 <link rel="stylesheet" href="{{'/css/themes/rocket-mobile.css' | components_url }}" media="screen and (max-width: 700px)">
 <link rel="preload" href="{{ '/css/global.css' | components_url }}" as="style" />
+<link rel="preload" href="{{ '/css/themes/rocket.css' | components_url }}" as="style" /> #}
 
-<style>
-    {{ pageConfig.data.theme.params.custom_css | raw }}
-</style>
+	<style>
+{{pageConfig.data.theme.params.custom_css | raw}}</style>
 
 {% include 'elements/scripts/services/criteo.twig' %}
 {% include 'elements/scripts/services/google-analytics.twig' %}
@@ -72,3 +90,4 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 {% include 'elements/scripts/services/rich-snippets.twig' %}
 {% include 'elements/scripts/services/script.twig' %}
 {% include 'elements/scripts/services/ana.twig' %}
+{% include 'elements/scripts/services/websocket.twig' %}

@@ -1,5 +1,6 @@
 {% set highlightTypePayment = pageConfig.data.theme.params.highlight_type_payment ?: 'promotional' %}
 
+
 {% set price = {
     'path': 'prices.data.price_formated',
     'text': ''
@@ -8,37 +9,47 @@
 {% set pricePath = {
     'pix': {
         'path': 'prices.data.pix.price_formatted',
+        'base_amount': 'prices.data.pix.base_amount',
+        'fraction_amount': 'prices.data.pix.fraction_amount',
         'text': 'no Pix'
     },
     'billet': {
         'path': 'prices.data.billet.price_formated',
+        'base_amount': 'prices.data.billet.base_amount',
+        'fraction_amount': 'prices.data.billet.fraction_amount',
         'text': 'no boleto',
     },
     'promotional': {
         'path': 'prices.data.price_formated',
+        'base_amount': 'prices.data.base_amount',
+        'fraction_amount': 'prices.data.fraction_amount',
         'text': ''
     },
 } %}
 
-{% set fallbackPrice = product.prices.data.price_formated %}
+{% set typeFlagDisplay = pageConfig.data.theme.params.grids_label_position | default('below_image') == 'above_image' ? '--flag-above-image' : '--flag-below-image' %}
+
+{% set isTextAndIconButton =  pageConfig.data.theme.params.grids_add_to_cart_button_type | default('icon_only') == 'icon_and_text' %}
+
+{% set fallbackPrice = product.prices.data.currency ~ ' ' ~ product.prices.data.base_amount ~ ',' ~ '<span class="fraction-amount">' ~ product.prices.data.fraction_amount ~ '</span>' %}
 
 {% if highlightTypePayment == 'promotional' %}
-    {% set selectedPrice = product.prices.data.price_formated %}
+    {% set selectedPrice = product.prices.data.currency ~ ' ' ~ product.prices.data.base_amount ~ ',' ~ '<span class="fraction-amount">' ~ product.prices.data.fraction_amount ~ '</span>' %}
 {% endif %}
 
 {% if highlightTypePayment == 'pix' %}
-    {% set selectedPrice = product.prices.data.pix.price_formatted %}
+    {% set selectedPrice = product.prices.data.currency ~ ' ' ~ product.prices.data.pix.base_amount ~ ',' ~ '<span class="fraction-amount">' ~ product.prices.data.pix.fraction_amount ~ '</span>' %}
     {% set priceText = 'no Pix' %}
 {% endif %}
 
 {% if highlightTypePayment == 'billet' %}
-    {% set selectedPrice = product.prices.data.billet.price_formated %}
+    {% set selectedPrice = product.prices.data.currency ~ ' ' ~ product.prices.data.billet.base_amount ~ ',' ~ '<span class="fraction-amount">' ~ product.prices.data.billet.fraction_amount ~ '</span>' %}
     {% set priceText = 'no boleto' %}
 {% endif %}
 
 <div
     class="box-product
-    {% if pageConfig.data.theme.params.grids_text_align == 'center' %}-center{% endif %}"
+    {% if pageConfig.data.theme.params.grids_text_align == 'center' %}-center{% endif %} {{typeFlagDisplay}}"
     {% if not product %}slot-scope="data"{% endif %}
 >
     <a
@@ -50,13 +61,15 @@
         class="block -clean"
     >
         <div class="holder-image relative-tags">
-            <discount-tag :value="{{ vuetify(product, 'product', 'prices.data.percent_discount', false) }}"></discount-tag>
+            {% if pageConfig.data.theme.params.grids_label_discount_tag %}
+                <discount-tag :value="{{ vuetify(product, 'product', 'prices.data.percent_discount', false) }}"></discount-tag>
+            {% endif %}
 
-            <div class="image-ratio">
+            <div class="image-ratio --{{pageConfig.data.theme.params.grids_image_fit_behavior | default('contain') }}">
                 {% if product %}
                     <img
-                        v-lazyload 
-                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" 
+                        v-lazyload
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                         alt="{{ product.name }}"
                         data-src="{{ thumborize(product.images.data.0.url, {"resize": "275x275"}) }}"
                         class="-loading"
@@ -66,7 +79,9 @@
                 {% endif %}
             </div>
 
-            {% if pageConfig.data.theme.params.show_add_to_cart_button %}
+            {% if pageConfig.data.theme.params.show_add_to_cart_button and not isTextAndIconButton %}
+                {% set iconColor = pageConfig.data.theme.params.grids_add_to_cart_icon_color | default('#222222') %}
+
                 <buy-button
                     {% if product %}
                         :product="{{ product | json_encode }}"
@@ -76,17 +91,25 @@
                 >
                     <template slot="buy-button">
                         <svg width="29" height="24" viewBox="0 0 29 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 12.5831C2.44477e-08 12.3035 0.2267 12.0768 0.506349 12.0768L8.60794 12.0768C8.88758 12.0768 9.11429 12.3035 9.11429 12.5831C9.11429 12.8628 8.88758 13.0895 8.60794 13.0895L0.506349 13.0895C0.2267 13.0895 -2.44477e-08 12.8628 0 12.5831Z" fill="#222222"/>
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.55714 7.85718C4.83679 7.85718 5.06349 8.08388 5.06349 8.36353L5.06349 16.4651C5.06349 16.7448 4.83679 16.9715 4.55714 16.9715C4.27749 16.9715 4.05079 16.7448 4.05079 16.4651L4.05079 8.36353C4.05079 8.08388 4.27749 7.85718 4.55714 7.85718Z" fill="#222222"/>
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M14.4395 17.3649C14.9667 17.3649 15.3941 16.9375 15.3941 16.4103C15.3941 15.8831 14.9667 15.4558 14.4395 15.4558C13.9123 15.4558 13.4849 15.8831 13.4849 16.4103C13.4849 16.9375 13.9123 17.3649 14.4395 17.3649ZM14.4395 18.5249C15.6074 18.5249 16.5541 17.5782 16.5541 16.4103C16.5541 15.2425 15.6074 14.2958 14.4395 14.2958C13.2717 14.2958 12.3249 15.2425 12.3249 16.4103C12.3249 17.5782 13.2717 18.5249 14.4395 18.5249Z" fill="#222222"/>
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M20.3603 17.3649C20.8875 17.3649 21.3149 16.9375 21.3149 16.4103C21.3149 15.8831 20.8875 15.4558 20.3603 15.4558C19.8331 15.4558 19.4058 15.8831 19.4058 16.4103C19.4058 16.9375 19.8331 17.3649 20.3603 17.3649ZM20.3603 18.5249C21.5282 18.5249 22.4749 17.5782 22.4749 16.4103C22.4749 15.2425 21.5282 14.2958 20.3603 14.2958C19.1925 14.2958 18.2458 15.2425 18.2458 16.4103C18.2458 17.5782 19.1925 18.5249 20.3603 18.5249Z" fill="#222222"/>
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.48242 4.74992C8.48242 4.4296 8.7421 4.16992 9.06242 4.16992H9.98229C10.5506 4.16992 11.0535 4.5377 11.2259 5.07924L11.862 7.07858C11.8946 7.07289 11.9282 7.06992 11.9624 7.06992H22.8961C23.7986 7.06992 24.4286 7.96397 24.1251 8.81384L23.1742 11.4765C22.7826 12.573 21.744 13.3049 20.5797 13.3049H14.6403C13.4406 13.3049 12.3788 12.5285 12.015 11.3852L10.1205 5.43096C10.1013 5.37079 10.0454 5.32992 9.98229 5.32992H9.06242C8.7421 5.32992 8.48242 5.07025 8.48242 4.74992ZM12.2283 8.22992L13.1204 11.0335C13.331 11.6954 13.9457 12.1449 14.6403 12.1449H20.5797C21.2537 12.1449 21.855 11.7212 22.0817 11.0864L23.0327 8.42369C23.0664 8.32926 22.9964 8.22992 22.8961 8.22992H12.2283Z" fill="#222222"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 12.5831C2.44477e-08 12.3035 0.2267 12.0768 0.506349 12.0768L8.60794 12.0768C8.88758 12.0768 9.11429 12.3035 9.11429 12.5831C9.11429 12.8628 8.88758 13.0895 8.60794 13.0895L0.506349 13.0895C0.2267 13.0895 -2.44477e-08 12.8628 0 12.5831Z" fill="{{ iconColor }}"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.55714 7.85718C4.83679 7.85718 5.06349 8.08388 5.06349 8.36353L5.06349 16.4651C5.06349 16.7448 4.83679 16.9715 4.55714 16.9715C4.27749 16.9715 4.05079 16.7448 4.05079 16.4651L4.05079 8.36353C4.05079 8.08388 4.27749 7.85718 4.55714 7.85718Z" fill="{{ iconColor }}"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M14.4395 17.3649C14.9667 17.3649 15.3941 16.9375 15.3941 16.4103C15.3941 15.8831 14.9667 15.4558 14.4395 15.4558C13.9123 15.4558 13.4849 15.8831 13.4849 16.4103C13.4849 16.9375 13.9123 17.3649 14.4395 17.3649ZM14.4395 18.5249C15.6074 18.5249 16.5541 17.5782 16.5541 16.4103C16.5541 15.2425 15.6074 14.2958 14.4395 14.2958C13.2717 14.2958 12.3249 15.2425 12.3249 16.4103C12.3249 17.5782 13.2717 18.5249 14.4395 18.5249Z" fill="{{ iconColor }}"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M20.3603 17.3649C20.8875 17.3649 21.3149 16.9375 21.3149 16.4103C21.3149 15.8831 20.8875 15.4558 20.3603 15.4558C19.8331 15.4558 19.4058 15.8831 19.4058 16.4103C19.4058 16.9375 19.8331 17.3649 20.3603 17.3649ZM20.3603 18.5249C21.5282 18.5249 22.4749 17.5782 22.4749 16.4103C22.4749 15.2425 21.5282 14.2958 20.3603 14.2958C19.1925 14.2958 18.2458 15.2425 18.2458 16.4103C18.2458 17.5782 19.1925 18.5249 20.3603 18.5249Z" fill="{{ iconColor }}"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.48242 4.74992C8.48242 4.4296 8.7421 4.16992 9.06242 4.16992H9.98229C10.5506 4.16992 11.0535 4.5377 11.2259 5.07924L11.862 7.07858C11.8946 7.07289 11.9282 7.06992 11.9624 7.06992H22.8961C23.7986 7.06992 24.4286 7.96397 24.1251 8.81384L23.1742 11.4765C22.7826 12.573 21.744 13.3049 20.5797 13.3049H14.6403C13.4406 13.3049 12.3788 12.5285 12.015 11.3852L10.1205 5.43096C10.1013 5.37079 10.0454 5.32992 9.98229 5.32992H9.06242C8.7421 5.32992 8.48242 5.07025 8.48242 4.74992ZM12.2283 8.22992L13.1204 11.0335C13.331 11.6954 13.9457 12.1449 14.6403 12.1449H20.5797C21.2537 12.1449 21.855 11.7212 22.0817 11.0864L23.0327 8.42369C23.0664 8.32926 22.9964 8.22992 22.8961 8.22992H12.2283Z" fill="{{ iconColor }}"/>
                         </svg>
                     </template>
                 </buy-button>
             {% endif %}
+
+            <flags
+                {% if product %}
+                    :default-flags="{{ product['flags']['data'] | json_encode }}"
+                {% else %}
+                    :product="data.product"
+                {% endif %}
+            ></flags>
         </div>
-        <div class="holder-info">
+        <div class="holder-info --space-bottom-{{ pageConfig.data.theme.params.grids_space_below_image | default('small') }}">
             <flags
                 {% if product %}
                     :default-flags="{{ product['flags']['data'] | json_encode }}"
@@ -104,33 +127,36 @@
                     {% endif %}
                     class="{% if pageConfig.data.theme.params.grids_text_align == 'center' %}-center{% endif %}"
                     :is-grid="true"
+                    color-star-icon="{{ pageConfig.data.theme.params.grids_review_average_star_color | default('#FFC01E') }}"
                 ></average-rating>
             {% endif %}
 
             {% if pageConfig.data.theme.params.grids_brand_enabled %}
                 <div class="product-brand ellipsis">
-                    {{ vuetify(product, 'product', 'brand.data.name') }}
+                    {{ vuetify(product, 'product', 'brand.data.name') | raw }}
                 </div>
             {% endif %}
 
             <div class="product-name ellipsis-multiline l2">
-                {{ vuetify(product, 'product', 'name') }}
+                {{ vuetify(product, 'product', 'name') | raw }}
             </div>
 
-            <div class="product-prices">
+            <div class="product-prices --space-top-{{ pageConfig.data.theme.params.grids_space_between_name_price | default('small') }}">
                 <div class="flex -vcenter -wrap">
                     {% if vuetify(product, 'product','prices.data.has_promotion', false) %}
-                        <span class="product-old-price old-price"
+                        <span class="product-old-price --font-size-{{ pageConfig.data.theme.params.grids_product_old_price_size | default('small') }}"
                             {% if not product %} v-if="data.product.prices.data.has_promotion" {% endif %}
-                        >   
+                        >
                             {{ vuetify(product, 'product', 'prices.data.price_sale_formated') }}
                         </span>
                     {% endif %}
 
-                    <span class="product-actual-price price">
+                    <span class="product-actual-price
+                        {% if pageConfig.data.theme.params.grids_product_price_small_cents | default(false) %}--small-cents-price{% endif %}
+                    ">
                         {% if product %}
                             <div>
-                                {{ selectedPrice ?: fallbackPrice }}
+                                {{ (selectedPrice ?: fallbackPrice)|raw }}
                                 {% if selectedPrice %}
                                     <span class="payment-type">{{ priceText }}</span>
                                 {% endif %}
@@ -138,11 +164,16 @@
                         {% endif %}
 
                         {% if not product %}
-                            <div {% if 'data.product.' ~ pricePath[highlightTypePayment].path %}v-if="data.product.{{ pricePath[highlightTypePayment].path }}"{% endif %}>
-                                {{ '{{ data.product.' ~ pricePath[highlightTypePayment].path ~ '}}' }} <span class="payment-type">{{ priceText }}</span>
+                            <div {% if 'data.product.' ~ pricePath[highlightTypePayment].base_amount %}v-if="data.product.{{ pricePath[highlightTypePayment].base_amount }}"{% endif %}>
+                                <span>{{ '{{ data.product.prices.data.currency }}' }}</span>
+                                <span class="base-amount">
+                                    {{ '{{ data.product.' ~ pricePath[highlightTypePayment].base_amount ~ '}}' }}<span class="fraction-amount">,{{ '{{ data.product.' ~ pricePath[highlightTypePayment].fraction_amount ~ '}}' }}</span>
+                                </span>
+                                <span class="payment-type">{{ priceText }}</span>
                             </div>
                             <div v-else>
-                                {{ '{{ data.product.prices.data.price_formated }}' }}
+                                <span>{{ '{{ data.product.prices.data.currency }}' }}</span>
+                                <span class="base-amount">{{ '{{ data.product.prices.data.base_amount }}' }}</span><span class="fraction-amount">,{{ '{{ data.product.prices.data.fraction_amount }}' }}</span>
                             </div>
                         {% endif %}
                     </span>
@@ -158,6 +189,45 @@
                     ></installments-text>
                 {% endif %}
             </div>
+
+            {% if pageConfig.data.theme.params.show_add_to_cart_button and isTextAndIconButton %}
+                {% set iconColorMapping = {
+                    'primary': pageConfig.data.theme.params.color_btn_primary_text,
+                    'secondary': pageConfig.data.theme.params.color_btn_secundary_text,
+                    'custom': pageConfig.data.theme.params.grids_add_to_cart_icon_text_button_text_color
+                } %}
+
+                {% set displayIcon = pageConfig.data.theme.params.grids_add_to_cart_icon_text_button_display_icon | default(false) %}
+                {% set iconColor = iconColorMapping[pageConfig.data.theme.params.grids_quickbuy_prices_color | default('custom')] %}
+
+                <buy-button
+                    :is-text-and-icon-button="true"
+                    class="--space-top-{{ pageConfig.data.theme.params.grids_add_to_cart_space_between_price | default('medium') }}"
+                    {% if product %}
+                        :product="{{ product | json_encode }}"
+                    {% else %}
+                        :product="data.product"
+                    {% endif %}
+                >
+                    <template slot="buy-button-text-icon">
+                        {% if displayIcon %}
+                            <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon">
+                                <path d="M10.0898 5.98438H11.9758C13.496 5.98438 14.7759 7.1215 14.9549 8.63115L15.8789 16.4242H24.471C24.9383 16.4242 25.3434 16.1005 25.4464 15.6446L26.7741 9.76953H17.6783V7.76953H26.7741C28.0566 7.76953 29.0076 8.9595 28.7249 10.2104L27.3972 16.0855C27.0881 17.453 25.8731 18.4242 24.471 18.4242H16.116L16.4163 20.9565L24.9221 20.9565V22.9565H16.4163C15.4028 22.9565 14.5495 22.1984 14.4302 21.192L12.9688 8.86663C12.9092 8.36342 12.4825 7.98438 11.9758 7.98438L10.0898 7.98438V5.98438Z" fill="{{ iconColor }}"/>
+                                <path d="M17.1406 27C17.831 27 18.3906 26.4404 18.3906 25.75C18.3906 25.0596 17.831 24.5 17.1406 24.5C16.4503 24.5 15.8906 25.0596 15.8906 25.75C15.8906 26.4404 16.4503 27 17.1406 27Z" fill="{{ iconColor }}"/>
+                                <path d="M22.626 27C23.3163 27 23.876 26.4404 23.876 25.75C23.876 25.0596 23.3163 24.5 22.626 24.5C21.9356 24.5 21.376 25.0596 21.376 25.75C21.376 26.4404 21.9356 27 22.626 27Z" fill="{{ iconColor }}"/>
+                                <path d="M6.5 18.417H3.5V16.417H6.5V13.417H8.5V16.417H11.5V18.417H8.5V21.417H6.5V18.417Z" fill="{{ iconColor }}"/>
+                            </svg>
+                        {% endif %}
+
+                        <span class="text"
+                            {% if pageConfig.data.theme.params.grids_quickbuy_text_button | default('Adicionar ao carrinho') | length %}
+                                v-text="'{{ pageConfig.data.theme.params.grids_quickbuy_text_button | default('Adicionar ao carrinho') }}'"
+                            {% endif %}
+                        >
+                        </span>
+                    </template>
+                </buy-button>
+            {% endif %}
         </div>
     </a>
 </div>

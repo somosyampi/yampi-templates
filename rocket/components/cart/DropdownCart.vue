@@ -65,7 +65,7 @@
                     />
 
                     <div
-                        v-for="item in items.filter((item) => !item.kit_id)"
+                        v-for="item in sortedByFreebies.filter((item) => !item.kit_id)"
                         :key="item.id"
                         class="cart-product flex -between -wrap"
                         :class="{
@@ -161,6 +161,13 @@
                     :sending="anyLoading"
                     :disabled="anyLoading"
                     @click="redirect()"
+                />
+
+                <Cashback
+                    v-if="hasCashbackValid"
+                    class="mt-21"
+                    :percent-amount="validCashback.percent_amount"
+                    text-align="center"
                 />
             </div>
         </rocket-emitter>

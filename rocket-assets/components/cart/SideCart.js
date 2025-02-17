@@ -1,5 +1,5 @@
-import o from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-sandbox/rocket-assets/components/cart/BaseCart.js";
-function l(s, t, e, a, C, p, g, m) {
+import o from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/undefined/assets/rocket-preview/components/cart/BaseCart.js";
+function l(s, t, e, a, C, p, m, g) {
   var i = typeof s == "function" ? s.options : s;
   return t && (i.render = t, i.staticRenderFns = e, i._compiled = !0), {
     exports: s,
@@ -97,19 +97,17 @@ var c = function() {
   } } }, [t._v(" " + t._s(t.emptyCartTextButton) + " ")])]) : e("div", { staticClass: "continue-buying", on: { click: t.handleShow } }, [e("span", [e("SelectArrow", { staticClass: "icon icon-select-arrow -left" })], 1), t._v(" Continuar comprando ")])]) : e("div", { staticClass: "side-cart-content", class: {
     "--overflows": t.isOverflowing
   } }, [e("div", { ref: "sideCartProductList", staticClass: "side-cart-products-list", class: {
-    "--overflows": t.isOverflowing,
-    "--show-saved-money": t.shouldShowCartSavings
-  } }, [e("buy-together-cart-group", { attrs: { "buy-together-items": t.buyTogetherItems, loading: t.loading }, on: { removeCombo: t.handleRemoveCombo } }), t._l(t.items.filter((a) => !a.kit_id), function(a) {
+    "--overflows": t.isOverflowing
+  } }, [e("buy-together-cart-group", { attrs: { "buy-together-items": t.buyTogetherItems, loading: t.loading }, on: { removeCombo: t.handleRemoveCombo } }), t._l(t.sortedByFreebies.filter((a) => !a.kit_id), function(a) {
     return e("div", { key: a.id, class: {
       loading: t.loading[a.id],
       "-vcenter": a.kit_id
     } }, [e("product-cart-box", { attrs: { product: a, "show-product-quantity": !1, "show-product-cart-savings": t.showProductCartSavings } })], 1);
   })], 2), e("transition", { attrs: { name: "fade" } }, [t.showButton ? e("div", { staticClass: "side-cart-button-container", class: {
-    "--overflows": t.isOverflowing,
-    "--show-saved-money": t.shouldShowCartSavings
+    "--overflows": t.isOverflowing
   } }, [e("div", { staticClass: "side-cart-total-value" }, [e("div", { staticClass: "side-cart-row mb-15" }, [e("div", { staticClass: "side-cart-total-text" }, [t._v(" PRODUTOS (" + t._s(t.$tc("cart.amount-of-products", parseInt(t.cart.prices.total_items), { count: parseInt(t.cart.prices.total_items) })) + ") ")]), e("div", { staticClass: "side-cart-subtotal" }, [t._v(" " + t._s(t._f("formatMoney")(t.totalCartValue)) + " ")])]), t.shouldShowCartSavings ? e("div", { staticClass: "side-cart-row mb-21", class: { shake: t.animate } }, [e("div", { staticClass: "side-cart-savings-text" }, [t._v(" VOCÊ ESTÁ ECONOMIZANDO ")]), e("div", { staticClass: "side-cart-savings-price" }, [t._v(" " + t._s(t._f("formatMoney")(t.totalCartSavings)) + " ")])]) : t._e()]), t.shouldShowCartSavings ? e("hr", { staticClass: "mb-20" }) : t._e(), e("div", { staticClass: "side-cart-total-value mb-22" }, [e("div", { staticClass: "side-cart-row" }, [e("span", { staticClass: "side-cart-total-text" }, [t._v("SUBTOTAL")]), e("span", { staticClass: "side-cart-subtotal-after-discounts" }, [t._v(t._s(t.cartValue) + " ")])])]), t.highlightedPrice === "billet" ? e("div", { staticClass: "side-cart-total-value mb-24" }, [e("div", { staticClass: "side-cart-row" }, [e("span", { staticClass: "side-cart-total-text" }, [e("b", [t._v(t._s(t.getCartValueByPaymentMethod.percentage) + "% DE DESCONTOS")]), t._v(" NO BOLETO")]), e("span", [e("b", [t._v(t._s(t._f("formatMoney")(t.getCartValueByPaymentMethod.value)))])])])]) : t._e(), t.highlightedPrice === "pix" ? e("div", { staticClass: "side-cart-total-value mb-24" }, [e("div", { staticClass: "side-cart-row" }, [e("span", { staticClass: "side-cart-total-text" }, [e("b", [t._v(t._s(t.getCartValueByPaymentMethod.percentage) + "% DE DESCONTOS")]), t._v(" NO PIX")]), e("span", [e("b", [t._v(t._s(t._f("formatMoney")(t.getCartValueByPaymentMethod.value)))])])])]) : t._e(), e("LoaderButton", { staticClass: "btn btn-primary side-cart-button", attrs: { title: t.buttonText, sending: t.anyLoading, disabled: t.anyLoading }, on: { click: function(a) {
     return t.redirect();
-  } } })], 1) : t._e()])], 1)])]);
+  } } }), t.hasCashbackValid ? e("Cashback", { staticClass: "mt-21", attrs: { "percent-amount": t.validCashback.percent_amount, "text-align": "center" } }) : t._e()], 1) : t._e()])], 1)])]);
 }, u = [], v = /* @__PURE__ */ l(
   d,
   c,

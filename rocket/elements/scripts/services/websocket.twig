@@ -1,0 +1,36 @@
+{% if ws_enabled and ws_user_id %}
+<script 
+    src="{{ ws_cdn_url }}"
+    defer
+    async
+    onload="startOnlineVisitors()"
+></script>
+
+<script>
+    function startOnlineVisitors() {
+        const date = new Date();
+        const timestampCdn = `${date.getFullYear()}${date.getMonth()}${date.getDay()}`;
+        
+        const websocketOptions = {
+            echo: {
+                key: "{{ ws_app_key }}",
+                wsHost: '{{ ws_host }}',
+                wsPort: '{{ ws_port }}',
+                wssPort: '{{ ws_port }}',
+                forceTLS: '{{ ws_scheme }}' === 'https',
+                authEndpoint: '{{ ws_auth_endpoint }}',
+            },
+            alias: window.merchant.alias,
+            service: '{{ ws_service }}',
+            workerPath: `${window.location.origin}/js/worker.js?ts=${timestampCdn}`,
+            user_data: {
+                id: "{{ ws_user_id }}",
+            },
+            cart_token: "{{ ws_cart_token }}",
+            cdn_url: "{{ ws_cdn_url }}",
+        };
+
+        connect.connection(websocketOptions);
+    }
+</script>
+{% endif %}

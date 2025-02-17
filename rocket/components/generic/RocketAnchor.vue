@@ -4,6 +4,7 @@
         :ref="props.customRef"
         :class="`rocket-anchor ${props.customClasses}`"
         :href="props.href"
+        :target="props.targetType"
         v-on="listeners"
     >
         {{ props.label }}
@@ -29,6 +30,16 @@ export default {
         customRef: {
             type: String,
             default: null,
+        },
+        targetType: {
+            type: String,
+            default: '_self',
+            validator: value => [
+                '_self',
+                '_blank',
+                '_parent',
+                '_top',
+            ].includes(value),
         },
     },
 };

@@ -89,7 +89,7 @@ var m = function() {
   }, on: { click: function(s) {
     return e.handleContentDetails();
   } } }, [i("div", { staticClass: "-rating" }, e._l(e.times(5), function(s) {
-    return i("i", { key: s, staticClass: "icon", class: `icon-star-${s < e.review.rating ? "gold" : "grey"}` });
+    return i("i", { key: s, staticClass: "icon", class: `icon-star-${s < e.review.rating ? "dynamic" : "grey"}` });
   }), 0), i("div", { staticClass: "flex" }, [i("span", { staticClass: "-name ellipsis", domProps: { textContent: e._s(e.review.name) } }), e.showDates ? i("Timeago", { staticClass: "-time-ago", attrs: { date: e.review.created_at.date } }) : e._e()], 1), i("div", { staticClass: "-text", domProps: { textContent: e._s(e.review.message) } }), e.review.photos.data.length ? i("div", { staticClass: "review-photos-wrapper" }, [e._l(e.reviewPhotos, function(s) {
     return [i("div", { key: s.url, staticClass: "review-photo-container" }, [i("img", { key: s.url, staticClass: "review-photo-product-page", attrs: { src: s.url } })])];
   })], 2) : e._e()]), i("div", [e.isMobile ? i("modal-review-details-mobile", { ref: "ModalReviewDetailsRef", attrs: { review: e.reviewFilteredPhotos, "show-dates": e.showDates } }) : i("modal-review-details", { ref: "ModalReviewDetailsRef", attrs: { review: e.reviewFilteredPhotos, "show-dates": e.showDates } })], 1)]);

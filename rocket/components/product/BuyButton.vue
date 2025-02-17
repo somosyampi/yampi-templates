@@ -1,10 +1,16 @@
 <template>
     <div class="holder-buy-button">
         <div
-            class="buy-button"
+            :class="buyButtonClass"
             @click.stop.prevent="handleClick"
         >
-            <slot name="buy-button" />
+            <slot
+                name="buy-button"
+            />
+
+            <slot
+                name="buy-button-text-icon"
+            />
         </div>
     </div>
 </template>
@@ -21,6 +27,21 @@ export default {
         productMixin,
         trackingByApi,
     ],
+
+    props: {
+        isTextAndIconButton: {
+            type: Boolean,
+            default: false,
+        },
+    },
+
+    computed: {
+        buyButtonClass() {
+            return this.isTextAndIconButton
+                ? 'buy-button-text-icon'
+                : 'buy-button';
+        },
+    },
 
     methods: {
         async handleClick() {

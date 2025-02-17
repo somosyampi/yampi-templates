@@ -130,6 +130,18 @@
 
     &-star-gold {
         background-image: url(image("themes/rocket/icons/filled-star.svg"));
+        background-image: url(image(
+            "themes/rocket/icons/filled-star-dynamic.svg"
+        ));
+        width: 14px;
+        height: 13px;
+    }
+
+    &-star-dynamic {
+        background-color: var(--review-average-star-color);
+        -webkit-mask-image: url(image("themes/rocket/icons/filled-star.svg"));
+        mask-image: url(image("themes/rocket/icons/filled-star.svg"));
+        mask-size: cover;
         width: 14px;
         height: 13px;
     }
@@ -239,6 +251,12 @@
 
     &-sign-up {
         background-image: url(image("themes/rocket/icons/sign-up.svg"));
+        width: 32px;
+        height: 32px;
+    }
+
+    &-money {
+        background-image: url(image("themes/rocket/icons/money.svg"));
         width: 32px;
         height: 32px;
     }

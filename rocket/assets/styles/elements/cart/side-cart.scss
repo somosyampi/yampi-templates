@@ -101,6 +101,9 @@
 }
 
 .side-cart-content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
     background-color: var(--white);
     padding: 105px 0 0 0;
     height: 100%;
@@ -122,13 +125,9 @@
 .side-cart-products-list {
     overflow: auto;
     overflow-x: hidden;
-    height: calc(100% - 200px);
+    flex: 1 0 0;
     padding: 0px 35px 0;
     transition: box-shadow 0.3s ease-in-out;
-
-    &.--show-saved-money {
-        height: calc(100% - 260px);
-    }
 
     &.--overflows {
         padding: 0px 24px 0px 36px;
@@ -176,12 +175,11 @@
 
 .side-cart-button-container {
     width: clamp(329px, 84vw, 403px);
-    height: 200px;
     margin: 0 auto;
     background-color: var(--white);
     transition: box-shadow 0.3s ease-in-out;
     padding: 22px 35px 30px;
-    position: fixed;
+    position: sticky;
     bottom: 0;
     right: 0;
     z-index: 1;
@@ -189,10 +187,6 @@
 
     hr {
         margin: 0 -35px 0;
-    }
-
-    &.--show-saved-money {
-        height: 260px;
     }
 
     @media only screen and (max-width: 700px) {

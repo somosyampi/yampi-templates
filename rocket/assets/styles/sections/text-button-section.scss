@@ -20,9 +20,11 @@
         color: #000;
         font-size: var(--font-30);
         word-break: break-word;
-        font-weight: 400;
         padding: 0 0 17px;
         max-width: 718px;
+        font-family: var(--fonts-titles-family);
+        font-weight: var(--fonts-titles-weight);
+        text-transform: var(--fonts-titles-uppercase);
 
         @media screen and (max-width: 700px) {
             max-width: calc(100vw - 34px);

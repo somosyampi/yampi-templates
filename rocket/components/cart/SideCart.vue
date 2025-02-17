@@ -78,8 +78,7 @@
                     ref="sideCartProductList"
                     class="side-cart-products-list"
                     :class="{
-                        '--overflows': isOverflowing,
-                        '--show-saved-money': shouldShowCartSavings
+                        '--overflows': isOverflowing
                     }"
                 >
                     <buy-together-cart-group
@@ -89,7 +88,7 @@
                     />
 
                     <div
-                        v-for="item in items.filter((item) => !item.kit_id)"
+                        v-for="item in sortedByFreebies.filter((item) => !item.kit_id)"
                         :key="item.id"
                         :class="{
                             loading: loading[item.id],
@@ -108,8 +107,7 @@
                         v-if="showButton"
                         class="side-cart-button-container"
                         :class="{
-                            '--overflows': isOverflowing,
-                            '--show-saved-money': shouldShowCartSavings
+                            '--overflows': isOverflowing
                         }"
                     >
                         <div
@@ -163,10 +161,11 @@
                             class="side-cart-total-value mb-24"
                         >
                             <div class="side-cart-row">
-                                <span class="side-cart-total-text"><b>{{ getCartValueByPaymentMethod.percentage }}% DE DESCONTOS</b> NO BOLETO</span>
-                                <span
-                                ><b>{{ getCartValueByPaymentMethod.value | formatMoney }}</b>
-                            </span>
+                                <span class="side-cart-total-text">
+                                    <b>{{ getCartValueByPaymentMethod.percentage }}% DE DESCONTOS</b> NO BOLETO</span>
+                                <span>
+                                    <b>{{ getCartValueByPaymentMethod.value | formatMoney }}</b>
+                                </span>
                             </div>
                         </div>
 
@@ -175,10 +174,11 @@
                             class="side-cart-total-value mb-24"
                         >
                             <div class="side-cart-row">
-                                <span class="side-cart-total-text"><b>{{ getCartValueByPaymentMethod.percentage }}% DE DESCONTOS</b> NO PIX</span>
-                                <span
-                                ><b>{{ getCartValueByPaymentMethod.value | formatMoney }}</b>
-                            </span>
+                                <span class="side-cart-total-text">
+                                    <b>{{ getCartValueByPaymentMethod.percentage }}% DE DESCONTOS</b> NO PIX</span>
+                                <span>
+                                    <b>{{ getCartValueByPaymentMethod.value | formatMoney }}</b>
+                                </span>
                             </div>
                         </div>
 
@@ -188,6 +188,13 @@
                             :sending="anyLoading"
                             :disabled="anyLoading"
                             @click="redirect()"
+                        />
+
+                        <Cashback
+                            v-if="hasCashbackValid"
+                            class="mt-21"
+                            :percent-amount="validCashback.percent_amount"
+                            text-align="center"
                         />
                     </div>
                 </transition>

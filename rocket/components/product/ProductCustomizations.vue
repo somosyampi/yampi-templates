@@ -41,6 +41,12 @@
             />
         </div>
 
+        <Cashback
+            v-if="hasCashbackValid"
+            class="mt-21 mb-21"
+            :percent-amount="validCashback.percent_amount"
+        />
+
         <div
             v-if="!firstValidSku"
             class="main-product-unavailable alert -yellow"
@@ -59,9 +65,11 @@
 </template>
 
 <script>
+/* eslint-disable max-len */
 import { mapActions } from '~/vuex';
 import _ from '~/lodash';
 import productMixin from '@/mixins/product';
+import cashbackMixin from '@/mixins/cashback';
 import trackingByApi from '@/mixins/tracking/api';
 
 export default {
@@ -69,6 +77,7 @@ export default {
 
     mixins: [
         productMixin,
+        cashbackMixin,
         trackingByApi,
     ],
 
@@ -112,6 +121,11 @@ export default {
             type: String,
             default: 'list',
         },
+
+        cashbacks: {
+            type: Array,
+            default: () => [],
+        },
     },
 
     data: () => ({
@@ -152,6 +166,29 @@ export default {
                 return !_.isEmpty(this.customizationValues[customization.id]);
             });
         },
+
+        validCashback() {
+            const {
+                price_sale: salePrice,
+                price_discount: discountPrice,
+            } = this.validSku;
+
+            let productPrice = salePrice;
+
+            if (discountPrice > 0) {
+                productPrice = discountPrice;
+            }
+
+            return this.getValidCashback(this.cashbacks, productPrice);
+        },
+
+        hasCashbackValid() {
+            if (_.isEmpty(this.validCashback)) {
+                return false;
+            }
+
+            return this.validCashback.percent_amount > 0;
+        },
     },
 
     mounted() {
@@ -169,7 +206,7 @@ export default {
                 products: this.validProduct,
                 value: this.firstValidSku.prices.data.price * this.quantity,
                 quantities: this.quantity,
-            })
+            });
         },
 
         bootSelectedSku() {
