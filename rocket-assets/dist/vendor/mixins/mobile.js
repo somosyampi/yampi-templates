@@ -1,0 +1,1 @@
+import{mapGetters as e,mapActions as t}from"../vuex.js";const i={props:{mobileAt:{type:Number,default:700}},computed:{...e("screen",["width"]),isMobile(){return this.width<=this.mobileAt}},methods:{...t("screen",{bootScreenModule:"boot"})},mounted(){this.bootScreenModule()}};export{i as default};

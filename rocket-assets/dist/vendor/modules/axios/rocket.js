@@ -1,0 +1,1 @@
+import"../../base.js";import{axios as o}from"../../index.js";import"../../index2.js";import"../../_commonjsHelpers.js";const n=o.create({baseURL:window.location.origin||`${window.location.protocol}//${window.location.hostname}`,headers:{"X-CSRF-TOKEN":window.Yampi.csrf_token}});export{n as default};
