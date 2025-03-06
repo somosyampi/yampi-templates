@@ -7,10 +7,6 @@
 
 <link rel="manifest" href="/manifest.json"/>
 
-<script defer src="{{ '/js/vendor.js' | vendor_url}}"></script>
-<script defer src="{{ '/js/components.js' | vendor_url}}"></script>
-<script defer src="{{ '/js/app.js' | vendor_url}}"></script>
-
 <!-- robots -->
 <meta name="robots" content="{{ environment == 'production' ? 'index,follow' : 'nofollow' }}"/>
 
@@ -23,9 +19,9 @@
 {% include 'elements/scripts/head.twig' %}
 {% include 'elements/variables.twig' %}
 
-<script type="module" src="{{ '/dist/vendor/windowVue.js' | vendor_url }}"></script>
-<script type="module" src="{{ '/dist/vendor/icons.js' | vendor_url }}"></script>
+<script type="module" src="{{ '/dist/vendor/windowVue.js' | components_url }}"></script>
+<script type="module" src="{{ '/dist/vendor/icons.js' | components_url }}"></script>
 
 {% include 'elements/scripts/components.twig' ignore missing %}
 
-<script type="module" src="{{ '/dist/vendor/app.js' | vendor_url }}"></script>
+<script type="module" src="{{ '/dist/vendor/app.js' | components_url }}"></script>
