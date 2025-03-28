@@ -46,7 +46,7 @@
 
 .banner-2 {
     .flex {
-        & > * + * {
+        &>*+* {
             margin-left: 2%;
         }
     }
@@ -173,7 +173,7 @@
         width: 100%;
         align-self: center;
 
-        & > * + * {
+        &>*+* {
             margin-left: 24px;
         }
     }

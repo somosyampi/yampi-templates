@@ -85,10 +85,14 @@ body:not(.home) {
     .header-content-right {
         align-self: center;
         justify-content: end;
+
+        .mini-cart-holder:first-child {
+            margin-left: 10px;
+        }
     }
 
     .header-content {
-        display: flex;
+        display: flex; 
         align-items: center;
         flex-direction: column;
     }
@@ -96,7 +100,18 @@ body:not(.home) {
     .header-row.--left {
         display: flex;
         justify-content: center;
+
+        .mini-cart-holder:first-child {
+            margin-left: 10px;
+        }
+    }
+
+    .header-row.--left:not(.categories) {
         width: min(100%, 1200px);
+    }
+
+    .header-row.--left.categories {
+        width: 100%;
     }
 
     .header-hightlightbar {
@@ -120,12 +135,6 @@ body:not(.home) {
     .categories-menu {
         width: min(100%, 1200px);
         padding: 0 16px 0;
-    }
-}
-@media screen and (min-width: 701px) {
-    .h-center-container,
-    .h-left-container {
-        padding-bottom: 14px;
     }
 }
 
@@ -170,13 +179,11 @@ body:not(.home) {
 
     .holder-search {
         @extend .col-start-1,
-            .col-end-13,
-            .md\:col-start-8,
-            .md\:col-end-11,
-            .lg\:col-start-9,
-            .lg\:col-end-12;
-
-        justify-self: end;
+        .col-end-13,
+        .md\:col-start-8,
+        .md\:col-end-11,
+        .lg\:col-start-9,
+        .lg\:col-end-12;
 
         @media (max-width: map.get(tokens.$sizes-min, "lg")) and (min-width: map.get(tokens.$sizes-min, "md")) {
             margin: 0 -30px 0 20px;
@@ -257,6 +264,11 @@ body:not(.home) {
     }
 
     .categories {
+        @media screen and (min-width: 701px) {
+            margin-top: 9px;
+            flex: 1;
+        }
+
         svg {
             margin-right: 10px;
         }
@@ -278,9 +290,7 @@ body:not(.home) {
             flex-wrap: wrap;
             flex-direction: row;
             gap: 0 32px;
-            flex: 1;
             --category-spacing: 16px;
-            margin-top: -4px;
             font-size: 0;
 
             li {
