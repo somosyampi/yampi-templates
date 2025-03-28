@@ -1,6 +1,6 @@
-import r from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-import S from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/product.js";
-import { smoothScroll as k } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/helpers.js";
+import r from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/lodash.js";
+import S from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/product.js";
+import { smoothScroll as k } from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/helpers.js";
 function b(e, t, s, i, o, n, c, m) {
   var a = typeof e == "function" ? e.options : e;
   t && (a.render = t, a.staticRenderFns = s, a._compiled = !0), i && (a.functional = !0), n && (a._scopeId = "data-v-" + n);

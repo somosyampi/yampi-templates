@@ -1,4 +1,4 @@
-import p from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vue.js";
+import p from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/vue.js";
 function v(n, s, _, c, r, l, f, m) {
   var e = typeof n == "function" ? n.options : n;
   s && (e.render = s, e.staticRenderFns = _, e._compiled = !0), c && (e.functional = !0), l && (e._scopeId = "data-v-" + l);

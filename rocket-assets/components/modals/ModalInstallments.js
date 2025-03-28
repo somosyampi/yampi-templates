@@ -1,4 +1,4 @@
-import f from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
+import f from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/lodash.js";
 import C from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-sandbox/rocket-assets/components/product/installments/BaseInstallments.js";
 function g(l, e, t, n, r, c, u, m) {
   var a = typeof l == "function" ? l.options : l;

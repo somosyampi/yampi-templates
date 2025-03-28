@@ -1,5 +1,5 @@
-import "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/external-svg-loader.js";
-import C from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/mobile.js";
+import "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/external-svg-loader.js";
+import C from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/mobile.js";
 function v(i, t, s, a, r, d, u, p) {
   var e = typeof i == "function" ? i.options : i;
   t && (e.render = t, e.staticRenderFns = s, e._compiled = !0), a && (e.functional = !0), d && (e._scopeId = "data-v-" + d);

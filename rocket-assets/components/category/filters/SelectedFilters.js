@@ -1,5 +1,5 @@
-import { mapGetters as C, mapActions as m } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
-import F from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/queryParams.js";
+import { mapGetters as C, mapActions as m } from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/vuex.js";
+import F from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/queryParams.js";
 function y(t, n, a, s, o, u, d, v) {
   var e = typeof t == "function" ? t.options : t;
   n && (e.render = n, e.staticRenderFns = a, e._compiled = !0), s && (e.functional = !0), u && (e._scopeId = "data-v-" + u);

@@ -1,12 +1,12 @@
-(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".hide[data-v-471fb67e]{visibility:hidden}")),document.head.appendChild(e)}}catch(d){console.error("vite-plugin-css-injected-by-js",d)}})();
-import u from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-function w(o, t, n, h, a, d, f, m) {
+(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".hide[data-v-6f42125c]{visibility:hidden}")),document.head.appendChild(e)}}catch(d){console.error("vite-plugin-css-injected-by-js",d)}})();
+import u from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/lodash.js";
+function w(o, t, n, m, a, d, f, h) {
   var e = typeof o == "function" ? o.options : o;
-  t && (e.render = t, e.staticRenderFns = n, e._compiled = !0), h && (e.functional = !0), d && (e._scopeId = "data-v-" + d);
+  t && (e.render = t, e.staticRenderFns = n, e._compiled = !0), m && (e.functional = !0), d && (e._scopeId = "data-v-" + d);
   var i;
   if (f ? (i = function(s) {
     s = s || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !s && typeof __VUE_SSR_CONTEXT__ < "u" && (s = __VUE_SSR_CONTEXT__), a && a.call(this, s), s && s._registeredComponents && s._registeredComponents.add(f);
-  }, e._ssrRegister = i) : a && (i = m ? function() {
+  }, e._ssrRegister = i) : a && (i = h ? function() {
     a.call(
       this,
       (e.functional ? this.parent : this).$root.$options.shadowRoot
@@ -57,19 +57,19 @@ const y = {
     }
   }
 };
-var g = function() {
+var C = function() {
   var t = this, n = t._self._c;
   return n("div", { staticClass: "modal-zoom-mobile", class: { "is-active": t.show } }, [n("div", { staticClass: "-header flex -between -vcenter" }, [t._m(0), n("div", { staticClass: "-close flex -vcenter -hcenter", on: { click: t.handleModal } }, [n("i", { staticClass: "icon icon-close-modal-white" })])]), t.show ? n("ImagesSlider", { ref: "imagesSlider", attrs: { images: t.review.photos.data } }) : t._e(), n("div", { staticClass: "control-button" })], 1);
-}, C = [function() {
+}, g = [function() {
   var o = this, t = o._self._c;
   return t("div", { staticClass: "-message flex -vcenter" }, [t("i", { staticClass: "icon icon-pinch-zoom" }), o._v(" Arraste com os dedos ")]);
 }], b = /* @__PURE__ */ w(
   y,
-  g,
   C,
+  g,
   !1,
   null,
-  "471fb67e",
+  "6f42125c",
   null,
   null
 );

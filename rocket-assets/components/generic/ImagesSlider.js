@@ -1,5 +1,5 @@
-(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".touchable[data-v-78221d33]{height:100%;width:100%}")),document.head.appendChild(e)}}catch(t){console.error("vite-plugin-css-injected-by-js",t)}})();
-import v from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/touchable.js";
+(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".touchable[data-v-56ac6e27]{height:100%;width:100%}")),document.head.appendChild(e)}}catch(t){console.error("vite-plugin-css-injected-by-js",t)}})();
+import v from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/touchable.js";
 function g(t, e, n, r, a, u, f, h) {
   var i = typeof t == "function" ? t.options : t;
   e && (i.render = e, i.staticRenderFns = n, i._compiled = !0), r && (i.functional = !0), u && (i._scopeId = "data-v-" + u);
@@ -80,7 +80,7 @@ var b = function() {
   S,
   !1,
   null,
-  "78221d33",
+  "56ac6e27",
   null,
   null
 );

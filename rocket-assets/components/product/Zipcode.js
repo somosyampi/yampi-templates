@@ -1,8 +1,8 @@
-import m from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-import g from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/rocket.js";
-import y from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/errors.js";
-import z from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/product.js";
-import b from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/tracking/api.js";
+import m from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/lodash.js";
+import g from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/modules/axios/rocket.js";
+import y from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/errors.js";
+import z from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/product.js";
+import b from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/tracking/api.js";
 function C(t, e, a, o, r, d, c, h) {
   var i = typeof t == "function" ? t.options : t;
   e && (i.render = e, i.staticRenderFns = a, i._compiled = !0), o && (i.functional = !0), d && (i._scopeId = "data-v-" + d);

@@ -1,6 +1,6 @@
-import v from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
+import v from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/lodash.js";
 import g from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-sandbox/rocket-assets/components/product/installments/BaseInstallments.js";
-import C from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/buttons.js";
+import C from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/buttons.js";
 function b(a, t, n, u, o, d, c, p) {
   var e = typeof a == "function" ? a.options : a;
   t && (e.render = t, e.staticRenderFns = n, e._compiled = !0), u && (e.functional = !0), d && (e._scopeId = "data-v-" + d);

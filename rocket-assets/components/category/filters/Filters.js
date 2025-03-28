@@ -1,4 +1,4 @@
-import { mapActions as v } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
+import { mapActions as v } from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/vuex.js";
 function w(i, e, t, _, a, u, d, h) {
   var o = typeof i == "function" ? i.options : i;
   e && (o.render = e, o.staticRenderFns = t, o._compiled = !0), _ && (o.functional = !0), u && (o._scopeId = "data-v-" + u);

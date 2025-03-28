@@ -1,4 +1,4 @@
-import { uuidv4 as m } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/helpers.js";
+import { uuidv4 as m } from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/helpers.js";
 function C(n, t, o, a, r, u, d, p) {
   var e = typeof n == "function" ? n.options : n;
   t && (e.render = t, e.staticRenderFns = o, e._compiled = !0), a && (e.functional = !0), u && (e._scopeId = "data-v-" + u);

@@ -1,4 +1,4 @@
-import { mapMutations as b } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
+import { mapMutations as b } from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/vuex.js";
 import y from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-sandbox/rocket-assets/components/product/BaseProduct.js";
 function C(o, e, i, l, r, d, f, h) {
   var t = typeof o == "function" ? o.options : o;

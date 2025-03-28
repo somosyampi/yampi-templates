@@ -1,4 +1,4 @@
-import { mapGetters as h } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
+import { mapGetters as h } from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/vuex.js";
 function g(i, e, s, o, n, l, u, p) {
   var r = typeof i == "function" ? i.options : i;
   e && (r.render = e, r.staticRenderFns = s, r._compiled = !0), o && (r.functional = !0), l && (r._scopeId = "data-v-" + l);

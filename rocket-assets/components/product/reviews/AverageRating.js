@@ -1,6 +1,6 @@
-import g from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-import { mapGetters as w } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
-import { uuidv4 as R, smoothScroll as h } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/helpers.js";
+import g from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/lodash.js";
+import { mapGetters as w } from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/vuex.js";
+import { uuidv4 as R, smoothScroll as h } from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/helpers.js";
 function y(t, e, i, a, o, l, f, p) {
   var n = typeof t == "function" ? t.options : t;
   e && (n.render = e, n.staticRenderFns = i, n._compiled = !0), a && (n.functional = !0), l && (n._scopeId = "data-v-" + l);

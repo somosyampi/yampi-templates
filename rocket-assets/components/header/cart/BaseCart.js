@@ -1,7 +1,7 @@
-import r from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-import { mapGetters as p, mapActions as y } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
-import b from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/tracking/api.js";
-import k from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/cashback.js";
+import r from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/lodash.js";
+import { mapGetters as p, mapActions as y } from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/vuex.js";
+import b from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/tracking/api.js";
+import k from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/cashback.js";
 function v(t, e, i, s, o, l, d, _) {
   var a = typeof t == "function" ? t.options : t;
   e && (a.render = e, a.staticRenderFns = i, a._compiled = !0), s && (a.functional = !0), l && (a._scopeId = "data-v-" + l);

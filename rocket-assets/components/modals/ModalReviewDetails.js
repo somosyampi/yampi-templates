@@ -1,4 +1,4 @@
-import w from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
+import w from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/lodash.js";
 function m(s, e, t, r, o, f, c, _) {
   var a = typeof s == "function" ? s.options : s;
   e && (a.render = e, a.staticRenderFns = t, a._compiled = !0), r && (a.functional = !0), f && (a._scopeId = "data-v-" + f);

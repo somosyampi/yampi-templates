@@ -1,10 +1,10 @@
 (function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".vue-slider__wrapper{position:relative;width:100%;height:100%}.vue-slider__background{background-color:var(--default-background-color);border-radius:15px;position:absolute;width:100%;height:100%}.vue-slider__track{pointer-events:none;position:absolute;height:100%;background-color:var(--color-general-primary)}.vue-slider{margin:0 -7px}.vue-slider input[type=range]{position:absolute;width:100%;appearance:none;height:100%;background:transparent;pointer-events:none;margin:0}.vue-slider input[type=range]::-webkit-slider-thumb{pointer-events:auto;appearance:none;width:17px;height:17px;border-radius:50%;cursor:pointer;box-shadow:none;background-color:var(--default-background-color);border:solid 4px var(--color-general-primary)}")),document.head.appendChild(e)}}catch(r){console.error("vite-plugin-css-injected-by-js",r)}})();
-function v(a, e, l, s, o, c, d, m) {
+function v(a, e, l, s, o, d, c, m) {
   var t = typeof a == "function" ? a.options : a;
-  e && (t.render = e, t.staticRenderFns = l, t._compiled = !0), s && (t.functional = !0), c && (t._scopeId = "data-v-" + c);
+  e && (t.render = e, t.staticRenderFns = l, t._compiled = !0), s && (t.functional = !0), d && (t._scopeId = "data-v-" + d);
   var n;
-  if (d ? (n = function(i) {
-    i = i || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !i && typeof __VUE_SSR_CONTEXT__ < "u" && (i = __VUE_SSR_CONTEXT__), o && o.call(this, i), i && i._registeredComponents && i._registeredComponents.add(d);
+  if (c ? (n = function(i) {
+    i = i || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !i && typeof __VUE_SSR_CONTEXT__ < "u" && (i = __VUE_SSR_CONTEXT__), o && o.call(this, i), i && i._registeredComponents && i._registeredComponents.add(c);
   }, t._ssrRegister = n) : o && (n = m ? function() {
     o.call(
       this,
@@ -13,9 +13,9 @@ function v(a, e, l, s, o, c, d, m) {
   } : o), n)
     if (t.functional) {
       t._injectStyles = n;
-      var _ = t.render;
-      t.render = function(f, p) {
-        return n.call(p), _(f, p);
+      var f = t.render;
+      t.render = function(_, p) {
+        return n.call(p), f(_, p);
       };
     } else {
       var h = t.beforeCreate;
