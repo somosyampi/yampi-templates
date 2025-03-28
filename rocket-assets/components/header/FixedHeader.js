@@ -1,5 +1,5 @@
-import v from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-import { mapGetters as w } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
+import v from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/lodash.js";
+import { mapGetters as w } from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/vuex.js";
 function b(t, o, d, s, r, f, u, p) {
   var e = typeof t == "function" ? t.options : t;
   o && (e.render = o, e.staticRenderFns = d, e._compiled = !0), s && (e.functional = !0), f && (e._scopeId = "data-v-" + f);

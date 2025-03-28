@@ -1,10 +1,10 @@
-import p from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-function y(s, e, n, o, r, d, f, m) {
-  var t = typeof s == "function" ? s.options : s;
+import p from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/lodash.js";
+function y(i, e, n, o, r, d, f, m) {
+  var t = typeof i == "function" ? i.options : i;
   e && (t.render = e, t.staticRenderFns = n, t._compiled = !0), o && (t.functional = !0), d && (t._scopeId = "data-v-" + d);
   var a;
-  if (f ? (a = function(i) {
-    i = i || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !i && typeof __VUE_SSR_CONTEXT__ < "u" && (i = __VUE_SSR_CONTEXT__), r && r.call(this, i), i && i._registeredComponents && i._registeredComponents.add(f);
+  if (f ? (a = function(s) {
+    s = s || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !s && typeof __VUE_SSR_CONTEXT__ < "u" && (s = __VUE_SSR_CONTEXT__), r && r.call(this, s), s && s._registeredComponents && s._registeredComponents.add(f);
   }, t._ssrRegister = a) : r && (a = m ? function() {
     r.call(
       this,
@@ -22,7 +22,7 @@ function y(s, e, n, o, r, d, f, m) {
       t.beforeCreate = h ? [].concat(h, a) : [a];
     }
   return {
-    exports: s,
+    exports: i,
     options: t
   };
 }
@@ -84,17 +84,17 @@ const C = {
     this.selectedMin = p.get(this.value, 0, this.min), this.selectedMax = p.get(this.value, 1, this.max);
   },
   methods: {
-    updateValues([s, e]) {
-      this.selectedMin = s, this.selectedMax = e;
+    updateValues([i, e]) {
+      this.selectedMin = i, this.selectedMax = e;
     },
-    change(s) {
-      this.updateValues(s), this.$emit("input", s);
+    change(i) {
+      this.updateValues(i), this.$emit("input", i);
     }
   }
 };
 var M = function() {
   var e = this, n = e._self._c;
-  return n("div", { staticClass: "holder-price-slider" }, [n("vue-slider", { attrs: { min: e.min, max: e.max, lazy: !0, step: 0.01, height: e.height, "dot-size": e.dotSize, tooltip: "none" }, on: { input: e.updateValues, change: e.change }, model: { value: e.values, callback: function(o) {
+  return n("div", { staticClass: "holder-price-slider" }, [n("VueSlider", { attrs: { min: e.min, max: e.max, lazy: !0, step: 0.01, height: e.height, "dot-size": e.dotSize, tooltip: "none" }, on: { input: e.updateValues, change: e.change }, model: { value: e.values, callback: function(o) {
     e.values = o;
   }, expression: "values" } }), n("div", { staticClass: "step-values" }, [n("span", { staticClass: "selected-min", domProps: { textContent: e._s(e.formatedMin) } }), n("span", { staticClass: "divisor" }, [e._v(" - ")]), n("span", { staticClass: "selected-max", domProps: { textContent: e._s(e.formatedMax) } })])], 1);
 }, g = [], x = /* @__PURE__ */ y(
@@ -108,8 +108,8 @@ var M = function() {
   null
 );
 const b = x.exports;
-function u(s) {
-  u.installed || (u.installed = !0, s.component("RangeSlider", b));
+function u(i) {
+  u.installed || (u.installed = !0, i.component("RangeSlider", b));
 }
 const V = {
   install: u

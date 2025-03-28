@@ -1,6 +1,6 @@
-import { mapGetters as h } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
-import b from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/api.js";
-import g from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/rocket.js";
+import { mapGetters as h } from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/vuex.js";
+import b from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/modules/axios/api.js";
+import g from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/modules/axios/rocket.js";
 function w(o, t, n, p, s, l, u, f) {
   var e = typeof o == "function" ? o.options : o;
   t && (e.render = t, e.staticRenderFns = n, e._compiled = !0), p && (e.functional = !0), l && (e._scopeId = "data-v-" + l);

@@ -1,7 +1,7 @@
-import { mapGetters as v, mapActions as y } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
-import g from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/api.js";
-import w from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/rocket.js";
-import P from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/product.js";
+import { mapGetters as v, mapActions as y } from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/vuex.js";
+import g from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/modules/axios/api.js";
+import w from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/modules/axios/rocket.js";
+import P from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/product.js";
 function $(e, a, s, m, n, d, u, h) {
   var t = typeof e == "function" ? e.options : e;
   a && (t.render = a, t.staticRenderFns = s, t._compiled = !0), m && (t.functional = !0), d && (t._scopeId = "data-v-" + d);

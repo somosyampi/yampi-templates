@@ -1,1 +1,1 @@
-import a from"../../modules/axios/rocket.js";import"../../base.js";import"../../axios.js";import"../../index2.js";const m={methods:{async handleTrackApi(o,r={}){try{await a.post("api/track",{event:o,params:r})}catch(t){throw console.error(t),t}}}};export{m as default};
+import a from"../../modules/axios/rocket.js";import"../../base.js";import"../../axios.js";import"../../index.js";const m={methods:{async handleTrackApi(o,r={}){try{await a.post("api/track",{event:o,params:r})}catch(t){throw console.error(t),t}}}};export{m as default};

@@ -1,5 +1,5 @@
-import v from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vue-debounce.js";
-import I from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
+import v from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/vue-debounce.js";
+import I from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/lodash.js";
 import g from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-sandbox/rocket-assets/components/product/installments/BaseInstallments.js";
 function w(t, n, l, h, a, d, m, c) {
   var e = typeof t == "function" ? t.options : t;

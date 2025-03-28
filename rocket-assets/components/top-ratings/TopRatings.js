@@ -1,8 +1,8 @@
-import v from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-import { mapGetters as _ } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
-import C from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/api.js";
-import w from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/rocket.js";
-import y from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/mobile.js";
+import v from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/lodash.js";
+import { mapGetters as _ } from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/vuex.js";
+import C from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/modules/axios/api.js";
+import w from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/modules/axios/rocket.js";
+import y from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/mobile.js";
 function V(a, t, e, i, o, c, u, f) {
   var s = typeof a == "function" ? a.options : a;
   t && (s.render = t, s.staticRenderFns = e, s._compiled = !0), i && (s.functional = !0), c && (s._scopeId = "data-v-" + c);

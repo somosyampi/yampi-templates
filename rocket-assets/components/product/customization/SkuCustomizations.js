@@ -1,6 +1,6 @@
-import l from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-import { smoothScroll as C } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/helpers.js";
-import w from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/errors.js";
+import l from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/lodash.js";
+import { smoothScroll as C } from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/helpers.js";
+import w from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/errors.js";
 import g from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-sandbox/rocket-assets/components/product/customization/BaseCustomization.js";
 function z(s, t, e, i, o, d, m, f) {
   var r = typeof s == "function" ? s.options : s;

@@ -1,6 +1,6 @@
-import v from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/errors.js";
-import g from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/rocket.js";
-import w from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/tracking/api.js";
+import v from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/errors.js";
+import g from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/modules/axios/rocket.js";
+import w from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/tracking/api.js";
 function b(n, t, r, a, l, f, u, c) {
   var e = typeof n == "function" ? n.options : n;
   t && (e.render = t, e.staticRenderFns = r, e._compiled = !0), a && (e.functional = !0), f && (e._scopeId = "data-v-" + f);

@@ -1,7 +1,7 @@
-import f from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-import C from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/api.js";
-import S from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/product.js";
-import v from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/merchant.js";
+import f from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/lodash.js";
+import C from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/modules/axios/api.js";
+import S from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/product.js";
+import v from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/merchant.js";
 function w(e, a, o, n, i, l, c, u) {
   var t = typeof e == "function" ? e.options : e;
   a && (t.render = a, t.staticRenderFns = o, t._compiled = !0), n && (t.functional = !0), l && (t._scopeId = "data-v-" + l);

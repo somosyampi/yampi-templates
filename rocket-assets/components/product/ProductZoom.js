@@ -1,6 +1,6 @@
-import f from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-import b from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/mobile.js";
-import _ from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/product.js";
+import f from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/lodash.js";
+import b from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/mobile.js";
+import _ from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/product.js";
 function C(t, e, i, a, s, r, m, g) {
   var o = typeof t == "function" ? t.options : t;
   e && (o.render = e, o.staticRenderFns = i, o._compiled = !0), a && (o.functional = !0), r && (o._scopeId = "data-v-" + r);

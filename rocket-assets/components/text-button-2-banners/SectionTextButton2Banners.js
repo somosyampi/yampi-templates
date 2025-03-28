@@ -1,8 +1,8 @@
-import { mapGetters as _ } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
-import b from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/api.js";
-import B from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/rocket.js";
-import v from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/mobile.js";
-import { isLinkSameStoreDomain as y } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/helpers.js";
+import { mapGetters as _ } from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/vuex.js";
+import b from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/modules/axios/api.js";
+import B from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/modules/axios/rocket.js";
+import v from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/mobile.js";
+import { isLinkSameStoreDomain as y } from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/helpers.js";
 function C(t, e, n, i, o, d, c, p) {
   var r = typeof t == "function" ? t.options : t;
   e && (r.render = e, r.staticRenderFns = n, r._compiled = !0), i && (r.functional = !0), d && (r._scopeId = "data-v-" + d);

@@ -1,5 +1,5 @@
-import r from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-import C from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/errors.js";
+import r from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/lodash.js";
+import C from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/errors.js";
 function z(t, i, e, a, u, f, d, _) {
   var s = typeof t == "function" ? t.options : t;
   i && (s.render = i, s.staticRenderFns = e, s._compiled = !0), a && (s.functional = !0), f && (s._scopeId = "data-v-" + f);

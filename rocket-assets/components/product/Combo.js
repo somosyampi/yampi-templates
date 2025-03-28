@@ -1,8 +1,8 @@
-import { mapGetters as C, mapActions as p } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
-import a from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-import g from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vue.js";
-import v from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/tracking/api.js";
-import { createPriceObjects as S } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/helpers.js";
+import { mapGetters as C, mapActions as p } from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/vuex.js";
+import a from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/lodash.js";
+import g from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/vue.js";
+import v from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/tracking/api.js";
+import { createPriceObjects as S } from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/helpers.js";
 function k(e, t, s, i, o, c, h, _) {
   var r = typeof e == "function" ? e.options : e;
   t && (r.render = t, r.staticRenderFns = s, r._compiled = !0), i && (r.functional = !0), c && (r._scopeId = "data-v-" + c);

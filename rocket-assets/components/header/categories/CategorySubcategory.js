@@ -1,4 +1,4 @@
-import p from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/mobile.js";
+import p from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/mobile.js";
 function _(e, o, i, t, n, l, d, g) {
   var s = typeof e == "function" ? e.options : e;
   o && (s.render = o, s.staticRenderFns = i, s._compiled = !0), t && (s.functional = !0), l && (s._scopeId = "data-v-" + l);

@@ -1,8 +1,8 @@
-import { mapGetters as v } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
-import p from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-import g from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/api.js";
-import w from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/rocket.js";
-import P from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/queryParams.js";
+import { mapGetters as v } from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/vuex.js";
+import p from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/lodash.js";
+import g from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/modules/axios/api.js";
+import w from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/modules/axios/rocket.js";
+import P from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/queryParams.js";
 function R(e, i, s, c, o, d, f, m) {
   var t = typeof e == "function" ? e.options : e;
   i && (t.render = i, t.staticRenderFns = s, t._compiled = !0), c && (t.functional = !0), d && (t._scopeId = "data-v-" + d);

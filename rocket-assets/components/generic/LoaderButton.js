@@ -1,5 +1,5 @@
-import { mapMutations as b } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
-import v from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/buttons.js";
+import { mapMutations as b } from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/vuex.js";
+import v from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/buttons.js";
 function g(i, e, n, _, a, u, d, h) {
   var t = typeof i == "function" ? i.options : i;
   e && (t.render = e, t.staticRenderFns = n, t._compiled = !0), _ && (t.functional = !0), u && (t._scopeId = "data-v-" + u);
