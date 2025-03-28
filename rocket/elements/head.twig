@@ -5,18 +5,13 @@
 {% include 'elements/scripts/preload.twig' %}
 {% include 'elements/icons.twig' %}
 
-<link rel="manifest" href="/manifest.json" />
-
-<script defer src="{{ mix('/js/manifest.js') }}"></script>
-<script defer src="{{ mix('/js/vendor.js') }}"></script>
-<script defer src="{{ mix('/js/components.js') }}"></script>
-<script defer src="{{ mix('/js/app.js') }}"></script>
+<link rel="manifest" href="/manifest.json"/>
 
 <!-- robots -->
-<meta name="robots" content="{{ environment == 'production' ? 'index,follow' : 'nofollow' }}" />
+<meta name="robots" content="{{ environment == 'production' ? 'index,follow' : 'nofollow' }}"/>
 
 {% for tag in merchantData.meta_tags %}
-    {{ tag.value | raw }}
+	{{ tag.value | raw }}
 {% endfor %}
 
 {{ generate_seo() | raw }}
@@ -24,10 +19,9 @@
 {% include 'elements/scripts/head.twig' %}
 {% include 'elements/variables.twig' %}
 
-{# OPEN STORE CODE #}
-
-{# <script type="module" src="/dist/vendor/windowVue.js"></script>
+<script type="module" src="{{ '/dist/vendor/windowVue.js' | components_url }}"></script>
+<script type="module" src="{{ '/dist/vendor/icons.js' | components_url }}"></script>
 
 {% include 'elements/scripts/components.twig' ignore missing %}
 
-<script type="module" src="/dist/vendor/app.js"></script> #}
+<script type="module" src="{{ '/dist/vendor/app.js' | components_url }}"></script>
