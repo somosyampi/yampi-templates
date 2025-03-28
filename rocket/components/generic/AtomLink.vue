@@ -17,10 +17,12 @@ export default {
             type: String,
             required: true,
         },
+
         href: {
             type: String,
             required: true,
         },
+
         label: {
             type: String,
             required: true,

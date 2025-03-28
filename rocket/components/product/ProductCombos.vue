@@ -60,8 +60,8 @@ export default {
 
         highlightTypePayment: {
             type: String,
-            default: 'promotional'
-        }
+            default: 'promotional',
+        },
     },
 
     data: () => ({

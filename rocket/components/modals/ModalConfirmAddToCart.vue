@@ -1,8 +1,9 @@
 <template>
-    <modal
+    <Modal
         ref="baseModal"
         name="confirm-add-to-cart"
         :title="modalTitle"
+        @close="resetComponent"
     >
         <template v-if="product && product.skus">
             <div class="pl-sm-40 pl-xs-24 mb-38">
@@ -121,7 +122,7 @@
                 />
             </div>
         </template>
-    </modal>
+    </Modal>
 </template>
 
 <script>
@@ -141,6 +142,7 @@ export default {
             required: true,
             default: () => ({}),
         },
+
         selectedPrice: {
             type: String,
             default: 'promotional',
@@ -184,19 +186,23 @@ export default {
         },
 
         price() {
-            return createPriceObjects({ basePath: 'prices.data.', pricePath: 'price_formatted'});
+            return createPriceObjects({ basePath: 'prices.data.', pricePath: 'price_formatted' });
         },
 
         skuPriceFormated() {
             if (this.selectedSku) {
-                return `${_.get(this.selectedSku,
+                return `${_.get(
+                    this.selectedSku,
                     this.price[this.selectedPrice].path,
-                    this.selectedSku.prices.data.price_formated)}`;
+                    this.selectedSku.prices.data.price_formated,
+                )}`;
             }
 
-            return `${_.get(this.product,
+            return `${_.get(
+                this.product,
                 this.price[this.selectedPrice].path,
-                this.product.prices.data.price_formated)}`;
+                this.product.prices.data.price_formated,
+            )}`;
         },
 
         imageUrl() {
@@ -259,10 +265,6 @@ export default {
             this.bootSelectedSku();
             this.showCustomizationContent();
         },
-    },
-
-    mounted() {
-        this.$refs.baseModal.$on('close', this.resetComponent);
     },
 
     methods: {
@@ -384,7 +386,6 @@ export default {
                 customization[this.selectedSku.id] = validValues;
             }
 
-            /* eslint-disable camelcase */
             let has_recomm = false;
             const item_metadata = [];
 

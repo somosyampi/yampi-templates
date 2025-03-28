@@ -1,11 +1,31 @@
-function l(n, e, t, a, m, p, v, _) {
-  var i = typeof n == "function" ? n.options : n;
-  return e && (i.render = e, i.staticRenderFns = t, i._compiled = !0), {
-    exports: n,
-    options: i
+function v(a, r, i, d, o, u, c, p) {
+  var e = typeof a == "function" ? a.options : a;
+  r && (e.render = r, e.staticRenderFns = i, e._compiled = !0), d && (e.functional = !0), u && (e._scopeId = "data-v-" + u);
+  var t;
+  if (c ? (t = function(n) {
+    n = n || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !n && typeof __VUE_SSR_CONTEXT__ < "u" && (n = __VUE_SSR_CONTEXT__), o && o.call(this, n), n && n._registeredComponents && n._registeredComponents.add(c);
+  }, e._ssrRegister = t) : o && (t = p ? function() {
+    o.call(
+      this,
+      (e.functional ? this.parent : this).$root.$options.shadowRoot
+    );
+  } : o), t)
+    if (e.functional) {
+      e._injectStyles = t;
+      var A = e.render;
+      e.render = function(m, _) {
+        return t.call(_), A(m, _);
+      };
+    } else {
+      var f = e.beforeCreate;
+      e.beforeCreate = f ? [].concat(f, t) : [t];
+    }
+  return {
+    exports: a,
+    options: e
   };
 }
-const c = {
+const g = {
   name: "VideoPlayer",
   props: {
     imgSrc: {
@@ -28,31 +48,36 @@ const c = {
     }
   }
 };
-var d = function() {
-  var e = this, t = e._self._c;
-  return t("div", [e.clicked ? t("div", { staticClass: "embed-container" }, [t("iframe", { attrs: { src: e.videoUrl + "&muted=1", frameborder: "0", allowfullscreen: "", allow: `accelerometer;
+var h = function() {
+  var r = this, i = r._self._c;
+  return i("div", [r.clicked ? i("div", { staticClass: "embed-container" }, [i("iframe", { attrs: { src: r.videoUrl + "&muted=1", frameborder: "0", allowfullscreen: "", allow: `accelerometer;
                     autoplay;
                     clipboard-write;
                     encrypted-media;
                     gyroscope;
-                    picture-in-picture` } })]) : t("div", { staticClass: "relative", on: { click: function(a) {
-    e.clicked = !0;
-  } } }, [t("custom-image", { staticClass: "-loading", attrs: { src: e.imageUrl, "thumbor-enabled": !1, alt: "product video" } }), t("i", { staticClass: "icon icon-yt-play" })], 1)]);
-}, s = [], u = /* @__PURE__ */ l(
-  c,
-  d,
-  s
+                    picture-in-picture` } })]) : i("div", { staticClass: "relative", on: { click: function(d) {
+    r.clicked = !0;
+  } } }, [i("CustomImage", { staticClass: "-loading", attrs: { src: r.imageUrl, "thumbor-enabled": !1, alt: "product video" } }), i("i", { staticClass: "icon icon-yt-play" })], 1)]);
+}, C = [], y = /* @__PURE__ */ v(
+  g,
+  h,
+  C,
+  !1,
+  null,
+  null,
+  null,
+  null
 );
-const A = u.exports;
-function o(n) {
-  o.installed || (o.installed = !0, n.component("videoPlayer", A));
+const b = y.exports;
+function s(a) {
+  s.installed || (s.installed = !0, a.component("videoPlayer", b));
 }
-const f = {
-  install: o
+const w = {
+  install: s
 };
-let r = null;
-typeof window < "u" ? r = window.Vue : typeof global < "u" && (r = global.Vue);
-r && r.use(f);
+let l = null;
+typeof window < "u" ? l = window.Vue : typeof global < "u" && (l = global.Vue);
+l && l.use(w);
 export {
-  A as default
+  b as default
 };

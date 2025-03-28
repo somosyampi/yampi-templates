@@ -1,0 +1,14 @@
+<section class="section-grid-collection {{ "#{section.section_alias}-#{section.order}" }}">
+    <rocket-emitter emits="grid_collection" label="Banner e Produtos" order="{{ section.order }}">
+        <section-grid-collection
+            section="grid-collection"
+            title-text="{{ section.params.grid_collection_title_text | default("Título legal") }}"
+            subtitle-text="{{ section.params.grid_collection_subtitle_text | default("Escreva seu subtítulo aqui, falando um pouco sobre os produtos, coleção ou promoção.") }}"
+            text-position="{{ section.params.grid_collection_banner_position | default("left") }}"
+            :resource-banner-ids="{{ section.params.grid_collection_resource_banner.ids | json_encode }}"
+            :resource-products-slugs="{{ section.params.grid_collection_resource_products.slugs | json_encode }}"
+        >
+            {% include "elements/box-product.twig" with {'product': null, 'image_size': 'medium'} %}
+        </section-grid-collection>
+    </rocket-emitter>
+</section>

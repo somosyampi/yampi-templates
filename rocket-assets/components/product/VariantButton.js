@@ -1,11 +1,31 @@
-function u(n, e, l, t, s, p, m, b) {
-  var a = typeof n == "function" ? n.options : n;
-  return e && (a.render = e, a.staticRenderFns = l, a._compiled = !0), {
-    exports: n,
-    options: a
+function b(t, e, o, i, r, d, f, v) {
+  var n = typeof t == "function" ? t.options : t;
+  e && (n.render = e, n.staticRenderFns = o, n._compiled = !0), i && (n.functional = !0), d && (n._scopeId = "data-v-" + d);
+  var l;
+  if (f ? (l = function(a) {
+    a = a || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !a && typeof __VUE_SSR_CONTEXT__ < "u" && (a = __VUE_SSR_CONTEXT__), r && r.call(this, a), a && a._registeredComponents && a._registeredComponents.add(f);
+  }, n._ssrRegister = l) : r && (l = v ? function() {
+    r.call(
+      this,
+      (n.functional ? this.parent : this).$root.$options.shadowRoot
+    );
+  } : r), l)
+    if (n.functional) {
+      n._injectStyles = l;
+      var h = n.render;
+      n.render = function(p, c) {
+        return l.call(c), h(p, c);
+      };
+    } else {
+      var _ = n.beforeCreate;
+      n.beforeCreate = _ ? [].concat(_, l) : [l];
+    }
+  return {
+    exports: t,
+    options: n
   };
 }
-const d = {
+const m = {
   name: "VariantButton",
   props: {
     options: {
@@ -30,44 +50,49 @@ const d = {
     };
   },
   watch: {
-    value(n) {
-      n === 0 && (this.selectedValue = null);
+    value(t) {
+      t === 0 && (this.selectedValue = null);
     }
   },
   methods: {
-    handleClick(n, e) {
+    handleClick(t, e) {
       this.selectedValue = e, this.$emit("change", e);
     }
   }
 };
-var r = function() {
-  var e = this, l = e._self._c;
-  return l("div", { staticClass: "holder-variant-button", class: {
+var C = function() {
+  var e = this, o = e._self._c;
+  return o("div", { staticClass: "holder-variant-button", class: {
     error: e.error && !e.selectedValue,
     disabled: e.disabled
-  } }, e._l(e.options, function(t) {
-    return l("button", { key: t.id, staticClass: "variant-button", class: {
-      selected: t.id === e.value,
-      unavailable: t.unavailable
-    }, on: { click: function(s) {
-      return e.handleClick(s, t.id);
-    } } }, [e._v(" " + e._s(t.value) + " ")]);
+  } }, e._l(e.options, function(i) {
+    return o("button", { key: i.id, staticClass: "variant-button", class: {
+      selected: i.id === e.value,
+      unavailable: i.unavailable
+    }, on: { click: function(r) {
+      return e.handleClick(r, i.id);
+    } } }, [e._v(" " + e._s(i.value) + " ")]);
   }), 0);
-}, c = [], f = /* @__PURE__ */ u(
-  d,
-  r,
-  c
+}, V = [], $ = /* @__PURE__ */ b(
+  m,
+  C,
+  V,
+  !1,
+  null,
+  null,
+  null,
+  null
 );
-const _ = f.exports;
-function o(n) {
-  o.installed || (o.installed = !0, n.component("VariantButton", _));
+const y = $.exports;
+function u(t) {
+  u.installed || (u.installed = !0, t.component("VariantButton", y));
 }
-const v = {
-  install: o
+const g = {
+  install: u
 };
-let i = null;
-typeof window < "u" ? i = window.Vue : typeof global < "u" && (i = global.Vue);
-i && i.use(v);
+let s = null;
+typeof window < "u" ? s = window.Vue : typeof global < "u" && (s = global.Vue);
+s && s.use(g);
 export {
-  _ as default
+  y as default
 };

@@ -1,11 +1,31 @@
-function u(c, e, a, d, n, l, r, i) {
+function k(c, e, i, f, a, l, r, s) {
   var t = typeof c == "function" ? c.options : c;
-  return e && (t.render = e, t.staticRenderFns = a, t._compiled = !0), {
+  e && (t.render = e, t.staticRenderFns = i, t._compiled = !0), f && (t.functional = !0), l && (t._scopeId = "data-v-" + l);
+  var o;
+  if (r ? (o = function(n) {
+    n = n || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !n && typeof __VUE_SSR_CONTEXT__ < "u" && (n = __VUE_SSR_CONTEXT__), a && a.call(this, n), n && n._registeredComponents && n._registeredComponents.add(r);
+  }, t._ssrRegister = o) : a && (o = s ? function() {
+    a.call(
+      this,
+      (t.functional ? this.parent : this).$root.$options.shadowRoot
+    );
+  } : a), o)
+    if (t.functional) {
+      t._injectStyles = o;
+      var m = t.render;
+      t.render = function(p, _) {
+        return o.call(_), m(p, _);
+      };
+    } else {
+      var h = t.beforeCreate;
+      t.beforeCreate = h ? [].concat(h, o) : [o];
+    }
+  return {
     exports: c,
     options: t
   };
 }
-const f = {
+const g = {
   name: "CustomCheckbox",
   props: {
     name: {
@@ -33,14 +53,6 @@ const f = {
       default: null
     }
   },
-  watch: {
-    checked: {
-      immediate: !0,
-      handler() {
-        this.checkedState = this.checked;
-      }
-    }
-  },
   data: () => ({
     checkedState: !1
   }),
@@ -52,37 +64,50 @@ const f = {
       };
     }
   },
+  watch: {
+    checked: {
+      immediate: !0,
+      handler() {
+        this.checkedState = this.checked;
+      }
+    }
+  },
   methods: {
     change() {
       this.$emit("change", this.checkedState);
     }
   }
 };
-var h = function() {
-  var e = this, a = e._self._c;
-  return a("div", { staticClass: "custom-checkbox relative" }, [a("label", { class: { "with-effect": e.color || e.image } }, [e._v(" " + e._s(e.text) + " "), a("input", { directives: [{ name: "model", rawName: "v-model", value: e.checkedState, expression: "checkedState" }], attrs: { type: "checkbox" }, domProps: { checked: Array.isArray(e.checkedState) ? e._i(e.checkedState, null) > -1 : e.checkedState }, on: { change: [function(d) {
-    var n = e.checkedState, l = d.target, r = !!l.checked;
-    if (Array.isArray(n)) {
-      var i = null, t = e._i(n, i);
-      l.checked ? t < 0 && (e.checkedState = n.concat([i])) : t > -1 && (e.checkedState = n.slice(0, t).concat(n.slice(t + 1)));
+var v = function() {
+  var e = this, i = e._self._c;
+  return i("div", { staticClass: "custom-checkbox relative" }, [i("label", { class: { "with-effect": e.color || e.image } }, [e._v(" " + e._s(e.text) + " "), i("input", { directives: [{ name: "model", rawName: "v-model", value: e.checkedState, expression: "checkedState" }], attrs: { type: "checkbox" }, domProps: { checked: Array.isArray(e.checkedState) ? e._i(e.checkedState, null) > -1 : e.checkedState }, on: { change: [function(f) {
+    var a = e.checkedState, l = f.target, r = !!l.checked;
+    if (Array.isArray(a)) {
+      var s = null, t = e._i(a, s);
+      l.checked ? t < 0 && (e.checkedState = a.concat([s])) : t > -1 && (e.checkedState = a.slice(0, t).concat(a.slice(t + 1)));
     } else
       e.checkedState = r;
-  }, e.change] } }), e.color || e.image ? a("span", { staticClass: "effect-box", style: e.effectBoxStyle }) : e._e(), a("span", { staticClass: "checkmark" })])]);
-}, m = [], k = /* @__PURE__ */ u(
-  f,
-  h,
-  m
+  }, e.change] } }), e.color || e.image ? i("span", { staticClass: "effect-box", style: e.effectBoxStyle }) : e._e(), i("span", { staticClass: "checkmark" })])]);
+}, S = [], C = /* @__PURE__ */ k(
+  g,
+  v,
+  S,
+  !1,
+  null,
+  null,
+  null,
+  null
 );
-const p = k.exports;
-function s(c) {
-  s.installed || (s.installed = !0, c.component("CustomCheckbox", p));
+const y = C.exports;
+function u(c) {
+  u.installed || (u.installed = !0, c.component("CustomCheckbox", y));
 }
-const g = {
-  install: s
+const b = {
+  install: u
 };
-let o = null;
-typeof window < "u" ? o = window.Vue : typeof global < "u" && (o = global.Vue);
-o && o.use(g);
+let d = null;
+typeof window < "u" ? d = window.Vue : typeof global < "u" && (d = global.Vue);
+d && d.use(b);
 export {
-  p as default
+  y as default
 };

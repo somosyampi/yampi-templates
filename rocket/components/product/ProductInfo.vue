@@ -51,7 +51,7 @@ export default {
             return _.get(item, 'prices.data', {});
         },
 
-        priceObject () {
+        priceObject() {
             return _.get(this.price, this.selectedPriceMeta.path, {});
         },
 
@@ -68,11 +68,11 @@ export default {
                 return this.selectedPriceMeta.text;
             }
 
-            return "";
+            return '';
         },
 
         selectedPriceMeta() {
-            return createPriceObjects({ basePath: '', pricePath: 'price_formatted'})[this.selectedPrice];
+            return createPriceObjects({ basePath: '', pricePath: 'price_formatted' })[this.selectedPrice];
         },
 
         availability() {

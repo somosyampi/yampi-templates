@@ -14,11 +14,11 @@
                 >
                     <div>
                         <CustomImage
+                            :key="url[product.id] ? url[product.id] : $get(product, 'images.data.0.url')"
                             class="-loading"
                             :src="url[product.id] ? url[product.id] : $get(product, 'images.data.0.url')"
                             :alt="product.name"
                             :thumbor="thumborFilters"
-                            :key="url[product.id] ? url[product.id] : $get(product, 'images.data.0.url')"
                         />
                     </div>
 
@@ -62,7 +62,10 @@
 
             <div class="final-value price">
                 {{ priceWithDiscount | formatMoney }} <br>
-                <span v-if="!invalidSelectedPrice" class="payment-type"> {{ price.text }}</span>
+                <span
+                    v-if="!invalidSelectedPrice"
+                    class="payment-type"
+                > {{ price.text }}</span>
             </div>
 
             <div
@@ -94,8 +97,8 @@
 <script>
 import { mapActions, mapGetters } from '~/vuex';
 import _ from '~/lodash';
-import trackingByApi from '@/mixins/tracking/api';
 import Vue from '~/vue';
+import trackingByApi from '@/mixins/tracking/api';
 import { createPriceObjects } from '@/mixins/helpers';
 
 export default {
@@ -123,22 +126,22 @@ export default {
             type: Boolean,
             default: false,
         },
-      
+
         highlightTypePayment: {
             type: String,
-            default: 'promotional'
-        }
+            default: 'promotional',
+        },
     },
 
-    data () {
+    data() {
         return {
             loading: false,
             selectedSkus: [],
             invalidFormClass: false,
             invalidSelectedPrice: false,
             imageUrl: Vue.observable({}),
-            productId: false
-        }
+            productId: false,
+        };
     },
 
     computed: {
@@ -238,11 +241,9 @@ export default {
             Object.keys(this.customizedProducts).forEach(key => {
                 if (this.customizedProducts[key].isMandatory
                     || this.customizedProducts[key].isPersonalized) {
-                    customized = { 
-                        ...customized, 
-                        [key]: _.omit(
-                            this.customizedProducts[key], ['isPersonalized', 'isMandatory']
-                        ) 
+                    customized = {
+                        ...customized,
+                        [key]: _.omit(this.customizedProducts[key], ['isPersonalized', 'isMandatory']),
                     };
                 }
             });
@@ -267,6 +268,7 @@ export default {
 
     methods: {
         ...mapActions('cart', ['addProductsToCart']),
+
         ...mapActions('buyTogether', [
             'addSkuToCustomize',
             'updateSkusToCustomize',
@@ -293,7 +295,7 @@ export default {
         },
 
         updateSelectedSkus(index, selectedSku) {
-            const {images} = selectedSku;
+            const { images } = selectedSku;
 
             if (images.data[0] === undefined) {
                 return;

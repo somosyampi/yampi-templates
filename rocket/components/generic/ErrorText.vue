@@ -1,9 +1,9 @@
 <template>
     <div
-        class="error-text"
         v-if="text"
+        class="error-text"
         v-text="text"
-    ></div>
+    />
 </template>
 
 <script>

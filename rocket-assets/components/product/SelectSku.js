@@ -1,16 +1,36 @@
-import a from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-import d from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/product.js";
-import { smoothScroll as h } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/helpers.js";
-function f(e, t, s, i, o, n, u, b) {
-  var r = typeof e == "function" ? e.options : e;
-  return t && (r.render = t, r.staticRenderFns = s, r._compiled = !0), {
+import r from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
+import S from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/product.js";
+import { smoothScroll as k } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/helpers.js";
+function b(e, t, s, i, o, n, c, m) {
+  var a = typeof e == "function" ? e.options : e;
+  t && (a.render = t, a.staticRenderFns = s, a._compiled = !0), i && (a.functional = !0), n && (a._scopeId = "data-v-" + n);
+  var u;
+  if (c ? (u = function(l) {
+    l = l || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !l && typeof __VUE_SSR_CONTEXT__ < "u" && (l = __VUE_SSR_CONTEXT__), o && o.call(this, l), l && l._registeredComponents && l._registeredComponents.add(c);
+  }, a._ssrRegister = u) : o && (u = m ? function() {
+    o.call(
+      this,
+      (a.functional ? this.parent : this).$root.$options.shadowRoot
+    );
+  } : o), u)
+    if (a.functional) {
+      a._injectStyles = u;
+      var v = a.render;
+      a.render = function(_, p) {
+        return u.call(p), v(_, p);
+      };
+    } else {
+      var f = a.beforeCreate;
+      a.beforeCreate = f ? [].concat(f, u) : [u];
+    }
+  return {
     exports: e,
-    options: r
+    options: a
   };
 }
-const p = {
+const g = {
   name: "SelectSku",
-  mixins: [d],
+  mixins: [S],
   props: {
     shouldScrollOnError: {
       type: Boolean,
@@ -28,10 +48,10 @@ const p = {
   }),
   computed: {
     variations() {
-      return a.get(this.validProduct, "variations.data", []);
+      return r.get(this.validProduct, "variations.data", []);
     },
     skus() {
-      return a.get(this.validProduct, "skus.data", []);
+      return r.get(this.validProduct, "skus.data", []);
     },
     variationsSelectStyle() {
       return {
@@ -49,10 +69,10 @@ const p = {
     this.bootSelected();
   },
   methods: {
-    smoothScroll: h,
+    smoothScroll: k,
     bootSelected() {
-      if (this.selected = a.times(this.variations.length, a.constant(0)), this.variationsStyle === "list" || this.variations.length === 1) {
-        this.options = a.times(this.variations.length, () => []), this.loadOptions();
+      if (this.selected = r.times(this.variations.length, r.constant(0)), this.variationsStyle === "list" || this.variations.length === 1) {
+        this.options = r.times(this.variations.length, () => []), this.loadOptions();
         return;
       }
       this.options = this.variations.map((e) => e.values.data);
@@ -65,8 +85,8 @@ const p = {
     },
     updateVariation(e) {
       if (this.product.skus !== void 0) {
-        for (let s of this.product.skus.data)
-          for (let i of s.variations)
+        for (const s of this.product.skus.data)
+          for (const i of s.variations)
             if (i.value_id === e) {
               this.$emit("updateVariation", {
                 imageUrl: s.images.data[0].url,
@@ -81,7 +101,7 @@ const p = {
         return this.$emit("update");
       const e = this.skus.find((t) => {
         const s = t.combinations.split("-").map((i) => parseInt(i, 10));
-        return a.isEqual(a.sortBy(this.selected), a.sortBy(s));
+        return r.isEqual(r.sortBy(this.selected), r.sortBy(s));
       });
       return this.$emit("update", e);
     },
@@ -93,18 +113,16 @@ const p = {
       return this.variations[e].values.data.map((s) => (s.unavailable = !1, (s.blocked_sale === 1 || !this.skus.some((i) => this.skuHasOption(i, s))) && (s.unavailable = !0), s));
     },
     filterVariationOptions(e) {
-      const t = a.get(this.variations, `${e}.values.data`, []);
+      const t = r.get(this.variations, `${e}.values.data`, []);
       let s = [];
       return s = this.availabilitySkuVariationsWithoutCache(t), e === 0 ? s.filter((i) => i.blocked_sale != !0) : s.filter((i) => i.blocked_sale === !0 || t.blocked_sale === 1 ? !1 : this.skus.some((o) => this.skuHasOption(o, i)));
     },
     availabilitySkuVariationsWithoutCache(e) {
-      let t = [];
-      for (let s of e) {
+      const t = [];
+      for (const s of e) {
         let i = !0;
-        for (let o of this.skus)
-          if (o.variations.some(
-            (u) => u.value_id === s.id && o.blocked_sale == !1
-          )) {
+        for (const o of this.skus)
+          if (o.variations.some((c) => c.value_id === s.id && o.blocked_sale == !1)) {
             i = !1;
             break;
           }
@@ -117,10 +135,9 @@ const p = {
         return !1;
       const s = e.combinations.split("-").map((o) => parseInt(o, 10)), i = [
         ...this.selected.filter((o) => o),
-        // get only valid selected ids
         t.id
       ];
-      return a.difference(i, s).length === 0;
+      return r.difference(i, s).length === 0;
     },
     verifySelect() {
       const e = this.$refs.customSelect.filter((t) => !t.selectedValue);
@@ -128,32 +145,37 @@ const p = {
     }
   }
 };
-var m = function() {
+var $ = function() {
   var t = this, s = t._self._c;
-  return s("div", { staticClass: "sku-select" }, [t.variations.length ? s("p", { staticClass: "helper-text", class: { "-error": t.selectWithErrors } }, [t._v(" Selecione uma opção ")]) : t._e(), t._l(t.variations, function(i, o) {
+  return s("div", { staticClass: "sku-select" }, [t.variations.length ? s("p", { staticClass: "helper-text", class: { "-error": t.selectWithErrors } }, [t._v(" Selecione uma op\xE7\xE3o ")]) : t._e(), t._l(t.variations, function(i, o) {
     return s("div", { key: i.id, staticClass: "sku-option", class: t.variationsStyle }, [s("label", { attrs: { for: `${i.id}-${i.name}` }, domProps: { textContent: t._s(i.name) } }), s(t.variationsSelectStyle, { ref: "customSelect", refInFor: !0, tag: "component", attrs: { id: `${i.id}-${i.name}`, name: `${i.id}-${i.name}`, value: t.selected[o], disabled: o > 0 && t.selected[o - 1] === 0, error: t.selectWithErrors, options: t.options[o] }, on: { change: function(n) {
       return t.updateSelected(o, n);
     } } }, [t.variationsStyle === "list" ? [s("option", { domProps: { value: 0 } }, [t._v(" Selecionar... ")]), t._l(t.options[o], function(n) {
-      return s("option", { key: n.id, domProps: { value: n.id, textContent: t._s(n.value) }, on: { click: function(u) {
+      return s("option", { key: n.id, domProps: { value: n.id, textContent: t._s(n.value) }, on: { click: function(c) {
         return t.updateVariation(n.id);
       } } });
     })] : t._e()], 2)], 1);
   })], 2);
-}, v = [], S = /* @__PURE__ */ f(
-  p,
-  m,
-  v
+}, y = [], C = /* @__PURE__ */ b(
+  g,
+  $,
+  y,
+  !1,
+  null,
+  null,
+  null,
+  null
 );
-const k = S.exports;
-function c(e) {
-  c.installed || (c.installed = !0, e.component("SelectSku", k));
+const V = C.exports;
+function h(e) {
+  h.installed || (h.installed = !0, e.component("SelectSku", V));
 }
-const _ = {
-  install: c
+const O = {
+  install: h
 };
-let l = null;
-typeof window < "u" ? l = window.Vue : typeof global < "u" && (l = global.Vue);
-l && l.use(_);
+let d = null;
+typeof window < "u" ? d = window.Vue : typeof global < "u" && (d = global.Vue);
+d && d.use(O);
 export {
-  k as default
+  V as default
 };

@@ -1,5 +1,8 @@
 <template>
-    <div class="discount-tag" v-if="value > 0">
+    <div
+        v-if="value > 0"
+        class="discount-tag"
+    >
         <span>{{ formattedValue }}</span>
     </div>
 </template>
@@ -16,9 +19,9 @@ export default {
     },
 
     computed: {
-        formattedValue () {
+        formattedValue() {
             return Math.round(this.value);
         },
     },
-}
+};
 </script>

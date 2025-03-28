@@ -1,17 +1,37 @@
-import t from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vue.js";
-function i(e, d, u, f, m, c, g, b) {
-  var a = typeof e == "function" ? e.options : e;
+import p from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vue.js";
+function v(n, s, _, c, r, l, f, m) {
+  var e = typeof n == "function" ? n.options : n;
+  s && (e.render = s, e.staticRenderFns = _, e._compiled = !0), c && (e.functional = !0), l && (e._scopeId = "data-v-" + l);
+  var t;
+  if (f ? (t = function(o) {
+    o = o || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !o && typeof __VUE_SSR_CONTEXT__ < "u" && (o = __VUE_SSR_CONTEXT__), r && r.call(this, o), o && o._registeredComponents && o._registeredComponents.add(f);
+  }, e._ssrRegister = t) : r && (t = m ? function() {
+    r.call(
+      this,
+      (e.functional ? this.parent : this).$root.$options.shadowRoot
+    );
+  } : r), t)
+    if (e.functional) {
+      e._injectStyles = t;
+      var h = e.render;
+      e.render = function(g, d) {
+        return t.call(d), h(g, d);
+      };
+    } else {
+      var u = e.beforeCreate;
+      e.beforeCreate = u ? [].concat(u, t) : [t];
+    }
   return {
-    exports: e,
-    options: a
+    exports: n,
+    options: e
   };
 }
-const r = {
+const C = {
   name: "SectionProvider",
   provide() {
     return {
-      params: t.observable(this.params),
-      pageConfig: t.observable(this.pageParams)
+      params: p.observable(this.params),
+      pageConfig: p.observable(this.pageParams)
     };
   },
   props: {
@@ -26,29 +46,36 @@ const r = {
     }
   },
   data() {
-    var e;
+    var n;
     return {
       params: this.config.params,
-      pageParams: (e = this.pageConfig) == null ? void 0 : e.data.theme.params
+      pageParams: (n = this.pageConfig) == null ? void 0 : n.data.theme.params
     };
   },
-  render(e) {
+  render() {
     return this.$scopedSlots.default();
   }
-};
-var s = /* @__PURE__ */ i(
-  r
+}, b = null, $ = null;
+var R = /* @__PURE__ */ v(
+  C,
+  b,
+  $,
+  !1,
+  null,
+  null,
+  null,
+  null
 );
-const l = s.exports;
-function o(e) {
-  o.installed || (o.installed = !0, e.component("SectionProvider", l));
+const V = R.exports;
+function i(n) {
+  i.installed || (i.installed = !0, n.component("SectionProvider", V));
 }
-const p = {
-  install: o
+const w = {
+  install: i
 };
-let n = null;
-typeof window < "u" ? n = window.Vue : typeof global < "u" && (n = global.Vue);
-n && n.use(p);
+let a = null;
+typeof window < "u" ? a = window.Vue : typeof global < "u" && (a = global.Vue);
+a && a.use(w);
 export {
-  l as default
+  V as default
 };

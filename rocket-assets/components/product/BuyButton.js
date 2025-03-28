@@ -1,56 +1,91 @@
-import a from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/product.js";
-import s from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/eventBus.js";
-import c from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/tracking/api.js";
-function r(n, t, e, u, _, B, h, v) {
-  var o = typeof n == "function" ? n.options : n;
-  return t && (o.render = t, o.staticRenderFns = e, o._compiled = !0), {
-    exports: n,
-    options: o
+(function(){"use strict";try{if(typeof document<"u"){var t=document.createElement("style");t.appendChild(document.createTextNode(".button-style .buy-button[data-v-ff6ae584]{display:flex;justify-content:center;align-items:center;position:absolute;bottom:8px;right:8px;width:46px;height:46px;background-color:var(--add-to-cart-button-color);border:1px solid var(--black-lightest);box-shadow:0 1px 4px #0000000d;border-radius:var(--theme-border-radius);cursor:pointer}.button-style .buy-button-text-icon[data-v-ff6ae584]{display:inline-flex;justify-content:center;align-items:center;gap:10px;width:var(--add-to-cart-icon-text-button-width);padding:15px 16px;background-color:var(--add-to-cart-icon-text-button-color);border:1px solid var(--add-to-cart-icon-text-button-border-color);border-radius:var(--theme-border-radius);cursor:pointer;transition:opacity .3s}@media only screen and (min-width: 700px){.button-style .buy-button-text-icon[data-v-ff6ae584]:hover{opacity:.8}}.button-style .buy-button-text-icon .text[data-v-ff6ae584]{font-size:16px;line-height:15px;font-weight:500;letter-spacing:.04em;color:var(--add-to-cart-icon-text-button-text-color)}.button-style .buy-button-text-icon .icon[data-v-ff6ae584]{flex-shrink:0;margin:0}")),document.head.appendChild(t)}}catch(e){console.error("vite-plugin-css-injected-by-js",e)}})();
+import y from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/product.js";
+import v from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/eventBus.js";
+import C from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/tracking/api.js";
+function b(i, e, a, l, s, f, d, p) {
+  var t = typeof i == "function" ? i.options : i;
+  e && (t.render = e, t.staticRenderFns = a, t._compiled = !0), l && (t.functional = !0), f && (t._scopeId = "data-v-" + f);
+  var o;
+  if (d ? (o = function(n) {
+    n = n || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !n && typeof __VUE_SSR_CONTEXT__ < "u" && (n = __VUE_SSR_CONTEXT__), s && s.call(this, n), n && n._registeredComponents && n._registeredComponents.add(d);
+  }, t._ssrRegister = o) : s && (o = p ? function() {
+    s.call(
+      this,
+      (t.functional ? this.parent : this).$root.$options.shadowRoot
+    );
+  } : s), o)
+    if (t.functional) {
+      t._injectStyles = o;
+      var h = t.render;
+      t.render = function(m, c) {
+        return o.call(c), h(m, c);
+      };
+    } else {
+      var _ = t.beforeCreate;
+      t.beforeCreate = _ ? [].concat(_, o) : [o];
+    }
+  return {
+    exports: i,
+    options: t
   };
 }
-const d = {
+const B = {
   name: "BuyButton",
   mixins: [
-    a,
-    c
+    y,
+    C
   ],
   props: {
     isTextAndIconButton: {
       type: Boolean,
       default: !1
+    },
+    hasButtonStyle: {
+      type: Boolean,
+      default: !1
     }
   },
   computed: {
+    containerClasses() {
+      return {
+        "button-style": this.hasButtonStyle
+      };
+    },
     buyButtonClass() {
       return this.isTextAndIconButton ? "buy-button-text-icon" : "buy-button";
     }
   },
   methods: {
     async handleClick() {
-      s.$emit("addToCartClicked", this.validProduct), this.handleTrackApi("quick-buy-button-clicked");
+      v.$emit("addToCartClicked", this.validProduct), this.handleTrackApi("quick-buy-button-clicked");
     }
   }
 };
-var f = function() {
-  var t = this, e = t._self._c;
-  return e("div", { staticClass: "holder-buy-button" }, [e("div", { class: t.buyButtonClass, on: { click: function(u) {
-    return u.stopPropagation(), u.preventDefault(), t.handleClick.apply(null, arguments);
-  } } }, [t._t("buy-button"), t._t("buy-button-text-icon")], 2)]);
-}, p = [], m = /* @__PURE__ */ r(
-  d,
-  f,
-  p
+var g = function() {
+  var e = this, a = e._self._c;
+  return a("div", { staticClass: "holder-buy-button", class: e.containerClasses }, [a("div", { class: e.buyButtonClass, on: { click: function(l) {
+    return l.stopPropagation(), l.preventDefault(), e.handleClick.apply(null, arguments);
+  } } }, [e._t("default")], 2)]);
+}, k = [], T = /* @__PURE__ */ b(
+  B,
+  g,
+  k,
+  !1,
+  null,
+  "ff6ae584",
+  null,
+  null
 );
-const y = m.exports;
-function l(n) {
-  l.installed || (l.installed = !0, n.component("BuyButton", y));
+const R = T.exports;
+function u(i) {
+  u.installed || (u.installed = !0, i.component("BuyButton", R));
 }
-const b = {
-  install: l
+const $ = {
+  install: u
 };
-let i = null;
-typeof window < "u" ? i = window.Vue : typeof global < "u" && (i = global.Vue);
-i && i.use(b);
+let r = null;
+typeof window < "u" ? r = window.Vue : typeof global < "u" && (r = global.Vue);
+r && r.use($);
 export {
-  y as default
+  R as default
 };

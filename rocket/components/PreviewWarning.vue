@@ -1,5 +1,5 @@
 <template>
-    <transition name="fade">
+    <Transition name="fade">
         <div
             v-if="showPreviewWarning"
             class="preview-warning"
@@ -16,7 +16,7 @@
                 <i class=" icon icon-close-modal-white" />
             </button>
         </div>
-    </transition>
+    </Transition>
 </template>
 
 <script>

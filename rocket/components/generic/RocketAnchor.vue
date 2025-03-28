@@ -19,18 +19,22 @@ export default {
             type: String,
             default: null,
         },
+
         label: {
             type: String,
             required: true,
         },
+
         customClasses: {
             type: String,
             default: '',
         },
+
         customRef: {
             type: String,
             default: null,
         },
+
         targetType: {
             type: String,
             default: '_self',

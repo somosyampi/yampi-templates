@@ -1,40 +1,63 @@
-function c(n, t, i, p, _, m, b, g) {
-  var e = typeof n == "function" ? n.options : n;
-  return t && (e.render = t, e.staticRenderFns = i, e._compiled = !0), {
-    exports: n,
-    options: e
+function v(i, o, a, _, r, f, u, p) {
+  var n = typeof i == "function" ? i.options : i;
+  o && (n.render = o, n.staticRenderFns = a, n._compiled = !0), _ && (n.functional = !0), f && (n._scopeId = "data-v-" + f);
+  var t;
+  if (u ? (t = function(e) {
+    e = e || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !e && typeof __VUE_SSR_CONTEXT__ < "u" && (e = __VUE_SSR_CONTEXT__), r && r.call(this, e), e && e._registeredComponents && e._registeredComponents.add(u);
+  }, n._ssrRegister = t) : r && (t = p ? function() {
+    r.call(
+      this,
+      (n.functional ? this.parent : this).$root.$options.shadowRoot
+    );
+  } : r), t)
+    if (n.functional) {
+      n._injectStyles = t;
+      var C = n.render;
+      n.render = function(h, c) {
+        return t.call(c), C(h, c);
+      };
+    } else {
+      var d = n.beforeCreate;
+      n.beforeCreate = d ? [].concat(d, t) : [t];
+    }
+  return {
+    exports: i,
+    options: n
   };
 }
-const r = {
+const m = {
   name: "SectionContainer",
   props: [
     "widthSection",
     "contentAlignment",
     "backgroundColor",
     "buttonColor",
-    "textColor",
-    "titleText",
-    "descriptionText"
+    "textColor"
   ]
 };
-var a = function() {
-  var t = this, i = t._self._c;
-  return i("div", { class: `section-container section-width--${t.widthSection} align-content--${t.contentAlignment}`, style: `--background-color: ${t.backgroundColor}; --button-color: ${t.buttonColor}; --text-color: ${t.textColor}; ` }, [t._t("default", null, { titleText: t.titleText, descriptionText: t.descriptionText })], 2);
-}, d = [], s = /* @__PURE__ */ c(
-  r,
-  a,
-  d
+var b = function() {
+  var o = this, a = o._self._c;
+  return a("div", { class: `section-container section-width--${o.widthSection} align-content--${o.contentAlignment}`, style: `--background-color: ${o.backgroundColor}; --button-color: ${o.buttonColor}; --text-color: ${o.textColor}; ` }, [o._t("default")], 2);
+}, g = [], $ = /* @__PURE__ */ v(
+  m,
+  b,
+  g,
+  !1,
+  null,
+  null,
+  null,
+  null
 );
-const u = s.exports;
-function l(n) {
-  l.installed || (l.installed = !0, n.component("SectionContainer", u));
+const w = $.exports;
+function s(i) {
+  s.installed || (s.installed = !0, i.component("SectionContainer", w));
 }
-const f = {
-  install: l
+const R = {
+  install: s
 };
-let o = null;
-typeof window < "u" ? o = window.Vue : typeof global < "u" && (o = global.Vue);
-o && o.use(f);
+let l = null;
+typeof window < "u" ? l = window.Vue : typeof global < "u" && (l = global.Vue);
+l && l.use(R);
 export {
-  u as default
+  w as default
 };

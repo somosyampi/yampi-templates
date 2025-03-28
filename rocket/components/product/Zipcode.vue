@@ -73,7 +73,6 @@ export default {
 
     computed: {
         isValidCep() {
-            // eslint-disable-next-line
             return /^[0-9]{5}\-[\d]{3}$/.test(this.zipcode);
         },
     },
@@ -106,7 +105,6 @@ export default {
                 this.data = _.get(data, 'data', {});
 
                 if (Object.keys(this.data).length === 0) {
-                    // eslint-disable-next-line
                     this.setError('zipcode', 'Ocorreu um erro ao cotar o frete');
 
                     return;
@@ -121,8 +119,7 @@ export default {
                 console.error(e);
                 this.setError(
                     'zipcode',
-                    // eslint-disable-next-line
-                    _.get(e, 'response.data.message', 'Ocorreu um erro ao cotar o frete')
+                    _.get(e, 'response.data.message', 'Ocorreu um erro ao cotar o frete'),
                 );
             } finally {
                 this.sending = false;

@@ -1,12 +1,32 @@
-import { mapGetters as s, mapActions as c } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
-function a(t, e, i, p, g, _, v, w) {
-  var o = typeof t == "function" ? t.options : t;
-  return e && (o.render = e, o.staticRenderFns = i, o._compiled = !0), {
+import { mapGetters as g, mapActions as v } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
+function w(t, e, r, _, s, d, l, h) {
+  var i = typeof t == "function" ? t.options : t;
+  e && (i.render = e, i.staticRenderFns = r, i._compiled = !0), _ && (i.functional = !0), d && (i._scopeId = "data-v-" + d);
+  var o;
+  if (l ? (o = function(n) {
+    n = n || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !n && typeof __VUE_SSR_CONTEXT__ < "u" && (n = __VUE_SSR_CONTEXT__), s && s.call(this, n), n && n._registeredComponents && n._registeredComponents.add(l);
+  }, i._ssrRegister = o) : s && (o = h ? function() {
+    s.call(
+      this,
+      (i.functional ? this.parent : this).$root.$options.shadowRoot
+    );
+  } : s), o)
+    if (i.functional) {
+      i._injectStyles = o;
+      var u = i.render;
+      i.render = function(p, m) {
+        return o.call(m), u(p, m);
+      };
+    } else {
+      var f = i.beforeCreate;
+      i.beforeCreate = f ? [].concat(f, o) : [o];
+    }
+  return {
     exports: t,
-    options: o
+    options: i
   };
 }
-const d = {
+const k = {
   name: "RocketEmitter",
   props: {
     emits: {
@@ -33,18 +53,18 @@ const d = {
     };
   },
   computed: {
-    ...s("preview", ["isPreview", "isIframe", "activeSection"])
+    ...g("preview", ["isPreview", "isIframe", "activeSection"])
   },
   watch: {
     activeSection(t) {
-      this.isIframe && t === this.emits && this.$emit("openCategory");
+      !this.isIframe || t === this.emits && this.$emit("openCategory");
     },
     isPreview() {
       this.key += 1;
     }
   },
   mounted() {
-    this.isIframe && (this.$nextTick(this.handleTagPosition), window.addEventListener("scroll", this.handleTagPosition), window.addEventListener("load", this.handleTagPosition));
+    !this.isIframe || (this.$nextTick(this.handleTagPosition), window.addEventListener("scroll", this.handleTagPosition), window.addEventListener("load", this.handleTagPosition));
   },
   destroyed() {
     window.removeEventListener("scroll", () => {
@@ -52,7 +72,7 @@ const d = {
     });
   },
   methods: {
-    ...c("preview", ["setActiveSection"]),
+    ...v("preview", ["setActiveSection"]),
     handleTagPosition() {
       if (!this.$refs.rocketEmitterRef)
         return;
@@ -100,32 +120,38 @@ const d = {
         main_pages_content: "icon-page",
         main_promotion_content: "icon-marketing",
         cart: "icon-cart",
-        text_button_2_banners: "icon-text-banners"
+        text_button_2_banners: "icon-text-banners",
+        grid_collection: "icon-collections-grid"
       }[t];
     }
   }
 };
-var l = function() {
-  var e = this, i = e._self._c;
-  return i("div", { key: e.key }, [e.isPreview && e.isIframe ? i("div", { ref: "rocketEmitterRef", staticClass: "rocket-emitter", class: {
+var b = function() {
+  var e = this, r = e._self._c;
+  return r("div", { key: e.key }, [e.isPreview && e.isIframe ? r("div", { ref: "rocketEmitterRef", staticClass: "rocket-emitter", class: {
     "--hide-stroke": !e.showStroke,
     "--active": e.activeSection === `${e.emits}-${e.order}` || e.activeSection === `${e.emits}`
-  }, on: { click: e.handleClick } }, [e.showStroke ? i("div", { staticClass: "emitter-title" }, [i(e.getComponent(e.emits), { tag: "component" }), e._v(" " + e._s(e.label) + " ")], 1) : e._e(), e._t("default")], 2) : i("div", [e._t("default")], 2)]);
-}, m = [], f = /* @__PURE__ */ a(
-  d,
-  l,
-  m
+  }, on: { click: e.handleClick } }, [e.showStroke ? r("div", { staticClass: "emitter-title" }, [r(e.getComponent(e.emits), { tag: "component" }), e._v(" " + e._s(e.label) + " ")], 1) : e._e(), e._t("default")], 2) : r("div", [e._t("default")], 2)]);
+}, C = [], $ = /* @__PURE__ */ w(
+  k,
+  b,
+  C,
+  !1,
+  null,
+  null,
+  null,
+  null
 );
-const u = f.exports;
-function r(t) {
-  r.installed || (r.installed = !0, t.component("RocketEmitter", u));
+const S = $.exports;
+function c(t) {
+  c.installed || (c.installed = !0, t.component("RocketEmitter", S));
 }
-const h = {
-  install: r
+const y = {
+  install: c
 };
-let n = null;
-typeof window < "u" ? n = window.Vue : typeof global < "u" && (n = global.Vue);
-n && n.use(h);
+let a = null;
+typeof window < "u" ? a = window.Vue : typeof global < "u" && (a = global.Vue);
+a && a.use(y);
 export {
-  u as default
+  S as default
 };

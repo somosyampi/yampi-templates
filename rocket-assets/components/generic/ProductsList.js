@@ -1,11 +1,31 @@
-function s(t, e, a, n, g, m, _, w) {
-  var o = typeof t == "function" ? t.options : t;
-  return e && (o.render = e, o.staticRenderFns = a, o._compiled = !0), {
-    exports: t,
-    options: o
+function v(r, e, n, s, i, d, p, g) {
+  var t = typeof r == "function" ? r.options : r;
+  e && (t.render = e, t.staticRenderFns = n, t._compiled = !0), s && (t.functional = !0), d && (t._scopeId = "data-v-" + d);
+  var o;
+  if (p ? (o = function(a) {
+    a = a || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !a && typeof __VUE_SSR_CONTEXT__ < "u" && (a = __VUE_SSR_CONTEXT__), i && i.call(this, a), a && a._registeredComponents && a._registeredComponents.add(p);
+  }, t._ssrRegister = o) : i && (o = g ? function() {
+    i.call(
+      this,
+      (t.functional ? this.parent : this).$root.$options.shadowRoot
+    );
+  } : i), o)
+    if (t.functional) {
+      t._injectStyles = o;
+      var _ = t.render;
+      t.render = function(h, f) {
+        return o.call(f), _(h, f);
+      };
+    } else {
+      var c = t.beforeCreate;
+      t.beforeCreate = c ? [].concat(c, o) : [o];
+    }
+  return {
+    exports: r,
+    options: t
   };
 }
-const l = {
+const m = {
   name: "ProductsList",
   props: {
     products: {
@@ -23,7 +43,7 @@ const l = {
     productsPerLine: {
       type: Number,
       default: 2,
-      validator: (t) => [1, 2].includes(t)
+      validator: (r) => [1, 2].includes(r)
     },
     isMobile: {
       type: Boolean,
@@ -70,38 +90,43 @@ const l = {
     }
   },
   methods: {
-    tagOrDiv(t) {
-      return this.carousel ? t : "div";
+    tagOrDiv(r) {
+      return this.carousel ? r : "div";
     }
   }
 };
-var u = function() {
-  var e = this, a = e._self._c;
-  return a("div", { staticClass: "products-list" }, [e.ready ? a(e.tagOrDiv("splide"), { tag: "component", class: {
+var w = function() {
+  var e = this, n = e._self._c;
+  return n("div", { staticClass: "products-list" }, [e.ready ? n(e.tagOrDiv("splide"), { tag: "component", class: {
     "flex -wrap": !e.carousel,
     "single-per-line": e.isMobile && e.productsPerLine === 1,
     "-no-pagination": e.carousel && e.products.length <= e.productsPerPage
-  }, attrs: { options: e.carousel ? e.carouselOptions : null, slides: e.carousel ? e.products : null } }, [e._l(e.products, function(n) {
-    return a(e.tagOrDiv("splide-slide"), { key: n.id, tag: "component", class: {
+  }, attrs: { options: e.carousel ? e.carouselOptions : null, slides: e.carousel ? e.products : null } }, [e._l(e.products, function(s) {
+    return n(e.tagOrDiv("splide-slide"), { key: s.id, tag: "component", class: {
       "box-product-wrapper": !e.carousel,
       "-loading": e.loading
-    } }, [e._t("default", null, { product: n, loading: e.loading })], 2);
-  }), a(e.tagOrDiv("li"), { tag: "component", staticClass: "box-product-wrapper -clear" }), a(e.tagOrDiv("li"), { tag: "component", staticClass: "box-product-wrapper -clear" }), a(e.tagOrDiv("li"), { tag: "component", staticClass: "box-product-wrapper -clear" })], 2) : e._e()], 1);
-}, d = [], p = /* @__PURE__ */ s(
-  l,
-  u,
-  d
+    } }, [e._t("default", null, { product: s, loading: e.loading })], 2);
+  }), n(e.tagOrDiv("li"), { tag: "component", staticClass: "box-product-wrapper -clear" }), n(e.tagOrDiv("li"), { tag: "component", staticClass: "box-product-wrapper -clear" }), n(e.tagOrDiv("li"), { tag: "component", staticClass: "box-product-wrapper -clear" })], 2) : e._e()], 1);
+}, b = [], y = /* @__PURE__ */ v(
+  m,
+  w,
+  b,
+  !1,
+  null,
+  null,
+  null,
+  null
 );
-const c = p.exports;
-function i(t) {
-  i.installed || (i.installed = !0, t.component("ProductsList", c));
+const C = y.exports;
+function u(r) {
+  u.installed || (u.installed = !0, r.component("ProductsList", C));
 }
-const f = {
-  install: i
+const P = {
+  install: u
 };
-let r = null;
-typeof window < "u" ? r = window.Vue : typeof global < "u" && (r = global.Vue);
-r && r.use(f);
+let l = null;
+typeof window < "u" ? l = window.Vue : typeof global < "u" && (l = global.Vue);
+l && l.use(P);
 export {
-  c as default
+  C as default
 };

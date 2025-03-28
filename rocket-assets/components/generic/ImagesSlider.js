@@ -1,15 +1,35 @@
-(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".touchable[data-v-8d56549a]{height:100%;width:100%}")),document.head.appendChild(e)}}catch(t){console.error("vite-plugin-css-injected-by-js",t)}})();
-import r from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/touchable.js";
-function d(t, e, i, o, v, l, _, g) {
-  var n = typeof t == "function" ? t.options : t;
-  return e && (n.render = e, n.staticRenderFns = i, n._compiled = !0), n._scopeId = "data-v-" + l, {
+(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".touchable[data-v-78221d33]{height:100%;width:100%}")),document.head.appendChild(e)}}catch(t){console.error("vite-plugin-css-injected-by-js",t)}})();
+import v from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/touchable.js";
+function g(t, e, n, r, a, u, f, h) {
+  var i = typeof t == "function" ? t.options : t;
+  e && (i.render = e, i.staticRenderFns = n, i._compiled = !0), r && (i.functional = !0), u && (i._scopeId = "data-v-" + u);
+  var o;
+  if (f ? (o = function(s) {
+    s = s || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !s && typeof __VUE_SSR_CONTEXT__ < "u" && (s = __VUE_SSR_CONTEXT__), a && a.call(this, s), s && s._registeredComponents && s._registeredComponents.add(f);
+  }, i._ssrRegister = o) : a && (o = h ? function() {
+    a.call(
+      this,
+      (i.functional ? this.parent : this).$root.$options.shadowRoot
+    );
+  } : a), o)
+    if (i.functional) {
+      i._injectStyles = o;
+      var p = i.render;
+      i.render = function(m, _) {
+        return o.call(_), p(m, _);
+      };
+    } else {
+      var c = i.beforeCreate;
+      i.beforeCreate = c ? [].concat(c, o) : [o];
+    }
+  return {
     exports: t,
-    options: n
+    options: i
   };
 }
-const c = {
+const C = {
   name: "Touchable",
-  mixins: [r],
+  mixins: [v],
   props: {
     images: {
       type: Array,
@@ -42,36 +62,38 @@ const c = {
     }
   }
 };
-var u = function() {
-  var e = this, i = e._self._c;
-  return i("div", { staticClass: "touchable" }, [i("splide", { ref: "splideRef", staticClass: "custom-splide", attrs: { options: {
+var b = function() {
+  var e = this, n = e._self._c;
+  return n("div", { staticClass: "touchable" }, [n("Splide", { ref: "splideRef", staticClass: "custom-splide", attrs: { options: {
     perPage: 1,
     rewind: !1,
     arrows: !1,
     pagination: !1,
     drag: !1,
     start: 0
-  }, slides: e.images }, on: { "splide:moved": e.handleSplideMoved, "splide:mounted": e.handleSplideMounted } }, e._l(e.images, function(o) {
-    return i("splide-slide", { key: o.url, staticClass: "review-details-photo-container" }, [i("pinch-zoom", { ref: "imagePinch", refInFor: !0, attrs: { "auto-zoom-out": !1, overflow: "visible", "limit-pan": !0, "min-scale": 1, "limit-zoom": "50" } }, [i("img", { attrs: { src: o.url, alt: "zoom" } })])], 1);
-  }), 1), i("div", { staticClass: "modal-review-details-pagination" }, [e._v(" ("), i("span", { staticClass: "bold" }, [e._v(e._s(e.currentIndex + 1))]), e._v("/" + e._s(e.images.length) + ") ")])], 1);
-}, f = [], m = /* @__PURE__ */ d(
-  c,
-  u,
-  f,
+  }, slides: e.images }, on: { "splide:moved": e.handleSplideMoved, "splide:mounted": e.handleSplideMounted } }, e._l(e.images, function(r) {
+    return n("SplideSlide", { key: r.url, staticClass: "review-details-photo-container" }, [n("PinchZoom", { ref: "imagePinch", refInFor: !0, attrs: { "auto-zoom-out": !1, overflow: "visible", "limit-pan": !0, "min-scale": 1, "limit-zoom": "50" } }, [n("img", { attrs: { src: r.url, alt: "zoom" } })])], 1);
+  }), 1), n("div", { staticClass: "modal-review-details-pagination" }, [e._v(" ("), n("span", { staticClass: "bold" }, [e._v(e._s(e.currentIndex + 1))]), e._v("/" + e._s(e.images.length) + ") ")])], 1);
+}, S = [], w = /* @__PURE__ */ g(
+  C,
+  b,
+  S,
   !1,
   null,
-  "8d56549a"
+  "78221d33",
+  null,
+  null
 );
-const h = m.exports;
-function a(t) {
-  a.installed || (a.installed = !0, t.component("ImagesSlider", h));
+const I = w.exports;
+function d(t) {
+  d.installed || (d.installed = !0, t.component("ImagesSlider", I));
 }
-const p = {
-  install: a
+const R = {
+  install: d
 };
-let s = null;
-typeof window < "u" ? s = window.Vue : typeof global < "u" && (s = global.Vue);
-s && s.use(p);
+let l = null;
+typeof window < "u" ? l = window.Vue : typeof global < "u" && (l = global.Vue);
+l && l.use(R);
 export {
-  h as default
+  I as default
 };

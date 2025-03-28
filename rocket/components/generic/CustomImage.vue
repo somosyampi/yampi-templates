@@ -71,6 +71,7 @@ export default {
             return this.src;
         },
     },
+
     mounted() {
         if (this.listInStore) {
             const vm = this;

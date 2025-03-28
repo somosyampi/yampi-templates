@@ -1,11 +1,31 @@
-function u(n, e, t, _, p, m, v, g) {
-  var o = typeof n == "function" ? n.options : n;
-  return e && (o.render = e, o.staticRenderFns = t, o._compiled = !0), {
-    exports: n,
-    options: o
+function m(a, n, r, p, i, u, f, c) {
+  var e = typeof a == "function" ? a.options : a;
+  n && (e.render = n, e.staticRenderFns = r, e._compiled = !0), p && (e.functional = !0), u && (e._scopeId = "data-v-" + u);
+  var o;
+  if (f ? (o = function(t) {
+    t = t || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !t && typeof __VUE_SSR_CONTEXT__ < "u" && (t = __VUE_SSR_CONTEXT__), i && i.call(this, t), t && t._registeredComponents && t._registeredComponents.add(f);
+  }, e._ssrRegister = o) : i && (o = c ? function() {
+    i.call(
+      this,
+      (e.functional ? this.parent : this).$root.$options.shadowRoot
+    );
+  } : i), o)
+    if (e.functional) {
+      e._injectStyles = o;
+      var v = e.render;
+      e.render = function(h, d) {
+        return o.call(d), v(h, d);
+      };
+    } else {
+      var _ = e.beforeCreate;
+      e.beforeCreate = _ ? [].concat(_, o) : [o];
+    }
+  return {
+    exports: a,
+    options: e
   };
 }
-const l = {
+const C = {
   name: "DiscountTag",
   props: {
     value: {
@@ -19,24 +39,29 @@ const l = {
     }
   }
 };
-var s = function() {
-  var e = this, t = e._self._c;
-  return e.value > 0 ? t("div", { staticClass: "discount-tag" }, [t("span", [e._v(e._s(e.formattedValue))])]) : e._e();
-}, d = [], r = /* @__PURE__ */ u(
-  l,
-  s,
-  d
+var g = function() {
+  var n = this, r = n._self._c;
+  return n.value > 0 ? r("div", { staticClass: "discount-tag" }, [r("span", [n._v(n._s(n.formattedValue))])]) : n._e();
+}, V = [], b = /* @__PURE__ */ m(
+  C,
+  g,
+  V,
+  !1,
+  null,
+  null,
+  null,
+  null
 );
-const f = r.exports;
-function i(n) {
-  i.installed || (i.installed = !0, n.component("DiscountTag", f));
+const R = b.exports;
+function l(a) {
+  l.installed || (l.installed = !0, a.component("DiscountTag", R));
 }
-const c = {
-  install: i
+const T = {
+  install: l
 };
-let a = null;
-typeof window < "u" ? a = window.Vue : typeof global < "u" && (a = global.Vue);
-a && a.use(c);
+let s = null;
+typeof window < "u" ? s = window.Vue : typeof global < "u" && (s = global.Vue);
+s && s.use(T);
 export {
-  f as default
+  R as default
 };

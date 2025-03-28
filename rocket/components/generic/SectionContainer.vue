@@ -1,11 +1,9 @@
 <template>
-    <div :class="`section-container section-width--${widthSection} align-content--${contentAlignment}`" 
+    <div
+        :class="`section-container section-width--${widthSection} align-content--${contentAlignment}`"
         :style="`--background-color: ${backgroundColor}; --button-color: ${buttonColor}; --text-color: ${textColor}; `"
     >
-        <slot 
-            :title-text="titleText"
-            :description-text="descriptionText"
-        ></slot>
+        <slot />
     </div>
 </template>
 
@@ -15,13 +13,11 @@ export default {
     name: 'SectionContainer',
 
     props: [
-        'widthSection', 
-        'contentAlignment', 
-        'backgroundColor', 
-        'buttonColor', 
-        'textColor', 
-        'titleText', 
-        'descriptionText'
-    ]
-}
+        'widthSection',
+        'contentAlignment',
+        'backgroundColor',
+        'buttonColor',
+        'textColor',
+    ],
+};
 </script>

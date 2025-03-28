@@ -65,7 +65,6 @@
 </template>
 
 <script>
-/* eslint-disable max-len */
 import { mapActions } from '~/vuex';
 import _ from '~/lodash';
 import productMixin from '@/mixins/product';
@@ -198,6 +197,7 @@ export default {
 
     methods: {
         ...mapActions('cart', ['addProductsToCart']),
+
         ...mapActions('product', ['trackViewItem']),
 
         viewItem() {
@@ -255,7 +255,6 @@ export default {
                 customization[this.selectedSku.id] = validValues;
             }
 
-            /* eslint-disable camelcase */
             let has_recomm = false;
             const { recomm_id } = window.Yampi.mago_config;
             const item_metadata = [];

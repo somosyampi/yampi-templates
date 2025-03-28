@@ -1,5 +1,5 @@
 <template>
-    <modal
+    <Modal
         ref="newsletterBaseModal"
         name="newsletter"
     >
@@ -18,7 +18,7 @@
         >
             Fechar
         </button>
-    </modal>
+    </Modal>
 </template>
 
 <script>

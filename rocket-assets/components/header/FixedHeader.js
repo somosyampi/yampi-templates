@@ -1,13 +1,33 @@
-import s from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-import { mapGetters as l } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
-function c(e, t, n, a, i, w, x, v) {
-  var d = typeof e == "function" ? e.options : e;
-  return t && (d.render = t, d.staticRenderFns = n, d._compiled = !0), {
-    exports: e,
-    options: d
+import v from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
+import { mapGetters as w } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
+function b(t, o, d, s, r, f, u, p) {
+  var e = typeof t == "function" ? t.options : t;
+  o && (e.render = o, e.staticRenderFns = d, e._compiled = !0), s && (e.functional = !0), f && (e._scopeId = "data-v-" + f);
+  var i;
+  if (u ? (i = function(n) {
+    n = n || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !n && typeof __VUE_SSR_CONTEXT__ < "u" && (n = __VUE_SSR_CONTEXT__), r && r.call(this, n), n && n._registeredComponents && n._registeredComponents.add(u);
+  }, e._ssrRegister = i) : r && (i = p ? function() {
+    r.call(
+      this,
+      (e.functional ? this.parent : this).$root.$options.shadowRoot
+    );
+  } : r), i)
+    if (e.functional) {
+      e._injectStyles = i;
+      var _ = e.render;
+      e.render = function(m, h) {
+        return i.call(h), _(m, h);
+      };
+    } else {
+      var c = e.beforeCreate;
+      e.beforeCreate = c ? [].concat(c, i) : [i];
+    }
+  return {
+    exports: t,
+    options: e
   };
 }
-const u = {
+const g = {
   name: "FixedHeader",
   props: {
     fixed: {
@@ -21,7 +41,7 @@ const u = {
     };
   },
   computed: {
-    ...l("header", [
+    ...w("header", [
       "showSearchBar"
     ])
   },
@@ -40,36 +60,41 @@ const u = {
         this.updateScrollbarWidth();
       }, !this.fixed)
         return;
-      const e = document.getElementById("section-header"), t = 1;
+      const t = document.getElementById("section-header"), o = 1;
       document.addEventListener(
         "scroll",
-        s.debounce(() => {
-          const n = window.pageYOffset, a = e.clientHeight, i = n - a > t;
-          this.$store.dispatch("header/updateShowSearchBar", !i), this.headerIsFixed = i;
+        v.debounce(() => {
+          const d = window.pageYOffset, s = t.clientHeight, r = d - s > o;
+          this.$store.dispatch("header/updateShowSearchBar", !r), this.headerIsFixed = r;
         }, 0),
         { passive: !0 }
       );
     }
   }
 };
-var f = function() {
-  var t = this, n = t._self._c;
-  return n("div", { class: { "fixed-header": t.headerIsFixed } }, [t._t("default")], 2);
-}, h = [], m = /* @__PURE__ */ c(
-  u,
-  f,
-  h
+var C = function() {
+  var o = this, d = o._self._c;
+  return d("div", { class: { "fixed-header": o.headerIsFixed } }, [o._t("default")], 2);
+}, F = [], S = /* @__PURE__ */ b(
+  g,
+  C,
+  F,
+  !1,
+  null,
+  null,
+  null,
+  null
 );
-const p = m.exports;
-function r(e) {
-  r.installed || (r.installed = !0, e.component("FixedHeader", p));
+const $ = S.exports;
+function l(t) {
+  l.installed || (l.installed = !0, t.component("FixedHeader", $));
 }
-const _ = {
-  install: r
+const y = {
+  install: l
 };
-let o = null;
-typeof window < "u" ? o = window.Vue : typeof global < "u" && (o = global.Vue);
-o && o.use(_);
+let a = null;
+typeof window < "u" ? a = window.Vue : typeof global < "u" && (a = global.Vue);
+a && a.use(y);
 export {
-  p as default
+  $ as default
 };

@@ -1,15 +1,35 @@
-import { mapMutations as a } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
-import l from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/buttons.js";
-function r(e, t, i, h, _, b, y, g) {
-  var n = typeof e == "function" ? e.options : e;
-  return t && (n.render = t, n.staticRenderFns = i, n._compiled = !0), {
-    exports: e,
-    options: n
+import { mapMutations as b } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
+import v from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/buttons.js";
+function g(i, e, n, _, a, u, d, h) {
+  var t = typeof i == "function" ? i.options : i;
+  e && (t.render = e, t.staticRenderFns = n, t._compiled = !0), _ && (t.functional = !0), u && (t._scopeId = "data-v-" + u);
+  var o;
+  if (d ? (o = function(s) {
+    s = s || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !s && typeof __VUE_SSR_CONTEXT__ < "u" && (s = __VUE_SSR_CONTEXT__), a && a.call(this, s), s && s._registeredComponents && s._registeredComponents.add(d);
+  }, t._ssrRegister = o) : a && (o = h ? function() {
+    a.call(
+      this,
+      (t.functional ? this.parent : this).$root.$options.shadowRoot
+    );
+  } : a), o)
+    if (t.functional) {
+      t._injectStyles = o;
+      var p = t.render;
+      t.render = function(m, c) {
+        return o.call(c), p(m, c);
+      };
+    } else {
+      var f = t.beforeCreate;
+      t.beforeCreate = f ? [].concat(f, o) : [o];
+    }
+  return {
+    exports: i,
+    options: t
   };
 }
-const u = {
+const C = {
   name: "LoaderButton",
-  mixins: [l],
+  mixins: [v],
   props: {
     sending: {
       type: Boolean,
@@ -29,39 +49,45 @@ const u = {
     }
   },
   watch: {
-    "scrollPos.y"(e) {
-      if (!this.listenPosition) return;
-      const t = e + this.height > this.$el.offsetTop, i = e + this.height < this.$el.offsetTop + this.height;
-      t && i ? this.PUSH({ queue: "buttons", itemId: this._uid }) : this.POP({ queue: "buttons", itemId: this._uid });
+    "scrollPos.y": function(i) {
+      if (!this.listenPosition)
+        return;
+      const e = i + this.height > this.$el.offsetTop, n = i + this.height < this.$el.offsetTop + this.height;
+      e && n ? this.PUSH({ queue: "buttons", itemId: this._uid }) : this.POP({ queue: "buttons", itemId: this._uid });
     }
   },
   methods: {
-    ...a("queue", ["PUSH", "POP"]),
-    handleClick(e) {
-      this.disabled || this.$emit("click", e);
+    ...b("queue", ["PUSH", "POP"]),
+    handleClick(i) {
+      this.disabled || this.$emit("click", i);
     }
   }
 };
-var d = function() {
-  var t = this, i = t._self._c;
-  return i("button", { staticClass: "loader-button", class: { sending: t.sending }, attrs: { disabled: t.disabled }, on: { click: t.handleClick } }, [t._t("default", function() {
-    return [t._v(t._s(t.title))];
-  }), i("svg", { attrs: { viewBox: "0 0 36 8" } }, [i("circle", { attrs: { cx: "4", cy: "4", r: "4" } }, [i("animate", { attrs: { attributeName: "opacity", dur: "1s", values: "0;1;0", repeatCount: "indefinite", begin: ".1" } })]), i("circle", { attrs: { cx: "18", cy: "4", r: "4" } }, [i("animate", { attrs: { attributeName: "opacity", dur: "1s", values: "0;1;0", repeatCount: "indefinite", begin: ".2" } })]), i("circle", { attrs: { cx: "32", cy: "4", r: "4" } }, [i("animate", { attrs: { attributeName: "opacity", dur: "1s", values: "0;1;0", repeatCount: "indefinite", begin: ".3" } })])])], 2);
-}, c = [], f = /* @__PURE__ */ r(
-  u,
-  d,
-  c
+var y = function() {
+  var e = this, n = e._self._c;
+  return n("button", { staticClass: "loader-button", class: { sending: e.sending }, attrs: { disabled: e.disabled }, on: { click: e.handleClick } }, [e._t("default", function() {
+    return [e._v(e._s(e.title))];
+  }), n("svg", { attrs: { viewBox: "0 0 36 8" } }, [n("circle", { attrs: { cx: "4", cy: "4", r: "4" } }, [n("animate", { attrs: { attributeName: "opacity", dur: "1s", values: "0;1;0", repeatCount: "indefinite", begin: ".1" } })]), n("circle", { attrs: { cx: "18", cy: "4", r: "4" } }, [n("animate", { attrs: { attributeName: "opacity", dur: "1s", values: "0;1;0", repeatCount: "indefinite", begin: ".2" } })]), n("circle", { attrs: { cx: "32", cy: "4", r: "4" } }, [n("animate", { attrs: { attributeName: "opacity", dur: "1s", values: "0;1;0", repeatCount: "indefinite", begin: ".3" } })])])], 2);
+}, P = [], $ = /* @__PURE__ */ g(
+  C,
+  y,
+  P,
+  !1,
+  null,
+  null,
+  null,
+  null
 );
-const m = f.exports;
-function s(e) {
-  s.installed || (s.installed = !0, e.component("LoaderButton", m));
+const w = $.exports;
+function l(i) {
+  l.installed || (l.installed = !0, i.component("LoaderButton", w));
 }
-const p = {
-  install: s
+const B = {
+  install: l
 };
-let o = null;
-typeof window < "u" ? o = window.Vue : typeof global < "u" && (o = global.Vue);
-o && o.use(p);
+let r = null;
+typeof window < "u" ? r = window.Vue : typeof global < "u" && (r = global.Vue);
+r && r.use(B);
 export {
-  m as default
+  w as default
 };

@@ -26,21 +26,13 @@
                             class="relative-banner relative"
                             :class="{ container: section === 'main-banner' }"
                         >
-                            <banner-stopwatch />
+                            <BannerStopwatch />
                         </div>
 
-                        <Banner-Product
-                            v-if="banner.type === 'product'"
-                            :product="banner.product.data"
-                            :is-mobile="isMobile"
-                        />
-
                         <div
-                            v-else
                             class="banner-image-holder"
                             :style="imageHolderStyle"
                         >
-                            <!-- @TODO: Add Thumbor -->
                             <CustomImage
                                 :src="getImage(banner)"
                                 :alt="'Banner ' + index"
@@ -91,7 +83,7 @@ export default {
         },
 
         container: {
-            type: [Boolean, Number],
+            type: Boolean,
             default: true,
         },
 
@@ -122,12 +114,12 @@ export default {
         },
 
         dimensions: {
-            type: [Array, Object],
+            type: Object,
             default: () => ({}),
         },
 
         firstBanner: {
-            type: [Array, Object],
+            type: Object,
             default: null,
         },
 

@@ -1,5 +1,4 @@
 <template>
-    <!-- eslint-disable -->
     <svg
         width="44"
         height="37"

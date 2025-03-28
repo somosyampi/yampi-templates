@@ -1,46 +1,71 @@
-import a from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-function l(t, n, e, d, _, h, w, S) {
-  var o = typeof t == "function" ? t.options : t;
-  return n && (o.render = n, o.staticRenderFns = e, o._compiled = !0), {
+import d from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
+function C(t, o, a, l, i, u, _, h) {
+  var n = typeof t == "function" ? t.options : t;
+  o && (n.render = o, n.staticRenderFns = a, n._compiled = !0), l && (n.functional = !0), u && (n._scopeId = "data-v-" + u);
+  var s;
+  if (_ ? (s = function(e) {
+    e = e || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !e && typeof __VUE_SSR_CONTEXT__ < "u" && (e = __VUE_SSR_CONTEXT__), i && i.call(this, e), e && e._registeredComponents && e._registeredComponents.add(_);
+  }, n._ssrRegister = s) : i && (s = h ? function() {
+    i.call(
+      this,
+      (n.functional ? this.parent : this).$root.$options.shadowRoot
+    );
+  } : i), s)
+    if (n.functional) {
+      n._injectStyles = s;
+      var m = n.render;
+      n.render = function(v, p) {
+        return s.call(p), m(v, p);
+      };
+    } else {
+      var c = n.beforeCreate;
+      n.beforeCreate = c ? [].concat(c, s) : [s];
+    }
+  return {
     exports: t,
-    options: o
+    options: n
   };
 }
-const u = {
+const w = {
   name: "Stopwatch",
-  mounted() {
-    this.loadCountdown();
-  },
   data: () => ({
     html: ""
   }),
+  mounted() {
+    this.loadCountdown();
+  },
   methods: {
     loadCountdown() {
-      const t = /* @__PURE__ */ new Date(), n = a.padStart(23 - t.getHours(), 2, "0"), e = a.padStart(59 - t.getMinutes(), 2, "0"), d = a.padStart(59 - t.getSeconds(), 2, "0");
-      this.html = `${n} : ${e} : ${d}`, setTimeout(() => {
+      const t = new Date(), o = d.padStart(23 - t.getHours(), 2, "0"), a = d.padStart(59 - t.getMinutes(), 2, "0"), l = d.padStart(59 - t.getSeconds(), 2, "0");
+      this.html = `${o} : ${a} : ${l}`, setTimeout(() => {
         this.loadCountdown();
       }, 500);
     }
   }
 };
-var c = function() {
-  var n = this, e = n._self._c;
-  return e("span", { staticClass: "stopwatch", domProps: { textContent: n._s(n.html) } });
-}, r = [], f = /* @__PURE__ */ l(
-  u,
-  c,
-  r
+var $ = function() {
+  var o = this, a = o._self._c;
+  return a("span", { staticClass: "stopwatch", domProps: { textContent: o._s(o.html) } });
+}, g = [], S = /* @__PURE__ */ C(
+  w,
+  $,
+  g,
+  !1,
+  null,
+  null,
+  null,
+  null
 );
-const m = f.exports;
-function i(t) {
-  i.installed || (i.installed = !0, t.component("Stopwatch", m));
+const R = S.exports;
+function f(t) {
+  f.installed || (f.installed = !0, t.component("Stopwatch", R));
 }
-const p = {
-  install: i
+const b = {
+  install: f
 };
-let s = null;
-typeof window < "u" ? s = window.Vue : typeof global < "u" && (s = global.Vue);
-s && s.use(p);
+let r = null;
+typeof window < "u" ? r = window.Vue : typeof global < "u" && (r = global.Vue);
+r && r.use(b);
 export {
-  m as default
+  R as default
 };

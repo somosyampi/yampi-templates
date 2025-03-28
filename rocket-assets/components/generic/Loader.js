@@ -1,11 +1,31 @@
-function s(e, t, l, c, p, m, g, _) {
-  var n = typeof e == "function" ? e.options : e;
-  return t && (n.render = t, n.staticRenderFns = l, n._compiled = !0), {
-    exports: e,
-    options: n
+function g(i, o, s, _, r, f, u, p) {
+  var e = typeof i == "function" ? i.options : i;
+  o && (e.render = o, e.staticRenderFns = s, e._compiled = !0), _ && (e.functional = !0), f && (e._scopeId = "data-v-" + f);
+  var t;
+  if (u ? (t = function(n) {
+    n = n || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !n && typeof __VUE_SSR_CONTEXT__ < "u" && (n = __VUE_SSR_CONTEXT__), r && r.call(this, n), n && n._registeredComponents && n._registeredComponents.add(u);
+  }, e._ssrRegister = t) : r && (t = p ? function() {
+    r.call(
+      this,
+      (e.functional ? this.parent : this).$root.$options.shadowRoot
+    );
+  } : r), t)
+    if (e.functional) {
+      e._injectStyles = t;
+      var c = e.render;
+      e.render = function(m, h) {
+        return t.call(h), c(m, h);
+      };
+    } else {
+      var d = e.beforeCreate;
+      e.beforeCreate = d ? [].concat(d, t) : [t];
+    }
+  return {
+    exports: i,
+    options: e
   };
 }
-const a = {
+const v = {
   props: {
     width: {
       type: Number,
@@ -34,24 +54,29 @@ const a = {
     }
   }
 };
-var u = function() {
-  var t = this, l = t._self._c;
-  return l("div", { staticClass: "loader-bg", style: t.getStyle() });
-}, d = [], r = /* @__PURE__ */ s(
-  a,
-  u,
-  d
+var y = function() {
+  var o = this, s = o._self._c;
+  return s("div", { staticClass: "loader-bg", style: o.getStyle() });
+}, C = [], b = /* @__PURE__ */ g(
+  v,
+  y,
+  C,
+  !1,
+  null,
+  null,
+  null,
+  null
 );
-const f = r.exports;
-function o(e) {
-  o.installed || (o.installed = !0, e.component("Loader", f));
+const w = b.exports;
+function a(i) {
+  a.installed || (a.installed = !0, i.component("Loader", w));
 }
-const h = {
-  install: o
+const $ = {
+  install: a
 };
-let i = null;
-typeof window < "u" ? i = window.Vue : typeof global < "u" && (i = global.Vue);
-i && i.use(h);
+let l = null;
+typeof window < "u" ? l = window.Vue : typeof global < "u" && (l = global.Vue);
+l && l.use($);
 export {
-  f as default
+  w as default
 };

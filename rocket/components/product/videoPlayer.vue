@@ -5,7 +5,7 @@
             class="relative"
             @click="clicked = true;"
         >
-            <custom-image
+            <CustomImage
                 :src="imageUrl"
                 :thumbor-enabled="false"
                 :alt="'product video'"
@@ -43,6 +43,7 @@ export default {
             type: String,
             required: true,
         },
+
         videoUrl: {
             type: String,
             required: true,

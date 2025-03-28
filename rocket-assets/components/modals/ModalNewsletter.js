@@ -1,11 +1,31 @@
-function a(t, e, s, m, _, w, p, v) {
-  var o = typeof t == "function" ? t.options : t;
-  return e && (o.render = e, o.staticRenderFns = s, o._compiled = !0), {
-    exports: t,
-    options: o
+function m(o, n, a, _, l, d, f, h) {
+  var e = typeof o == "function" ? o.options : o;
+  n && (e.render = n, e.staticRenderFns = a, e._compiled = !0), _ && (e.functional = !0), d && (e._scopeId = "data-v-" + d);
+  var t;
+  if (f ? (t = function(s) {
+    s = s || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !s && typeof __VUE_SSR_CONTEXT__ < "u" && (s = __VUE_SSR_CONTEXT__), l && l.call(this, s), s && s._registeredComponents && s._registeredComponents.add(f);
+  }, e._ssrRegister = t) : l && (t = h ? function() {
+    l.call(
+      this,
+      (e.functional ? this.parent : this).$root.$options.shadowRoot
+    );
+  } : l), t)
+    if (e.functional) {
+      e._injectStyles = t;
+      var v = e.render;
+      e.render = function(p, u) {
+        return t.call(u), v(p, u);
+      };
+    } else {
+      var c = e.beforeCreate;
+      e.beforeCreate = c ? [].concat(c, t) : [t];
+    }
+  return {
+    exports: o,
+    options: e
   };
 }
-const i = {
+const w = {
   name: "ModalNewsletter",
   methods: {
     showModal() {
@@ -16,24 +36,29 @@ const i = {
     }
   }
 };
-var c = function() {
-  var e = this, s = e._self._c;
-  return s("modal", { ref: "newsletterBaseModal", attrs: { name: "newsletter" } }, [s("i", { staticClass: "icon icon-success" }), s("div", { staticClass: "theme-title modal-success-title" }, [e._v(" Sucesso! ")]), s("div", { staticClass: "modal-success-subtitle" }, [e._v(" Seu e-mail foi cadastrado. ")]), s("button", { staticClass: "btn btn-secundary -success", on: { click: e.closeModal } }, [e._v(" Fechar ")])]);
-}, d = [], r = /* @__PURE__ */ a(
-  i,
-  c,
-  d
+var C = function() {
+  var n = this, a = n._self._c;
+  return a("Modal", { ref: "newsletterBaseModal", attrs: { name: "newsletter" } }, [a("i", { staticClass: "icon icon-success" }), a("div", { staticClass: "theme-title modal-success-title" }, [n._v(" Sucesso! ")]), a("div", { staticClass: "modal-success-subtitle" }, [n._v(" Seu e-mail foi cadastrado. ")]), a("button", { staticClass: "btn btn-secundary -success", on: { click: n.closeModal } }, [n._v(" Fechar ")])]);
+}, M = [], b = /* @__PURE__ */ m(
+  w,
+  C,
+  M,
+  !1,
+  null,
+  null,
+  null,
+  null
 );
-const u = r.exports;
-function l(t) {
-  l.installed || (l.installed = !0, t.component("ModalNewsletter", u));
+const $ = b.exports;
+function r(o) {
+  r.installed || (r.installed = !0, o.component("ModalNewsletter", $));
 }
-const f = {
-  install: l
+const R = {
+  install: r
 };
-let n = null;
-typeof window < "u" ? n = window.Vue : typeof global < "u" && (n = global.Vue);
-n && n.use(f);
+let i = null;
+typeof window < "u" ? i = window.Vue : typeof global < "u" && (i = global.Vue);
+i && i.use(R);
 export {
-  u as default
+  $ as default
 };

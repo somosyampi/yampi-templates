@@ -1,17 +1,17 @@
 <template>
-    <modal
+    <Modal
         ref="reviewsDetailsModal"
         name="review-details"
         :scrollable="true"
         class="testing"
         @close="handleClose"
     >
-        <transition name="fade">
+        <Transition name="fade">
             <div
                 v-if="ready"
                 class="wrapper -row"
             >
-                <splide
+                <Splide
                     :options="{
                         perPage: 1,
                         rewind: true,
@@ -21,7 +21,7 @@
                     :slides="review.photos.data"
                     class="custom-splide"
                 >
-                    <splide-slide
+                    <SplideSlide
                         v-for="image in review.photos.data"
                         :key="image.url"
                         class="review-details-photo-container"
@@ -29,8 +29,8 @@
                         <img
                             :src="image.url"
                         >
-                    </splide-slide>
-                </splide>
+                    </SplideSlide>
+                </Splide>
 
                 <div class="review-details-content">
                     <div class="review-details-message-title">
@@ -59,8 +59,8 @@
                     />
                 </div>
             </div>
-        </transition>
-    </modal>
+        </Transition>
+    </Modal>
 </template>
 
 <script>

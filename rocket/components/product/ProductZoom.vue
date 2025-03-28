@@ -6,7 +6,7 @@
                     v-if="hasVideo"
                     class="video-thumb"
                 >
-                    <smooth-scroll
+                    <SmoothScroll
                         element-id="holder-main-product-video"
                         :margin="80"
                     >
@@ -18,16 +18,16 @@
                                 </div>
                             </div>
                         </template>
-                    </smooth-scroll>
+                    </SmoothScroll>
                 </div>
 
-                <splide
+                <Splide
                     ref="thumbnail"
                     :class="{ arrows: hasArrows }"
                     :options="carouselOption"
                     :slides="productImages"
                 >
-                    <splide-slide
+                    <SplideSlide
                         v-for="(image, index) in productImages"
                         :key="'main-photo-thumb-' + index"
                     >
@@ -37,8 +37,8 @@
                             :lazyload="false"
                             :thumbor="{ resize: '75x75' }"
                         />
-                    </splide-slide>
-                </splide>
+                    </SplideSlide>
+                </Splide>
             </div>
 
             <div
@@ -46,7 +46,7 @@
                 :class="{ mounted, '-loading' : !mounted }"
                 :style="mainCarouselHolderStyle"
             >
-                <splide
+                <Splide
                     v-if="ready"
                     ref="mainImage"
                     :options="{
@@ -63,10 +63,11 @@
                     @splide:move="handleCarouselChange"
                     @splide:mounted="handleMinHeight"
                 >
-                    <splide-slide
+                    <SplideSlide
                         v-for="(image, index) in productImages"
                         :key="'main-photo-' + index"
                     >
+                        <!-- eslint-disable-next-line vue/component-name-in-template-casing -->
                         <zoom-on-hover
                             v-if="!isMobile"
                             :scale="1"
@@ -90,8 +91,8 @@
                             width="700"
                             height="700"
                         >
-                    </splide-slide>
-                </splide>
+                    </SplideSlide>
+                </Splide>
                 <template v-if="isMobile">
                     <div
                         v-if="isMobile"
@@ -126,7 +127,7 @@
                 </div>
             </div>
 
-            <pinch-zoom
+            <PinchZoom
                 :auto-zoom-out="false"
                 :overflow="'visible'"
                 :limit-pan="true"
@@ -136,7 +137,7 @@
                     :src="zoomImage"
                     :alt="`${validProduct.name} zoom`"
                 >
-            </pinch-zoom>
+            </PinchZoom>
         </div>
     </div>
 </template>
