@@ -37,14 +37,17 @@ export default {
             type: [Number, String],
             default: 1,
         },
+
         width: {
             type: [Number, String],
             default: 14,
         },
+
         height: {
             type: [Number, String],
             default: 13,
         },
+
         filledPercentage: {
             type: String,
             required: true,

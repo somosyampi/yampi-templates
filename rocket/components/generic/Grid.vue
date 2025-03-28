@@ -19,11 +19,11 @@
                     </a>
                 </div>
             </div>
-            <rocket-emitter
+            <RocketEmitter
                 emits="grids"
                 label="Vitrine de produtos"
             >
-                <products-list
+                <ProductsList
                     v-if="products.length"
                     :products="products"
                     :class="{ '-carousel': carousel }"
@@ -35,8 +35,8 @@
                     <template slot-scope="{ product }">
                         <slot :product="product" />
                     </template>
-                </products-list>
-            </rocket-emitter>
+                </ProductsList>
+            </RocketEmitter>
         </div>
     </section>
 </template>

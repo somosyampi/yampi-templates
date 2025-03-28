@@ -1,5 +1,5 @@
 <template>
-    <modal
+    <Modal
         ref="questionBaseModal"
         name="question"
         title="Tire suas dúvidas"
@@ -12,45 +12,45 @@
             <label for="question-username">NOME*</label>
             <input
                 id="question-username"
+                v-model="form.name"
                 type="text"
                 name="name"
                 :class="{ error: hasError('name') }"
                 placeholder="Ex.: Adriana"
-                v-model="form.name"
             >
-            <ErrorText :text="getError('name')"></ErrorText>
+            <ErrorText :text="getError('name')" />
 
             <label for="question-email">E-MAIL*</label>
             <input
                 id="question-email"
+                v-model="form.email"
                 type="text"
                 name="email"
                 :class="{ error: hasError('email') }"
                 placeholder="Ex.: adriana@gmail.com"
-                v-model="form.email"
             >
-            <ErrorText :text="getError('email')"></ErrorText>
+            <ErrorText :text="getError('email')" />
 
             <label for="question-message">DÚVIDA*</label>
             <textarea
                 id="question-message"
+                v-model="form.message"
                 type="text"
                 name="question"
                 :class="{ error: hasError('message') }"
                 placeholder="Escreva sua dúvida..."
                 rows="4"
-                v-model="form.message"
-            ></textarea>
-            <ErrorText :text="getError('message')"></ErrorText>
+            />
+            <ErrorText :text="getError('message')" />
 
-            <loader-button
+            <LoaderButton
                 class="btn -block btn-secundary"
                 :sending="sending"
             >
                 Enviar dúvida
-            </loader-button>
+            </LoaderButton>
         </form>
-    </modal>
+    </Modal>
 </template>
 
 <script>
@@ -113,7 +113,7 @@ export default {
             } finally {
                 this.sending = false;
             }
-        }
-    }
-}
+        },
+    },
+};
 </script>

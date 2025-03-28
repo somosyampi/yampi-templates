@@ -1,17 +1,37 @@
-import { mapGetters as a } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
-import l from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/mobile.js";
-import c from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/rocket.js";
-function d(t, e, i, r, _, g, y, b) {
-  var s = typeof t == "function" ? t.options : t;
-  return e && (s.render = e, s.staticRenderFns = i, s._compiled = !0), {
+import { mapGetters as h } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
+import g from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/mobile.js";
+import C from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/rocket.js";
+function b(t, e, r, l, o, u, f, _) {
+  var i = typeof t == "function" ? t.options : t;
+  e && (i.render = e, i.staticRenderFns = r, i._compiled = !0), l && (i.functional = !0), u && (i._scopeId = "data-v-" + u);
+  var n;
+  if (f ? (n = function(s) {
+    s = s || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !s && typeof __VUE_SSR_CONTEXT__ < "u" && (s = __VUE_SSR_CONTEXT__), o && o.call(this, s), s && s._registeredComponents && s._registeredComponents.add(f);
+  }, i._ssrRegister = n) : o && (n = _ ? function() {
+    o.call(
+      this,
+      (i.functional ? this.parent : this).$root.$options.shadowRoot
+    );
+  } : o), n)
+    if (i.functional) {
+      i._injectStyles = n;
+      var m = i.render;
+      i.render = function(v, p) {
+        return n.call(p), m(v, p);
+      };
+    } else {
+      var c = i.beforeCreate;
+      i.beforeCreate = c ? [].concat(c, n) : [n];
+    }
+  return {
     exports: t,
-    options: s
+    options: i
   };
 }
-const u = {
+const y = {
   name: "SideBarTrigger",
   mixins: [
-    l
+    g
   ],
   props: {
     activeClass: {
@@ -23,22 +43,22 @@ const u = {
       required: !0
     }
   },
-  mounted() {
-    this.isActive = document.body.classList.contains(this.activeClass), this.isIframe && this.$store.subscribe(({ type: t, payload: e }) => {
-      if (t !== "preview/PREVIEW_MOBILE_PARAMS" || this.activeClass !== "active-filters")
-        return;
-      e.filter((r) => r.group === "filters").length && this.openMenu();
-    });
-  },
   data() {
     return {
       isActive: !1
     };
   },
   computed: {
-    ...a("preview", [
+    ...h("preview", [
       "isIframe"
     ])
+  },
+  mounted() {
+    this.isActive = document.body.classList.contains(this.activeClass), this.isIframe && this.$store.subscribe(({ type: t, payload: e }) => {
+      if (t !== "preview/PREVIEW_MOBILE_PARAMS" || this.activeClass !== "active-filters")
+        return;
+      e.filter((l) => l.group === "filters").length && this.openMenu();
+    });
   },
   methods: {
     openMenu() {
@@ -48,29 +68,34 @@ const u = {
       this.isActive = !1, document.body.classList.remove(this.activeClass);
     },
     async loadPlaceholders() {
-      const { data: t } = await c.get(`/placeholders/filter-${this.route}`);
+      const { data: t } = await C.get(`/placeholders/filter-${this.route}`);
       this.payload = this.parsePayload(t.data);
     }
   }
 };
-var f = function() {
-  var e = this, i = e._self._c;
-  return e.isMobile ? i("div", { class: e.name + "-trigger-holder" }, [i("div", { class: e.name + "-trigger", on: { click: e.openMenu } }, [e.isActive ? i("div", { staticClass: "over-background", on: { mousedown: e.closeMenu } }) : e._e(), e._t("default")], 2)]) : e._e();
-}, m = [], p = /* @__PURE__ */ d(
-  u,
-  f,
-  m
+var w = function() {
+  var e = this, r = e._self._c;
+  return e.isMobile ? r("div", { class: e.name + "-trigger-holder" }, [r("div", { class: e.name + "-trigger", on: { click: e.openMenu } }, [e.isActive ? r("div", { staticClass: "over-background", on: { mousedown: e.closeMenu } }) : e._e(), e._t("default")], 2)]) : e._e();
+}, M = [], R = /* @__PURE__ */ b(
+  y,
+  w,
+  M,
+  !1,
+  null,
+  null,
+  null,
+  null
 );
-const v = p.exports;
-function o(t) {
-  o.installed || (o.installed = !0, t.component("SideBarTrigger", v));
+const $ = R.exports;
+function d(t) {
+  d.installed || (d.installed = !0, t.component("SideBarTrigger", $));
 }
-const h = {
-  install: o
+const A = {
+  install: d
 };
-let n = null;
-typeof window < "u" ? n = window.Vue : typeof global < "u" && (n = global.Vue);
-n && n.use(h);
+let a = null;
+typeof window < "u" ? a = window.Vue : typeof global < "u" && (a = global.Vue);
+a && a.use(A);
 export {
-  v as default
+  $ as default
 };

@@ -2,7 +2,7 @@
     <div
         class="loader-bg"
         :style="getStyle()"
-    ></div>
+    />
 </template>
 
 <script>
@@ -11,23 +11,23 @@ export default {
     props: {
         width: {
             type: Number,
-            default: null
+            default: null,
         },
 
         height: {
             type: Number,
-            default: null
+            default: null,
         },
 
         margin: {
             type: Number,
-            default: 0
+            default: 0,
         },
 
         customStyle: {
             type: String,
-            default: null
-        }
+            default: null,
+        },
     },
 
     methods: {
@@ -40,5 +40,5 @@ export default {
         },
     },
 
-}
+};
 </script>

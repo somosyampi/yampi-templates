@@ -1,5 +1,5 @@
 <template>
-    <modal
+    <Modal
         ref="baseModal"
         name="ProductCustomization"
         :title="`${$tc('common.count-product', productsForCustomization.length)} para personalizar`"
@@ -44,7 +44,7 @@
                 {{ primaryButtonText }}
             </button>
         </div>
-    </modal>
+    </Modal>
 </template>
 
 <script>
@@ -52,7 +52,6 @@ import { mapActions, mapGetters } from '~/vuex';
 
 export default {
     name: 'ModalBuyTogetherCustomization',
-
 
     data() {
         return {

@@ -16,6 +16,7 @@ export default {
             type: Object,
             required: true,
         },
+
         pageConfig: {
             type: Object,
             default: () => {},
@@ -29,7 +30,7 @@ export default {
         };
     },
 
-    render(h) {
+    render() {
         return this.$scopedSlots.default();
     },
 };

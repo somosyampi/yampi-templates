@@ -27,10 +27,12 @@ export default {
             type: Number,
             default: 3,
         },
+
         readLess: {
             type: String,
             default: '- Ler menos',
         },
+
         readMore: {
             type: String,
             default: '+ Ler mais',
@@ -91,6 +93,7 @@ export default {
         toggleExpand() {
             this.expanded = !this.expanded;
         },
+
         removeLoadingClass() {
             const holder = document.querySelector('.category-description.-loading');
 

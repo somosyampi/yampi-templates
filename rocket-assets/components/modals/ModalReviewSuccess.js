@@ -1,11 +1,31 @@
-function i(o, e, s, v, _, m, w, p) {
-  var n = typeof o == "function" ? o.options : o;
-  return e && (n.render = e, n.staticRenderFns = s, n._compiled = !0), {
-    exports: o,
-    options: n
+function m(a, s, i, _, t, d, f, v) {
+  var e = typeof a == "function" ? a.options : a;
+  s && (e.render = s, e.staticRenderFns = i, e._compiled = !0), _ && (e.functional = !0), d && (e._scopeId = "data-v-" + d);
+  var o;
+  if (f ? (o = function(n) {
+    n = n || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !n && typeof __VUE_SSR_CONTEXT__ < "u" && (n = __VUE_SSR_CONTEXT__), t && t.call(this, n), n && n._registeredComponents && n._registeredComponents.add(f);
+  }, e._ssrRegister = o) : t && (o = v ? function() {
+    t.call(
+      this,
+      (e.functional ? this.parent : this).$root.$options.shadowRoot
+    );
+  } : t), o)
+    if (e.functional) {
+      e._injectStyles = o;
+      var h = e.render;
+      e.render = function(p, u) {
+        return o.call(u), h(p, u);
+      };
+    } else {
+      var c = e.beforeCreate;
+      e.beforeCreate = c ? [].concat(c, o) : [o];
+    }
+  return {
+    exports: a,
+    options: e
   };
 }
-const l = {
+const w = {
   name: "ModalReview",
   methods: {
     showModal() {
@@ -16,24 +36,29 @@ const l = {
     }
   }
 };
-var c = function() {
-  var e = this, s = e._self._c;
-  return s("modal", { ref: "reviewBaseModal", attrs: { name: "review-success" } }, [s("i", { staticClass: "icon icon-success" }), s("div", { staticClass: "theme-title modal-success-title" }, [e._v(" Avaliação enviada"), s("br"), e._v(" com sucesso! ")]), s("button", { staticClass: "btn btn-secundary -success", on: { click: e.closeModal } }, [e._v("Fechar")])]);
-}, d = [], r = /* @__PURE__ */ i(
-  l,
-  c,
-  d
+var C = function() {
+  var s = this, i = s._self._c;
+  return i("Modal", { ref: "reviewBaseModal", attrs: { name: "review-success" } }, [i("i", { staticClass: "icon icon-success" }), i("div", { staticClass: "theme-title modal-success-title" }, [s._v(" Avalia\xE7\xE3o enviada"), i("br"), s._v(" com sucesso! ")]), i("button", { staticClass: "btn btn-secundary -success", on: { click: s.closeModal } }, [s._v(" Fechar ")])]);
+}, M = [], b = /* @__PURE__ */ m(
+  w,
+  C,
+  M,
+  !1,
+  null,
+  null,
+  null,
+  null
 );
-const u = r.exports;
-function a(o) {
-  a.installed || (a.installed = !0, o.component("ModalReviewSuccess", u));
+const R = b.exports;
+function r(a) {
+  r.installed || (r.installed = !0, a.component("ModalReviewSuccess", R));
 }
-const f = {
-  install: a
+const $ = {
+  install: r
 };
-let t = null;
-typeof window < "u" ? t = window.Vue : typeof global < "u" && (t = global.Vue);
-t && t.use(f);
+let l = null;
+typeof window < "u" ? l = window.Vue : typeof global < "u" && (l = global.Vue);
+l && l.use($);
 export {
-  u as default
+  R as default
 };

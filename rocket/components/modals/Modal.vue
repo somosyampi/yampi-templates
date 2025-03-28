@@ -98,13 +98,13 @@ export default {
         },
 
         closeModal() {
-            this.$children.map(function(children, i) {
+            this.$children.map(children => {
                 if (children.$options.name === 'ImageSelector') {
-                    let imageInputs = children.$children
+                    const imageInputs = children.$children;
 
-                    imageInputs.map(function(inputImage, i) {
-                        inputImage.deleteInputFromClosingModal()
-                    })
+                    imageInputs.map(inputImage => {
+                        inputImage.deleteInputFromClosingModal();
+                    });
                 }
             });
 
@@ -113,7 +113,7 @@ export default {
             _.delay(() => {
                 document.getElementsByTagName('body')[0].classList.remove('block-scroll');
                 document.documentElement.classList.remove('block-scroll');
-                document.body.style.marginRight = `0px`;
+                document.body.style.marginRight = '0px';
             }, 350, 'later');
 
             this.$emit('close');

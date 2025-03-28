@@ -1,6 +1,6 @@
 <template>
     <div class="touchable">
-        <splide
+        <Splide
             ref="splideRef"
             :options="{
                 perPage: 1,
@@ -15,12 +15,12 @@
             @splide:moved="handleSplideMoved"
             @splide:mounted="handleSplideMounted"
         >
-            <splide-slide
+            <SplideSlide
                 v-for="(image) in images"
                 :key="image.url"
                 class="review-details-photo-container"
             >
-                <pinch-zoom
+                <PinchZoom
                     ref="imagePinch"
                     :auto-zoom-out="false"
                     :overflow="'visible'"
@@ -32,9 +32,9 @@
                         :src="image.url"
                         alt="zoom"
                     >
-                </pinch-zoom>
-            </splide-slide>
-        </splide>
+                </PinchZoom>
+            </SplideSlide>
+        </Splide>
 
         <div class="modal-review-details-pagination">
             (<span class="bold">{{ currentIndex+1 }}</span>/{{ images.length }})

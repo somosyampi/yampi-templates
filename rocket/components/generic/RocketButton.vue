@@ -15,6 +15,7 @@ export default {
             type: String,
             required: true,
         },
+
         customClasses: {
             type: String,
             default: '',

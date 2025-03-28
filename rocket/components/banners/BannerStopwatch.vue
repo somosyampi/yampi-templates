@@ -1,8 +1,8 @@
 <template>
     <div class="banner-stopwatch-holder flex -vcenter">
-        <i class="icon icon-stopwatch"></i>
+        <i class="icon icon-stopwatch" />
 
-        <Stopwatch class="banner-stopwatch"></Stopwatch>
+        <Stopwatch class="banner-stopwatch" />
     </div>
 </template>
 

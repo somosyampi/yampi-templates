@@ -1,0 +1,15 @@
+@import "../global/functions.scss";
+@import "./category.scss";
+@import "../elements/collection.scss";
+
+@media screen and (max-width: 700px) {
+    .promotion {
+        .theme-title {
+            padding: 0 16px;
+        }
+
+        .products-list {
+            padding: 0 16px;
+        }
+    }
+}

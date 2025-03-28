@@ -1,0 +1,12 @@
+@mixin base-theme-button($min-height, $width, $text-color) {
+    font-family: var(--fonts-texts-family);
+    font-size: var(--font-15);
+    border-radius: var(--theme-border-radius);
+    text-transform: var(--fonts-buttons-uppercase);
+    min-height: #{$min-height};
+    width: #{$width};
+    font-size: var(--font-18);
+    color: #{$text-color};
+    border: solid 1px;
+    cursor: pointer;
+}

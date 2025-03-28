@@ -1,18 +1,38 @@
-import { mapGetters as i } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
+import { mapGetters as h } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/vuex.js";
 import "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-import m from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/rocket.js";
-import l from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/errors.js";
-function u(o, e, t, s, h, _, x, b) {
+import g from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/modules/axios/rocket.js";
+import E from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/errors.js";
+function b(o, e, t, s, i, u, d, c) {
   var r = typeof o == "function" ? o.options : o;
-  return e && (r.render = e, r.staticRenderFns = t, r._compiled = !0), {
+  e && (r.render = e, r.staticRenderFns = t, r._compiled = !0), s && (r.functional = !0), u && (r._scopeId = "data-v-" + u);
+  var n;
+  if (d ? (n = function(a) {
+    a = a || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !a && typeof __VUE_SSR_CONTEXT__ < "u" && (a = __VUE_SSR_CONTEXT__), i && i.call(this, a), a && a._registeredComponents && a._registeredComponents.add(d);
+  }, r._ssrRegister = n) : i && (n = c ? function() {
+    i.call(
+      this,
+      (r.functional ? this.parent : this).$root.$options.shadowRoot
+    );
+  } : i), n)
+    if (r.functional) {
+      r._injectStyles = n;
+      var _ = r.render;
+      r.render = function(v, p) {
+        return n.call(p), _(v, p);
+      };
+    } else {
+      var f = r.beforeCreate;
+      r.beforeCreate = f ? [].concat(f, n) : [n];
+    }
+  return {
     exports: o,
     options: r
   };
 }
-const d = {
+const M = {
   name: "ModalQuestion",
   mixins: [
-    l
+    E
   ],
   data: () => ({
     sending: !1,
@@ -23,7 +43,7 @@ const d = {
     }
   }),
   computed: {
-    ...i("product", [
+    ...h("product", [
       "product"
     ])
   },
@@ -44,7 +64,7 @@ const d = {
     async submit() {
       this.sending = !0;
       try {
-        await m.post(`products/${this.product.id}/questions`, this.form), this.closeModal(), this.$emit("success");
+        await g.post(`products/${this.product.id}/questions`, this.form), this.closeModal(), this.$emit("success");
       } catch (o) {
         this.setErrorsFromResponse(o);
       } finally {
@@ -53,32 +73,37 @@ const d = {
     }
   }
 };
-var f = function() {
+var q = function() {
   var e = this, t = e._self._c;
-  return t("modal", { ref: "questionBaseModal", attrs: { name: "question", title: "Tire suas dúvidas" } }, [t("template", { slot: "subtitle" }, [e._v(" " + e._s(e.product.name) + " ")]), t("form", { on: { submit: function(s) {
+  return t("Modal", { ref: "questionBaseModal", attrs: { name: "question", title: "Tire suas d\xFAvidas" } }, [t("template", { slot: "subtitle" }, [e._v(" " + e._s(e.product.name) + " ")]), t("form", { on: { submit: function(s) {
     return s.preventDefault(), e.submit.apply(null, arguments);
   } } }, [t("label", { attrs: { for: "question-username" } }, [e._v("NOME*")]), t("input", { directives: [{ name: "model", rawName: "v-model", value: e.form.name, expression: "form.name" }], class: { error: e.hasError("name") }, attrs: { id: "question-username", type: "text", name: "name", placeholder: "Ex.: Adriana" }, domProps: { value: e.form.name }, on: { input: function(s) {
     s.target.composing || e.$set(e.form, "name", s.target.value);
   } } }), t("ErrorText", { attrs: { text: e.getError("name") } }), t("label", { attrs: { for: "question-email" } }, [e._v("E-MAIL*")]), t("input", { directives: [{ name: "model", rawName: "v-model", value: e.form.email, expression: "form.email" }], class: { error: e.hasError("email") }, attrs: { id: "question-email", type: "text", name: "email", placeholder: "Ex.: adriana@gmail.com" }, domProps: { value: e.form.email }, on: { input: function(s) {
     s.target.composing || e.$set(e.form, "email", s.target.value);
-  } } }), t("ErrorText", { attrs: { text: e.getError("email") } }), t("label", { attrs: { for: "question-message" } }, [e._v("DÚVIDA*")]), t("textarea", { directives: [{ name: "model", rawName: "v-model", value: e.form.message, expression: "form.message" }], class: { error: e.hasError("message") }, attrs: { id: "question-message", type: "text", name: "question", placeholder: "Escreva sua dúvida...", rows: "4" }, domProps: { value: e.form.message }, on: { input: function(s) {
+  } } }), t("ErrorText", { attrs: { text: e.getError("email") } }), t("label", { attrs: { for: "question-message" } }, [e._v("D\xDAVIDA*")]), t("textarea", { directives: [{ name: "model", rawName: "v-model", value: e.form.message, expression: "form.message" }], class: { error: e.hasError("message") }, attrs: { id: "question-message", type: "text", name: "question", placeholder: "Escreva sua d\xFAvida...", rows: "4" }, domProps: { value: e.form.message }, on: { input: function(s) {
     s.target.composing || e.$set(e.form, "message", s.target.value);
-  } } }), t("ErrorText", { attrs: { text: e.getError("message") } }), t("loader-button", { staticClass: "btn -block btn-secundary", attrs: { sending: e.sending } }, [e._v(" Enviar dúvida ")])], 1)], 2);
-}, c = [], p = /* @__PURE__ */ u(
-  d,
-  f,
-  c
+  } } }), e._v(" "), t("ErrorText", { attrs: { text: e.getError("message") } }), t("LoaderButton", { staticClass: "btn -block btn-secundary", attrs: { sending: e.sending } }, [e._v(" Enviar d\xFAvida ")])], 1)], 2);
+}, w = [], x = /* @__PURE__ */ b(
+  M,
+  q,
+  w,
+  !1,
+  null,
+  null,
+  null,
+  null
 );
-const g = p.exports;
-function n(o) {
-  n.installed || (n.installed = !0, o.component("ModalQuestion", g));
+const $ = x.exports;
+function m(o) {
+  m.installed || (m.installed = !0, o.component("ModalQuestion", $));
 }
-const v = {
-  install: n
+const y = {
+  install: m
 };
-let a = null;
-typeof window < "u" ? a = window.Vue : typeof global < "u" && (a = global.Vue);
-a && a.use(v);
+let l = null;
+typeof window < "u" ? l = window.Vue : typeof global < "u" && (l = global.Vue);
+l && l.use(y);
 export {
-  g as default
+  $ as default
 };

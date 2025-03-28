@@ -1,5 +1,5 @@
 <template>
-    <modal
+    <Modal
         ref="zipcodeBaseModal"
         name="zipcode"
         title="Simular frete"
@@ -19,7 +19,7 @@
             </tr>
 
             <tr
-                v-for="(quote, key) in data"
+                v-for="(quote) in data"
                 :key="quote.quote_id"
             >
                 <td>{{ quote.service_display_name }}</td>
@@ -29,9 +29,10 @@
         </table>
 
         <div class="disclaimer">
-            Prazo de entrega a partir da aprovação de pagamento <span class="display-hibrid">e envio ao operador logístico.</span>
+            Prazo de entrega a partir da aprovação de pagamento
+            <span class="display-hibrid">e envio ao operador logístico.</span>
         </div>
-    </modal>
+    </Modal>
 </template>
 
 <script>
@@ -65,6 +66,6 @@ export default {
         closeModal() {
             this.$refs.zipcodeBaseModal.closeModal();
         },
-    }
-}
+    },
+};
 </script>

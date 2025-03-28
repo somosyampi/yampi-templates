@@ -1,12 +1,32 @@
-import o from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-function r(t, e, s, l, p, v, _, x) {
-  var a = typeof t == "function" ? t.options : t;
-  return e && (a.render = e, a.staticRenderFns = s, a._compiled = !0), {
-    exports: t,
-    options: a
+import p from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
+function y(s, e, n, o, r, d, f, m) {
+  var t = typeof s == "function" ? s.options : s;
+  e && (t.render = e, t.staticRenderFns = n, t._compiled = !0), o && (t.functional = !0), d && (t._scopeId = "data-v-" + d);
+  var a;
+  if (f ? (a = function(i) {
+    i = i || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !i && typeof __VUE_SSR_CONTEXT__ < "u" && (i = __VUE_SSR_CONTEXT__), r && r.call(this, i), i && i._registeredComponents && i._registeredComponents.add(f);
+  }, t._ssrRegister = a) : r && (a = m ? function() {
+    r.call(
+      this,
+      (t.functional ? this.parent : this).$root.$options.shadowRoot
+    );
+  } : r), a)
+    if (t.functional) {
+      t._injectStyles = a;
+      var _ = t.render;
+      t.render = function(v, c) {
+        return a.call(c), _(v, c);
+      };
+    } else {
+      var h = t.beforeCreate;
+      t.beforeCreate = h ? [].concat(h, a) : [a];
+    }
+  return {
+    exports: s,
+    options: t
   };
 }
-const d = {
+const C = {
   name: "RangeSlider",
   props: {
     min: {
@@ -61,37 +81,42 @@ const d = {
     }
   },
   mounted() {
-    this.selectedMin = o.get(this.value, 0, this.min), this.selectedMax = o.get(this.value, 1, this.max);
+    this.selectedMin = p.get(this.value, 0, this.min), this.selectedMax = p.get(this.value, 1, this.max);
   },
   methods: {
-    updateValues([t, e]) {
-      this.selectedMin = t, this.selectedMax = e;
+    updateValues([s, e]) {
+      this.selectedMin = s, this.selectedMax = e;
     },
-    change(t) {
-      this.updateValues(t), this.$emit("input", t);
+    change(s) {
+      this.updateValues(s), this.$emit("input", s);
     }
   }
 };
-var u = function() {
-  var e = this, s = e._self._c;
-  return s("div", { staticClass: "holder-price-slider" }, [s("vue-slider", { attrs: { min: e.min, max: e.max, lazy: !0, step: 0.01, height: e.height, "dot-size": e.dotSize, tooltip: "none" }, on: { input: e.updateValues, change: e.change }, model: { value: e.values, callback: function(l) {
-    e.values = l;
-  }, expression: "values" } }), s("div", { staticClass: "step-values" }, [s("span", { staticClass: "selected-min", domProps: { textContent: e._s(e.formatedMin) } }), s("span", { staticClass: "divisor" }, [e._v(" - ")]), s("span", { staticClass: "selected-max", domProps: { textContent: e._s(e.formatedMax) } })])], 1);
-}, c = [], m = /* @__PURE__ */ r(
-  d,
-  u,
-  c
+var M = function() {
+  var e = this, n = e._self._c;
+  return n("div", { staticClass: "holder-price-slider" }, [n("vue-slider", { attrs: { min: e.min, max: e.max, lazy: !0, step: 0.01, height: e.height, "dot-size": e.dotSize, tooltip: "none" }, on: { input: e.updateValues, change: e.change }, model: { value: e.values, callback: function(o) {
+    e.values = o;
+  }, expression: "values" } }), n("div", { staticClass: "step-values" }, [n("span", { staticClass: "selected-min", domProps: { textContent: e._s(e.formatedMin) } }), n("span", { staticClass: "divisor" }, [e._v(" - ")]), n("span", { staticClass: "selected-max", domProps: { textContent: e._s(e.formatedMax) } })])], 1);
+}, g = [], x = /* @__PURE__ */ y(
+  C,
+  M,
+  g,
+  !1,
+  null,
+  null,
+  null,
+  null
 );
-const f = m.exports;
-function n(t) {
-  n.installed || (n.installed = !0, t.component("RangeSlider", f));
+const b = x.exports;
+function u(s) {
+  u.installed || (u.installed = !0, s.component("RangeSlider", b));
 }
-const h = {
-  install: n
+const V = {
+  install: u
 };
-let i = null;
-typeof window < "u" ? i = window.Vue : typeof global < "u" && (i = global.Vue);
-i && i.use(h);
+let l = null;
+typeof window < "u" ? l = window.Vue : typeof global < "u" && (l = global.Vue);
+l && l.use(V);
 export {
-  f as default
+  b as default
 };

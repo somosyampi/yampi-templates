@@ -1,11 +1,31 @@
-function s(t, e, n, i, h, p, y, V) {
-  var r = typeof t == "function" ? t.options : t;
-  return e && (r.render = e, r.staticRenderFns = n, r._compiled = !0), {
-    exports: t,
-    options: r
+function v(n, e, a, r, s, c, f, m) {
+  var t = typeof n == "function" ? n.options : n;
+  e && (t.render = e, t.staticRenderFns = a, t._compiled = !0), r && (t.functional = !0), c && (t._scopeId = "data-v-" + c);
+  var u;
+  if (f ? (u = function(i) {
+    i = i || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !i && typeof __VUE_SSR_CONTEXT__ < "u" && (i = __VUE_SSR_CONTEXT__), s && s.call(this, i), i && i._registeredComponents && i._registeredComponents.add(f);
+  }, t._ssrRegister = u) : s && (u = m ? function() {
+    s.call(
+      this,
+      (t.functional ? this.parent : this).$root.$options.shadowRoot
+    );
+  } : s), u)
+    if (t.functional) {
+      t._injectStyles = u;
+      var p = t.render;
+      t.render = function(_, h) {
+        return u.call(h), p(_, h);
+      };
+    } else {
+      var d = t.beforeCreate;
+      t.beforeCreate = d ? [].concat(d, u) : [u];
+    }
+  return {
+    exports: n,
+    options: t
   };
 }
-const l = {
+const V = {
   name: "QuantitySelector",
   props: {
     value: {
@@ -52,44 +72,49 @@ const l = {
     increase() {
       this.disabled || this.max !== !1 && this.currentValue >= this.max || this.currentValue++;
     },
-    checkInput(t) {
-      return /^[0-9]*$/g.test(t.key) ? !0 : (t.preventDefault(), !1);
+    checkInput(n) {
+      return /^[0-9]*$/g.test(n.key) ? !0 : (n.preventDefault(), !1);
     },
     checkIfEmpty() {
       this.currentValue === "" && (this.currentValue = this.min !== !1 ? this.min : 0);
     }
   }
 };
-var c = function() {
-  var e = this, n = e._self._c;
-  return n("div", { staticClass: "quantity-selector relative", class: { disabled: e.disabled } }, [n("span", { staticClass: "quantity-btn -minus", on: { click: function(i) {
+var b = function() {
+  var e = this, a = e._self._c;
+  return a("div", { staticClass: "quantity-selector relative", class: { disabled: e.disabled } }, [a("span", { staticClass: "quantity-btn -minus", on: { click: function(r) {
     return e.decrease();
-  } } }, [n("i", { staticClass: "icon icon-minus" })]), n("input", { directives: [{ name: "model", rawName: "v-model.number.lazy", value: e.currentValue, expression: "currentValue", modifiers: { number: !0, lazy: !0 } }], attrs: { type: "text", name: "product-quantity", disabled: e.disabled }, domProps: { value: e.currentValue }, on: { keypress: function(i) {
-    return e.checkInput(i);
-  }, blur: [function(i) {
+  } } }, [a("i", { staticClass: "icon icon-minus" })]), a("input", { directives: [{ name: "model", rawName: "v-model.number.lazy", value: e.currentValue, expression: "currentValue", modifiers: { number: !0, lazy: !0 } }], attrs: { type: "text", name: "product-quantity", disabled: e.disabled }, domProps: { value: e.currentValue }, on: { keypress: function(r) {
+    return e.checkInput(r);
+  }, blur: [function(r) {
     return e.checkIfEmpty();
-  }, function(i) {
+  }, function(r) {
     return e.$forceUpdate();
-  }], change: function(i) {
-    e.currentValue = e._n(i.target.value);
-  } } }), n("span", { staticClass: "quantity-btn -more", on: { click: function(i) {
+  }], change: function(r) {
+    e.currentValue = e._n(r.target.value);
+  } } }), a("span", { staticClass: "quantity-btn -more", on: { click: function(r) {
     return e.increase();
-  } } }, [n("i", { staticClass: "icon icon-more" })])]);
-}, o = [], d = /* @__PURE__ */ s(
-  l,
-  c,
-  o
+  } } }, [a("i", { staticClass: "icon icon-more" })])]);
+}, y = [], C = /* @__PURE__ */ v(
+  V,
+  b,
+  y,
+  !1,
+  null,
+  null,
+  null,
+  null
 );
-const f = d.exports;
-function u(t) {
-  u.installed || (u.installed = !0, t.component("QuantitySelector", f));
+const $ = C.exports;
+function o(n) {
+  o.installed || (o.installed = !0, n.component("QuantitySelector", $));
 }
-const m = {
-  install: u
+const g = {
+  install: o
 };
-let a = null;
-typeof window < "u" ? a = window.Vue : typeof global < "u" && (a = global.Vue);
-a && a.use(m);
+let l = null;
+typeof window < "u" ? l = window.Vue : typeof global < "u" && (l = global.Vue);
+l && l.use(g);
 export {
-  f as default
+  $ as default
 };

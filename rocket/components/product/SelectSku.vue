@@ -38,8 +38,8 @@
                         v-for="option in options[index]"
                         :key="option.id"
                         :value="option.id"
-                        v-text="option.value"
                         @click="updateVariation(option.id)"
+                        v-text="option.value"
                     />
                 </template>
             </component>
@@ -106,6 +106,7 @@ export default {
 
     methods: {
         smoothScroll,
+
         bootSelected() {
             this.selected = _.times(this.variations.length, _.constant(0));
 
@@ -138,18 +139,18 @@ export default {
         },
 
         updateVariation(optionId) {
-            let skuData = this.product.skus;
+            const skuData = this.product.skus;
 
             if (skuData === undefined) {
                 return;
             }
 
-            for (let item of this.product.skus.data) {
-                for (let variation of item.variations) {
+            for (const item of this.product.skus.data) {
+                for (const variation of item.variations) {
                     if (variation.value_id === optionId) {
                         this.$emit('updateVariation', {
                             imageUrl: item.images.data[0].url,
-                            productId: item.product_id
+                            productId: item.product_id,
                         });
 
                         return;
@@ -196,9 +197,9 @@ export default {
 
         filterVariationOptions(index) {
             const options = _.get(this.variations, `${index}.values.data`, []);
-            let  optionsNoCache = [];
+            let optionsNoCache = [];
 
-            optionsNoCache = this.availabilitySkuVariationsWithoutCache(options)
+            optionsNoCache = this.availabilitySkuVariationsWithoutCache(options);
 
             if (index === 0) {
                 return optionsNoCache.filter(option => option.blocked_sale != true);
@@ -215,15 +216,13 @@ export default {
         },
 
         availabilitySkuVariationsWithoutCache(options) {
-            let  result = [];
+            const result = [];
 
-            for (let option of options) {
+            for (const option of options) {
                 let isOptionBlocked = true;
 
-                for (let sku of this.skus) {
-                    const hasMatchingVariation = sku.variations.some(variation =>
-                        variation.value_id === option.id && sku.blocked_sale == false
-                    );
+                for (const sku of this.skus) {
+                    const hasMatchingVariation = sku.variations.some(variation => variation.value_id === option.id && sku.blocked_sale == false);
 
                     if (hasMatchingVariation) {
                         isOptionBlocked = false;

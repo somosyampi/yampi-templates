@@ -1,0 +1,10 @@
+<rocket-emitter emits="highlights" label="Destaques informativos" order={{ section.order }}>
+    <section class="highlight">
+        <highlight 
+            class="{{ "#{section.section_alias}-#{section.order}" }}" 
+            :items="{{ section.params.icons_with_text }}" 
+            icon-color="{{ section.params.icon_color }}" 
+            text-color="{{ section.params.text_color }}"
+        ></highlight>
+    </section>
+</rocket-emitter>

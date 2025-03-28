@@ -1,1 +1,1 @@
-import"../../base.js";import{axios as i}from"../../index.js";import"../../index2.js";import"../../_commonjsHelpers.js";const m=i.create({baseURL:`${window.Yampi.api_domain}/v2/${window.merchant.alias}/public/`});export{m as default};
+import"../../base.js";import a from"../../axios.js";import"../../index2.js";const t=a.create({baseURL:`${window.Yampi.api_domain}/v2/${window.merchant.alias}/public/`});export{t as default};
