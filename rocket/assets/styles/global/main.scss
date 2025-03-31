@@ -41,7 +41,9 @@
 @import "../elements/rocket-emitter";
 @import "../sections/text-button-section";
 @import '../sections/text-button-2-banners';
+@import '../sections/grid-collection';
 @import '../sections/cashback';
+@import '../elements/preview-warning';
 
 :root {
     --flag-color: #333333;
@@ -86,6 +88,7 @@
 }
 
 a.no-action {
+
     &,
     &:hover {
         cursor: default;

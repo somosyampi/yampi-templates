@@ -1,5 +1,0 @@
-@mixin create-class($className, $styleName, $value, $unit) {
-    #{$className + $value} {
-        #{$styleName}: #{$value + $unit} !important;
-    }
-}
