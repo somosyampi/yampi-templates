@@ -20,7 +20,6 @@
 
     &-name {
         line-height: 1;
-        color: var(--black-dark);
     }
 
     &:not(.completed) {
@@ -35,7 +34,7 @@
         min-width: 80px;
         font-size: var(--font-14);
         line-height: 1.1428;
-        color: var(--black-medium);
+        color: var(--black-medium-color-contrast);
     }
 
     .splide:not(.splide--ttb) .splide__pagination {

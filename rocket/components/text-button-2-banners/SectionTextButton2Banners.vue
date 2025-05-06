@@ -9,7 +9,7 @@
             class="section-text-button-2-banners--description"
         >
             <div
-                class="title-text"
+                class="theme-title title-text"
                 v-html="titleText"
             />
             <div
@@ -19,7 +19,7 @@
             <div>
                 <RocketAnchor
                     v-if="!!buttonSwitch"
-                    :custom-classes="`section--button --${buttonStyle} ellipsis-multiline`"
+                    :custom-classes="`section--button btn btn-${buttonStyle} ellipsis-multiline`"
                     :label="textInButton"
                     :href="linkInButton"
                     v-bind="computedAttrs"
@@ -145,6 +145,7 @@ export default {
         },
 
         computedAttrs() {
+            // eslint-disable-next-line no-script-url
             const isVoidLink = this.linkInButton === 'javascript:void(0)';
 
             if (!this.linkInButton || isVoidLink) return {};

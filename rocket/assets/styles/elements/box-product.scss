@@ -149,7 +149,7 @@
         margin-top: 2px;
         line-height: 1.14;
         font-size: var(--font-15);
-        color: var(--black-dark);
+        color: var(--black-dark-color-contrast);
         min-height: 2.3em; // reminder: 1rem (--font-14) * 2 (lines) * 1.2 (line-height)
 
         &:first-child {
@@ -210,7 +210,7 @@
     font-size: var(--font-13);
     line-height: 1.08rem;
     margin-top: 2px;
-    color: var(--black-medium);
+    color: var(--black-medium-color-contrast);
 
     .price {
         color: var(--product-installment-price-highlight-color);
@@ -274,6 +274,10 @@
     min-height: 16px;
     margin: 11px 0 0;
 
+    stop.fixed-color {
+        stop-color: var(--review-start-stop-color);
+    }
+
     @media screen and (max-width: 700px) {
         margin: 12px 0 0;
     }
@@ -302,7 +306,7 @@
 .average-rating-amount {
     display: inline-block;
     font-size: var(--font-12);
-    color: var(--black-medium);
+    color: var(--black-medium-color-contrast);
     line-height: 15px;
     margin-left: 5px;
 }
@@ -313,7 +317,7 @@
     .average-rating-amount {
         display: inline-block;
         font-size: var(--font-12);
-        color: var(--black-light);
+        color: var(--black-light-color-contrast);
         line-height: normal;
         margin-left: 3px;
     }

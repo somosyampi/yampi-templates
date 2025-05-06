@@ -32,21 +32,6 @@
         max-width: 177px;
     }
 
-    .splide {
-        .splide__arrow {
-            &--prev,
-            &:hover,
-            &.splide__arrow--next {
-                box-shadow: none;
-                background-color: transparent;
-            }
-        }
-
-        button[disabled] {
-            opacity: 0.5 !important;
-        }
-    }
-
     .container {
         overflow-y: hidden;
     }

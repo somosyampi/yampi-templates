@@ -217,7 +217,7 @@ body.dark-mode .dropdown .rocket-emitter > .emitter-title::after {
             position: absolute;
             width: 30px;
             height: 30px;
-            background-color: #fff;
+            background-color: var(--background-color);
             margin: 51px 0 0 -7px;
             border-radius: var(--theme-border-radius) 0 0;
             border-top: 1px solid #582db4;
@@ -248,7 +248,7 @@ body.dark-mode .dropdown .rocket-emitter > .emitter-title::after {
             position: absolute;
             width: 30px;
             height: 30px;
-            background-color: #fff;
+            background-color: var(--background-color);
             margin: 51px 0 0 -9px;
             border-radius: var(--theme-border-radius) 0 0;
             border-top: 1px solid #431a86;

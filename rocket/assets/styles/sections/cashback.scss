@@ -16,12 +16,12 @@
     }
 
     .cashback-text {
-        color: var(--neutral-color-low-dark, #56545E);
+        color: var(--cashback-text-color);
         font-size: 14px;
         font-weight: var(--font-bold);
 
         .green {
-            color: var(--green);
+            color: var(--green-color-contrast);
         }
     }
 }

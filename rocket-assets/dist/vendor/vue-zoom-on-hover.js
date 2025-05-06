@@ -1,1 +1,1 @@
-import{dist as d}from"./index2.js";export{d as default};
+import{dist as d}from"./index3.js";export{d as default};

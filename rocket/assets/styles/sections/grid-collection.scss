@@ -34,7 +34,6 @@
             font-size: var(--font-30);
             font-weight: var(--fonts-titles-weight);
             line-height: 130%;
-            color: var(--black-dark);
             text-transform: var(--fonts-titles-uppercase);
             overflow-wrap: break-word;
 
@@ -48,7 +47,7 @@
             font-size: var(--fonts-texts-size);
             font-weight: var(--font-medium);
             line-height: 130%;
-            color: #56545e;
+            color: var(--neutral-color-low-dark-color-contrast);
         }
     }
 

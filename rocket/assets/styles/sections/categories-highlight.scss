@@ -59,16 +59,15 @@
     .load-more {
         margin: 25px 0 0 0;
         text-align: center;
-        color: #666666;
+        color: var(--black-medium-color-contrast);
         cursor: pointer;
     }
 
     .splide__arrow {
         position: absolute;
         top: -170px;
-        width: 45px !important;
-        height: 45px !important;
-        background-color: #f6f6f6 !important;
+        width: 45px;
+        height: 45px;
     }
 
     .splide__arrow--prev {
@@ -86,7 +85,7 @@
 
 .c-highlight-content--slide {
     text-align: center;
-    color: #666666;
+    color: var(--black-medium-color-contrast);
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -111,7 +110,7 @@
     }
 
     &:hover {
-        color: #222222;
+        color: var(--black-dark-color-contrast);
 
         img {
             background: #f5f5f5;
