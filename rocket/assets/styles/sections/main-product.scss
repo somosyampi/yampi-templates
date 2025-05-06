@@ -1,3 +1,13 @@
+.product .theme-title {
+    color: var(--product-title-color);
+}
+
+.product-specifications {
+    .product-description {
+        color: var(--product-description-color);
+    }
+}
+
 .main-product {
     &-holder {
         min-height: 600px;
@@ -51,7 +61,7 @@
                 text-align: center;
                 font-weight: var(--font-bold);
                 font-size: 12px;
-                background: #ffffff;
+                background: var(--white);
                 border: 1px solid var(--default-background-color);
                 box-shadow: 0px 1px 4px rgba(34, 34, 34, 0.05);
                 padding: 13px 0 12px;
@@ -59,7 +69,7 @@
 
                 @media only screen and (min-width: 700px) {
                     &:hover {
-                        border-color: var(--black-dark);
+                        border-color: var(--black-dark-color-contrast);
                     }
                 }
 
@@ -114,7 +124,7 @@
 
     &-guarantee {
         font-size: var(--font-14);
-        color: var(--black-medium);
+        color: var(--black-medium-color-contrast);
         margin-top: 10px;
     }
 
@@ -158,7 +168,7 @@
     &-inventory-countdown {
         margin-top: 20px;
         padding: 27px 40px;
-        background: #ffffff;
+        background: var(--card-general-background-color);
         font-size: 14px;
         border: 1px solid var(--default-background-color);
         border-radius: var(--theme-border-radius);
@@ -180,7 +190,7 @@
             flex-wrap: wrap;
 
             &-text {
-                color: var(--black-medium);
+                color: var(--black-medium-color-contrast);
                 margin: 0 6px;
             }
 
@@ -207,7 +217,7 @@
             display: inline-block;
             margin-bottom: 8px;
             font-size: 12px;
-            color: var(--black-medium);
+            color: var(--black-medium-color-contrast);
         }
 
         .btn {
@@ -256,7 +266,7 @@
             display: inline-block;
             margin-bottom: 5px;
             font-size: var(--font-12);
-            color: var(--black-medium);
+            color: var(--black-medium-color-contrast);
             text-transform: uppercase;
         }
 
@@ -272,7 +282,7 @@
         }
 
         .-max-chars {
-            color: var(--black-light);
+            color: var(--black-light-color-contrast);
         }
 
         .-customization-price {
@@ -304,7 +314,7 @@
 
     .reference-availability {
         font-size: var(--font-12);
-        color: var(--black-light);
+        color: var(--black-light-color-contrast-color-contrast);
         margin-top: 15px;
     }
 
@@ -374,7 +384,7 @@
         display: inline-block;
         margin-top: 13px;
         font-size: var(--font-12);
-        color: var(--black-medium);
+        color: var(--black-medium-color-contrast);
         cursor: pointer;
     }
 
@@ -419,11 +429,11 @@
         .variant-button {
             max-width: 460px;
             background: transparent;
-            border: 1px solid var(--black-light);
+            border: 1px solid var(--black-light-color-contrast);
             font-size: var(--font-13);
             line-height: 1.15;
             font-weight: var(--font-medium);
-            color: var(--black-dark);
+            color: var(--black-dark-color-contrast);
             padding: 14px 18px;
             border-radius: var(--theme-border-radius);
             text-wrap: nowrap;
@@ -431,7 +441,7 @@
             overflow: hidden;
 
             &:hover {
-                border-color: var(--black-dark);
+                border-color: var(--black-dark-color-contrast);
                 cursor: pointer;
             }
 

@@ -7,7 +7,7 @@
     }
 
     .products-customization {
-        background-color: var(--front-end-white);
+        background-color: var(--product-card-background);
         border-radius: var(--theme-border-radius);
         box-sizing: border-box;
         cursor: pointer;
@@ -63,7 +63,7 @@
         }
 
         .helper-text {
-            color: var(--black-medium);
+            color: var(--black-medium-color-contrast);
             font-size: var(--font-12);
             font-weight: var(--font-medium);
             height: 10px;
@@ -87,7 +87,7 @@
         padding: 0;
 
         hr {
-            border-color: var(--black-lightest);
+            border-color: var(--black-lightest-color-contrast);
             margin: 0;
         }
 
@@ -117,14 +117,14 @@
             text-align: start;
 
             @include sm {
-                color: var(--black-dark);
+                color: var(--black-dark-color-contrast);
                 font-size: 25px;
                 font-weight: var(--font-medium);
                 padding: 24px 0 0 40px;
             }
 
             @include md {
-                color: var(--black-dark);
+                color: var(--black-dark-color-contrast);
                 font-size: 25px;
                 font-weight: var(--font-medium);
                 padding: 24px 0 0 40px;
@@ -156,7 +156,7 @@
     }
 
     &-quantity {
-        color: var(--black-light);
+        color: var(--black-light-color-contrast);
         font-size: var(--font-12);
         margin-top: 12px;
         text-transform: uppercase;
@@ -168,7 +168,7 @@
 
         > p {
             -webkit-box-orient: vertical;
-            color: var(--black-medium);
+            color: var(--black-medium-color-contrast);
             display: -webkit-box;
             font-size: var(--font-15);
             -webkit-line-clamp: 2;
@@ -180,7 +180,7 @@
 
     &-total {
         align-self: flex-start;
-        background: var(--default-background-color);
+        background: var(--product-card-smoky-background);
         border-radius: var(--theme-border-radius);
         max-height: 339px;
         padding: 48px 64px;
@@ -188,10 +188,14 @@
         width: 388px;
 
         .total-value {
-            color: var(--black-light);
+            color: var(--buy-together-total-value);
             font-size: var(--font-14);
             line-height: var(--font-18);
             margin-bottom: 7px;
+
+            & > .old-price {
+                color: var(--buy-together-total-value);
+            }
         }
 
         .final-value {
@@ -207,10 +211,6 @@
             font-size: var(--font-18);
             line-height: 18px;
             margin: 13px auto 14px;
-        }
-
-        .btn {
-            white-space: break-spaces;
         }
     }
 
@@ -303,7 +303,7 @@
     }
 
     .radio-optional-customization {
-        color: var(--black-dark);
+        color: var(--black-dark-color-contrast);
         font-size: var(--font-15);
         font-weight: var(--font-medium);
         margin-bottom: 22px;
@@ -349,13 +349,15 @@
                     list-style-type: none;
 
                     li {
-                        color: var(--black-medium);
+                        color: var(--black-medium-color-contrast);
                         font-size: var(--font-12);
                         font-weight: var(--font-medium);
                         margin-left: 12px;
 
                         &::before {
-                            background-color: var(--black-medium);
+                            background-color: var(
+                                --black-medium-color-contrast
+                            );
                             border-radius: 50%;
                             content: "";
                             display: inline-block;

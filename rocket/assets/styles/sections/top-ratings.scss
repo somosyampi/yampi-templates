@@ -7,7 +7,6 @@
 
     &-name {
         line-height: 1;
-        color: var(--black-dark);
         margin-bottom: 28px;
     }
 
@@ -29,6 +28,7 @@
         font-size: var(--font-14);
         max-width: 350px;
         text-align: left;
+        background-color: var(--card-general-background-color);
 
         .review-content {
             min-height: 320px;
@@ -55,7 +55,7 @@
             }
 
             .-message {
-                color: var(--black-medium);
+                color: var(--top-rating-message-color);
                 line-height: 23px;
                 margin-bottom: 16px;
                 min-height: 125px;
@@ -90,9 +90,10 @@
                 cursor: pointer;
                 display: flex;
                 padding: 10px 15px;
+                background-color: var(--card-general-background-color);
 
                 &:hover {
-                    background-color: var(--front-end-f5f5f5);
+                    background-color: #f5f5f566;
                     transition: all 0.1s ease-in-out;
                 }
 
@@ -190,16 +191,9 @@
             right: 0;
 
             .splide__arrow {
-                width: 45px !important;
-                height: 45px !important;
+                width: 45px;
+                height: 45px;
                 box-shadow: initial !important;
-
-                &,
-                &:hover {
-                    background-color: var(
-                        --default-background-color
-                    ) !important;
-                }
 
                 &.splide__arrow--prev {
                     margin-right: 16px;

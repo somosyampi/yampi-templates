@@ -13,6 +13,7 @@
                     :stop-color="themeStyle.grids_review_average_star_color"
                 />
                 <stop
+                    class="fixed-color"
                     :offset="filledPercentage"
                     stop-color="rgba(153, 153, 153, .3)"
                     stop-opacity="1"

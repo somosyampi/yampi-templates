@@ -69,7 +69,7 @@ export default {
             }
 
             .-title {
-                color: var(--black-medium);
+                color: var(--black-medium-color-contrast);
                 font-size: var(--font-12);
             }
         }

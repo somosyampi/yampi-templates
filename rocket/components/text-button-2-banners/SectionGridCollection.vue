@@ -5,7 +5,7 @@
     >
         <div class="section-grid-collection--text">
             <h2
-                class="title-text"
+                class="theme-title title-text"
                 v-html="titleText"
             />
 

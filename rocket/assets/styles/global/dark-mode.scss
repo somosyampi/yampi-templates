@@ -32,10 +32,14 @@ body.dark-mode {
         color: #222222;
     }
 
+    .c-highlight-content--slide:hover {
+        color: var(--black-light);
+    }
+
     .section-text-button-2-banners .title-text {
         color: var(--black-dark);
     }
-    
+
     .installment-text {
         &,
         .price {
@@ -139,7 +143,7 @@ body.dark-mode {
     }
 
     .scroll-top {
-        background-color: var(--front-end-f5f5f5);
+        background-color: var(--white-smoke);
     }
 
     .dropdown {
@@ -294,7 +298,7 @@ body.dark-mode {
         }
 
         .select-order .-title {
-            color: var(--front-end-f5f5f5);
+            color: var(--white-smoke);
         }
     }
 
@@ -306,6 +310,10 @@ body.dark-mode {
     .holder-price-slider {
         .vue-slider__background {
             background-color: var(--black-medium);
+        }
+
+        .vue-slider-dot-handle {
+            background-color: var(--white-smoke);
         }
 
         input[type="range"]::-webkit-slider-thumb {
@@ -330,8 +338,17 @@ body.dark-mode {
         color: #ffffff;
     }
 
+    .btn-modal-primary {
+        background-color: var(--black-medium);
+        border-color: var(--black-medium);
+    }
+
     .btn-modal-secundary {
         background-color: var(--default-background-color);
+
+        &:hover {
+            background-color: var(--default-background-color);
+        }
     }
 
     #modal-confirm-add-to-cart {
@@ -427,8 +444,20 @@ body.dark-mode {
             background-color: var(--dark-bg);
         }
 
+        .holder-product-reviews-title > .active-slider {
+            height: 66px;
+        }
+
         .holder-product-reviews-title:not(.single) {
             background-color: #353535;
+
+            .theme-title {
+                background-color: transparent;
+
+                .-title {
+                    line-height: 55px;
+                }
+            }
         }
 
         .tab-content {

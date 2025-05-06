@@ -32,7 +32,7 @@
     }
 
     .__body {
-        color: var(--neutral-color-low-dark, #56545e);
+        color: var(--neutral-color-low-dark);
         text-align: center;
         font-size: var(--font-20);
         font-style: normal;
@@ -47,7 +47,7 @@
 
     .__footer {
         display: flex;
-        color: var(--neutral-color-low-dark, #56545e);
+        color: var(--neutral-color-low-dark-color-contrast);
         text-align: center;
         font-size: var(--font-15);
         font-style: normal;

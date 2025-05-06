@@ -1,7 +1,7 @@
 input,
 textarea {
     &:not([type="checkbox"], [type="radio"], [type="range"]) {
-        border: 1px solid var(--black-lightest);
+        border: 1px solid var(--input-border-color);
         border-radius: var(--theme-border-radius);
         font-family: inherit;
         font-size: var(--font-14);
@@ -9,9 +9,10 @@ textarea {
         padding-left: 24px;
         padding-right: 24px;
         width: 100%;
+        background-color: var(--input-background);
 
         &:focus {
-            border-color: var(--black-lightest);
+            background-color: var(--white);
             outline-style: unset;
         }
 
@@ -20,7 +21,7 @@ textarea {
         }
 
         &:disabled {
-            background: #fff;
+            background-color: var(--input-background);
         }
     }
 
@@ -45,7 +46,7 @@ input {
 }
 
 select {
-    background: #fff;
+    background-color: var(--input-background);
     border: 1px solid var(--black-lightest);
     border-radius: var(--theme-border-radius);
     font-family: inherit;
@@ -85,7 +86,7 @@ select {
     }
 
     &:focus {
-        border-color: var(--black-light);
+        border-color: var(--black-light-color-contrast);
         outline-style: unset;
     }
 
@@ -196,7 +197,7 @@ option {
     margin: 22px 0 36.35px;
 
     .radio-title {
-        color: var(--black-medium);
+        color: var(--black-medium-color-contrast);
         font-size: var(--font-12);
         font-weight: var(--font-medium);
         margin: 0 0 16px;
@@ -205,7 +206,7 @@ option {
     }
 
     .checkmark {
-        background-color: #fff;
+        background-color: var(--input-background);
         border: 2px solid #b3b3b3;
         border-radius: 24px;
         height: 20px;
@@ -230,7 +231,7 @@ option {
     }
 
     .radio-group-item {
-        color: var(--black-dark);
+        color: var(--black-dark-color-contrast);
         cursor: pointer;
         display: block;
         font-size: var(--font-14);
@@ -259,7 +260,7 @@ option {
         }
 
         .checkmark::after {
-            background: white;
+            background-color: var(--input-background);
             border-radius: 24px;
             display: block;
             height: 6px;
@@ -287,7 +288,7 @@ option {
 }
 
 .checkmark {
-    background-color: #fff;
+    background-color: var(--input-background);
     left: 0;
 }
 
@@ -338,7 +339,7 @@ option {
     top: 5px;
     right: 11.45px;
     z-index: 100;
-    background-color: #fff;
+    background-color: var(--input-background);
     color: #666;
     font-weight: 100;
     cursor: pointer;
@@ -357,7 +358,7 @@ option {
 .image-selector-label {
     margin: 20px 0 0;
     font-size: var(--font-12);
-    color: var(--black-medium);
+    color: var(--black-medium-color-contrast);
     text-transform: uppercase;
 }
 
@@ -397,7 +398,7 @@ option {
 .char-limit {
     font-size: var(--font-12);
     text-align: end;
-    color: var(--black-light);
+    color: var(--black-light-color-contrast);
 
     &.near-limit {
         color: var(--error-color);

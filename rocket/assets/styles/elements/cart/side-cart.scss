@@ -7,7 +7,7 @@
     top: 0;
     width: clamp(329px, 85vw, 404px);
     padding: 28px 35px 11px;
-    background-color: var(--white);
+    background-color: var(--background-color);
 
     .close-modal {
         height: 45px;
@@ -26,7 +26,7 @@
 .side-cart-title {
     font-size: var(--font-25);
     line-height: 34px;
-    color: var(--black-dark);
+    color: var(--black-dark-color-contrast);
 
     @media screen and (max-width: 450px) {
         font-size: var(--font-20);
@@ -50,7 +50,7 @@
         bottom: 0;
         width: clamp(329px, 85vw, 404px);
         text-align: center;
-        color: var(--black-light);
+        color: var(--background-contrasting-color);
         line-height: 1.4;
         height: calc(100% - 84px);
         justify-content: center;
@@ -104,7 +104,7 @@
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    background-color: var(--white);
+    background-color: var(--background-color);
     padding: 105px 0 0 0;
     height: 100%;
     width: 100%;
@@ -176,7 +176,7 @@
 .side-cart-button-container {
     width: clamp(329px, 84vw, 403px);
     margin: 0 auto;
-    background-color: var(--white);
+    background-color: var(--background-color);
     transition: box-shadow 0.3s ease-in-out;
     padding: 22px 35px 30px;
     position: sticky;
@@ -222,7 +222,7 @@
 
 .buy-together-cart-group {
     &__container {
-        border: 1px dashed var(--black-medium);
+        border: 1px dashed var(--black-medium-color-contrast);
         box-sizing: border-box;
         border-radius: 5px;
         padding: 16px 12px 12px;
@@ -237,11 +237,11 @@
         display: block;
         width: 90px;
         margin: -23px -20px 0 12px;
-        background-color: var(--white);
+        background-color: var(--background-color);
         font-weight: var(--font-bold);
         font-size: var(--font-11);
         line-height: 13px;
-        color: #222222;
+        color: var(--black-dark-color-contrast);
         text-align: center;
         padding: 0 2px;
     }
@@ -256,7 +256,7 @@
     flex-direction: column;
 
     svg {
-        fill: var(--black-light);
+        fill: var(--background-contrasting-color);
         margin: 0;
     }
 
@@ -264,7 +264,7 @@
         text-transform: uppercase;
         text-align: center;
         font-size: 9px;
-        color: var(--black-light);
+        color: var(--background-contrasting-color);
         margin: -10px 0;
     }
 }
@@ -272,7 +272,7 @@
 .buy-together-total-value {
     display: flex;
     flex-flow: column nowrap;
-    background-color: var(--front-end-f5f5f5);
+    background-color: var(--product-card-smoky-background);
     padding: 8px 0 7px;
     border-radius: 5px;
 
@@ -288,7 +288,7 @@
     }
 
     .discount-original-value {
-        color: var(--black-light);
+        color: var(--black-light-color-contrast);
         text-decoration: line-through;
         font-size: var(--font-12);
         line-height: 14px;
@@ -304,7 +304,7 @@
     .discount-percent {
         font-size: var(--font-12);
         line-height: 14px;
-        color: var(--black-dark);
+        color: var(--black-dark-color-contrast);
     }
 }
 
@@ -312,14 +312,14 @@
     font-size: var(--font-12);
     line-height: 18px;
     text-transform: uppercase;
-    color: var(--black-medium);
+    color: var(--black-medium-color-contrast);
 }
 
 .side-cart-subtotal {
     font-weight: var(--font-bold);
     font-size: var(--font-14);
     line-height: 18px;
-    color: var(--black-medium);
+    color: var(--black-medium-color-contrast);
 
     &-after-discounts {
         @extend .side-cart-subtotal;

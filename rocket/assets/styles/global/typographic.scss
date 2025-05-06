@@ -4,6 +4,7 @@
     font-weight: var(--fonts-titles-weight);
     text-transform: var(--fonts-titles-uppercase);
     line-height: 33px;
+    color: var(--section-title-color);
 }
 
 .link-alike {
@@ -118,10 +119,10 @@ p {
 
 .contact-whatsapp {
     &.green {
-        color: var(--green);
+        color: var(--green-color-contrast);
 
         svg {
-            fill: var(--green);
+            fill: var(--green-color-contrast);
         }
     }
 }
@@ -140,12 +141,12 @@ p {
 }
 
 .old-price {
-    color: var(--black-light);
+    color: var(--black-light-color-contrast);
     text-decoration: line-through;
 }
 
 .editor-theme {
-    color: var(--black-dark);
+    color: var(--black-medium-color-contrast);
 
     * {
         font-size: var(--font-14);

@@ -46,7 +46,7 @@
             flex: 1;
             height: 18px;
             margin: 16px 0;
-            color: var(--black-medium);
+            color: var(--black-medium-color-contrast);
 
             &.holder-sort {
                 font-size: 0;
@@ -77,6 +77,7 @@
                 text-overflow: ellipsis;
                 overflow: hidden;
                 color: inherit;
+                background-color: var(--background-color);
             }
 
             .custom-select i {

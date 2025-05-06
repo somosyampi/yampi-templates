@@ -5,8 +5,12 @@
         margin: 15px 0;
     }
 
+    li {
+        color: var(--breadcrumbs-color-contrast);
+    }
+
     li:last-child a {
-        color: var(--black-light);
+        color: var(--breadcrumbs-active-color-contrast);
         pointer-events: none;
     }
 }

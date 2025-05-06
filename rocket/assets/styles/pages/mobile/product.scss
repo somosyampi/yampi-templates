@@ -199,8 +199,6 @@
 
     .product-reviews {
         .holder-product-reviews-title:not(.single) {
-            height: 66px;
-
             .titles {
                 white-space: nowrap;
 
@@ -223,6 +221,8 @@
         .holder-questions,
         .holder-reviews {
             padding: 0 20px;
+            border-radius: var(--theme-border-radius);
+            padding: 20px;
         }
 
         .holder-reviews.grid {
@@ -252,6 +252,7 @@
             border-radius: 0;
             border: 0;
             max-width: 302px;
+            background-color: transparent;
 
             &:not(:last-child) {
                 border-bottom: solid 1px var(--default-background-color);
@@ -272,6 +273,7 @@
             box-shadow: none;
             border: 0;
             width: 100%;
+            background-color: transparent;
 
             &:not(:last-child) {
                 border-bottom: solid 1px var(--default-background-color);

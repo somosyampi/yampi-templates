@@ -93,26 +93,23 @@ export default {
         ]),
     },
 
-    data() {
-        return {
-            cartConfirmBaseModalRef: null,
-        };
-    },
-
     mounted() {
         eventBus.$on('addedToCart', this.showModal);
-        this.cartConfirmBaseModalRef = this.$refs.cartConfirmBaseModal;
     },
 
     methods: {
         ...mapActions('cart', ['redirectToCart']),
 
         showModal() {
-            this.cartConfirmBaseModalRef.showModal();
+            if (this.$refs.cartConfirmBaseModal) {
+                this.$refs.cartConfirmBaseModal.showModal();
+            }
         },
 
         closeModal() {
-            this.cartConfirmBaseModalRef.closeModal();
+            if (this.$refs.cartConfirmBaseModal) {
+                this.$refs.cartConfirmBaseModal.closeModal();
+            }
         },
 
         handleKeepBuying() {

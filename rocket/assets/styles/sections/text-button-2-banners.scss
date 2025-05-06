@@ -44,7 +44,6 @@
             max-width: 100%;
             margin: 0 0 clamp(12px, 2vw, 24px) 0;
             font-size: 30px;
-            color: var(--Neutral-Color-Low-Pure, #141316);
             overflow-wrap: break-word;
             font-family: var(--fonts-titles-family);
             font-weight: var(--fonts-titles-weight);
@@ -54,7 +53,7 @@
         .description-text {
             max-width: 100%;
             margin: 0 0 clamp(20px, 2.2vw, 40px) 0;
-            color: var(--Neutral-Color-Low-Dark, #56545E);
+            color: var(--neutral-color-low-dark-color-contrast);
             font-size: 16px;
             font-weight: 400;
             overflow-wrap: break-word;
@@ -108,36 +107,32 @@
 
     .section--button {
         display: flex;
-        padding: 16px;
         justify-content: center;
         align-items: center;
         gap: 10px;
-        border: 1px solid #282829;
-        background-color: #FFFFFF;
         max-width: 124px;
-        color: #282829;
-        font-weight: 400;
+    }
+
+    .btn-secondary {
+        @extend .btn-secundary;
+    }
+
+    a.section--button.btn {
+        &.btn-primary,
+        &.btn-secondary {
+            padding: 10px 20px;
+        }
     }
 
     .rocket-anchor {
         display: inline-block;
         border-radius: var(--theme-border-radius);
         text-decoration: none !important;
-        text-transform: var(--fonts-buttons-uppercase);
         min-height: 47px;
         min-width: 121px;
         max-width: 375px;
         cursor: pointer;
         text-align: center;
-        background-color: var(--color-btn-primary-background);
-        border-color: var(--color-btn-primary-background-outline);
-        color: var(--color-btn-primary-text);
-    }
-
-    .rocket-anchor.--secondary {
-        background-color: var(--color-btn-secundary-background);
-        border-color: var(--color-btn-secundary-background-outline);
-        color: var(--color-btn-secundary-text);
     }
 }
 
