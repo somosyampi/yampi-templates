@@ -1,6 +1,6 @@
 import v from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/lodash.js";
 import I from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/vue-debounce.js";
-import w from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-sandbox/rocket-assets/components/product/installments/BaseInstallments.js";
+import w from "https://codigo-aberto-sandbox-assets.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/components/product/installments/BaseInstallments.js";
 function g(n, t, a, d, i, f, u, c) {
   var e = typeof n == "function" ? n.options : n;
   t && (e.render = t, e.staticRenderFns = a, e._compiled = !0), d && (e.functional = !0), f && (e._scopeId = "data-v-" + f);

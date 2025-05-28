@@ -24,7 +24,7 @@
                         <div
                             v-if="banner.stopwatch"
                             class="relative-banner relative"
-                            :class="{ container: section === 'main-banner' }"
+                            :class="{ container: sectionIsMainBanner }"
                         >
                             <BannerStopwatch />
                         </div>
@@ -39,6 +39,7 @@
                                 :thumbor-enabled="false"
                                 :class="{'-loading': !isPreview}"
                                 :lazyload="!isPreview"
+                                v-bind="getDimensionPlaceHolderSectionMainBanner(banner)"
                             />
                         </div>
 
@@ -199,6 +200,10 @@ export default {
 
             return height / width;
         },
+
+        sectionIsMainBanner() {
+            return this.section === 'main-banner';
+        },
     },
 
     watch: {
@@ -271,6 +276,34 @@ export default {
             return this.isMobile
                 ? banner.mobile_image_url || banner.image_url
                 : banner.image_url;
+        },
+
+        getDimensionPlaceHolderSectionMainBanner(banner) {
+            if (!this.sectionIsMainBanner) {
+                return null;
+            }
+
+            const dimensionTypes = ['width', 'height'];
+
+            const bannerDimensions = this.firstBanner?.id === banner.id
+                ? this.dimensions
+                : banner.dimensions;
+
+            const device = this.isMobile
+                ? bannerDimensions?.mobile
+                : bannerDimensions?.desktop;
+
+            const placeholderDimensions = {};
+
+            dimensionTypes.forEach(type => {
+                const dimension = device?.[type];
+
+                if (dimension) {
+                    placeholderDimensions[`placeholder-${type}`] = parseFloat(dimension);
+                }
+            });
+
+            return placeholderDimensions;
         },
 
         loadStaticBanners() {

@@ -77,7 +77,7 @@
                                 }}
                             </div>
                             <div class="product-cart-box__text--price">
-                                {{ product.price_total_formated }}
+                                {{ product.price_formated }}
                             </div>
 
                             <div
@@ -99,7 +99,7 @@
                             v-else
                             class="product-cart-box__text--price"
                         >
-                            {{ product.price_total | formatMoney }}
+                            {{ product.price_formated }}
                         </div>
                     </div>
                 </template>

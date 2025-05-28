@@ -1,5 +1,5 @@
 import { mapGetters as _, mapActions as y } from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/vuex.js";
-import P from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-sandbox/rocket-assets/components/category/filters/BaseFilter.js";
+import P from "https://codigo-aberto-sandbox-assets.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/components/category/filters/BaseFilter.js";
 function F(t, e, a, o, n, m, f, h) {
   var i = typeof t == "function" ? t.options : t;
   e && (i.render = e, i.staticRenderFns = a, i._compiled = !0), o && (i.functional = !0), m && (i._scopeId = "data-v-" + m);

@@ -1,5 +1,5 @@
 import { mapGetters as f, mapMutations as v } from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/vuex.js";
-import g from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-sandbox/rocket-assets/components/header/cart/BaseCart.js";
+import g from "https://codigo-aberto-sandbox-assets.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/components/header/cart/BaseCart.js";
 function y(t, e, r, d, o, c, l, m) {
   var n = typeof t == "function" ? t.options : t;
   e && (n.render = e, n.staticRenderFns = r, n._compiled = !0), d && (n.functional = !0), c && (n._scopeId = "data-v-" + c);

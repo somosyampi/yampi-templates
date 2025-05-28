@@ -1,38 +1,38 @@
 import { mapGetters as _ } from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/vuex.js";
 import y from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/modules/axios/api.js";
 import b from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/modules/axios/rocket.js";
-import v from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/mobile.js";
-function A(t, e, i, n, a, o, d, u) {
-  var s = typeof t == "function" ? t.options : t;
-  e && (s.render = e, s.staticRenderFns = i, s._compiled = !0), n && (s.functional = !0), o && (s._scopeId = "data-v-" + o);
+import B from "https://images-dev.yampi.me/rocket-sandbox/b/01/dist/vendor/mixins/mobile.js";
+function v(t, e, i, s, a, o, d, u) {
+  var n = typeof t == "function" ? t.options : t;
+  e && (n.render = e, n.staticRenderFns = i, n._compiled = !0), s && (n.functional = !0), o && (n._scopeId = "data-v-" + o);
   var r;
   if (d ? (r = function(l) {
     l = l || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !l && typeof __VUE_SSR_CONTEXT__ < "u" && (l = __VUE_SSR_CONTEXT__), a && a.call(this, l), l && l._registeredComponents && l._registeredComponents.add(d);
-  }, s._ssrRegister = r) : a && (r = u ? function() {
+  }, n._ssrRegister = r) : a && (r = u ? function() {
     a.call(
       this,
-      (s.functional ? this.parent : this).$root.$options.shadowRoot
+      (n.functional ? this.parent : this).$root.$options.shadowRoot
     );
   } : a), r)
-    if (s.functional) {
-      s._injectStyles = r;
-      var g = s.render;
-      s.render = function(m, p) {
+    if (n.functional) {
+      n._injectStyles = r;
+      var g = n.render;
+      n.render = function(m, p) {
         return r.call(p), g(m, p);
       };
     } else {
-      var c = s.beforeCreate;
-      s.beforeCreate = c ? [].concat(c, r) : [r];
+      var f = n.beforeCreate;
+      n.beforeCreate = f ? [].concat(f, r) : [r];
     }
   return {
     exports: t,
-    options: s
+    options: n
   };
 }
-const B = {
+const A = {
   name: "Banners",
   mixins: [
-    v
+    B
   ],
   props: {
     section: {
@@ -115,9 +115,12 @@ const B = {
       return !this.isMounted || !this.loading || !this.loaderRatio ? "" : `height: ${(this.$refs.holderBanners[0].$el || this.$refs.holderBanners[0]).offsetWidth * this.loaderRatio}px; background-color: #d0d0d0;`;
     },
     loaderRatio() {
-      var i, n, a, o, d, u, s, r;
-      let t = parseFloat((n = (i = this.dimensions) == null ? void 0 : i.desktop) == null ? void 0 : n.width), e = parseFloat((o = (a = this.dimensions) == null ? void 0 : a.desktop) == null ? void 0 : o.height);
-      return this.isMobile && (t = parseFloat((u = (d = this.dimensions) == null ? void 0 : d.mobile) == null ? void 0 : u.width) || t, e = parseFloat((r = (s = this.dimensions) == null ? void 0 : s.mobile) == null ? void 0 : r.height) || e), t ? e / t : 0;
+      var i, s, a, o, d, u, n, r;
+      let t = parseFloat((s = (i = this.dimensions) == null ? void 0 : i.desktop) == null ? void 0 : s.width), e = parseFloat((o = (a = this.dimensions) == null ? void 0 : a.desktop) == null ? void 0 : o.height);
+      return this.isMobile && (t = parseFloat((u = (d = this.dimensions) == null ? void 0 : d.mobile) == null ? void 0 : u.width) || t, e = parseFloat((r = (n = this.dimensions) == null ? void 0 : n.mobile) == null ? void 0 : r.height) || e), t ? e / t : 0;
+    },
+    sectionIsMainBanner() {
+      return this.section === "main-banner";
     }
   },
   watch: {
@@ -167,6 +170,16 @@ const B = {
     getImage(t) {
       return this.isMobile && t.mobile_image_url || t.image_url;
     },
+    getDimensionPlaceHolderSectionMainBanner(t) {
+      var o;
+      if (!this.sectionIsMainBanner)
+        return null;
+      const e = ["width", "height"], i = ((o = this.firstBanner) == null ? void 0 : o.id) === t.id ? this.dimensions : t.dimensions, s = this.isMobile ? i == null ? void 0 : i.mobile : i == null ? void 0 : i.desktop, a = {};
+      return e.forEach((d) => {
+        const u = s == null ? void 0 : s[d];
+        u && (a[`placeholder-${d}`] = parseFloat(u));
+      }), a;
+    },
     loadStaticBanners() {
       const t = {
         id: 0,
@@ -189,8 +202,8 @@ const B = {
           return;
         }
         if (this.firstBanner) {
-          const n = this.ids.indexOf(this.firstBanner.id);
-          t.splice(n, 1);
+          const s = this.ids.indexOf(this.firstBanner.id);
+          t.splice(s, 1);
         }
         if (!t.length && !this.slug.length)
           return;
@@ -230,15 +243,15 @@ const B = {
 };
 var w = function() {
   var e = this, i = e._self._c;
-  return e.banners.length ? i("section", [i("div", { class: e.getHolderClass() }, [e.ready ? i(e.getComponent("splide"), { tag: "component", class: e.classes, attrs: { slides: e.carousel ? e.banners : null, options: e.carousel ? e.carouselOptions : null } }, [e._l(e.banners, function(n, a) {
-    return [e.isValid(n) ? i(e.getComponent("splide-slide"), { key: n.id, ref: "holderBanners", refInFor: !0, tag: "component", staticClass: "banner", class: {
+  return e.banners.length ? i("section", [i("div", { class: e.getHolderClass() }, [e.ready ? i(e.getComponent("splide"), { tag: "component", class: e.classes, attrs: { slides: e.carousel ? e.banners : null, options: e.carousel ? e.carouselOptions : null } }, [e._l(e.banners, function(s, a) {
+    return [e.isValid(s) ? i(e.getComponent("splide-slide"), { key: s.id, ref: "holderBanners", refInFor: !0, tag: "component", staticClass: "banner", class: {
       "--first": a === 0
-    } }, [n.stopwatch ? i("div", { staticClass: "relative-banner relative", class: { container: e.section === "main-banner" } }, [i("BannerStopwatch")], 1) : e._e(), i("div", { staticClass: "banner-image-holder", style: e.imageHolderStyle }, [i("CustomImage", { class: { "-loading": !e.isPreview }, attrs: { src: e.getImage(n), alt: "Banner " + a, "thumbor-enabled": !1, lazyload: !e.isPreview } })], 1), e.getLink(n) !== "http://" ? i("a", { staticClass: "full-link", attrs: { href: e.getLink(n) } }, [i("span", { staticClass: "-invisible" }, [e._v("link")])]) : e._e()]) : e._e()];
-  }), !e.carousel && e.banners.length < e.quantity ? e._l(e.quantity - e.banners.length, function(n) {
-    return i("div", { key: n, staticClass: "banner -hack" });
+    } }, [s.stopwatch ? i("div", { staticClass: "relative-banner relative", class: { container: e.sectionIsMainBanner } }, [i("BannerStopwatch")], 1) : e._e(), i("div", { staticClass: "banner-image-holder", style: e.imageHolderStyle }, [i("CustomImage", e._b({ class: { "-loading": !e.isPreview }, attrs: { src: e.getImage(s), alt: "Banner " + a, "thumbor-enabled": !1, lazyload: !e.isPreview } }, "CustomImage", e.getDimensionPlaceHolderSectionMainBanner(s), !1))], 1), e.getLink(s) !== "http://" ? i("a", { staticClass: "full-link", attrs: { href: e.getLink(s) } }, [i("span", { staticClass: "-invisible" }, [e._v("link")])]) : e._e()]) : e._e()];
+  }), !e.carousel && e.banners.length < e.quantity ? e._l(e.quantity - e.banners.length, function(s) {
+    return i("div", { key: s, staticClass: "banner -hack" });
   }) : e._e()], 2) : e._e()], 1)]) : e._e();
-}, C = [], k = /* @__PURE__ */ A(
-  B,
+}, C = [], k = /* @__PURE__ */ v(
+  A,
   w,
   C,
   !1,
@@ -248,15 +261,15 @@ var w = function() {
   null
 );
 const $ = k.exports;
-function f(t) {
-  f.installed || (f.installed = !0, t.component("Banners", $));
+function c(t) {
+  c.installed || (c.installed = !0, t.component("Banners", $));
 }
-const S = {
-  install: f
+const M = {
+  install: c
 };
 let h = null;
 typeof window < "u" ? h = window.Vue : typeof global < "u" && (h = global.Vue);
-h && h.use(S);
+h && h.use(M);
 export {
   $ as default
 };

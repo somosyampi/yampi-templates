@@ -1,4 +1,4 @@
-import h from "https://s3.amazonaws.com/codigo-aberto-sandbox-assets/yampi-templates-sandbox/rocket-assets/components/product/BaseProduct.js";
+import h from "https://codigo-aberto-sandbox-assets.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/components/product/BaseProduct.js";
 function g(o, n, a, s, r, d, f, v) {
   var e = typeof o == "function" ? o.options : o;
   n && (e.render = n, e.staticRenderFns = a, e._compiled = !0), s && (e.functional = !0), d && (e._scopeId = "data-v-" + d);
