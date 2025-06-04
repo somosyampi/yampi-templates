@@ -8,6 +8,6 @@
 {% set thumborMobile = thumbor|merge({'resize': '700x700'}) %}
 
 {% if image %}
-    <link rel="preload" as="image" href="{{ thumborize(image, thumbor) }}" media="(min-width: 701px)"/>
-    <link rel="preload" as="image" href="{{ thumborize(image, thumborMobile) }}" media="(max-width: 700px)"/>
+    <link rel="preload" as="image" href="{{ thumborize(image, thumbor) }}" />
+    <link rel="preload" as="image" href="{{ thumborize(image, thumborMobile) }}" />
 {% endif %}

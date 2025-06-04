@@ -36,6 +36,8 @@
                 :src="getImage(banner) || srcFirstPlaceholder"
                 :alt="`${banners.name}`"
                 :lazyload="true"
+                width="200"
+                height="400"
             />
         </div>
     </div>

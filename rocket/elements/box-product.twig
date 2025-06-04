@@ -82,7 +82,7 @@
                         class="-loading"
                     >
                 {% else %}
-                    <custom-image v-if="data.product.images" :src="data.product.images.data[0] ? data.product.images.data[0].url : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'" :thumbor-enabled="data.product.images.data[0] ? true : false" :thumbor="{{ {'resize': selectedImageSize} | json_encode }}" :alt="data.product.name" class="-loading"></custom-image>
+                    <custom-image v-if="data.product.images" :src="data.product.images.data[0] ? data.product.images.data[0].url : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'" :thumbor-enabled="data.product.images.data[0] ? true : false" :thumbor="{{ {'resize': selectedImageSize} | json_encode }}" :alt="data.product.name" width="200" height="200" class="-loading"></custom-image>
                 {% endif %}
             </div>
 

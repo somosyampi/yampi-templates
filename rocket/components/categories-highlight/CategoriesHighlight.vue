@@ -45,6 +45,8 @@
                     >
                         <CustomImage
                             :src="getItemCover(item.category_cover)"
+                            width="200"
+                            height="200"
                         />
                         <div v-if="showCategoriesNames">{{ item.name }}</div>
                     </a>

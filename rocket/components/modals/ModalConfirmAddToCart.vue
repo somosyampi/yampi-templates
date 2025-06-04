@@ -14,6 +14,8 @@
                         :src="imageUrl"
                         :alt="product.name"
                         :thumbor="{ resize: '60x60' }"
+                        width="60"
+                        height="60"
                     />
                     <div class="text">
                         <p

@@ -2,9 +2,9 @@ import { mapGetters as m } from "https://codigo-aberto-sandbox-assets.s3.amazona
 import v from "https://codigo-aberto-sandbox-assets.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/mobile.js";
 import w from "https://codigo-aberto-sandbox-assets.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/axios/rocket.js";
 import C from "https://codigo-aberto-sandbox-assets.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/axios/api.js";
-function y(t, e, s, r, n, h, u, f) {
+function y(t, e, s, r, n, d, u, f) {
   var i = typeof t == "function" ? t.options : t;
-  e && (i.render = e, i.staticRenderFns = s, i._compiled = !0), r && (i.functional = !0), h && (i._scopeId = "data-v-" + h);
+  e && (i.render = e, i.staticRenderFns = s, i._compiled = !0), r && (i.functional = !0), d && (i._scopeId = "data-v-" + d);
   var o;
   if (u ? (o = function(a) {
     a = a || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !a && typeof __VUE_SSR_CONTEXT__ < "u" && (a = __VUE_SSR_CONTEXT__), n && n.call(this, a), a && a._registeredComponents && a._registeredComponents.add(u);
@@ -174,7 +174,7 @@ var P = function() {
   }, attrs: { options: e.useVueSplide ? e.carousselOptions : null, slides: e.useVueSplide ? e.categories : null } }, e._l(e.filterAmountCategories, function(r) {
     return s(e.tagOrDiv("splide-slide"), { key: r.id, tag: "component", class: {
       "category-item": !e.useVueSplide
-    } }, [r.url_path && r.name ? s("a", { staticClass: "c-highlight-content--slide", attrs: { href: `${e.$baseUrl}${r.url_path}` } }, [s("CustomImage", { attrs: { src: e.getItemCover(r.category_cover) } }), e.showCategoriesNames ? s("div", [e._v(e._s(r.name))]) : e._e()], 1) : e._e()]);
+    } }, [r.url_path && r.name ? s("a", { staticClass: "c-highlight-content--slide", attrs: { href: `${e.$baseUrl}${r.url_path}` } }, [s("CustomImage", { attrs: { src: e.getItemCover(r.category_cover), width: "200", height: "200" } }), e.showCategoriesNames ? s("div", [e._v(e._s(r.name))]) : e._e()], 1) : e._e()]);
   }), 1) : e._e(), e.showLoadMoreItems ? s("div", { staticClass: "load-more", on: { click: function(r) {
     e.showAll = !0;
   } } }, [e._v(" Carregar mais ")]) : e._e()], 1)]) : e._e();
@@ -189,11 +189,11 @@ var P = function() {
   null
 );
 const I = V.exports;
-function d(t) {
-  d.installed || (d.installed = !0, t.component("CategoriesHighlight", I));
+function h(t) {
+  h.installed || (h.installed = !0, t.component("CategoriesHighlight", I));
 }
 const M = {
-  install: d
+  install: h
 };
 let l = null;
 typeof window < "u" ? l = window.Vue : typeof global < "u" && (l = global.Vue);

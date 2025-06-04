@@ -36,6 +36,8 @@
                             :alt="`${validProduct.name} thumbnail`"
                             :lazyload="false"
                             :thumbor="{ resize: '75x75' }"
+                            width="75"
+                            height="75"
                         />
                     </SplideSlide>
                 </Splide>

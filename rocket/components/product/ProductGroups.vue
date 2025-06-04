@@ -25,6 +25,8 @@
                         :src="product.images.data[0].url"
                         :alt="product.name"
                         :thumbor="{ resize: '60x60' }"
+                        width="60"
+                        height="60"
                     />
                 </a>
             </li>

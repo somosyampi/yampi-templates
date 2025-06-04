@@ -8,8 +8,8 @@
         "
         :data-src="lazyload ? imgSrc : null"
         v-bind="$attrs"
-        width="auto"
-        height="auto"
+        :width="width"
+        :height="height"
         :onerror="handleError()"
         @load="handleLoad"
     >
@@ -57,12 +57,20 @@ export default {
             type: Number,
             default: 0,
         },
+
+        width: {
+            type: [Number, String],
+            default: 'auto',
+        },
+
+        height: {
+            type: [Number, String],
+            default: 'auto',
+        },
     },
 
     data() {
         return {
-            width: 0,
-            height: 0,
             uid: uuidv4(),
         };
     },

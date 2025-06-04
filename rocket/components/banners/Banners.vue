@@ -39,6 +39,8 @@
                                 :thumbor-enabled="false"
                                 :class="{'-loading': !isPreview}"
                                 :lazyload="!isPreview"
+                                width="1200"
+                                height="600"
                                 v-bind="getDimensionPlaceHolderSectionMainBanner(banner)"
                             />
                         </div>

@@ -13,6 +13,8 @@
                         :src="product.small"
                         alt="Imagem do Produto"
                         :thumbor="{ resize: '60x60' }"
+                        width="60"
+                        height="60"
                     />
                 </div>
             </div>

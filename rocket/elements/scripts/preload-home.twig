@@ -2,10 +2,10 @@
 
 {% if banner %}
     {% if banner['image'] %}
-        <link rel="preload" as="image" href="{{ banner['image'] }}" media="(min-width: 701px)"/>
+        <link rel="preload" as="image" href="{{ banner['image'] }}" fetchpriority="high"/>
     {% endif %}
     {% if banner['mobile_image'] %}
-        <link rel="preload" as="image" href="{{ banner['mobile_image'] }}" media="(max-width: 700px)"/>
+        <link rel="preload" as="image" href="{{ banner['mobile_image'] }}" fetchpriority="high"/>
     {% endif %}
 
 {% endif %}
