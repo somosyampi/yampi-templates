@@ -1,7 +1,7 @@
-import o from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
-import { mapGetters as f, mapActions as C } from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/dist/vendor/vuex.js";
-import v from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/tracking/api.js";
-import { createPriceObjects as y } from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/helpers.js";
+import o from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-main/rocket-assets/dist/vendor/lodash.js";
+import { mapGetters as f, mapActions as C } from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-main/rocket-assets/dist/vendor/vuex.js";
+import v from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-main/rocket-assets/dist/vendor/mixins/tracking/api.js";
+import { createPriceObjects as y } from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-main/rocket-assets/dist/vendor/mixins/helpers.js";
 function z(s, t, e, a, r, d, h, _) {
     var i = typeof s == "function" ? s.options : s;
     t && (i.render = t, i.staticRenderFns = e, i._compiled = !0), a && (i.functional = !0), d && (i._scopeId = "data-v-" + d);

@@ -1,6 +1,6 @@
-import v from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/dist/vendor/vue-debounce.js";
-import I from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
-import g from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/components/product/installments/BaseInstallments.js";
+import v from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-main/rocket-assets/dist/vendor/vue-debounce.js";
+import I from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-main/rocket-assets/dist/vendor/lodash.js";
+import g from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-main/rocket-assets/components/product/installments/BaseInstallments.js";
 function w(t, n, l, h, a, d, m, c) {
     var e = typeof t == "function" ? t.options : t;
     n && (e.render = n, e.staticRenderFns = l, e._compiled = !0), h && (e.functional = !0), d && (e._scopeId = "data-v-" + d);

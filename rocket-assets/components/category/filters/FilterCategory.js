@@ -1,4 +1,4 @@
-import v from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/components/category/filters/BaseFilter.js";
+import v from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-main/rocket-assets/components/category/filters/BaseFilter.js";
 function m(r, e, a, n, s, u, d, p) {
     var t = typeof r == "function" ? r.options : r;
     e && (t.render = e, t.staticRenderFns = a, t._compiled = !0), n && (t.functional = !0), u && (t._scopeId = "data-v-" + u);
