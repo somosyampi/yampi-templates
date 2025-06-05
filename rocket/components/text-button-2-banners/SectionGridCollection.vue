@@ -33,6 +33,8 @@
                         :src="getImage(banner) || ''"
                         :alt="`${banner ? banner.name : ''}`"
                         :lazyload="true"
+                        width="333"
+                        height="406"
                     />
                 </RocketAnchor>
             </div>

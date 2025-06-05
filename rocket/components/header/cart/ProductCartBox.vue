@@ -13,6 +13,8 @@
                         :src="product.small"
                         alt="Imagem do Produto"
                         :thumbor="{ resize: '60x60' }"
+                        width="60"
+                        height="60"
                     />
                 </div>
             </div>
@@ -77,7 +79,7 @@
                                 }}
                             </div>
                             <div class="product-cart-box__text--price">
-                                {{ product.price_total_formated }}
+                                {{ product.price_formated }}
                             </div>
 
                             <div
@@ -99,7 +101,7 @@
                             v-else
                             class="product-cart-box__text--price"
                         >
-                            {{ product.price_total | formatMoney }}
+                            {{ product.price_formated }}
                         </div>
                     </div>
                 </template>

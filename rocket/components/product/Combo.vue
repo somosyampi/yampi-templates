@@ -19,6 +19,8 @@
                             :src="url[product.id] ? url[product.id] : $get(product, 'images.data.0.url')"
                             :alt="product.name"
                             :thumbor="thumborFilters"
+                            width="200"
+                            height="200"
                         />
                     </div>
 

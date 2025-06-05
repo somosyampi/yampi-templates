@@ -10,6 +10,8 @@
                 :thumbor-enabled="false"
                 :alt="'product video'"
                 class="-loading"
+                width="900"
+                heigth="500"
             />
             <i class="icon icon-yt-play" />
         </div>

@@ -33,6 +33,8 @@
                             v-else
                             class="review-thumb"
                             :src="imagesUrls[n-1]"
+                            width="100"
+                            height="100"
                         />
                     </div>
                 </template>
