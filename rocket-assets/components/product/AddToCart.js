@@ -1,33 +1,33 @@
-(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".hide[data-v-4ed904d0]{visibility:hidden}")),document.head.appendChild(e)}}catch(d){console.error("vite-plugin-css-injected-by-js",d)}})();
+(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".hide[data-v-ab5cf582]{visibility:hidden}")),document.head.appendChild(e)}}catch(d){console.error("vite-plugin-css-injected-by-js",d)}})();
 import { mapGetters as p, mapActions as _ } from "https://codigo-aberto-sandbox-assets.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/dist/vendor/vuex.js";
-import v from "https://codigo-aberto-sandbox-assets.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/eventBus.js";
+import T from "https://codigo-aberto-sandbox-assets.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/eventBus.js";
 import w from "https://codigo-aberto-sandbox-assets.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/axios/api.js";
 import y from "https://codigo-aberto-sandbox-assets.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/axios/rocket.js";
-function g(r, t, a, s, i, f, u, C) {
-  var e = typeof r == "function" ? r.options : r;
-  t && (e.render = t, e.staticRenderFns = a, e._compiled = !0), s && (e.functional = !0), f && (e._scopeId = "data-v-" + f);
+function g(e, t, a, s, i, f, u, C) {
+  var r = typeof e == "function" ? e.options : e;
+  t && (r.render = t, r.staticRenderFns = a, r._compiled = !0), s && (r.functional = !0), f && (r._scopeId = "data-v-" + f);
   var n;
   if (u ? (n = function(o) {
     o = o || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !o && typeof __VUE_SSR_CONTEXT__ < "u" && (o = __VUE_SSR_CONTEXT__), i && i.call(this, o), o && o._registeredComponents && o._registeredComponents.add(u);
-  }, e._ssrRegister = n) : i && (n = C ? function() {
+  }, r._ssrRegister = n) : i && (n = C ? function() {
     i.call(
       this,
-      (e.functional ? this.parent : this).$root.$options.shadowRoot
+      (r.functional ? this.parent : this).$root.$options.shadowRoot
     );
   } : i), n)
-    if (e.functional) {
-      e._injectStyles = n;
-      var m = e.render;
-      e.render = function(T, h) {
-        return n.call(h), m(T, h);
+    if (r.functional) {
+      r._injectStyles = n;
+      var m = r.render;
+      r.render = function(v, h) {
+        return n.call(h), m(v, h);
       };
     } else {
-      var c = e.beforeCreate;
-      e.beforeCreate = c ? [].concat(c, n) : [n];
+      var c = r.beforeCreate;
+      r.beforeCreate = c ? [].concat(c, n) : [n];
     }
   return {
-    exports: r,
-    options: e
+    exports: e,
+    options: r
   };
 }
 const $ = {
@@ -51,8 +51,8 @@ const $ = {
     ..._("cart", ["addProductsToCart"])
   },
   mounted() {
-    v.$on("addToCartClicked", this.handleAddToCartClick), this.$store.subscribe(({ type: r, payload: t }) => {
-      if (r === "cart/EVENT_ADDED_TO_CART") {
+    T.$on("addToCartClicked", this.handleAddToCartClick), this.$store.subscribe(({ type: e, payload: t }) => {
+      if (e === "cart/EVENT_ADDED_TO_CART") {
         if (this.isPreview && this.cartType !== "side_cart") {
           this.$refs.modalCartConfirmation && this.$refs.modalCartConfirmation.showModal();
           return;
@@ -61,9 +61,9 @@ const $ = {
       }
     }), this.isPreview && window.addEventListener(
       "message",
-      (r) => {
+      (e) => {
         var t, a, s, i;
-        ((a = (t = r.data) == null ? void 0 : t.show_modal_after_purchase) == null ? void 0 : a.value) && ((i = (s = r.target) == null ? void 0 : s.themeConfig) == null ? void 0 : i.page) === "product" && this.cartType !== "side_cart" && this.$refs.modalCartConfirmation.showModal();
+        ((a = (t = e.data) == null ? void 0 : t.show_modal_after_purchase) == null ? void 0 : a.value) && ((i = (s = e.target) == null ? void 0 : s.themeConfig) == null ? void 0 : i.page) === "product" && this.cartType !== "side_cart" && this.$refs.modalCartConfirmation.showModal();
       },
       !1
     );
@@ -72,30 +72,30 @@ const $ = {
     ..._("cart", [
       "redirectToCart"
     ]),
-    async handleAddToCartClick(r) {
-      this.productData = {}, this.loadProductSkus(r.slug), this.$refs.ModalConfirmAddToCart.showModal();
+    async handleAddToCartClick(e) {
+      this.productData = {}, this.loadProductSkus(e.slug), this.$refs.ModalConfirmAddToCart.showModal();
     },
     addedToCart({
-      showModal: r,
+      showModal: e,
       error: t = void 0,
       quantityAdded: a = 1
     }) {
       return {
         side_cart: () => t ? (this.error = t, this.quantity = a, this.$refs.modalCartConfirmation.showModal()) : null,
-        suspended: () => t || r ? (this.error = t, this.quantity = a, this.$refs.modalCartConfirmation.showModal()) : this.redirectToCart()
+        suspended: () => t || e ? (this.error = t, this.quantity = a, this.$refs.modalCartConfirmation.showModal()) : this.redirectToCart()
       }[this.cartType]();
     },
-    async loadProductSkus(r) {
+    async loadProductSkus(e) {
       try {
-        const t = `catalog/products/${r}`, { data: a } = await w.get(t);
+        const t = `catalog/products/${e}`, { data: a } = await w.get(t);
         this.productData = a.data;
       } catch (t) {
         t.response.status >= 400 && this.isPreview && await this.loadPlaceholders();
       }
     },
     async loadPlaceholders() {
-      const { data: r } = await y.get("/placeholders/productDetail");
-      this.productData = r;
+      const { data: e } = await y.get("/placeholders/productDetail");
+      this.productData = e;
     }
   }
 };
@@ -113,8 +113,8 @@ var P = function() {
   null
 );
 const M = D.exports;
-function l(r) {
-  l.installed || (l.installed = !0, r.component("AddToCart", M));
+function l(e) {
+  l.installed || (l.installed = !0, e.component("AddToCart", M));
 }
 const b = {
   install: l

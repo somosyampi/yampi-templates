@@ -1,10 +1,10 @@
-(function(){"use strict";try{if(typeof document<"u"){var t=document.createElement("style");t.appendChild(document.createTextNode(".button-style .buy-button[data-v-d38f67bf]{display:flex;justify-content:center;align-items:center;position:absolute;bottom:8px;right:8px;width:46px;height:46px;background-color:var(--add-to-cart-button-color);border:1px solid var(--black-lightest);box-shadow:0 1px 4px #0000000d;border-radius:var(--theme-border-radius);cursor:pointer}.button-style .buy-button-text-icon[data-v-d38f67bf]{display:inline-flex;justify-content:center;align-items:center;gap:10px;width:var(--add-to-cart-icon-text-button-width);padding:15px 16px;background-color:var(--add-to-cart-icon-text-button-color);border:1px solid var(--add-to-cart-icon-text-button-border-color);border-radius:var(--theme-border-radius);cursor:pointer;transition:opacity .3s}@media only screen and (min-width: 700px){.button-style .buy-button-text-icon[data-v-d38f67bf]:hover{opacity:.8}}.button-style .buy-button-text-icon .text[data-v-d38f67bf]{font-size:16px;line-height:15px;font-weight:500;letter-spacing:.04em;color:var(--add-to-cart-icon-text-button-text-color)}.button-style .buy-button-text-icon .icon[data-v-d38f67bf]{flex-shrink:0;margin:0}")),document.head.appendChild(t)}}catch(o){console.error("vite-plugin-css-injected-by-js",o)}})();
-import y from "https://codigo-aberto-sandbox-assets.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/product.js";
+(function(){"use strict";try{if(typeof document<"u"){var t=document.createElement("style");t.appendChild(document.createTextNode(".button-style .buy-button[data-v-59f9b959]{display:flex;justify-content:center;align-items:center;position:absolute;bottom:8px;right:8px;width:46px;height:46px;background-color:var(--add-to-cart-button-color);border:1px solid var(--black-lightest);box-shadow:0 1px 4px #0000000d;border-radius:var(--theme-border-radius);cursor:pointer}.button-style .buy-button-text-icon[data-v-59f9b959]{display:inline-flex;justify-content:center;align-items:center;gap:10px;width:var(--add-to-cart-icon-text-button-width);padding:15px 16px;background-color:var(--add-to-cart-icon-text-button-color);border:1px solid var(--add-to-cart-icon-text-button-border-color);border-radius:var(--theme-border-radius);cursor:pointer;transition:opacity .3s}@media only screen and (min-width: 700px){.button-style .buy-button-text-icon[data-v-59f9b959]:hover{opacity:.8}}.button-style .buy-button-text-icon .text[data-v-59f9b959]{font-size:16px;line-height:15px;font-weight:500;letter-spacing:.04em;color:var(--add-to-cart-icon-text-button-text-color)}.button-style .buy-button-text-icon .icon[data-v-59f9b959]{flex-shrink:0;margin:0}")),document.head.appendChild(t)}}catch(o){console.error("vite-plugin-css-injected-by-js",o)}})();
+import m from "https://codigo-aberto-sandbox-assets.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/product.js";
 import v from "https://codigo-aberto-sandbox-assets.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/eventBus.js";
 import b from "https://codigo-aberto-sandbox-assets.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/tracking/api.js";
-function C(i, e, a, l, s, f, d, p) {
+function C(i, e, a, r, s, f, d, p) {
   var t = typeof i == "function" ? i.options : i;
-  e && (t.render = e, t.staticRenderFns = a, t._compiled = !0), l && (t.functional = !0), f && (t._scopeId = "data-v-" + f);
+  e && (t.render = e, t.staticRenderFns = a, t._compiled = !0), r && (t.functional = !0), f && (t._scopeId = "data-v-" + f);
   var o;
   if (d ? (o = function(n) {
     n = n || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !n && typeof __VUE_SSR_CONTEXT__ < "u" && (n = __VUE_SSR_CONTEXT__), s && s.call(this, n), n && n._registeredComponents && n._registeredComponents.add(d);
@@ -17,8 +17,8 @@ function C(i, e, a, l, s, f, d, p) {
     if (t.functional) {
       t._injectStyles = o;
       var h = t.render;
-      t.render = function(m, c) {
-        return o.call(c), h(m, c);
+      t.render = function(y, c) {
+        return o.call(c), h(y, c);
       };
     } else {
       var _ = t.beforeCreate;
@@ -32,7 +32,7 @@ function C(i, e, a, l, s, f, d, p) {
 const B = {
   name: "BuyButton",
   mixins: [
-    y,
+    m,
     b
   ],
   props: {
@@ -63,8 +63,8 @@ const B = {
 };
 var g = function() {
   var e = this, a = e._self._c;
-  return a("div", { staticClass: "holder-buy-button", class: e.containerClasses }, [a("div", { class: e.buyButtonClass, on: { click: function(l) {
-    return l.stopPropagation(), l.preventDefault(), e.handleClick.apply(null, arguments);
+  return a("div", { staticClass: "holder-buy-button", class: e.containerClasses }, [a("div", { class: e.buyButtonClass, on: { click: function(r) {
+    return r.stopPropagation(), r.preventDefault(), e.handleClick.apply(null, arguments);
   } } }, [e._t("default")], 2)]);
 }, k = [], T = /* @__PURE__ */ C(
   B,
@@ -72,7 +72,7 @@ var g = function() {
   k,
   !1,
   null,
-  "d38f67bf",
+  "59f9b959",
   null,
   null
 );
@@ -83,9 +83,9 @@ function u(i) {
 const $ = {
   install: u
 };
-let r = null;
-typeof window < "u" ? r = window.Vue : typeof global < "u" && (r = global.Vue);
-r && r.use($);
+let l = null;
+typeof window < "u" ? l = window.Vue : typeof global < "u" && (l = global.Vue);
+l && l.use($);
 export {
   R as default
 };

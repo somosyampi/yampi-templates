@@ -39,8 +39,8 @@
                                 :thumbor-enabled="false"
                                 :class="{'-loading': !isPreview}"
                                 :lazyload="!isPreview"
-                                width="1200"
-                                height="600"
+                                :width="banner.mobile_image ? '1200' : '333'"
+                                :height="banner.mobile_image ? '332' : '118'"
                                 v-bind="getDimensionPlaceHolderSectionMainBanner(banner)"
                             />
                         </div>

@@ -1,4 +1,4 @@
-(function(){"use strict";try{if(typeof document<"u"){var a=document.createElement("style");a.appendChild(document.createTextNode(".masonry-container[data-v-861f08aa]{display:grid;max-width:740px;grid-template-columns:repeat(2,1fr);grid-gap:32px;margin:0 auto;grid-auto-rows:0px}@media screen and (max-width: 1220px){.masonry-container[data-v-861f08aa]{max-width:538px;display:flex;flex-flow:column nowrap;grid-gap:0}.masonry-container .holder-review[data-v-861f08aa]{max-width:100%;margin-top:32px}}@media screen and (max-width: 700px){.masonry-container[data-v-861f08aa]{grid-gap:0;max-width:unset}.masonry-container .holder-review[data-v-861f08aa]{margin-top:0}}.masonry-container .header[data-v-861f08aa]{grid-area:1/1/4/3;border:none;display:flex;align-items:flex-end;justify-content:flex-end;grid-row-end:span 2}@media screen and (max-width: 700px){.masonry-container .header[data-v-861f08aa]{display:block}}@media screen and (max-width: 700px){.masonry-container .header .select-order[data-v-861f08aa]{display:flex;justify-content:space-between;margin-top:51px}}@media screen and (max-width: 700px){.masonry-container .header .select-order .custom-select[data-v-861f08aa]{flex-grow:2}}.masonry-container .header .select-order .-title[data-v-861f08aa]{color:var(--black-medium-color-contrast);font-size:var(--font-12)}")),document.head.appendChild(a)}}catch(e){console.error("vite-plugin-css-injected-by-js",e)}})();
+(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".masonry-container[data-v-48c1381b]{display:grid;max-width:740px;grid-template-columns:repeat(2,1fr);grid-gap:32px;margin:0 auto;grid-auto-rows:0px}@media screen and (max-width: 1220px){.masonry-container[data-v-48c1381b]{max-width:538px;display:flex;flex-flow:column nowrap;grid-gap:0}.masonry-container .holder-review[data-v-48c1381b]{max-width:100%;margin-top:32px}}@media screen and (max-width: 700px){.masonry-container[data-v-48c1381b]{grid-gap:0;max-width:unset}.masonry-container .holder-review[data-v-48c1381b]{margin-top:0}}.masonry-container .header[data-v-48c1381b]{grid-area:1/1/4/3;border:none;display:flex;align-items:flex-end;justify-content:flex-end;grid-row-end:span 2}@media screen and (max-width: 700px){.masonry-container .header[data-v-48c1381b]{display:block}}@media screen and (max-width: 700px){.masonry-container .header .select-order[data-v-48c1381b]{display:flex;justify-content:space-between;margin-top:51px}}@media screen and (max-width: 700px){.masonry-container .header .select-order .custom-select[data-v-48c1381b]{flex-grow:2}}.masonry-container .header .select-order .-title[data-v-48c1381b]{color:var(--black-medium-color-contrast);font-size:var(--font-12)}")),document.head.appendChild(e)}}catch(a){console.error("vite-plugin-css-injected-by-js",a)}})();
 function m(t, a, r, c, i, l, f, p) {
   var e = typeof t == "function" ? t.options : t;
   a && (e.render = a, e.staticRenderFns = r, e._compiled = !0), c && (e.functional = !0), l && (e._scopeId = "data-v-" + l);
@@ -32,26 +32,26 @@ const y = {
 var C = function() {
   var a = this, r = a._self._c;
   return r("div", { staticClass: "masonry-container" }, [r("div", { staticClass: "header" }, [a._t("header")], 2), a._t("default")], 2);
-}, g = [], R = /* @__PURE__ */ m(
+}, b = [], g = /* @__PURE__ */ m(
   y,
   C,
-  g,
+  b,
   !1,
   null,
-  "861f08aa",
+  "48c1381b",
   null,
   null
 );
-const $ = R.exports;
+const w = g.exports;
 function _(t) {
-  _.installed || (_.installed = !0, t.component("MasonryLayout", $));
+  _.installed || (_.installed = !0, t.component("MasonryLayout", w));
 }
-const b = {
+const R = {
   install: _
 };
 let s = null;
 typeof window < "u" ? s = window.Vue : typeof global < "u" && (s = global.Vue);
-s && s.use(b);
+s && s.use(R);
 export {
-  $ as default
+  w as default
 };

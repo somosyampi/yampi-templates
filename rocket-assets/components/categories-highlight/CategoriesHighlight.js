@@ -174,7 +174,7 @@ var P = function() {
   }, attrs: { options: e.useVueSplide ? e.carousselOptions : null, slides: e.useVueSplide ? e.categories : null } }, e._l(e.filterAmountCategories, function(r) {
     return s(e.tagOrDiv("splide-slide"), { key: r.id, tag: "component", class: {
       "category-item": !e.useVueSplide
-    } }, [r.url_path && r.name ? s("a", { staticClass: "c-highlight-content--slide", attrs: { href: `${e.$baseUrl}${r.url_path}` } }, [s("CustomImage", { attrs: { src: e.getItemCover(r.category_cover), width: "200", height: "200" } }), e.showCategoriesNames ? s("div", [e._v(e._s(r.name))]) : e._e()], 1) : e._e()]);
+    } }, [r.url_path && r.name ? s("a", { staticClass: "c-highlight-content--slide", attrs: { href: `${e.$baseUrl}${r.url_path}` } }, [s("CustomImage", { attrs: { src: e.getItemCover(r.category_cover), width: "200", height: "200", alt: "Categoria " + r.name } }), e.showCategoriesNames ? s("div", [e._v(e._s(r.name))]) : e._e()], 1) : e._e()]);
   }), 1) : e._e(), e.showLoadMoreItems ? s("div", { staticClass: "load-more", on: { click: function(r) {
     e.showAll = !0;
   } } }, [e._v(" Carregar mais ")]) : e._e()], 1)]) : e._e();

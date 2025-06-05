@@ -1,11 +1,11 @@
-(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".touchable[data-v-af6330db]{height:100%;width:100%}")),document.head.appendChild(e)}}catch(t){console.error("vite-plugin-css-injected-by-js",t)}})();
+(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".touchable[data-v-46cddd84]{height:100%;width:100%}")),document.head.appendChild(e)}}catch(t){console.error("vite-plugin-css-injected-by-js",t)}})();
 import v from "https://codigo-aberto-sandbox-assets.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/touchable.js";
-function g(t, e, n, r, a, f, u, h) {
+function g(t, e, n, r, a, u, f, h) {
   var i = typeof t == "function" ? t.options : t;
-  e && (i.render = e, i.staticRenderFns = n, i._compiled = !0), r && (i.functional = !0), f && (i._scopeId = "data-v-" + f);
+  e && (i.render = e, i.staticRenderFns = n, i._compiled = !0), r && (i.functional = !0), u && (i._scopeId = "data-v-" + u);
   var o;
-  if (u ? (o = function(s) {
-    s = s || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !s && typeof __VUE_SSR_CONTEXT__ < "u" && (s = __VUE_SSR_CONTEXT__), a && a.call(this, s), s && s._registeredComponents && s._registeredComponents.add(u);
+  if (f ? (o = function(s) {
+    s = s || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !s && typeof __VUE_SSR_CONTEXT__ < "u" && (s = __VUE_SSR_CONTEXT__), a && a.call(this, s), s && s._registeredComponents && s._registeredComponents.add(f);
   }, i._ssrRegister = o) : a && (o = h ? function() {
     a.call(
       this,
@@ -27,7 +27,7 @@ function g(t, e, n, r, a, f, u, h) {
     options: i
   };
 }
-const b = {
+const C = {
   name: "Touchable",
   mixins: [v],
   props: {
@@ -62,7 +62,7 @@ const b = {
     }
   }
 };
-var C = function() {
+var b = function() {
   var e = this, n = e._self._c;
   return n("div", { staticClass: "touchable" }, [n("Splide", { ref: "splideRef", staticClass: "custom-splide", attrs: { options: {
     perPage: 1,
@@ -75,12 +75,12 @@ var C = function() {
     return n("SplideSlide", { key: r.url, staticClass: "review-details-photo-container" }, [n("PinchZoom", { ref: "imagePinch", refInFor: !0, attrs: { "auto-zoom-out": !1, overflow: "visible", "limit-pan": !0, "min-scale": 1, "limit-zoom": "50" } }, [n("img", { attrs: { src: r.url, alt: "zoom" } })])], 1);
   }), 1), n("div", { staticClass: "modal-review-details-pagination" }, [e._v(" ("), n("span", { staticClass: "bold" }, [e._v(e._s(e.currentIndex + 1))]), e._v("/" + e._s(e.images.length) + ") ")])], 1);
 }, S = [], w = /* @__PURE__ */ g(
-  b,
   C,
+  b,
   S,
   !1,
   null,
-  "af6330db",
+  "46cddd84",
   null,
   null
 );

@@ -34,10 +34,10 @@
                 v-for="banner in computedBanners"
                 :key="banner.id"
                 :src="getImage(banner) || srcFirstPlaceholder"
-                :alt="`${banners.name}`"
+                :alt="`${banner.name}`"
                 :lazyload="true"
-                width="200"
-                height="400"
+                width="158"
+                height="237"
             />
         </div>
     </div>
