@@ -39,7 +39,7 @@ import _ from '~/lodash';
 import mobileMixin from '@/mixins/mobile';
 
 export default {
-    name: 'MoleculeShoppingPageRedirect',
+    name: 'HShoppingPageRedirect',
 
     mixins: [
         mobileMixin,

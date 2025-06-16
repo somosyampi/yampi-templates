@@ -1,9 +1,9 @@
-function m(a, s, i, _, t, d, f, v) {
+function m(a, s, i, _, t, d, c, v) {
   var e = typeof a == "function" ? a.options : a;
   s && (e.render = s, e.staticRenderFns = i, e._compiled = !0), _ && (e.functional = !0), d && (e._scopeId = "data-v-" + d);
   var o;
-  if (f ? (o = function(n) {
-    n = n || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !n && typeof __VUE_SSR_CONTEXT__ < "u" && (n = __VUE_SSR_CONTEXT__), t && t.call(this, n), n && n._registeredComponents && n._registeredComponents.add(f);
+  if (c ? (o = function(n) {
+    n = n || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !n && typeof __VUE_SSR_CONTEXT__ < "u" && (n = __VUE_SSR_CONTEXT__), t && t.call(this, n), n && n._registeredComponents && n._registeredComponents.add(c);
   }, e._ssrRegister = o) : t && (o = v ? function() {
     t.call(
       this,
@@ -17,8 +17,8 @@ function m(a, s, i, _, t, d, f, v) {
         return o.call(u), h(p, u);
       };
     } else {
-      var c = e.beforeCreate;
-      e.beforeCreate = c ? [].concat(c, o) : [o];
+      var f = e.beforeCreate;
+      e.beforeCreate = f ? [].concat(f, o) : [o];
     }
   return {
     exports: a,
@@ -26,7 +26,7 @@ function m(a, s, i, _, t, d, f, v) {
   };
 }
 const w = {
-  name: "ModalReview",
+  name: "ModalReviewSuccess",
   methods: {
     showModal() {
       this.$refs.reviewBaseModal.showModal();

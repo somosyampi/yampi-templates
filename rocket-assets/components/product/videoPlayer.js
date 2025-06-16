@@ -1,31 +1,31 @@
-function v(a, i, t, d, o, u, c, p) {
+function v(a, r, i, d, o, u, c, p) {
   var e = typeof a == "function" ? a.options : a;
-  i && (e.render = i, e.staticRenderFns = t, e._compiled = !0), d && (e.functional = !0), u && (e._scopeId = "data-v-" + u);
-  var r;
-  if (c ? (r = function(n) {
+  r && (e.render = r, e.staticRenderFns = i, e._compiled = !0), d && (e.functional = !0), u && (e._scopeId = "data-v-" + u);
+  var t;
+  if (c ? (t = function(n) {
     n = n || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !n && typeof __VUE_SSR_CONTEXT__ < "u" && (n = __VUE_SSR_CONTEXT__), o && o.call(this, n), n && n._registeredComponents && n._registeredComponents.add(c);
-  }, e._ssrRegister = r) : o && (r = p ? function() {
+  }, e._ssrRegister = t) : o && (t = p ? function() {
     o.call(
       this,
       (e.functional ? this.parent : this).$root.$options.shadowRoot
     );
-  } : o), r)
+  } : o), t)
     if (e.functional) {
-      e._injectStyles = r;
+      e._injectStyles = t;
       var A = e.render;
       e.render = function(m, _) {
-        return r.call(_), A(m, _);
+        return t.call(_), A(m, _);
       };
     } else {
       var f = e.beforeCreate;
-      e.beforeCreate = f ? [].concat(f, r) : [r];
+      e.beforeCreate = f ? [].concat(f, t) : [t];
     }
   return {
     exports: a,
     options: e
   };
 }
-const h = {
+const g = {
   name: "VideoPlayer",
   props: {
     imgSrc: {
@@ -48,19 +48,19 @@ const h = {
     }
   }
 };
-var g = function() {
-  var i = this, t = i._self._c;
-  return t("div", [i.clicked ? t("div", { staticClass: "embed-container" }, [t("iframe", { attrs: { src: i.videoUrl + "&muted=1", frameborder: "0", allowfullscreen: "", allow: `accelerometer;
+var h = function() {
+  var r = this, i = r._self._c;
+  return i("div", [r.clicked ? i("div", { staticClass: "embed-container" }, [i("iframe", { attrs: { src: r.videoUrl + "&muted=1", frameborder: "0", allowfullscreen: "", allow: `accelerometer;
                     autoplay;
                     clipboard-write;
                     encrypted-media;
                     gyroscope;
-                    picture-in-picture` } })]) : t("div", { staticClass: "relative", on: { click: function(d) {
-    i.clicked = !0;
-  } } }, [t("CustomImage", { staticClass: "-loading", attrs: { src: i.imageUrl, "thumbor-enabled": !1, alt: "product video", width: "900", heigth: "500" } }), t("i", { staticClass: "icon icon-yt-play" })], 1)]);
+                    picture-in-picture` } })]) : i("div", { staticClass: "relative", on: { click: function(d) {
+    r.clicked = !0;
+  } } }, [i("CustomImage", { staticClass: "-loading", attrs: { src: r.imageUrl, "thumbor-enabled": !1, alt: "product video" } }), i("i", { staticClass: "icon icon-yt-play" })], 1)]);
 }, C = [], y = /* @__PURE__ */ v(
-  h,
   g,
+  h,
   C,
   !1,
   null,

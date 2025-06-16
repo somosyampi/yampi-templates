@@ -22,7 +22,7 @@
 <script>
 
 export default {
-    name: 'ModalReview',
+    name: 'ModalReviewSuccess',
 
     methods: {
         showModal() {

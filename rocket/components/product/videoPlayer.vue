@@ -21,6 +21,7 @@
             class="embed-container"
         >
             <iframe
+                title="Youtube video player"
                 :src="videoUrl+'&muted=1'"
                 frameborder="0"
                 allowfullscreen
@@ -38,7 +39,7 @@
 <script>
 
 export default {
-    name: 'VideoPlayer',
+    name: 'videoPlayer',
 
     props: {
         imgSrc: {
