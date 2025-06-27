@@ -1,0 +1,10 @@
+<rocket-emitter emits="top_ratings" label="Avaliações" order={{ section.order }}>
+    {% if section.params.visible_quantity %}
+        <top-ratings 
+            class="top-ratings completed has-carousel {{ " #{section.section_alias}-#{section.order}" }}" 
+            title="{{ section.params.title }}" 
+            :ratings-ids="{{ section.params.rating.ids | json_encode}}" 
+            :total-ratings="{{ section.params.visible_quantity }}"
+        ></top-ratings>
+    {% endif %}
+</rocket-emitter>

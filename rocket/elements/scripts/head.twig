@@ -1,14 +1,21 @@
 <link href="{{ pageConfig.data.theme.params.fonts_texts_family | font_link }}" rel="stylesheet" media="screen" async>
 <link href="{{ pageConfig.data.theme.params.fonts_titles_family | font_link }}" rel="stylesheet" media="screen" async>
 
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PNCZP452');</script>
+<script>
+	(function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+        var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-PNCZP452');
+</script>
 
- <script>
-    window.merchant = {{ merchantData | json_encode | raw }}
+<script>
+	window.merchant = {{ merchantData | json_encode | raw }}
     window.themeConfig = {{ pageConfig.data | json_encode | raw }}
     window.Yampi = {
         "api_domain": "{{ yampi_api_url }}",
@@ -27,8 +34,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             "zipcode": '{{ zipcode }}',
             "customer": {
                 "name": '{{ customer_name }}',
-                "email": '{{ customer_email }}',
-            },
+                "email": '{{ customer_email }}'
+            }
         },
         "mixpanel": {
             "key": '{{ mixpanel_key }}'
@@ -59,11 +66,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="{{ "/css/themes/rocket-#{page}.css" | components_url }}" media="screen">
 <link rel="stylesheet" href="{{ "/css/themes/rocket-#{page}-mobile.css" | components_url }}" media="screen and (max-width: 700px)">
 <link rel="stylesheet" href="{{'/css/themes/rocket-mobile.css' | components_url }}" media="screen and (max-width: 700px)">
-<link rel="preload" href="{{ '/css/global.css' | components_url }}" as="style" />
 
-<style>
-    {{ pageConfig.data.theme.params.custom_css | raw }}
-</style>
+<style> {{ pageConfig.data.theme.params.custom_css | raw }}</style>
 
 {% include 'elements/scripts/services/criteo.twig' %}
 {% include 'elements/scripts/services/google-analytics.twig' %}
@@ -72,3 +76,4 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 {% include 'elements/scripts/services/rich-snippets.twig' %}
 {% include 'elements/scripts/services/script.twig' %}
 {% include 'elements/scripts/services/ana.twig' %}
+{% include 'elements/scripts/services/websocket.twig' %}

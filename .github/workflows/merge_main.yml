@@ -1,0 +1,29 @@
+name: Replace Sandbox Text on Merge to Main
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+
+jobs:
+  replace-text:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Replace text
+        run: |
+          grep -rl 'yampi-templates-sandbox' . | xargs sed -i 's/yampi-templates-sandbox/yampi-templates-main/g'
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add .
+          git diff --cached --quiet || git commit -m "chore: auto replace yampi-templates-sandbox with yampi-templates-main"
+          git push

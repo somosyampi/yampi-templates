@@ -1,5 +1,5 @@
 <template>
-    <transition name="fadeHeight">
+    <Transition name="fadeHeight">
         <div
             v-if="showSearchBar"
         >
@@ -29,7 +29,7 @@
                 </span>
             </form>
         </div>
-    </transition>
+    </Transition>
 </template>
 
 <script>

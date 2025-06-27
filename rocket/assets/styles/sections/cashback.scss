@@ -1,0 +1,27 @@
+.cashback {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    &.align-left {
+        justify-content: start;
+    }
+    &.align-center {
+        justify-content: center;
+    }
+
+    .cashback-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .cashback-text {
+        color: var(--cashback-text-color);
+        font-size: 14px;
+        font-weight: var(--font-bold);
+
+        .green {
+            color: var(--green-color-contrast);
+        }
+    }
+}

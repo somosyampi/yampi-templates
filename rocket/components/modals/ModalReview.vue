@@ -1,5 +1,5 @@
 <template>
-    <modal
+    <Modal
         ref="reviewBaseModal"
         name="review"
         title="Avalie o produto"
@@ -17,7 +17,7 @@
                 v-for="index in times(5)"
                 :key="index"
                 class="icon"
-                :class="`icon-star-${index < form.rating ? 'gold' : 'grey'}`"
+                :class="`icon-star-${index < form.rating ? 'dynamic' : 'grey'}`"
                 @click="form.rating = index + 1"
             />
 
@@ -70,7 +70,7 @@
 
             <ErrorText :text="getError('message')" />
 
-            <image-selector
+            <ImageSelector
                 ref="ImageUploader"
                 amount="3"
                 :images-urls="form.images"
@@ -84,31 +84,34 @@
                 • Não publicaremos termos ofensivos ou de baixo calão.
             </div>
 
-            <div v-if="showError" class="alert -red">
+            <div
+                v-if="showError"
+                class="alert -red"
+            >
                 <b>Opa! Você está enviando muitas avaliações seguidas.</b><br>
                 Aguarde 1 minuto para enviar mais.
             </div>
         </form>
 
         <template slot="footer">
-            <loader-button
+            <LoaderButton
                 class="btn -block btn-secundary"
                 :sending="sending"
                 :disabled="uploading"
                 @click="submit"
             >
                 Enviar avaliação
-            </loader-button>
+            </LoaderButton>
         </template>
-    </modal>
+    </Modal>
 </template>
 
 <script>
 import { mapGetters } from '~/vuex';
+import _ from '~/lodash';
 import rocket from '@/modules/axios/rocket';
 import errorsMixin from '@/mixins/errors';
 import trackingByApi from '@/mixins/tracking/api';
-import _ from '~/lodash';
 
 export default {
     name: 'ModalReview',

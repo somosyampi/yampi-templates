@@ -8,6 +8,24 @@
         &:first-child {
             margin: 10.5px 0 21px 0;
         }
+
+        &.--is-freebie {
+            border: 1px dashed #d0d0d0;
+            border-radius: 4px;
+            padding: 12px;
+            background-color: var(--background-color);
+        }
+    }
+
+    &__freebie--tag {
+        border: 1px solid #3fc583;
+        padding: 4px;
+        border-radius: 4px;
+        color: #3fc583;
+        display: inline-block;
+        margin-bottom: 6px;
+        font-size: 12px;
+        line-height: 11px;
     }
 
     &__container--combo {
@@ -46,7 +64,7 @@
         word-break: break-word;
         font-size: var(--font-12);
         line-height: calc(var(--font-12) + 1);
-        color: #222222;
+        color: var(--black-dark-color-contrast);
         margin: 0 0 3px;
         padding: 0 24px 0 0;
     }
@@ -57,13 +75,13 @@
         font-size: var(--font-12);
         line-height: 14px;
         text-transform: uppercase;
-        color: var(--black-light);
+        color: var(--black-light-color-contrast);
     }
 
     &__text--product-extra {
         font-size: var(--font-12);
         line-height: 14px;
-        color: var(--black-medium);
+        color: var(--black-medium-color-contrast);
         overflow: hidden;
         word-break: break-all;
         padding: 0px 5px 0 0;
@@ -73,7 +91,7 @@
     &__text--sku {
         font-size: var(--font-12);
         line-height: 14px;
-        color: var(--black-medium);
+        color: var(--black-medium-color-contrast);
         list-style-type: disc;
         padding-inline-start: 0ch;
         margin: 0 0 0 16px;
@@ -85,7 +103,7 @@
         font-size: var(--font-12);
         line-height: 14px;
         text-transform: uppercase;
-        color: var(--black-medium);
+        color: var(--black-medium-color-contrast);
         margin: 2px 0 1px;
         display: inline-block;
         overflow: hidden;
@@ -98,7 +116,7 @@
         line-height: 14px;
         text-transform: uppercase;
         text-align: right;
-        color: var(--black-dark);
+        color: var(--black-dark-color-contrast);
     }
 
     &__text--quantity {
@@ -106,7 +124,7 @@
         font-size: var(--font-12);
         line-height: 14px;
         text-transform: uppercase;
-        color: var(--black-light);
+        color: var(--black-light-color-contrast);
         margin: 6px 10px 10px 0;
         display: inline-block;
     }
@@ -122,7 +140,7 @@
         font-weight: var(--font-regular);
         font-size: var(--font-11);
         text-decoration-line: line-through;
-        color: var(--black-light);
+        color: var(--black-light-color-contrast);
     }
 
     &__text--error {

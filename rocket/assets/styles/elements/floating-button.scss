@@ -10,8 +10,8 @@
     width: 100%;
     bottom: 0px;
     right: 0px;
-    background-color: var(--white);
-    color: var(--black-dark);
+    background-color: var(--background-color);
+    color: var(--black-dark-color-contrast);
     z-index: 4;
     box-shadow: 0px -4px 20px rgba(0, 0, 0, 0.05);
 
@@ -28,7 +28,7 @@
             font-weight: var(--font-bold);
 
             &-discount {
-                color: var(--black-light);
+                color: var(--black-light-color-contrast);
                 font-weight: var(--font-regular);
                 font-size: var(--font-12);
                 text-decoration: line-through;
@@ -37,7 +37,7 @@
 
         .installments {
             font-size: var(--font-12);
-            color: var(--black-light);
+            color: var(--black-light-color-contrast);
             font-weight: var(--font-medium);
 
             span.installment-price {

@@ -73,7 +73,7 @@
 
     &-modal {
         &-primary {
-            @include base-theme-button(45px, 169px, var(--front-end-white));
+            @include base-theme-button(45px, 169px, var(--white));
             background-color: var(--black-medium);
             border-color: var(--black-medium);
             margin: 0px 6px;
@@ -87,16 +87,16 @@
         }
         &-secundary {
             @include base-theme-button(45px, 107px, var(--black-medium));
-            background-color: var(--front-end-white);
-            border: 0px solid var(--front-end-white);
+            background-color: var(--white);
+            border: 0px solid var(--white);
             margin: 0px 6px;
             @include sm {
                 width: 103px;
             }
 
             &:hover {
-                border: 0px solid var(--front-end-f5f5f5);
-                background-color: var(--front-end-f5f5f5);
+                border: 0px solid var(--white-smoke);
+                background-color: var(--white-smoke);
             }
         }
     }

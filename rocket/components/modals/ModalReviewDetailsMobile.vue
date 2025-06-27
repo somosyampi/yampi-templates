@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <images-slider
+        <ImagesSlider
             v-if="show"
             ref="imagesSlider"
             :images="review.photos.data"

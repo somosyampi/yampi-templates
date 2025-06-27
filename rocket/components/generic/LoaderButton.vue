@@ -7,7 +7,11 @@
     >
         <slot>{{ title }}</slot>
         <svg viewBox="0 0 36 8">
-            <circle cx="4" cy="4" r="4">
+            <circle
+                cx="4"
+                cy="4"
+                r="4"
+            >
                 <animate
                     attributeName="opacity"
                     dur="1s"
@@ -16,7 +20,11 @@
                     begin=".1"
                 />
             </circle>
-            <circle cx="18" cy="4" r="4">
+            <circle
+                cx="18"
+                cy="4"
+                r="4"
+            >
                 <animate
                     attributeName="opacity"
                     dur="1s"
@@ -25,7 +33,11 @@
                     begin=".2"
                 />
             </circle>
-            <circle cx="32" cy="4" r="4">
+            <circle
+                cx="32"
+                cy="4"
+                r="4"
+            >
                 <animate
                     attributeName="opacity"
                     dur="1s"
@@ -40,7 +52,7 @@
 
 <script>
 import { mapMutations } from '~/vuex';
-import buttonsMixin from '@/mixins/buttons.js';
+import buttonsMixin from '@/mixins/buttons';
 
 export default {
     name: 'LoaderButton',
@@ -70,12 +82,11 @@ export default {
     },
 
     watch: {
-        'scrollPos.y'(newVal) {
+        'scrollPos.y': function (newVal) {
             if (!this.listenPosition) return;
 
             const limInf = newVal + this.height > this.$el.offsetTop;
-            const limSup =
-                newVal + this.height < this.$el.offsetTop + this.height;
+            const limSup = newVal + this.height < this.$el.offsetTop + this.height;
 
             if (limInf && limSup) {
                 this.PUSH({ queue: 'buttons', itemId: this._uid });

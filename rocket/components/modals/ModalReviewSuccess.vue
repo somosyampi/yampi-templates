@@ -1,17 +1,22 @@
 <template>
-    <modal
+    <Modal
         ref="reviewBaseModal"
         name="review-success"
     >
-        <i class="icon icon-success"></i>
+        <i class="icon icon-success" />
 
         <div class="theme-title modal-success-title">
             Avaliação enviada<br>
             com sucesso!
         </div>
 
-        <button class="btn btn-secundary -success" @click="closeModal">Fechar</button>
-    </modal>
+        <button
+            class="btn btn-secundary -success"
+            @click="closeModal"
+        >
+            Fechar
+        </button>
+    </Modal>
 </template>
 
 <script>
@@ -21,12 +26,12 @@ export default {
 
     methods: {
         showModal() {
-            this.$refs['reviewBaseModal'].showModal();
+            this.$refs.reviewBaseModal.showModal();
         },
 
         closeModal() {
-            this.$refs['reviewBaseModal'].closeModal();
-        }
-    }
-}
+            this.$refs.reviewBaseModal.closeModal();
+        },
+    },
+};
 </script>

@@ -3,13 +3,13 @@
         v-lazyload="lazyload"
         :src="
             lazyload
-                ? 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
+                ? placeholderImg
                 : imgSrc
         "
         :data-src="lazyload ? imgSrc : null"
         v-bind="$attrs"
-        width="auto"
-        height="auto"
+        :width="width"
+        :height="height"
         :onerror="handleError()"
         @load="handleLoad"
     >
@@ -47,12 +47,30 @@ export default {
             type: Boolean,
             default: false,
         },
+
+        placeholderWidth: {
+            type: Number,
+            default: 0,
+        },
+
+        placeholderHeight: {
+            type: Number,
+            default: 0,
+        },
+
+        width: {
+            type: [Number, String],
+            default: 'auto',
+        },
+
+        height: {
+            type: [Number, String],
+            default: 'auto',
+        },
     },
 
     data() {
         return {
-            width: 0,
-            height: 0,
             uid: uuidv4(),
         };
     },
@@ -70,7 +88,16 @@ export default {
 
             return this.src;
         },
+
+        placeholderImg() {
+            if (this.placeholderWidth === 0 || this.placeholderHeight === 0) {
+                return 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+            }
+
+            return `data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20${this.placeholderWidth}%20${this.placeholderHeight}%22%3E%3C%2Fsvg%3E`;
+        },
     },
+
     mounted() {
         if (this.listInStore) {
             const vm = this;

@@ -10,9 +10,10 @@
             <linearGradient :id="`half_grad-${fillId}`">
                 <stop
                     :offset="filledPercentage"
-                    stop-color="#FFC01E"
+                    :stop-color="themeStyle.grids_review_average_star_color"
                 />
                 <stop
+                    class="fixed-color"
                     :offset="filledPercentage"
                     stop-color="rgba(153, 153, 153, .3)"
                     stop-opacity="1"
@@ -27,6 +28,8 @@
 </template>
 
 <script>
+import { mapGetters } from '~/vuex';
+
 export default {
     name: 'FilledStar',
 
@@ -35,18 +38,25 @@ export default {
             type: [Number, String],
             default: 1,
         },
+
         width: {
             type: [Number, String],
             default: 14,
         },
+
         height: {
             type: [Number, String],
             default: 13,
         },
+
         filledPercentage: {
             type: String,
             required: true,
         },
+    },
+
+    computed: {
+        ...mapGetters('theme', ['themeStyle']),
     },
 };
 </script>

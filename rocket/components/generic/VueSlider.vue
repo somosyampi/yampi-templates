@@ -38,18 +38,22 @@ export default {
             type: Number,
             default: 0,
         },
+
         max: {
             type: Number,
             default: 100,
         },
+
         step: {
             type: Number,
             default: 1,
         },
+
         value: {
             type: Array,
             default: () => [],
         },
+
         height: {
             type: Number,
             default: 5,

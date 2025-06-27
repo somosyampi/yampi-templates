@@ -2,10 +2,29 @@
 
 <style>
     :root {
-        /* Fixed variables */
         --container-max-width: 1200px;
         --box-product-max-width: 275px;
-        --default-background-color: #F5F5F5;
+
+        {% if params.show_dark_mode == 'true' %}
+            {% set defaultColorGeneralBg = '#000000' %}
+            --background-color: #000000;
+        {% else %}
+            {% set defaultColorGeneralBg = params.color_general_background | upper | default('#FFFFFF') %}
+            --background-color: {{ params.color_general_background | default('#FFFFFF') }};
+        {% endif %}
+
+        {# checks if is a light gray color until #CCC #}
+        {% set isLightBg = is_gray(defaultColorGeneralBg) and relative_luminance(defaultColorGeneralBg) | round(1) >= 0.7 %}
+    
+        {% set defaultBackgroundOpacity = isLightBg ? 'FF' : '33' %}
+        {% set inputsBackgroundOpacity = isLightBg ? 'FF' : 'B3' %}
+
+        {% if isLightBg and defaultColorGeneralBg != '#FFFFFF' %}
+            --default-background-color: {{ '#FFFFFF' ~ defaultBackgroundOpacity }};
+        {% else %}
+            --default-background-color: {{ '#F5F5F5' ~ defaultBackgroundOpacity }};
+        {% endif %}
+
         --default-opacity: .8;
         --modal-transition-time: .5s;
 
@@ -13,8 +32,6 @@
         --light-error-color: #FEF7F7;
         --light-error-color-rgb: 254, 247, 247;
 
-        --front-end-white: #FFF;
-        --front-end-f5f5f5: #f5f5f5;
         --pink-regular: #fa085b;
 
         --black-dark: #222222;
@@ -22,11 +39,59 @@
         --error-color-rgb: 229, 15, 56;
         --black-medium: #666666;
         --black-light: #999999;
+        --black-light-30: #9999994D;
         --black-lightest: #E5E5E5;
+
+        --neutral-color-low-dark: #56545e;
+        --neutral-color-low-pure: #141316;
+        --charcoal: #282829;
+
         --green: #00AE31;
         --white: #FFFFFF;
+        --white-smoke: #F5F5F5;
+        --categories-filter-tag-background: {{ '#F5F5F5' ~ inputsBackgroundOpacity }};
+        --product-not-found-alert: {{ '#FFF7E0' ~ inputsBackgroundOpacity }};
+        --product-not-found-alert-border: {{ '#C29100' ~ inputsBackgroundOpacity }};
+        --input-background: {{ '#FFFFFF' ~ inputsBackgroundOpacity }};
+        --section-slide-splide-arrow-bg-color: {{ '#F5F5F5' ~ inputsBackgroundOpacity }};
+        --section-slide-splide-arrow-bg-color-disabled: #F5F5F54D;
+        --divisior-default-color: {{ '#E5E5E5' ~ defaultBackgroundOpacity }};
+        --error-color-background: {{ '#FFEBEF' ~ inputsBackgroundOpacity }};
 
-        /* Dinamic variables */
+        --card-general-background-color: {{ defaultColorGeneralBg == '#FFFFFF' ? '#FFFFFF' : 'var(--default-background-color)' }};
+        --product-card-smoky-background: {{ '#F5F5F5' ~ defaultBackgroundOpacity }};
+        --product-card-background: {{ '#FFFFFF' ~ defaultBackgroundOpacity }};
+        --cookies-warning-border-color: {{ '#FFFFFF' ~ defaultBackgroundOpacity }};
+
+
+        {% set contrastingToBlackLight = (defaultColorGeneralBg == '#FFFFFF') ? '#999999' : '#282829' %}
+
+        --black-light-color-contrast: {{ get_contrasting_color(defaultColorGeneralBg, contrastingToBlackLight, '#E5E5E5') }};
+        --black-lightest-color-contrast: {{ get_contrasting_color(defaultColorGeneralBg, '#E5E5E5', '#F5F5F5') }};
+        --black-medium-color-contrast: {{ get_contrasting_color(defaultColorGeneralBg, '#666666', '#F5F5F5') }};
+        --black-dark-color-contrast: {{ get_contrasting_color(defaultColorGeneralBg, '#222222', '#E5E5E5') }};
+        --green-color-contrast: {{ get_contrasting_color(defaultColorGeneralBg, '#00AE31', '#FFFFFF') }};
+
+        --review-start-stop-color: {{ get_contrasting_color(defaultColorGeneralBg, '#9999994D', '#E5E5E5') }};
+
+        --breadcrumbs-color-contrast: {{ get_contrasting_color(defaultColorGeneralBg, '#222222', '#E5E5E5') }};
+        --breadcrumbs-active-color-contrast: {{ get_contrasting_color(defaultColorGeneralBg, contrastingToBlackLight, '#FFFFFF') }};
+        --product-reviews-tab-color-contrast: {{ get_contrasting_color(defaultColorGeneralBg, '#222222', '#F5F5F5') }};
+        --cashback-text-color: {{ get_contrasting_color(defaultColorGeneralBg, '#56545e', '#FFFFFF') }};
+
+        --buy-together-total-value: {{ get_contrasting_color(defaultColorGeneralBg, contrastingToBlackLight, '#F5F5F5') }};
+        --splide-pagination-color-contrast: {{ get_contrasting_color(defaultColorGeneralBg, contrastingToBlackLight, '#F5F5F5') }};
+        --neutral-color-low-dark-color-contrast: {{ get_contrasting_color(defaultColorGeneralBg, '#56545E', '#F5F5F5') }};
+        --section-title-color: {{ get_contrasting_color(defaultColorGeneralBg, '#56545E', '#FFFFFF') }};
+        --product-title-color: {{ get_contrasting_color(defaultColorGeneralBg, '#222222', '#FFFFFF') }};
+        
+        --product-description-color: {{ get_contrasting_color(defaultColorGeneralBg, '#666666', '#F5F5F5') }};
+        --top-rating-message-color: {{ get_contrasting_color(defaultColorGeneralBg, '#666666', '#F5F5F5') }};
+        --header-dropdown-color: {{ get_contrasting_color(defaultColorGeneralBg, '#222222', '#F5F5F5') }};
+        --input-border-color: {{ '#E5E5E5' ~ defaultBackgroundOpacity }};
+
+        --background-contrasting-color: {{ get_contrasting_color(defaultColorGeneralBg, '#FFFFFF', '#000000') }};
+
         --color-general-primary: {{ params.color_general_primary }};
         --color-general-secundary: {{ params.color_general_secundary }};
 
@@ -54,9 +119,47 @@
         --theme-border-radius: {{ type_border_radius(params.buttons_general_format) }};
         --slides-border-radius: {{ type_border_radius_slide(params.buttons_general_format) }};
 
-        --label-radius: {{ type_border_radius(params.grids_label_format) }};
+        --product-name-size: {{ params.grids_product_name_size | default('14px') }};
+        --product-name-color: {{ params.grids_product_name_color | default('#000000') }};
 
-        /* Font size with base 14px */
+        --product-price-size: {{ params.grids_product_price_size | default('14px') }};
+        --product-price-font-weight: {{ params.grids_product_price_bold | default(false) ? 700 : 500 }};
+        --product-price-color: {{ params.grids_product_prices_color | default('custom') != 'primary' ? params.grids_product_price_color | default('#000000') : params.color_general_primary | default('#705BC2') }};
+        --product-old-price-color: {{ params.grids_product_old_price_color | default('#000000') }};
+
+        --product-installment-price-highlight-font-weight : {{ params.grids_product_installment_price_highlight | default(false) ? 700 : 500 }};
+        --product-installment-price-highlight-color  : {{ params.grids_product_installment_price_highlight | default(false) ? params.color_general_primary : 'var(--black-medium-color-contrast)' }};
+
+        --add-to-cart-button-color: {{ params.grids_add_to_cart_button_color | default('#FFFFFF') }};
+
+        {% set addToCartIconTextButtonColorMapping = {
+            'primary': {
+                'button': params.color_btn_primary_background,
+                'text': 'var(--color-btn-primary-text)'
+            },
+            'secondary': {
+                'button': params.color_btn_secundary_background,
+                'text': 'var(--color-btn-secundary-text)'
+            },
+            'custom': {
+                'button': params.grids_add_to_cart_icon_text_button_color | default('#282829'),
+                'text': params.grids_add_to_cart_icon_text_button_text_color | default('#282829')
+            }
+        } %}
+
+        {% set addToCartIconTextButtonColor = addToCartIconTextButtonColorMapping[params.grids_quickbuy_prices_color].button %}
+        {% set addToCartIconTextButtonTextColor = addToCartIconTextButtonColorMapping[params.grids_quickbuy_prices_color].text %}
+
+        --add-to-cart-icon-text-button-color: {{ params.grids_add_to_cart_icon_text_button_border_style | default(false) ? 'transparent' : addToCartIconTextButtonColor }};
+        --add-to-cart-icon-text-button-border-color: {{ addToCartIconTextButtonColor }};
+        --add-to-cart-icon-text-button-text-color: {{ addToCartIconTextButtonTextColor }};
+        --add-to-cart-icon-text-button-width: {{ params.grids_add_to_cart_icon_text_button_full_width | default(false) ? '100%' : 'auto' }};
+
+        --review-average-star-color: {{ params.grids_review_average_star_color | default('#FFC01E') }};
+
+        --brand-name-color: {{ params.grids_brand_name_color | default('#94929E') }};
+        --brand-name-text-case: {{ params.grids_brand_name_uppercase | default(false) ? 'uppercase' : 'initial' }};
+
         --font-10: .7143rem;
         --font-11: .7857rem;
         --font-12: .85rem;
@@ -76,7 +179,6 @@
         --font-30: 2.1428rem;
         --font-48: 3.4286rem;
 
-        /* Font weights */
         --font-regular: {{ font_weight(params.fonts_texts_family, 'regular') }};
         --font-medium: {{ font_weight(params.fonts_texts_family, 'medium') }};
         --font-bold: {{ font_weight(params.fonts_texts_family, 'bold') }};

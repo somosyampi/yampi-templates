@@ -1,14 +1,14 @@
 @import "settings/_index";
-@import "./functions";
+@import "functions";
 @import "modal";
 @import "dropdown";
 @import "typographic";
 @import "../elements/menus/category-subcategory";
 @import "mixins/_index";
 @import "spacer";
-@import "./mixins/buttons";
-@import "./mixins/_breakpoints";
-@import "./mixins/grid";
+@import "mixins/buttons";
+@import "mixins/_breakpoints";
+@import "mixins/grid";
 @import "icons";
 @import "../sections/header";
 @import "buttons";
@@ -40,6 +40,10 @@
 @import "../sections/categories-highlight";
 @import "../elements/rocket-emitter";
 @import "../sections/text-button-section";
+@import "../sections/text-button-2-banners";
+@import "../sections/grid-collection";
+@import "../sections/cashback";
+@import "contrasted-icons";
 
 :root {
     --flag-color: #333333;
@@ -84,6 +88,7 @@
 }
 
 a.no-action {
+
     &,
     &:hover {
         cursor: default;
@@ -129,7 +134,7 @@ a.no-action {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: var(--default-background-color);
+    background-color: var(--background-contrasting-color);
     z-index: 1;
     display: flex;
     justify-content: center;
@@ -173,9 +178,10 @@ body {
     font-family: var(--fonts-texts-family);
     margin: 0;
     padding: 0;
-    color: var(--black-dark);
+    color: var(--black-dark-color-contrast);
     font-weight: var(--font-medium);
     overflow-x: hidden;
+    background-color: var(--background-color);
 
     @media screen and (min-width: 701px) {
         overflow-x: auto;
@@ -251,7 +257,9 @@ hr {
 }
 
 div
-    > section:not(.main-banner):not(.category-content):not(.main-product-content):not(.section-pages):not(.section-header) {
+    > section:not(.main-banner):not(.category-content):not(
+        .main-product-content
+    ):not(.section-pages):not(.section-header) {
     margin-top: 80px;
 }
 
@@ -288,7 +296,7 @@ div
     display: inline-block;
     padding: 4px 5px;
     margin: 3px 3px 0 0;
-    border-radius: var(--label-radius);
+    border-radius: var(--theme-border-radius);
     color: var(--flag-color);
     background-color: var(--flag-bg-color);
     font-size: var(--font-11);
@@ -338,13 +346,13 @@ div
 
     &.-yellow {
         color: #c29100;
-        background-color: #fff7e0;
+        background-color: var(--product-not-found-alert);
     }
 
     &.-red {
         color: var(--error-color);
         font-size: var(--font-14);
-        background-color: #ffebef;
+        background-color: var(--error-color-background);
     }
 }
 
@@ -422,16 +430,22 @@ div
             display: inline-block;
             margin-bottom: 6px;
             font-size: var(--font-12);
-            color: var(--black-medium);
+            color: var(--black-medium-color-contrast);
             text-transform: uppercase;
         }
 
         select {
             font-size: var(--font-13);
             color: var(--black-dark);
+            background-color: var(--white);
 
             &:not(:disabled):not(.error) {
-                border-color: var(--black-medium);
+                border-color: var(--black-medium-color-contrast);
+            }
+
+            &:disabled:not(.error) {
+                border-color: var(--black-medium-color-contrast);
+                background-color: var(--input-background);
             }
         }
     }
@@ -443,7 +457,7 @@ div
     }
 
     &-title {
-        color: var(--black-medium);
+        color: var(--black-medium-color-contrast);
         font-size: var(--font-12);
         font-weight: var(--font-medium);
         margin-bottom: 7px;
@@ -468,13 +482,13 @@ div
         font-size: 12px;
 
         &__value {
-            color: #222;
+            color: var(--black-dark-color-contrast);
             font-weight: bold;
         }
     }
 
     .customization-total {
-        color: #222;
+        color: var(--black-dark-color-contrast);
         font-size: 14px;
     }
 
@@ -520,7 +534,7 @@ div
     white-space: nowrap;
     text-align: center;
     font-size: 30px;
-    color: var(--black-dark);
+    color: var(--black-dark-color-contrast);
     font-family: var(--fonts-titles-family);
     font-weight: var(--fonts-titles-weight);
     text-transform: var(--fonts-titles-uppercase);

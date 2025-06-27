@@ -1,67 +1,92 @@
-import i from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-import o from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/product.js";
-import { createPriceObjects as s } from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/mixins/helpers.js";
-function d(t, e, r, _, P, v, y, b) {
-  var a = typeof t == "function" ? t.options : t;
-  return e && (a.render = e, a.staticRenderFns = r, a._compiled = !0), {
-    exports: t,
-    options: a
-  };
+import s from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-main/rocket-assets/dist/vendor/lodash.js";
+import P from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-main/rocket-assets/dist/vendor/mixins/product.js";
+import { createPriceObjects as b } from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-main/rocket-assets/dist/vendor/mixins/helpers.js";
+function k(i, t, o, _, a, d, u, h) {
+    var e = typeof i == "function" ? i.options : i;
+    t && (e.render = t, e.staticRenderFns = o, e._compiled = !0), _ && (e.functional = !0), d && (e._scopeId = "data-v-" + d);
+    var n;
+    if (u ? (n = function (r) {
+        r = r || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !r && typeof __VUE_SSR_CONTEXT__ < "u" && (r = __VUE_SSR_CONTEXT__), a && a.call(this, r), r && r._registeredComponents && r._registeredComponents.add(u);
+    }, e._ssrRegister = n) : a && (n = h ? function () {
+        a.call(
+            this,
+            (e.functional ? this.parent : this).$root.$options.shadowRoot
+        );
+    } : a), n)
+        if (e.functional) {
+            e._injectStyles = n;
+            var m = e.render;
+            e.render = function (v, p) {
+                return n.call(p), m(v, p);
+            };
+        } else {
+            var f = e.beforeCreate;
+            e.beforeCreate = f ? [].concat(f, n) : [n];
+        }
+    return {
+        exports: i,
+        options: e
+    };
 }
-const l = {
-  name: "ProductInfo",
-  mixins: [
-    o
-  ],
-  props: {
-    selectedPrice: {
-      type: String,
-      default: "promotional"
+const g = {
+    name: "ProductInfo",
+    mixins: [
+        P
+    ],
+    props: {
+        selectedPrice: {
+            type: String,
+            default: "promotional"
+        }
+    },
+    computed: {
+        skuText() {
+            return this.validSku ? this.validSku.sku : this.validProduct ? this.validProduct.sku.split(",", 1)[0] : "";
+        },
+        price() {
+            const i = this.validSku || this.validProduct;
+            return s.get(i, "prices.data", {});
+        },
+        priceObject() {
+            return s.get(this.price, this.selectedPriceMeta.path, {});
+        },
+        currentFormattedPrice() {
+            return Object.keys(this.priceObject).length ? `${s.get(this.price, this.selectedPriceMeta.path, this.firstSku[0].prices.data.price_formated)}` : `${s.get(this.price, "price_formated", this.firstSku[0].prices.data.price_formated)}`;
+        },
+        selectedPriceText() {
+            return Object.keys(this.priceObject).length ? this.selectedPriceMeta.text : "";
+        },
+        selectedPriceMeta() {
+            return b({ basePath: "", pricePath: "price_formatted" })[this.selectedPrice];
+        },
+        availability() {
+            return s.get(this.validSku, "days_availability_formated");
+        }
     }
-  },
-  computed: {
-    skuText() {
-      return this.validSku ? this.validSku.sku : this.validProduct ? this.validProduct.sku.split(",", 1)[0] : "";
-    },
-    price() {
-      const t = this.validSku || this.validProduct;
-      return i.get(t, "prices.data", {});
-    },
-    priceObject() {
-      return i.get(this.price, this.selectedPriceMeta.path, {});
-    },
-    currentFormattedPrice() {
-      return Object.keys(this.priceObject).length ? `${i.get(this.price, this.selectedPriceMeta.path, this.firstSku[0].prices.data.price_formated)}` : `${i.get(this.price, "price_formated", this.firstSku[0].prices.data.price_formated)}`;
-    },
-    selectedPriceText() {
-      return Object.keys(this.priceObject).length ? this.selectedPriceMeta.text : "";
-    },
-    selectedPriceMeta() {
-      return s({ basePath: "", pricePath: "price_formatted" })[this.selectedPrice];
-    },
-    availability() {
-      return i.get(this.validSku, "days_availability_formated");
-    }
-  }
 };
-var u = function() {
-  var e = this, r = e._self._c;
-  return r("div", [e._t("default", null, { sku: e.skuText, availability: e.availability, warranty: e.validProduct.warranty, price: e.price, formattedPrice: e.currentFormattedPrice, priceTypeText: e.selectedPriceText }), r("AddToCart")], 2);
-}, p = [], f = /* @__PURE__ */ d(
-  l,
-  u,
-  p
+var y = function () {
+    var t = this, o = t._self._c;
+    return o("div", [t._t("default", null, { sku: t.skuText, availability: t.availability, warranty: t.validProduct.warranty, price: t.price, formattedPrice: t.currentFormattedPrice, priceTypeText: t.selectedPriceText }), o("AddToCart")], 2);
+}, T = [], C = /* @__PURE__ */ k(
+    g,
+    y,
+    T,
+    !1,
+    null,
+    null,
+    null,
+    null
 );
-const m = f.exports;
-function n(t) {
-  n.installed || (n.installed = !0, t.component("ProductInfo", m));
+const S = C.exports;
+function l(i) {
+    l.installed || (l.installed = !0, i.component("ProductInfo", S));
 }
-const h = {
-  install: n
+const O = {
+    install: l
 };
 let c = null;
 typeof window < "u" ? c = window.Vue : typeof global < "u" && (c = global.Vue);
-c && c.use(h);
+c && c.use(O);
 export {
-  m as default
+    S as default
 };

@@ -2,7 +2,10 @@
     <div class="main-product-inventory-countdown">
         <div class="quantity-left-text">
             Apenas
-            <span class="quantity-left" v-text="actual"></span>
+            <span
+                class="quantity-left"
+                v-text="actual"
+            />
             produtos
             <span class="inline-block">
                 em estoque
@@ -10,12 +13,15 @@
         </div>
 
         <div class="percentage-bar-holder">
-            <div class="percentage-bar" :style="barStyle"></div>
+            <div
+                class="percentage-bar"
+                :style="barStyle"
+            />
         </div>
 
         <div class="countdown flex -vcenter -hcenter">
             <span class="countdown-text">Oferta acaba em</span>
-            <Stopwatch class="countdown-timer"></Stopwatch>
+            <Stopwatch class="countdown-timer" />
         </div>
     </div>
 </template>
@@ -44,6 +50,10 @@ export default {
         },
     },
 
+    mounted() {
+        this.runCountdown();
+    },
+
     methods: {
         runCountdown() {
             const nextTimeout = (this.start - this.actual + 1) * this.timeout;
@@ -57,9 +67,5 @@ export default {
             }, nextTimeout);
         },
     },
-
-    mounted() {
-        this.runCountdown();
-    },
-}
+};
 </script>

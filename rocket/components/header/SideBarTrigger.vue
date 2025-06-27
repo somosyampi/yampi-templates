@@ -1,8 +1,18 @@
 <template>
-    <div :class="name + '-trigger-holder'" v-if="isMobile">
-        <div :class="name + '-trigger'" @click="openMenu">
-            <div class="over-background"  @mousedown="closeMenu" v-if="isActive"></div>
-            <slot></slot>
+    <div
+        v-if="isMobile"
+        :class="name + '-trigger-holder'"
+    >
+        <div
+            :class="name + '-trigger'"
+            @click="openMenu"
+        >
+            <div
+                v-if="isActive"
+                class="over-background"
+                @mousedown="closeMenu"
+            />
+            <slot />
         </div>
     </div>
 </template>
@@ -28,7 +38,19 @@ export default {
         name: {
             type: String,
             required: true,
-        }
+        },
+    },
+
+    data() {
+        return {
+            isActive: false,
+        };
+    },
+
+    computed: {
+        ...mapGetters('preview', [
+            'isIframe',
+        ]),
     },
 
     mounted() {
@@ -51,18 +73,6 @@ export default {
         });
     },
 
-    data() {
-        return {
-            isActive: false,
-        }
-    },
-
-    computed: {
-        ...mapGetters('preview', [
-            'isIframe',
-        ]),
-    },
-
     methods: {
         openMenu() {
             this.isActive = true;
@@ -79,6 +89,6 @@ export default {
 
             this.payload = this.parsePayload(data.data);
         },
-    }
+    },
 };
 </script>

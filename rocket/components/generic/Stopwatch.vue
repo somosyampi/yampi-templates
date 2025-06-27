@@ -1,5 +1,8 @@
 <template>
-    <span class="stopwatch" v-text="html"></span>
+    <span
+        class="stopwatch"
+        v-text="html"
+    />
 </template>
 
 <script>
@@ -8,18 +11,18 @@ import _ from '~/lodash';
 export default {
     name: 'Stopwatch',
 
-    mounted() {
-        this.loadCountdown();
-    },
-
     data: () => ({
         html: '',
     }),
 
+    mounted() {
+        this.loadCountdown();
+    },
+
     methods: {
         loadCountdown() {
             const now = new Date();
-            const hours =  _.padStart(23 - now.getHours(), 2, '0');
+            const hours = _.padStart(23 - now.getHours(), 2, '0');
             const minutes = _.padStart(59 - now.getMinutes(), 2, '0');
             const seconds = _.padStart(59 - now.getSeconds(), 2, '0');
 

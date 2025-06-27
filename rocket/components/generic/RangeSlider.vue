@@ -1,6 +1,6 @@
 <template>
     <div class="holder-price-slider">
-        <vue-slider
+        <VueSlider
             v-model="values"
             :min="min"
             :max="max"

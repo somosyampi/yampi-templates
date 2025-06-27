@@ -1,0 +1,1 @@
+import{normalizeComponent as n}from"./_plugin-vue2_normalizer.js";const t={};var e=function(){var c=this,r=c._self._c;return r("g",[r("circle",{attrs:{cx:"8",cy:"16",r:"2"}}),r("circle",{attrs:{cx:"16",cy:"16",r:"2"}}),r("circle",{attrs:{cx:"24",cy:"16",r:"2"}})])},s=[],l=n(t,e,s,!1,null,null,null,null);const a=l.exports;export{a as default};

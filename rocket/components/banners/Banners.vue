@@ -17,33 +17,31 @@
                         :key="banner.id"
                         ref="holderBanners"
                         class="banner"
+                        :class="{
+                            '--first': index === 0
+                        }"
                     >
                         <div
                             v-if="banner.stopwatch"
                             class="relative-banner relative"
-                            :class="{ container: section === 'main-banner' }"
+                            :class="{ container: sectionIsMainBanner }"
                         >
-                            <banner-stopwatch />
+                            <BannerStopwatch />
                         </div>
 
-                        <Banner-Product
-                            v-if="banner.type === 'product'"
-                            :product="banner.product.data"
-                            :is-mobile="isMobile"
-                        />
-
                         <div
-                            v-else
                             class="banner-image-holder"
                             :style="imageHolderStyle"
                         >
-                            <!-- @TODO: Add Thumbor -->
                             <CustomImage
                                 :src="getImage(banner)"
                                 :alt="'Banner ' + index"
                                 :thumbor-enabled="false"
                                 :class="{'-loading': !isPreview}"
                                 :lazyload="!isPreview"
+                                :width="banner.mobile_image ? '1200' : '333'"
+                                :height="banner.mobile_image ? '332' : '118'"
+                                v-bind="getDimensionPlaceHolderSectionMainBanner(banner)"
                             />
                         </div>
 
@@ -88,7 +86,7 @@ export default {
         },
 
         container: {
-            type: [Boolean, Number],
+            type: Boolean,
             default: true,
         },
 
@@ -119,12 +117,12 @@ export default {
         },
 
         dimensions: {
-            type: [Array, Object],
+            type: Object,
             default: () => ({}),
         },
 
         firstBanner: {
-            type: [Array, Object],
+            type: Object,
             default: null,
         },
 
@@ -204,6 +202,10 @@ export default {
 
             return height / width;
         },
+
+        sectionIsMainBanner() {
+            return this.section === 'main-banner';
+        },
     },
 
     watch: {
@@ -276,6 +278,34 @@ export default {
             return this.isMobile
                 ? banner.mobile_image_url || banner.image_url
                 : banner.image_url;
+        },
+
+        getDimensionPlaceHolderSectionMainBanner(banner) {
+            if (!this.sectionIsMainBanner) {
+                return null;
+            }
+
+            const dimensionTypes = ['width', 'height'];
+
+            const bannerDimensions = this.firstBanner?.id === banner.id
+                ? this.dimensions
+                : banner.dimensions;
+
+            const device = this.isMobile
+                ? bannerDimensions?.mobile
+                : bannerDimensions?.desktop;
+
+            const placeholderDimensions = {};
+
+            dimensionTypes.forEach(type => {
+                const dimension = device?.[type];
+
+                if (dimension) {
+                    placeholderDimensions[`placeholder-${type}`] = parseFloat(dimension);
+                }
+            });
+
+            return placeholderDimensions;
         },
 
         loadStaticBanners() {

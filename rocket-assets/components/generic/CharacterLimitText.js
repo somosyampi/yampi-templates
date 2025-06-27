@@ -1,11 +1,31 @@
-function l(t, e, r, m, _, p, h, v) {
-  var n = typeof t == "function" ? t.options : t;
-  return e && (n.render = e, n.staticRenderFns = r, n._compiled = !0), {
-    exports: t,
-    options: n
+function v(i, n, l, c, o, f, u, m) {
+  var e = typeof i == "function" ? i.options : i;
+  n && (e.render = n, e.staticRenderFns = l, e._compiled = !0), c && (e.functional = !0), f && (e._scopeId = "data-v-" + f);
+  var r;
+  if (u ? (r = function(t) {
+    t = t || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !t && typeof __VUE_SSR_CONTEXT__ < "u" && (t = __VUE_SSR_CONTEXT__), o && o.call(this, t), t && t._registeredComponents && t._registeredComponents.add(u);
+  }, e._ssrRegister = r) : o && (r = m ? function() {
+    o.call(
+      this,
+      (e.functional ? this.parent : this).$root.$options.shadowRoot
+    );
+  } : o), r)
+    if (e.functional) {
+      e._injectStyles = r;
+      var p = e.render;
+      e.render = function(h, d) {
+        return r.call(d), p(h, d);
+      };
+    } else {
+      var _ = e.beforeCreate;
+      e.beforeCreate = _ ? [].concat(_, r) : [r];
+    }
+  return {
+    exports: i,
+    options: e
   };
 }
-const a = {
+const C = {
   name: "CharacterLimitText",
   props: {
     limit: {
@@ -18,24 +38,29 @@ const a = {
     }
   }
 };
-var c = function() {
-  var e = this, r = e._self._c;
-  return r("div", { staticClass: "char-limit", class: { "near-limit": e.currentTextLength > e.limit - 50 } }, [e._v(" " + e._s(e.$tc("forms.character-limit", e.limit - e.currentTextLength)) + " ")]);
-}, u = [], s = /* @__PURE__ */ l(
-  a,
-  c,
-  u
+var T = function() {
+  var n = this, l = n._self._c;
+  return l("div", { staticClass: "char-limit", class: { "near-limit": n.currentTextLength > n.limit - 50 } }, [n._v(" " + n._s(n.$tc("forms.character-limit", n.limit - n.currentTextLength)) + " ")]);
+}, g = [], b = /* @__PURE__ */ v(
+  C,
+  T,
+  g,
+  !1,
+  null,
+  null,
+  null,
+  null
 );
-const d = s.exports;
-function o(t) {
-  o.installed || (o.installed = !0, t.component("CharacterLimitText", d));
+const $ = b.exports;
+function s(i) {
+  s.installed || (s.installed = !0, i.component("CharacterLimitText", $));
 }
-const f = {
-  install: o
+const R = {
+  install: s
 };
-let i = null;
-typeof window < "u" ? i = window.Vue : typeof global < "u" && (i = global.Vue);
-i && i.use(f);
+let a = null;
+typeof window < "u" ? a = window.Vue : typeof global < "u" && (a = global.Vue);
+a && a.use(R);
 export {
-  d as default
+  $ as default
 };

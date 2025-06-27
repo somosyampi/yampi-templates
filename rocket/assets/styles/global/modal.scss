@@ -4,7 +4,7 @@
     padding: 30px 40px;
     box-shadow: 0px 16px 50px rgba(34, 34, 34, 0.16);
     border-radius: var(--theme-border-radius);
-    background: #fff;
+    background: var(--background-color);
 
     &:not(.scrollable) {
         position: fixed;
@@ -48,6 +48,14 @@
             transition: opacity var(--modal-transition-time);
         }
     }
+
+    .btn-modal-secundary {
+        background-color: var(--background-color);
+
+        &:hover {
+            background-color: var(--background-color);
+        }
+    }
 }
 
 /* #region base modal */
@@ -62,21 +70,21 @@
         margin-bottom: 24px;
         font-size: 16px;
         line-height: 26.5px;
-        color: var(--black-medium);
+        color: var(--black-medium-color-contrast);
     }
 
     .select-title {
         margin-top: 4px;
         margin-bottom: 7px;
         font-size: var(--font-12);
-        color: var(--black-medium);
+        color: var(--black-medium-color-contrast);
     }
 
     .table-title {
         margin-top: 4px;
         margin-bottom: 12px;
         font-size: var(--font-14);
-        color: var(--black-medium);
+        color: var(--black-medium-color-contrast);
     }
 
     .close-modal {
@@ -106,7 +114,7 @@
     &-success-subtitle {
         line-height: 22px;
         font-size: 15px;
-        color: var(--black-light);
+        color: var(--black-light-color-contrast-color-contrast);
         margin-bottom: 28px;
     }
 }
@@ -185,7 +193,7 @@
 
     .disclaimer {
         font-size: 12px;
-        color: var(--black-light);
+        color: var(--black-light-color-contrast);
         margin-top: 16px;
         line-height: 17px;
 
@@ -208,7 +216,7 @@
         display: block;
         margin-top: 29px;
         margin-bottom: 33px;
-        color: var(--black-light);
+        color: var(--black-light-color-contrast);
     }
 
     .btn-clean {
@@ -220,7 +228,7 @@
         width: auto;
         border: 0;
         cursor: pointer;
-        border-top: solid 1px var(--black-lightest);
+        border-top: solid 1px var(--black-light-color-contrastest);
 
         .icon-select-arrow {
             margin-right: 10px;
@@ -301,7 +309,7 @@
         }
 
         .name {
-            color: var(--black-dark);
+            color: var(--black-dark-color-contrast);
             font-size: var(--font-14);
             line-height: 1.15;
             font-weight: var(--font-medium);
@@ -320,13 +328,13 @@
             margin-top: 3px;
 
             li {
-                color: var(--black-medium);
+                color: var(--black-medium-color-contrast);
                 font-size: var(--font-12);
                 line-height: 1.18;
                 font-weight: var(--font-medium);
 
                 &:before {
-                    background-color: var(--black-medium);
+                    background-color: var(--black-medium-color-contrast);
                     border-radius: 50%;
                     content: "";
                     display: inline-block;
@@ -371,10 +379,10 @@
         font-size: var(--font-12);
         line-height: 1;
         text-transform: uppercase;
-        color: var(--black-medium);
+        color: var(--black-medium-color-contrast);
     }
 
     hr {
-        border-color: var(--black-lightest);
+        border-color: var(--black-lightest-color-contrast);
     }
 }

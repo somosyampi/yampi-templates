@@ -39,6 +39,7 @@
             .filters {
                 transform: translate3d(0, 0, 0);
                 z-index: 11;
+                background-color: var(--background-color);
 
                 .btn-secundary {
                     padding-left: 0;
@@ -128,7 +129,9 @@
 
     .product-specifications .container + .container,
     section
-        + section:not(.main-banner):not(.category-content):not(.main-product-content):not(.section-pages) {
+        + section:not(.main-banner):not(.category-content):not(
+            .main-product-content
+        ):not(.section-pages) {
         margin-top: 50px;
     }
 
@@ -348,6 +351,10 @@
             }
         }
 
+        .dropdown.category-subcategory-menu .holder-categories {
+            background: transparent;
+        }
+
         &.-center {
             gap: 0;
             align-items: center;
@@ -373,7 +380,7 @@
                 text-align: left;
                 min-width: auto;
                 background-color: #fff;
-                color: var(--black-dark);
+                color: var(--black-dark-color-contrast);
                 padding: 24px 32px;
             }
         }
@@ -419,8 +426,8 @@
             width: 75%;
             max-width: 280px;
             height: 100%;
-            background-color: #fff;
-            color: var(--black-dark);
+            background-color: var(--background-color);
+            color: var(--header-dropdown-color);
             transform: translate3d(-100%, 0, 0);
             transition: transform 0.3s;
             top: 0;
@@ -499,7 +506,7 @@
                 }
 
                 svg {
-                    fill: var(--black-dark);
+                    fill: var(--black-dark-color-contrast);
                 }
             }
 
@@ -534,7 +541,7 @@
                 display: block !important;
 
                 a {
-                    color: var(--black-medium);
+                    color: var(--black-medium-color-contrast);
                     text-decoration: underline;
                     margin-bottom: 10px;
                 }
@@ -796,6 +803,18 @@
         }
     }
 
+    .box-product {
+        &.--flag-above-image {
+            .holder-image .holder-flags {
+                display: none;
+            }
+
+            .holder-info .holder-flags {
+                display: block;
+            }
+        }
+    }
+
     .product-old-price {
         width: 100%;
     }
@@ -996,7 +1015,7 @@
             display: none;
         }
 
-        .header-row.--left {
+        .header-row.--left:not(.categories) {
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
@@ -1012,6 +1031,10 @@
         .header-topbar {
             display: none;
         }
+    }
+
+    .alert {
+        margin: 0 16px;
     }
 }
 

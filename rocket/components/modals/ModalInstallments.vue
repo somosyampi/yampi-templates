@@ -1,5 +1,5 @@
 <template>
-    <modal
+    <Modal
         ref="installmentsBaseModal"
         name="installments"
         title="Parcelamento"
@@ -14,7 +14,7 @@
             <div class="select-title">
                 BANDEIRA
             </div>
-            <custom-select
+            <CustomSelect
                 :value="selectedAlias"
                 :icon-url="iconUrl"
                 @change="handleSelectCard"
@@ -25,10 +25,10 @@
                     :value="alias"
                     v-text="name"
                 />
-            </custom-select>
+            </CustomSelect>
         </div>
         <div>
-            <loader
+            <Loader
                 v-if="loading"
                 :height="50"
                 :margin="13"
@@ -61,12 +61,12 @@
                 </div>
             </div>
         </div>
-    </modal>
+    </Modal>
 </template>
 
 <script>
 import _ from '~/lodash';
-import BaseInstallments from '@/components/product/BaseInstallments.vue';
+import BaseInstallments from '@/components/product/installments/BaseInstallments.vue';
 
 export default {
     name: 'ModalInstallments',
@@ -124,6 +124,7 @@ export default {
                 this.selected = this.merchant.payments.filter(
                     payment => payment.alias === selectedCardAlias,
                 );
+
                 this.installments = await this.handleInstallments(
                     selectedCardAlias,
                 );

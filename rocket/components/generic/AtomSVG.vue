@@ -20,14 +20,17 @@ export default {
             type: String,
             required: true,
         },
+
         height: {
             type: String,
             required: true,
         },
+
         fill: {
             type: String,
             required: true,
         },
+
         customClass: {
             type: String,
             default: '',

@@ -1,18 +1,18 @@
 <template>
-   <div class="custom-checkbox relative">
+    <div class="custom-checkbox relative">
         <label :class="{'with-effect': color || image}">
             {{ text }}
             <input
-                type="checkbox"
                 v-model="checkedState"
+                type="checkbox"
                 @change="change"
             >
             <span
+                v-if="color || image"
                 class="effect-box"
                 :style="effectBoxStyle"
-                v-if="color || image"
-            ></span>
-            <span class="checkmark"></span>
+            />
+            <span class="checkmark" />
         </label>
     </div>
 </template>
@@ -24,32 +24,49 @@ export default {
     props: {
         name: {
             type: String,
-            default: ''
+            default: '',
         },
 
         id: {
             type: String,
-            default: ''
+            default: '',
         },
 
         text: {
             type: String,
-            default: ''
+            default: '',
         },
 
         checked: {
             type: Boolean,
-            default: false
+            default: false,
         },
 
         color: {
             type: String,
-            default: null
+            default: null,
         },
 
         image: {
             type: String,
-            default: null
+            default: null,
+        },
+    },
+
+    data: () => ({
+        checkedState: false,
+    }),
+
+    computed: {
+        effectBoxStyle() {
+            const backgroundImage = this.image
+                ? `url(${this.image})`
+                : null;
+
+            return {
+                backgroundImage,
+                backgroundColor: this.color,
+            };
         },
     },
 
@@ -59,23 +76,6 @@ export default {
             handler() {
                 this.checkedState = this.checked;
             },
-        },
-    },
-
-    data: () => ({
-        checkedState: false
-    }),
-
-    computed: {
-        effectBoxStyle() {
-            const backgroundImage = this.image 
-                ? `url(${this.image})` 
-                : null;
-
-            return {
-                backgroundImage,
-                backgroundColor: this.color,
-            };
         },
     },
 

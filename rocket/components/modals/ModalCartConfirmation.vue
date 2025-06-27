@@ -1,5 +1,5 @@
 <template>
-    <modal
+    <Modal
         ref="cartConfirmBaseModal"
         name="cart-confirm"
     >
@@ -26,7 +26,7 @@
             </p>
 
             <button
-                class="btn btn-primary flex -vcenter"
+                class="btn btn-primary"
                 @click="handleRedirectoToCart"
             >
                 <svg
@@ -53,7 +53,7 @@
             <SelectArrow class="icon icon-select-arrow -left" />
             Continuar comprando
         </div>
-    </modal>
+    </Modal>
 </template>
 
 <script>
@@ -72,6 +72,7 @@ export default {
             type: [String, undefined],
             default: () => undefined,
         },
+
         quantityAdded: {
             type: Number,
             default: 1,
@@ -92,26 +93,23 @@ export default {
         ]),
     },
 
-    data() {
-        return {
-            cartConfirmBaseModalRef: null,
-        };
-    },
-
     mounted() {
         eventBus.$on('addedToCart', this.showModal);
-        this.cartConfirmBaseModalRef = this.$refs.cartConfirmBaseModal;
     },
 
     methods: {
         ...mapActions('cart', ['redirectToCart']),
 
         showModal() {
-            this.cartConfirmBaseModalRef.showModal();
+            if (this.$refs.cartConfirmBaseModal) {
+                this.$refs.cartConfirmBaseModal.showModal();
+            }
         },
 
         closeModal() {
-            this.cartConfirmBaseModalRef.closeModal();
+            if (this.$refs.cartConfirmBaseModal) {
+                this.$refs.cartConfirmBaseModal.closeModal();
+            }
         },
 
         handleKeepBuying() {

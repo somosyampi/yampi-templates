@@ -1,11 +1,11 @@
 <template>
-    <rocket-emitter
+    <RocketEmitter
         emits="cart"
         label="Carrinho de compras"
         class="side-cart-emitter"
         @openCategory="handleDrawer"
     >
-        <transition
+        <Transition
             name="drawer-animation"
             @after-enter="afterEnter"
             @before-enter="beforeEnter"
@@ -28,8 +28,8 @@
                     </div>
                 </div>
             </div>
-        </transition>
-    </rocket-emitter>
+        </Transition>
+    </RocketEmitter>
 </template>
 
 <script>

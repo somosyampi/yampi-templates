@@ -1,0 +1,19 @@
+<rocket-emitter emits="text_button" label="Texto e botão" order={{ section.order }}>
+	<section class="section-text-button {{ " #{section.section_alias}-#{section.order}" }}">
+        <section-container
+            width-section="{{ section.params.width_section }}"
+            content-alignment="{{ section.params.content_alignment }}"
+            background-color="{{ section.params.background_color }}"
+            button-color="{{ section.params.button_color }}"
+            text-color="{{ section.params.text_color }}"
+        >
+            <div class="__header ellipsis-multiline">{{ section.params.title_text | raw }}</div>
+            <div class="__body ellipsis-multiline">{{ section.params.description_text | raw }}</div>
+            {% if section.params.show_button %}
+                <div class="__footer">
+                    <rocket-anchor href="{{ section.params.link_in_button | default('javascript:void(0)') }}" label="{{ section.params.text_in_button | default('CLIQUE PARA CONFERIR') }}" target-type="{{ section.params.link_in_button ? '_blank' : '_self' }}" custom-classes="rocket-button ellipsis-multiline"></rocket-anchor>
+                </div>
+            {% endif %}
+        </section-container>
+	</section>
+</rocket-emitter>

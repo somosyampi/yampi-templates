@@ -1,93 +1,118 @@
-import w from "https://images-dev.yampi.me/rocket-sandbox/b/01-dev/latest/dist/vendor/lodash.js";
-function p(n, e, i, s, f, o, a, d) {
-  var t = typeof n == "function" ? n.options : n;
-  return e && (t.render = e, t.staticRenderFns = i, t._compiled = !0), {
-    exports: n,
-    options: t
-  };
-}
-const h = {
-  name: "SmoothScroll",
-  props: {
-    elementId: {
-      type: String,
-      default: null
-    },
-    margin: {
-      type: Number,
-      default: 0
-    },
-    displayAt: {
-      type: Number,
-      default: 0
-    }
-  },
-  data() {
-    return {
-      canShow: !1
-    };
-  },
-  mounted() {
-    this.show();
-  },
-  methods: {
-    scroll(n) {
-      n.preventDefault();
-      let e = 0;
-      const i = 30, s = this.elementId ? document.getElementById(this.elementId) : document.body;
-      s && (e = Math.max(s.offsetTop - this.margin, 0));
-      let o = (e - window.scrollY) / i;
-      const a = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame, d = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
-      let t;
-      const m = () => {
-        window.scrollBy(0, o);
-        const r = o < 0, u = e - window.scrollY;
-        if (r && window.scrollY <= e || !r && window.scrollY >= e)
-          return d(t);
-        o = r ? Math.max(o, u) : Math.min(o, u), t = a(m);
-      };
-      t = a(m);
-    },
-    show() {
-      if (!this.displayAt) {
-        this.canShow = !0;
-        return;
-      }
-      const n = () => {
-        if (window.scrollY >= this.displayAt) {
-          this.canShow = !0;
-          return;
+import _ from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-main/rocket-assets/dist/vendor/lodash.js";
+function v(t, n, r, u, l, s, a, c) {
+    var e = typeof t == "function" ? t.options : t;
+    n && (e.render = n, e.staticRenderFns = r, e._compiled = !0), u && (e.functional = !0), s && (e._scopeId = "data-v-" + s);
+    var o;
+    if (a ? (o = function (i) {
+        i = i || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !i && typeof __VUE_SSR_CONTEXT__ < "u" && (i = __VUE_SSR_CONTEXT__), l && l.call(this, i), i && i._registeredComponents && i._registeredComponents.add(a);
+    }, e._ssrRegister = o) : l && (o = c ? function () {
+        l.call(
+            this,
+            (e.functional ? this.parent : this).$root.$options.shadowRoot
+        );
+    } : l), o)
+        if (e.functional) {
+            e._injectStyles = o;
+            var d = e.render;
+            e.render = function (p, h) {
+                return o.call(h), d(p, h);
+            };
+        } else {
+            var f = e.beforeCreate;
+            e.beforeCreate = f ? [].concat(f, o) : [o];
         }
-        this.canShow = !1;
-      };
-      n(), document.addEventListener(
-        "scroll",
-        w.debounce(() => {
-          n();
-        }, 40),
-        { passive: !0 }
-      );
-    }
-  }
-};
-var _ = function() {
-  var e = this, i = e._self._c;
-  return i("div", { staticClass: "smooth-element", class: { visible: e.canShow } }, [e._t("default", null, { scroll: e.scroll })], 2);
-}, y = [], A = /* @__PURE__ */ p(
-  h,
-  _,
-  y
-);
-const v = A.exports;
-function c(n) {
-  c.installed || (c.installed = !0, n.component("SmoothScroll", v));
+    return {
+        exports: t,
+        options: e
+    };
 }
-const F = {
-  install: c
+const y = {
+    name: "SmoothScroll",
+    props: {
+        elementId: {
+            type: String,
+            default: null
+        },
+        margin: {
+            type: Number,
+            default: 0
+        },
+        displayAt: {
+            type: Number,
+            default: 0
+        }
+    },
+    data() {
+        return {
+            canShow: !1
+        };
+    },
+    mounted() {
+        this.show();
+    },
+    methods: {
+        scroll(t) {
+            t.preventDefault();
+            let n = 0;
+            const r = 30, u = this.elementId ? document.getElementById(this.elementId) : document.body;
+            u && (n = Math.max(u.offsetTop - this.margin, 0));
+            let s = (n - window.scrollY) / r;
+            const a = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame, c = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+            let e;
+            const o = () => {
+                window.scrollBy(0, s);
+                const d = s < 0, f = n - window.scrollY;
+                if (d && window.scrollY <= n || !d && window.scrollY >= n)
+                    return c(e);
+                s = d ? Math.max(s, f) : Math.min(s, f), e = a(o);
+            };
+            e = a(o);
+        },
+        show() {
+            if (!this.displayAt) {
+                this.canShow = !0;
+                return;
+            }
+            const t = () => {
+                if (window.scrollY >= this.displayAt) {
+                    this.canShow = !0;
+                    return;
+                }
+                this.canShow = !1;
+            };
+            t(), document.addEventListener(
+                "scroll",
+                _.debounce(() => {
+                    t();
+                }, 40),
+                { passive: !0 }
+            );
+        }
+    }
 };
-let l = null;
-typeof window < "u" ? l = window.Vue : typeof global < "u" && (l = global.Vue);
-l && l.use(F);
+var A = function () {
+    var n = this, r = n._self._c;
+    return r("div", { staticClass: "smooth-element", class: { visible: n.canShow } }, [n._t("default", null, { scroll: n.scroll })], 2);
+}, S = [], b = /* @__PURE__ */ v(
+    y,
+    A,
+    S,
+    !1,
+    null,
+    null,
+    null,
+    null
+);
+const g = b.exports;
+function w(t) {
+    w.installed || (w.installed = !0, t.component("SmoothScroll", g));
+}
+const C = {
+    install: w
+};
+let m = null;
+typeof window < "u" ? m = window.Vue : typeof global < "u" && (m = global.Vue);
+m && m.use(C);
 export {
-  v as default
+    g as default
 };

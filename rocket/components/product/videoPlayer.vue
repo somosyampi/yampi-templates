@@ -5,11 +5,13 @@
             class="relative"
             @click="clicked = true;"
         >
-            <custom-image
+            <CustomImage
                 :src="imageUrl"
                 :thumbor-enabled="false"
                 :alt="'product video'"
                 class="-loading"
+                width="900"
+                heigth="500"
             />
             <i class="icon icon-yt-play" />
         </div>
@@ -43,6 +45,7 @@ export default {
             type: String,
             required: true,
         },
+
         videoUrl: {
             type: String,
             required: true,

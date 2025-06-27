@@ -6,7 +6,7 @@
     transition: visibility 0.3s, opacity 0s 0.1s linear;
     z-index: 1;
     border-radius: var(--theme-border-radius);
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: -2px 4px 5px rgba(0, 0, 0, 0.05);
     border: 1px solid var(--default-background-color);
 
     &:not(.-simple) {
@@ -24,19 +24,19 @@
 
         &:before {
             top: -12px;
-            border-bottom-color: var(--default-background-color);
+            border-bottom-color: var(--background-color);
         }
 
         &:after {
-            top: -10px;
-            border-bottom-color: #ffffff;
+            top: -12px;
+            border-bottom-color: var(--background-color);
         }
     }
 }
 
 .dropdown-holder {
     position: relative;
-    z-index: 2;
+    z-index: 3;
 
     &:hover {
         & > .dropdown {
@@ -65,13 +65,13 @@
 
     .rkt-link-container {
         position: absolute;
-        margin: 35px 0 0 0;
+        margin: 41px 0 0 0;
         padding: 24px;
-        background-color: var(--white);
+        background-color: var(--background-color);
         border-radius: var(--theme-border-radius);
-        color: #222;
-        border: 1px solid var(--front-end-f5f5f5, #f5f5f5);
-        box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.05);
+        color: var(--background-contrasting-color);
+        border: 1px solid var(--default-background-color);
+        box-shadow: 0px 1px 15px 0px rgba(0, 0, 0, 0.15);
         z-index: 999;
     }
 
@@ -96,14 +96,15 @@
     }
 
     .rkt-link-container::before {
-        border-color: transparent transparent var(--front-end-f5f5f5, #f5f5f5)
+        border-color: transparent transparent var(--background-color)
             transparent;
         top: -25px;
         filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.05));
     }
 
     .rkt-link-container::after {
-        border-color: transparent transparent var(--white) transparent;
+        border-color: transparent transparent var(--background-color)
+            transparent;
         top: -22px;
     }
 }

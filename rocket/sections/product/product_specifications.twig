@@ -1,0 +1,18 @@
+<rocket-emitter emits="product_specifications" label="Especificações" order="{{ section.order }}">
+    <section class="product-specifications {{ "#{section.section_alias}-#{section.order}" }}">
+        {% for type in ['description', 'specifications', 'measures'] %}
+            {% if product.data.texts.data[type] %}
+                <div class="container">
+                    <div class="-holder">
+                        <div class="theme-title">
+                            {{ section.params['title_' ~ type] }}
+                        </div>
+                        <div class="-content editor-theme product-description">
+                            {{ product.data.texts.data[type] | raw }}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </section>
+</rocket-emitter>
