@@ -19,9 +19,4 @@
 {% include 'elements/scripts/head.twig' %}
 {% include 'elements/variables.twig' %}
 
-<script type="module" src="{{ '/dist/vendor/windowVue.js' | components_url }}"></script>
-<script type="module" src="{{ '/dist/vendor/icons.js' | components_url }}"></script>
-
 {% include 'elements/scripts/components.twig' ignore missing %}
-
-<script type="module" src="{{ '/dist/vendor/app.js' | components_url }}"></script>
