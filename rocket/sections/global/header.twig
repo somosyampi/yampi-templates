@@ -71,8 +71,8 @@
 
 						<div class="logo {{ merchantData.logo_url ? '' : 'logo--empty' }}">
 							{% if merchantData.logo_url %}
-								<a href="/" class="inline-block">
-									<img src="{{ merchantData.logo_url }}" alt="{{ merchantData.company.razao_social }}" width="auto" height="auto">
+								<a href="/" class="inline-block" aria-label="{{ merchantData.manifest.name }} logo">
+									<img src="{{ merchantData.logo_url }}" alt="{{ merchantData.manifest.name }} logo" width="150" height="150">
 								</a>
 							{% else %}
 								<empty-logo store-name="{{ merchantData.manifest.name }}"></empty-logo>
