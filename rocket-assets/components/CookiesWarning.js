@@ -1,4 +1,4 @@
-import c from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/js-cookie.js";
+import c from "https://codigo-aberto-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/js-cookie.js";
 function C(n, e, i, p, s, d, f, m) {
   var o = typeof n == "function" ? n.options : n;
   e && (o.render = e, o.staticRenderFns = i, o._compiled = !0), p && (o.functional = !0), d && (o._scopeId = "data-v-" + d);

@@ -1,6 +1,6 @@
-import g from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/mobile.js";
-import C from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/components/header/categories/RocketMobileCategoriesNav.js";
-import v from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/components/header/categories/RocketDesktopCategoriesNav.js";
+import g from "https://codigo-aberto-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/mobile.js";
+import C from "https://codigo-aberto-production-assets.yampi.io/yampi-templates-main/rocket-assets/components/header/categories/RocketMobileCategoriesNav.js";
+import v from "https://codigo-aberto-production-assets.yampi.io/yampi-templates-main/rocket-assets/components/header/categories/RocketDesktopCategoriesNav.js";
 function y(t, o, s, c, r, f, u, _) {
   var e = typeof t == "function" ? t.options : t;
   o && (e.render = o, e.staticRenderFns = s, e._compiled = !0), c && (e.functional = !0), f && (e._scopeId = "data-v-" + f);

@@ -1,6 +1,6 @@
-import r from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
-import S from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/product.js";
-import { smoothScroll as k } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/helpers.js";
+import r from "https://codigo-aberto-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/lodash.js";
+import S from "https://codigo-aberto-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/product.js";
+import { smoothScroll as k } from "https://codigo-aberto-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/helpers.js";
 function b(e, t, s, i, o, n, c, m) {
   var a = typeof e == "function" ? e.options : e;
   t && (a.render = t, a.staticRenderFns = s, a._compiled = !0), i && (a.functional = !0), n && (a._scopeId = "data-v-" + n);

@@ -1,5 +1,5 @@
-import { mapMutations as _ } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/vuex.js";
-import { uuidv4 as A, getImageMeta as v } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/helpers.js";
+import { mapMutations as _ } from "https://codigo-aberto-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/vuex.js";
+import { uuidv4 as A, getImageMeta as v } from "https://codigo-aberto-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/helpers.js";
 function y(t, e, o, m, n, d, u, p) {
   var a = typeof t == "function" ? t.options : t;
   e && (a.render = e, a.staticRenderFns = o, a._compiled = !0), m && (a.functional = !0), d && (a._scopeId = "data-v-" + d);
