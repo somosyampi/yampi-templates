@@ -23,7 +23,7 @@ jobs:
 
       - name: Replace Rocket CDN URL
         run: |
-          grep -rl --exclude="*.yml" 'images-dev.yampi' . | xargs sed -i 's/images-dev.yampi/images.yampi/g'
+          grep -rl --exclude="*.yml" 'images-dev.yampi' . | xargs -r sed -i 's/images-dev.yampi/images.yampi/g'
 
       - name: Commit and push changes
         run: |
