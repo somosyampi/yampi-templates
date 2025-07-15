@@ -4,6 +4,7 @@ import _ from '~/lodash';
 import api from '@/modules/axios/api';
 
 export default {
+    name: 'BaseContent',
 
     props: {
         loading: {

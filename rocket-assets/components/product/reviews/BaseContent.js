@@ -29,6 +29,7 @@ function $(o, i, n, l, s, u, p, _) {
   };
 }
 const v = {
+  name: "BaseContent",
   props: {
     loading: {
       type: Boolean,
@@ -127,12 +128,12 @@ const T = R.exports;
 function d(o) {
   d.installed || (d.installed = !0, o.component("BaseContent", T));
 }
-const M = {
+const B = {
   install: d
 };
 let r = null;
 typeof window < "u" ? r = window.Vue : typeof global < "u" && (r = global.Vue);
-r && r.use(M);
+r && r.use(B);
 export {
   T as default
 };

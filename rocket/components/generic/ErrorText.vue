@@ -8,6 +8,8 @@
 
 <script>
 export default {
+    name: 'ErrorText',
+
     props: {
         text: {
             type: String,

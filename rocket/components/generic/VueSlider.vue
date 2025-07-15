@@ -33,6 +33,8 @@
 
 <script>
 export default {
+    name: 'VueSlider',
+
     props: {
         min: {
             type: Number,

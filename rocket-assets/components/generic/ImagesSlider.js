@@ -1,4 +1,4 @@
-(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".touchable[data-v-5e940a16]{height:100%;width:100%}")),document.head.appendChild(e)}}catch(t){console.error("vite-plugin-css-injected-by-js",t)}})();
+(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".touchable[data-v-4b678b8d]{height:100%;width:100%}")),document.head.appendChild(e)}}catch(t){console.error("vite-plugin-css-injected-by-js",t)}})();
 import v from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/touchable.js";
 function g(i, e, n, r, a, f, u, h) {
   var t = typeof i == "function" ? i.options : i;
@@ -27,7 +27,7 @@ function g(i, e, n, r, a, f, u, h) {
     options: t
   };
 }
-const C = {
+const b = {
   name: "ImagesSlider",
   mixins: [v],
   props: {
@@ -62,7 +62,7 @@ const C = {
     }
   }
 };
-var S = function() {
+var C = function() {
   var e = this, n = e._self._c;
   return n("div", { staticClass: "touchable" }, [n("Splide", { ref: "splideRef", staticClass: "custom-splide", attrs: { options: {
     perPage: 1,
@@ -74,13 +74,13 @@ var S = function() {
   }, slides: e.images }, on: { "splide:moved": e.handleSplideMoved, "splide:mounted": e.handleSplideMounted } }, e._l(e.images, function(r) {
     return n("SplideSlide", { key: r.url, staticClass: "review-details-photo-container" }, [n("PinchZoom", { ref: "imagePinch", refInFor: !0, attrs: { "auto-zoom-out": !1, overflow: "visible", "limit-pan": !0, "min-scale": 1, "limit-zoom": "50" } }, [n("img", { attrs: { src: r.url, alt: "zoom" } })])], 1);
   }), 1), n("div", { staticClass: "modal-review-details-pagination" }, [e._v(" ("), n("span", { staticClass: "bold" }, [e._v(e._s(e.currentIndex + 1))]), e._v("/" + e._s(e.images.length) + ") ")])], 1);
-}, b = [], I = /* @__PURE__ */ g(
+}, S = [], I = /* @__PURE__ */ g(
+  b,
   C,
   S,
-  b,
   !1,
   null,
-  "5e940a16",
+  "4b678b8d",
   null,
   null
 );

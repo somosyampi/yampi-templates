@@ -1,12 +1,12 @@
 import f from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
 import b from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/mobile.js";
 import _ from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/product.js";
-function C(t, e, i, a, s, r, m, g) {
+function C(t, e, i, a, s, r, d, g) {
   var o = typeof t == "function" ? t.options : t;
   e && (o.render = e, o.staticRenderFns = i, o._compiled = !0), a && (o.functional = !0), r && (o._scopeId = "data-v-" + r);
   var l;
-  if (m ? (l = function(n) {
-    n = n || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !n && typeof __VUE_SSR_CONTEXT__ < "u" && (n = __VUE_SSR_CONTEXT__), s && s.call(this, n), n && n._registeredComponents && n._registeredComponents.add(m);
+  if (d ? (l = function(n) {
+    n = n || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !n && typeof __VUE_SSR_CONTEXT__ < "u" && (n = __VUE_SSR_CONTEXT__), s && s.call(this, n), n && n._registeredComponents && n._registeredComponents.add(d);
   }, o._ssrRegister = l) : s && (l = g ? function() {
     s.call(
       this,
@@ -20,8 +20,8 @@ function C(t, e, i, a, s, r, m, g) {
         return l.call(c), p(v, c);
       };
     } else {
-      var d = o.beforeCreate;
-      o.beforeCreate = d ? [].concat(d, l) : [l];
+      var m = o.beforeCreate;
+      o.beforeCreate = m ? [].concat(m, l) : [l];
     }
   return {
     exports: t,
@@ -202,7 +202,7 @@ var y = function() {
   return i("div", [i("div", { staticClass: "main-product-image-wrapper relative flex -between" }, [i("div", { staticClass: "main-product-images-nav" }, [e.hasVideo ? i("div", { staticClass: "video-thumb" }, [i("SmoothScroll", { attrs: { "element-id": "holder-main-product-video", margin: 80 }, scopedSlots: e._u([{ key: "default", fn: function({ scroll: a }) {
     return [i("div", { on: { click: a } }, [i("i", { staticClass: "icon icon-video-play" }), i("div", { staticClass: "-text" }, [e._v(" V\xCDDEO ")])])];
   } }], null, !1, 1934646775) })], 1) : e._e(), i("Splide", { ref: "thumbnail", class: { arrows: e.hasArrows }, attrs: { options: e.carouselOption, slides: e.productImages } }, e._l(e.productImages, function(a, s) {
-    return i("SplideSlide", { key: "main-photo-thumb-" + s }, [i("CustomImage", { attrs: { src: a.url, alt: `${e.validProduct.name} thumbnail`, lazyload: !1, thumbor: { resize: "75x75" } } })], 1);
+    return i("SplideSlide", { key: "main-photo-thumb-" + s }, [i("CustomImage", { attrs: { src: a.url, alt: `${e.validProduct.name} thumbnail`, lazyload: !1, thumbor: { resize: "75x75" }, width: "75", height: "75" } })], 1);
   }), 1)], 1), i("div", { staticClass: "main-product-image", class: { mounted: e.mounted, "-loading": !e.mounted }, style: e.mainCarouselHolderStyle }, [e.ready ? i("Splide", { ref: "mainImage", attrs: { options: {
     perPage: 1,
     gap: "16px",

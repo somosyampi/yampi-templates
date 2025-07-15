@@ -57,12 +57,18 @@ const b = {
     placeholderHeight: {
       type: Number,
       default: 0
+    },
+    width: {
+      type: [Number, String],
+      default: "auto"
+    },
+    height: {
+      type: [Number, String],
+      default: "auto"
     }
   },
   data() {
     return {
-      width: 0,
-      height: 0,
       uid: A()
     };
   },
@@ -102,29 +108,29 @@ const b = {
     }
   }
 };
-var C = function() {
+var w = function() {
   var e = this, o = e._self._c;
-  return o("img", e._b({ directives: [{ name: "lazyload", rawName: "v-lazyload", value: e.lazyload, expression: "lazyload" }], attrs: { src: e.lazyload ? e.placeholderImg : e.imgSrc, "data-src": e.lazyload ? e.imgSrc : null, width: "auto", height: "auto", onerror: e.handleError() }, on: { load: e.handleLoad } }, "img", e.$attrs, !1));
-}, w = [], z = /* @__PURE__ */ y(
+  return o("img", e._b({ directives: [{ name: "lazyload", rawName: "v-lazyload", value: e.lazyload, expression: "lazyload" }], attrs: { src: e.lazyload ? e.placeholderImg : e.imgSrc, "data-src": e.lazyload ? e.imgSrc : null, width: e.width, height: e.height, onerror: e.handleError() }, on: { load: e.handleLoad } }, "img", e.$attrs, !1));
+}, C = [], S = /* @__PURE__ */ y(
   b,
-  C,
   w,
+  C,
   !1,
   null,
   null,
   null,
   null
 );
-const E = z.exports;
+const z = S.exports;
 function s(t) {
-  s.installed || (s.installed = !0, t.component("CustomImage", E));
+  s.installed || (s.installed = !0, t.component("CustomImage", z));
 }
-const S = {
+const E = {
   install: s
 };
 let l = null;
 typeof window < "u" ? l = window.Vue : typeof global < "u" && (l = global.Vue);
-l && l.use(S);
+l && l.use(E);
 export {
-  E as default
+  z as default
 };

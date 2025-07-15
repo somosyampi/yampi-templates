@@ -14,3 +14,9 @@
         />
     </svg>
 </template>
+
+<script>
+export default {
+    name: 'Trashcan',
+};
+</script>

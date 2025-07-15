@@ -10,6 +10,8 @@
 
 <script>
 export default {
+    name: 'RocketButton',
+
     props: {
         label: {
             type: String,

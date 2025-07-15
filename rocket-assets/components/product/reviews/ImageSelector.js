@@ -1,30 +1,30 @@
 import _ from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
 import v from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/axios/rocket.js";
-function I(t, e, i, s, l, n, m, g) {
-  var a = typeof t == "function" ? t.options : t;
-  e && (a.render = e, a.staticRenderFns = i, a._compiled = !0), s && (a.functional = !0), n && (a._scopeId = "data-v-" + n);
+function I(t, e, s, a, l, n, m, g) {
+  var i = typeof t == "function" ? t.options : t;
+  e && (i.render = e, i.staticRenderFns = s, i._compiled = !0), a && (i.functional = !0), n && (i._scopeId = "data-v-" + n);
   var o;
   if (m ? (o = function(r) {
     r = r || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !r && typeof __VUE_SSR_CONTEXT__ < "u" && (r = __VUE_SSR_CONTEXT__), l && l.call(this, r), r && r._registeredComponents && r._registeredComponents.add(m);
-  }, a._ssrRegister = o) : l && (o = g ? function() {
+  }, i._ssrRegister = o) : l && (o = g ? function() {
     l.call(
       this,
-      (a.functional ? this.parent : this).$root.$options.shadowRoot
+      (i.functional ? this.parent : this).$root.$options.shadowRoot
     );
   } : l), o)
-    if (a.functional) {
-      a._injectStyles = o;
-      var c = a.render;
-      a.render = function(p, f) {
+    if (i.functional) {
+      i._injectStyles = o;
+      var c = i.render;
+      i.render = function(p, f) {
         return o.call(f), c(p, f);
       };
     } else {
-      var h = a.beforeCreate;
-      a.beforeCreate = h ? [].concat(h, o) : [o];
+      var h = i.beforeCreate;
+      i.beforeCreate = h ? [].concat(h, o) : [o];
     }
   return {
     exports: t,
-    options: a
+    options: i
   };
 }
 const U = {
@@ -58,17 +58,17 @@ const U = {
     },
     async handleChange({ formData: t, formName: e }) {
       this.$emit("uploading", !0);
-      const i = this.amount - this.imagesUrls.length;
-      if (this.uploadedAmount = t.getAll(e).length, !this.uploadedAmount || !i)
+      const s = this.amount - this.imagesUrls.length;
+      if (this.uploadedAmount = t.getAll(e).length, !this.uploadedAmount || !s)
         return;
       for (let n = 0; n < this.uploadedAmount; n++)
         this.lastIndexUrl + n <= this.amount && this.$set(this.loading, this.lastIndexUrl + n, !0);
-      const s = await v({
+      const a = await v({
         method: "post",
         url: "/uploads",
         data: t,
         headers: { "Content-Type": "multipart/form-data" }
-      }), { data: l } = s;
+      }), { data: l } = a;
       for (let n = 0; n < l.length; n++)
         this.$emit("changeImageUrls", { event: "APPEND", imageNumber: n, imageUrl: l[n] }), this.$set(this.loading, this.lastIndexUrl - 1, !1);
       this.$emit("uploading", !1);
@@ -76,10 +76,10 @@ const U = {
   }
 };
 var C = function() {
-  var e = this, i = e._self._c;
-  return i("div", [i("div", { staticClass: "image-selector-label" }, [e._v(" Imagem do produto (opcional) ")]), i("div", { staticClass: "image-selector-container" }, e._l(parseInt(e.amount, 10), function(s) {
-    return i("InputImage", { key: s, attrs: { item: s, "show-delete-button": !!(e.imagesUrls[s - 1] && e.imagesUrls[s - 1].length), disabled: e.checkIfDisabled(s), "is-multiple": !0, limit: parseInt(e.amount, 10), uplodaded: e.imagesUrls.length }, on: { change: (l) => e.handleChange(l), deleteImage: e.handleDelete }, scopedSlots: e._u([{ key: "images", fn: function() {
-      return [i("div", { staticClass: "image-selector", class: { disabled: e.checkIfDisabled(s) } }, [e.loading[s - 1] ? i("ReviewPhotoLoadingIcon") : e.imagesUrls[s - 1] ? i("CustomImage", { staticClass: "review-thumb", attrs: { src: e.imagesUrls[s - 1] } }) : i("ReviewPhotoIcon")], 1)];
+  var e = this, s = e._self._c;
+  return s("div", [s("div", { staticClass: "image-selector-label" }, [e._v(" Imagem do produto (opcional) ")]), s("div", { staticClass: "image-selector-container" }, e._l(parseInt(e.amount, 10), function(a) {
+    return s("InputImage", { key: a, attrs: { item: a, "show-delete-button": !!(e.imagesUrls[a - 1] && e.imagesUrls[a - 1].length), disabled: e.checkIfDisabled(a), "is-multiple": !0, limit: parseInt(e.amount, 10), uplodaded: e.imagesUrls.length }, on: { change: (l) => e.handleChange(l), deleteImage: e.handleDelete }, scopedSlots: e._u([{ key: "images", fn: function() {
+      return [s("div", { staticClass: "image-selector", class: { disabled: e.checkIfDisabled(a) } }, [e.loading[a - 1] ? s("ReviewPhotoLoadingIcon") : e.imagesUrls[a - 1] ? s("CustomImage", { staticClass: "review-thumb", attrs: { src: e.imagesUrls[a - 1], width: "100", height: "100" } }) : s("ReviewPhotoIcon")], 1)];
     }, proxy: !0 }], null, !0) });
   }), 1)]);
 }, b = [], $ = /* @__PURE__ */ I(

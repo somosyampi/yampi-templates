@@ -104,7 +104,7 @@ import trackingByApi from '@/mixins/tracking/api';
 import { createPriceObjects } from '@/mixins/helpers';
 
 export default {
-    name: 'ProductCombo',
+    name: 'Combo',
 
     mixins: [trackingByApi],
 
