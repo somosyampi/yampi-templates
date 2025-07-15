@@ -1,6 +1,6 @@
-import p from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
-import w from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/axios/api.js";
-import m from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/components/product/reviews/BaseContent.js";
+import p from "https://codigo-aberto-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/lodash.js";
+import w from "https://codigo-aberto-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/modules/axios/api.js";
+import m from "https://codigo-aberto-production-assets.yampi.io/yampi-templates-main/rocket-assets/components/product/reviews/BaseContent.js";
 function C(a, e, t, s, o, l, u, f) {
     var r = typeof a == "function" ? a.options : a;
     e && (r.render = e, r.staticRenderFns = t, r._compiled = !0), s && (r.functional = !0), l && (r._scopeId = "data-v-" + l);
