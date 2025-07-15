@@ -1,9 +1,9 @@
-function p(a, s, o, _, i, d, u, v) {
+function p(a, s, o, _, i, u, d, v) {
   var e = typeof a == "function" ? a.options : a;
-  s && (e.render = s, e.staticRenderFns = o, e._compiled = !0), _ && (e.functional = !0), d && (e._scopeId = "data-v-" + d);
+  s && (e.render = s, e.staticRenderFns = o, e._compiled = !0), _ && (e.functional = !0), u && (e._scopeId = "data-v-" + u);
   var t;
-  if (u ? (t = function(n) {
-    n = n || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !n && typeof __VUE_SSR_CONTEXT__ < "u" && (n = __VUE_SSR_CONTEXT__), i && i.call(this, n), n && n._registeredComponents && n._registeredComponents.add(u);
+  if (d ? (t = function(n) {
+    n = n || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !n && typeof __VUE_SSR_CONTEXT__ < "u" && (n = __VUE_SSR_CONTEXT__), i && i.call(this, n), n && n._registeredComponents && n._registeredComponents.add(d);
   }, e._ssrRegister = t) : i && (t = v ? function() {
     i.call(
       this,
@@ -26,7 +26,7 @@ function p(a, s, o, _, i, d, u, v) {
   };
 }
 const C = {
-  name: "ModalQuestion",
+  name: "ModalQuestionSuccess",
   methods: {
     showModal() {
       this.$refs.questionBaseModal.showModal();

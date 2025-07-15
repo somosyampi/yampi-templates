@@ -26,7 +26,7 @@
 <script>
 
 export default {
-    name: 'ModalQuestion',
+    name: 'ModalQuestionSuccess',
 
     methods: {
         showModal() {

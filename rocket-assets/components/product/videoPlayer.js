@@ -1,15 +1,15 @@
-function v(a, i, t, d, o, u, c, p) {
-  var e = typeof a == "function" ? a.options : a;
-  i && (e.render = i, e.staticRenderFns = t, e._compiled = !0), d && (e.functional = !0), u && (e._scopeId = "data-v-" + u);
+function v(o, t, i, d, a, u, c, p) {
+  var e = typeof o == "function" ? o.options : o;
+  t && (e.render = t, e.staticRenderFns = i, e._compiled = !0), d && (e.functional = !0), u && (e._scopeId = "data-v-" + u);
   var r;
   if (c ? (r = function(n) {
-    n = n || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !n && typeof __VUE_SSR_CONTEXT__ < "u" && (n = __VUE_SSR_CONTEXT__), o && o.call(this, n), n && n._registeredComponents && n._registeredComponents.add(c);
-  }, e._ssrRegister = r) : o && (r = p ? function() {
-    o.call(
+    n = n || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !n && typeof __VUE_SSR_CONTEXT__ < "u" && (n = __VUE_SSR_CONTEXT__), a && a.call(this, n), n && n._registeredComponents && n._registeredComponents.add(c);
+  }, e._ssrRegister = r) : a && (r = p ? function() {
+    a.call(
       this,
       (e.functional ? this.parent : this).$root.$options.shadowRoot
     );
-  } : o), r)
+  } : a), r)
     if (e.functional) {
       e._injectStyles = r;
       var A = e.render;
@@ -21,7 +21,7 @@ function v(a, i, t, d, o, u, c, p) {
       e.beforeCreate = f ? [].concat(f, r) : [r];
     }
   return {
-    exports: a,
+    exports: o,
     options: e
   };
 }
@@ -49,15 +49,15 @@ const h = {
   }
 };
 var g = function() {
-  var i = this, t = i._self._c;
-  return t("div", [i.clicked ? t("div", { staticClass: "embed-container" }, [t("iframe", { attrs: { src: i.videoUrl + "&muted=1", frameborder: "0", allowfullscreen: "", allow: `accelerometer;
+  var t = this, i = t._self._c;
+  return i("div", [t.clicked ? i("div", { staticClass: "embed-container" }, [i("iframe", { attrs: { title: "Youtube video player", src: t.videoUrl + "&muted=1", frameborder: "0", allowfullscreen: "", allow: `accelerometer;
                     autoplay;
                     clipboard-write;
                     encrypted-media;
                     gyroscope;
-                    picture-in-picture` } })]) : t("div", { staticClass: "relative", on: { click: function(d) {
-    i.clicked = !0;
-  } } }, [t("CustomImage", { staticClass: "-loading", attrs: { src: i.imageUrl, "thumbor-enabled": !1, alt: "product video", width: "900", heigth: "500" } }), t("i", { staticClass: "icon icon-yt-play" })], 1)]);
+                    picture-in-picture` } })]) : i("div", { staticClass: "relative", on: { click: function(d) {
+    t.clicked = !0;
+  } } }, [i("CustomImage", { staticClass: "-loading", attrs: { src: t.imageUrl, "thumbor-enabled": !1, alt: "product video", width: "900", heigth: "500" } }), i("i", { staticClass: "icon icon-yt-play" })], 1)]);
 }, C = [], y = /* @__PURE__ */ v(
   h,
   g,
@@ -69,8 +69,8 @@ var g = function() {
   null
 );
 const b = y.exports;
-function s(a) {
-  s.installed || (s.installed = !0, a.component("videoPlayer", b));
+function s(o) {
+  s.installed || (s.installed = !0, o.component("videoPlayer", b));
 }
 const w = {
   install: s

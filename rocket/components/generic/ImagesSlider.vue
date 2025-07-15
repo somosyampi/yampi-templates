@@ -46,7 +46,7 @@
 import touchableMixin from '@/mixins/touchable';
 
 export default {
-    name: 'Touchable',
+    name: 'ImagesSlider',
 
     mixins: [touchableMixin],
 

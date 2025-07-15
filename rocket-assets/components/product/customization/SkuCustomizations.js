@@ -1,7 +1,7 @@
-import l from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-main/rocket-assets/dist/vendor/lodash.js";
-import { smoothScroll as C } from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-main/rocket-assets/dist/vendor/mixins/helpers.js";
-import w from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-main/rocket-assets/dist/vendor/mixins/errors.js";
-import g from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-main/rocket-assets/components/product/customization/BaseCustomization.js";
+import l from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
+import { smoothScroll as C } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/helpers.js";
+import w from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/errors.js";
+import g from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/components/product/customization/BaseCustomization.js";
 function z(s, t, e, i, o, d, m, f) {
     var r = typeof s == "function" ? s.options : s;
     t && (r.render = t, r.staticRenderFns = e, r._compiled = !0), i && (r.functional = !0), d && (r._scopeId = "data-v-" + d);

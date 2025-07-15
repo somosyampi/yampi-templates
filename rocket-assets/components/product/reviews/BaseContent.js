@@ -1,6 +1,6 @@
-import { mapGetters as w } from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-main/rocket-assets/dist/vendor/vuex.js";
-import y from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-main/rocket-assets/dist/vendor/lodash.js";
-import c from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-main/rocket-assets/dist/vendor/modules/axios/api.js";
+import { mapGetters as w } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/vuex.js";
+import y from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
+import c from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/axios/api.js";
 function $(o, i, n, l, s, u, p, _) {
     var t = typeof o == "function" ? o.options : o;
     i && (t.render = i, t.staticRenderFns = n, t._compiled = !0), l && (t.functional = !0), u && (t._scopeId = "data-v-" + u);
@@ -29,6 +29,7 @@ function $(o, i, n, l, s, u, p, _) {
     };
 }
 const v = {
+    name: "BaseContent",
     props: {
         loading: {
             type: Boolean,
@@ -94,45 +95,92 @@ const v = {
                     this.loaded = !0, this.isLoading = !1, this.$emit("update:loading", !1);
                 }
         },
-        async loadCount() {
-            try {
-                const o = this.$applyQueriesToUrl(`catalog/products/${this.route}/count`, {
-                    product_id: this.product.id,
-                    limit: this.pagination.limit
-                }), { data: i } = await c.get(o);
-                this.pagination.total = y.get(i, "data.total", 0), this.$emit("update:count", this.pagination.total);
-            } catch (o) {
-                console.error(o);
+        data: () => ({
+            payload: [],
+            loaded: !1,
+            isLoading: !1,
+            route: "",
+            pagination: {
+                total: 0,
+                loaded: 0,
+                currentPage: 1,
+                limit: 4
+            }
+        }),
+        computed: {
+            ...w("product", [
+                "product"
+            ]),
+            showLoadMore() {
+                return this.pagination.loaded < this.pagination.total;
             }
         },
-        showModal() {
-            this.$refs.modal.showModal();
+        watch: {
+            active() {
+                this.loadData();
+            }
         },
-        showModalSuccess() {
-            this.$refs.modalSuccess.showModal();
+        mounted() {
+            this.loadData(), this.loadCount();
+        },
+        methods: {
+            async loadData(o = !1, i = "newest") {
+                if (!(!o && (this.loaded || !this.active)))
+                    try {
+                        this.isLoading = !0, this.$emit("update:loading", !0), o && (this.pagination.currentPage += 1);
+                        const n = this.$applyQueriesToUrl(`catalog/products/${this.route}`, {
+                            product_id: this.product.id,
+                            filterBy: i,
+                            limit: this.pagination.limit,
+                            page: this.pagination.currentPage,
+                            include: "photos"
+                        }), { data: l } = await c.get(n);
+                        this.payload.push(...l.data), this.pagination.loaded += l.data.length;
+                    } catch (n) {
+                        console.error(n);
+                    } finally {
+                        this.loaded = !0, this.isLoading = !1, this.$emit("update:loading", !1);
+                    }
+            },
+            async loadCount() {
+                try {
+                    const o = this.$applyQueriesToUrl(`catalog/products/${this.route}/count`, {
+                        product_id: this.product.id,
+                        limit: this.pagination.limit
+                    }), { data: i } = await c.get(o);
+                    this.pagination.total = y.get(i, "data.total", 0), this.$emit("update:count", this.pagination.total);
+                } catch (o) {
+                    console.error(o);
+                }
+            },
+            showModal() {
+                this.$refs.modal.showModal();
+            },
+            showModalSuccess() {
+                this.$refs.modalSuccess.showModal();
+            }
         }
-    }
-}, C = null, b = null;
-var R = /* @__PURE__ */ $(
-    v,
-    C,
-    b,
-    !1,
-    null,
-    null,
-    null,
-    null
-);
-const T = R.exports;
-function d(o) {
-    d.installed || (d.installed = !0, o.component("BaseContent", T));
+    }, C = null, b = null;
+    var R = /* @__PURE__ */ $(
+        v,
+        C,
+        b,
+        !1,
+        null,
+        null,
+        null,
+        null
+    );
+    const T = R.exports;
+    function d(o) {
+        d.installed || (d.installed = !0, o.component("BaseContent", T));
 }
-const M = {
+const B = {
     install: d
 };
 let r = null;
 typeof window < "u" ? r = window.Vue : typeof global < "u" && (r = global.Vue);
-r && r.use(M);
+r && r.use(B);
 export {
     T as default
 };

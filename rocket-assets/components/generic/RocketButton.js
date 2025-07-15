@@ -26,6 +26,7 @@ function C(r, i, n, _, s, u, f, c) {
   };
 }
 const g = {
+  name: "RocketButton",
   props: {
     label: {
       type: String,

@@ -1,15 +1,15 @@
-function C(t, a, e, _, s, f, u, c) {
+function C(t, s, e, _, a, f, u, c) {
   var n = typeof t == "function" ? t.options : t;
-  a && (n.render = a, n.staticRenderFns = e, n._compiled = !0), _ && (n.functional = !0), f && (n._scopeId = "data-v-" + f);
+  s && (n.render = s, n.staticRenderFns = e, n._compiled = !0), _ && (n.functional = !0), f && (n._scopeId = "data-v-" + f);
   var o;
   if (u ? (o = function(r) {
-    r = r || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !r && typeof __VUE_SSR_CONTEXT__ < "u" && (r = __VUE_SSR_CONTEXT__), s && s.call(this, r), r && r._registeredComponents && r._registeredComponents.add(u);
-  }, n._ssrRegister = o) : s && (o = c ? function() {
-    s.call(
+    r = r || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !r && typeof __VUE_SSR_CONTEXT__ < "u" && (r = __VUE_SSR_CONTEXT__), a && a.call(this, r), r && r._registeredComponents && r._registeredComponents.add(u);
+  }, n._ssrRegister = o) : a && (o = c ? function() {
+    a.call(
       this,
       (n.functional ? this.parent : this).$root.$options.shadowRoot
     );
-  } : s), o)
+  } : a), o)
     if (n.functional) {
       n._injectStyles = o;
       var h = n.render;
@@ -25,7 +25,8 @@ function C(t, a, e, _, s, f, u, c) {
     options: n
   };
 }
-const b = {
+const R = {
+  name: "RocketAnchor",
   props: {
     href: {
       type: String,
@@ -55,12 +56,12 @@ const b = {
     }
   }
 };
-var y = function(a, e) {
-  return a("a", e._g(e._b({ ref: e.props.customRef, class: `rocket-anchor ${e.props.customClasses}`, attrs: { href: e.props.href, target: e.props.targetType } }, "a", e.data.attrs, !1), e.listeners), [e._v(" " + e._s(e.props.label) + " "), e._t("default")], 2);
-}, R = [], S = /* @__PURE__ */ C(
+var b = function(s, e) {
+  return s("a", e._g(e._b({ ref: e.props.customRef, class: `rocket-anchor ${e.props.customClasses}`, attrs: { href: e.props.href, target: e.props.targetType } }, "a", e.data.attrs, !1), e.listeners), [e._v(" " + e._s(e.props.label) + " "), e._t("default")], 2);
+}, y = [], S = /* @__PURE__ */ C(
+  R,
   b,
   y,
-  R,
   !0,
   null,
   null,

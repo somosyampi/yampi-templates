@@ -48,7 +48,7 @@
 import mobileMixin from '@/mixins/mobile';
 
 export default {
-    name: 'ImageInput',
+    name: 'ReviewPhotoIcon',
 
     mixins: {
         mobileMixin,

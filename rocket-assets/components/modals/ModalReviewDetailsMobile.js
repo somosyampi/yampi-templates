@@ -1,5 +1,5 @@
-(function () { "use strict"; try { if (typeof document < "u") { var e = document.createElement("style"); e.appendChild(document.createTextNode(".hide[data-v-ab5cf582]{visibility:hidden}")), document.head.appendChild(e) } } catch (d) { console.error("vite-plugin-css-injected-by-js", d) } })();
-import u from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-main/rocket-assets/dist/vendor/lodash.js";
+(function () { "use strict"; try { if (typeof document < "u") { var e = document.createElement("style"); e.appendChild(document.createTextNode(".hide[data-v-b2da58b6]{visibility:hidden}")), document.head.appendChild(e) } } catch (d) { console.error("vite-plugin-css-injected-by-js", d) } })();
+import u from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
 function w(o, t, n, h, a, d, f, m) {
     var e = typeof o == "function" ? o.options : o;
     t && (e.render = t, e.staticRenderFns = n, e._compiled = !0), h && (e.functional = !0), d && (e._scopeId = "data-v-" + d);
@@ -57,23 +57,23 @@ const y = {
         }
     }
 };
-var g = function () {
+var b = function () {
     var t = this, n = t._self._c;
     return n("div", { staticClass: "modal-zoom-mobile", class: { "is-active": t.show } }, [n("div", { staticClass: "-header flex -between -vcenter" }, [t._m(0), n("div", { staticClass: "-close flex -vcenter -hcenter", on: { click: t.handleModal } }, [n("i", { staticClass: "icon icon-close-modal-white" })])]), t.show ? n("ImagesSlider", { ref: "imagesSlider", attrs: { images: t.review.photos.data } }) : t._e(), n("div", { staticClass: "control-button" })], 1);
 }, C = [function () {
     var o = this, t = o._self._c;
     return t("div", { staticClass: "-message flex -vcenter" }, [t("i", { staticClass: "icon icon-pinch-zoom" }), o._v(" Arraste com os dedos ")]);
-}], b = /* @__PURE__ */ w(
+}], g = /* @__PURE__ */ w(
     y,
-    g,
+    b,
     C,
     !1,
     null,
-    "ab5cf582",
+    "b2da58b6",
     null,
     null
 );
-const R = b.exports;
+const R = g.exports;
 function r(o) {
     r.installed || (r.installed = !0, o.component("ModalReviewDetailsMobile", R));
 }

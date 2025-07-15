@@ -6,7 +6,35 @@ on:
       - main
 
 jobs:
+  replace-text:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Replace Open Store Templates URL
+        run: |
+          grep -rl --exclude="*.yml" 'yampi-templates-sandbox' . | xargs sed -i 's/yampi-templates-sandbox/yampi-templates-main/g'
+
+      - name: Replace Open Store CDN URL
+        run: |
+          grep -rl --exclude="*.yml" 'codigo-aberto-sandbox-assets' . | xargs sed -i 's/codigo-aberto-sandbox-assets/codigo-aberto-production-assets/g'
+
+      - name: Replace Rocket CDN URL
+        run: |
+          grep -rl --exclude="*.yml" 'images-dev.yampi' . | xargs sed -i 's/images-dev.yampi/images.yampi/g'
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add .
+          git diff --cached --quiet || git commit -m "chore: auto replace yampi-templates-sandbox with yampi-templates-main"
+          git push
+
   deploy:
+    needs: replace-text
     runs-on: ubuntu-latest
     environment: production
 

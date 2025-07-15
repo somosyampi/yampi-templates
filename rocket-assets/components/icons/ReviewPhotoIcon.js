@@ -1,5 +1,5 @@
-import m from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-main/rocket-assets/dist/vendor/mixins/mobile.js";
-function C(r, s, o, h, i, f, d, c) {
+import m from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/mobile.js";
+function w(r, s, o, h, i, f, d, c) {
     var e = typeof r == "function" ? r.options : r;
     s && (e.render = s, e.staticRenderFns = o, e._compiled = !0), h && (e.functional = !0), f && (e._scopeId = "data-v-" + f);
     var t;
@@ -26,8 +26,8 @@ function C(r, s, o, h, i, f, d, c) {
         options: e
     };
 }
-const w = {
-    name: "ImageInput",
+const C = {
+    name: "ReviewPhotoIcon",
     mixins: {
         mobileMixin: m
     }
@@ -43,19 +43,19 @@ var g = function () {
                     6.91129L7.60307 4.15882C7.38526 3.95346 7.03705 3.98421 6.8586 4.22456Z`, fill: "#666666", stroke: "#666666", transform: "translate(40,42)"
         }
     }), o("circle", { attrs: { cx: "38", cy: "40", r: "2.60227", fill: "#666666", stroke: "#666666" } }), o("rect", { attrs: { x: "30", y: "30", width: "37.23", height: "33.09", rx: "4.5", fill: "", stroke: "#666666", "stroke-dasharray": "3 3" } })]);
-}, k = [], y = /* @__PURE__ */ C(
-    w,
+}, R = [], k = /* @__PURE__ */ w(
+    C,
     g,
-    k,
+    R,
     !1,
     null,
     null,
     null,
     null
 );
-const R = y.exports;
+const y = k.exports;
 function l(r) {
-    l.installed || (l.installed = !0, r.component("ReviewPhotoIcon", R));
+    l.installed || (l.installed = !0, r.component("ReviewPhotoIcon", y));
 }
 const b = {
     install: l
@@ -64,5 +64,5 @@ let a = null;
 typeof window < "u" ? a = window.Vue : typeof global < "u" && (a = global.Vue);
 a && a.use(b);
 export {
-    R as default
+    y as default
 };

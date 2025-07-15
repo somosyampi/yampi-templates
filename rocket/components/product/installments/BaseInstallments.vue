@@ -5,7 +5,7 @@ import productMixin from '@/mixins/product';
 import merchantsMixin from '@/mixins/merchant';
 
 export default {
-    name: 'BaseProduct',
+    name: 'BaseInstallments',
 
     mixins: [productMixin, merchantsMixin],
 

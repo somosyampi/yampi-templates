@@ -14,6 +14,8 @@
 
 <script>
 export default {
+    name: 'RocketAnchor',
+
     props: {
         href: {
             type: String,

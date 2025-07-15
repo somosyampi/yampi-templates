@@ -1,4 +1,4 @@
-function C(r, t, a, p, i, f, _, c) {
+function m(r, t, a, p, i, f, _, c) {
   var e = typeof r == "function" ? r.options : r;
   t && (e.render = t, e.staticRenderFns = a, e._compiled = !0), p && (e.functional = !0), f && (e._scopeId = "data-v-" + f);
   var o;
@@ -25,7 +25,8 @@ function C(r, t, a, p, i, f, _, c) {
     options: e
   };
 }
-const m = {
+const C = {
+  name: "ErrorText",
   props: {
     text: {
       type: String,
@@ -36,8 +37,8 @@ const m = {
 var g = function() {
   var t = this, a = t._self._c;
   return t.text ? a("div", { staticClass: "error-text", domProps: { textContent: t._s(t.text) } }) : t._e();
-}, R = [], $ = /* @__PURE__ */ C(
-  m,
+}, R = [], T = /* @__PURE__ */ m(
+  C,
   g,
   R,
   !1,
@@ -46,16 +47,16 @@ var g = function() {
   null,
   null
 );
-const b = $.exports;
+const $ = T.exports;
 function l(r) {
-  l.installed || (l.installed = !0, r.component("ErrorText", b));
+  l.installed || (l.installed = !0, r.component("ErrorText", $));
 }
-const w = {
+const b = {
   install: l
 };
 let s = null;
 typeof window < "u" ? s = window.Vue : typeof global < "u" && (s = global.Vue);
-s && s.use(w);
+s && s.use(b);
 export {
-  b as default
+  $ as default
 };

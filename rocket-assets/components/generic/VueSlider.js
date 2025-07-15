@@ -27,6 +27,7 @@ function v(a, e, l, s, o, d, c, m) {
   };
 }
 const M = {
+  name: "VueSlider",
   props: {
     min: {
       type: Number,

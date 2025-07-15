@@ -1,8 +1,8 @@
-(function () { "use strict"; try { if (typeof document < "u") { var e = document.createElement("style"); e.appendChild(document.createTextNode(".hide[data-v-ab5cf582]{visibility:hidden}")), document.head.appendChild(e) } } catch (d) { console.error("vite-plugin-css-injected-by-js", d) } })();
-import { mapGetters as p, mapActions as _ } from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-main/rocket-assets/dist/vendor/vuex.js";
-import T from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-main/rocket-assets/dist/vendor/modules/eventBus.js";
-import w from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-main/rocket-assets/dist/vendor/modules/axios/api.js";
-import y from "https://codigo-aberto-production-assets.s3.amazonaws.com/yampi-templates-main/rocket-assets/dist/vendor/modules/axios/rocket.js";
+(function () { "use strict"; try { if (typeof document < "u") { var e = document.createElement("style"); e.appendChild(document.createTextNode(".hide[data-v-68e4f9aa]{visibility:hidden}")), document.head.appendChild(e) } } catch (d) { console.error("vite-plugin-css-injected-by-js", d) } })();
+import { mapGetters as p, mapActions as _ } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/vuex.js";
+import v from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/eventBus.js";
+import w from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/axios/api.js";
+import y from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/axios/rocket.js";
 function g(e, t, a, s, i, f, u, C) {
     var r = typeof e == "function" ? e.options : e;
     t && (r.render = t, r.staticRenderFns = a, r._compiled = !0), s && (r.functional = !0), f && (r._scopeId = "data-v-" + f);
@@ -18,8 +18,8 @@ function g(e, t, a, s, i, f, u, C) {
         if (r.functional) {
             r._injectStyles = n;
             var m = r.render;
-            r.render = function (v, h) {
-                return n.call(h), m(v, h);
+            r.render = function (T, h) {
+                return n.call(h), m(T, h);
             };
         } else {
             var c = r.beforeCreate;
@@ -49,6 +49,26 @@ const $ = {
         ...p("cart", ["cartType"]),
         ...p("preview", ["isPreview"]),
         ..._("cart", ["addProductsToCart"])
+    },
+    mounted() {
+        v.$on("addToCartClicked", this.handleAddToCartClick), this.$store.subscribe(({ type: e, payload: t }) => {
+            if (e === "cart/EVENT_ADDED_TO_CART") {
+                if (this.isPreview && this.cartType !== "side_cart") {
+                    this.$refs.modalCartConfirmation && this.$refs.modalCartConfirmation.showModal();
+                    return;
+                }
+            },
+            data() {
+                return {
+                    error: void 0,
+                    quantity: 1,
+                    productData: {}
+                };
+            },
+            computed: {
+        ...p("cart", ["cartType"]),
+            ...p("preview", ["isPreview"]),
+            ..._("cart", ["addProductsToCart"])
     },
     mounted() {
         T.$on("addToCartClicked", this.handleAddToCartClick), this.$store.subscribe(({ type: e, payload: t }) => {
