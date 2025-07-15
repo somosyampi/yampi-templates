@@ -1,5 +1,5 @@
 (function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".hide[data-v-cfa76180]{visibility:hidden}")),document.head.appendChild(e)}}catch(d){console.error("vite-plugin-css-injected-by-js",d)}})();
-import u from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
+import u from "https://codigo-aberto-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/lodash.js";
 function w(o, t, n, m, a, d, f, h) {
   var e = typeof o == "function" ? o.options : o;
   t && (e.render = t, e.staticRenderFns = n, e._compiled = !0), m && (e.functional = !0), d && (e._scopeId = "data-v-" + d);

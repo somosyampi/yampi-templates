@@ -1,4 +1,4 @@
-import { mapGetters as g } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/vuex.js";
+import { mapGetters as g } from "https://codigo-aberto-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/vuex.js";
 function m(o, t, r, p, l, f, d, h) {
   var e = typeof o == "function" ? o.options : o;
   t && (e.render = t, e.staticRenderFns = r, e._compiled = !0), p && (e.functional = !0), f && (e._scopeId = "data-v-" + f);
