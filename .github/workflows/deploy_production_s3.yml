@@ -15,11 +15,11 @@ jobs:
 
       - name: Replace Open Store Templates URL
         run: |
-          grep -rl --exclude="*.yml" 'yampi-templates-sandbox' . | xargs sed -i 's/yampi-templates-sandbox/yampi-templates-main/g'
+          grep -rl --exclude="*.yml" 'yampi-templates-sandbox' . | xargs -r sed -i 's/yampi-templates-sandbox/yampi-templates-main/g'
 
       - name: Replace Open Store CDN URL
         run: |
-          grep -rl --exclude="*.yml" 'codigo-aberto-sandbox-assets' . | xargs sed -i 's/codigo-aberto-sandbox-assets/codigo-aberto-production-assets/g'
+          grep -rl --exclude="*.yml" 'codigo-aberto-sandbox-assets' . | xargs -r sed -i 's/codigo-aberto-sandbox-assets/codigo-aberto-production-assets/g'
 
       - name: Replace Rocket CDN URL
         run: |
