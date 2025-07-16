@@ -1,5 +1,5 @@
 import r from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
-import { mapGetters as p, mapActions as y } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/vuex.js";
+import { mapGetters as m, mapActions as y } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/vuex.js";
 import b from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/tracking/api.js";
 import k from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/cashback.js";
 function v(t, e, i, s, o, l, d, _) {
@@ -17,8 +17,8 @@ function v(t, e, i, s, o, l, d, _) {
     if (a.functional) {
       a._injectStyles = u;
       var g = a.render;
-      a.render = function(C, m) {
-        return u.call(m), g(C, m);
+      a.render = function(C, p) {
+        return u.call(p), g(C, p);
       };
     } else {
       var f = a.beforeCreate;
@@ -59,8 +59,8 @@ const w = {
     };
   },
   computed: {
-    ...p("cart", ["cart"]),
-    ...p("preview", ["isIframe"]),
+    ...m("cart", ["cart"]),
+    ...m("preview", ["isIframe"]),
     items() {
       return r.get(this.cart, "items", []);
     },
@@ -106,7 +106,7 @@ const w = {
       }, 0);
     },
     totalCartValue() {
-      return this.cart.prices ? parseFloat(this.cart.prices.items_amount) + this.totalValueCustomizations - this.totalFreebieValue : 0;
+      return this.cart.prices ? parseFloat(this.cart.prices.items_amount) + this.totalValueCustomizations : 0;
     },
     totalCartSavings() {
       const t = parseFloat(this.cart.prices.subtotal), e = parseFloat(this.cart.prices.discount);
@@ -201,18 +201,18 @@ const w = {
       this.isIframe || (window.location.href = this.emptyCartLinkButton);
     }
   }
-}, L = null, V = null;
-var B = /* @__PURE__ */ v(
+}, L = null, B = null;
+var V = /* @__PURE__ */ v(
   w,
   L,
-  V,
+  B,
   !1,
   null,
   null,
   null,
   null
 );
-const $ = B.exports;
+const $ = V.exports;
 function h(t) {
   h.installed || (h.installed = !0, t.component("BaseCart", $));
 }

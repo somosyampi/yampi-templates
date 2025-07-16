@@ -5,8 +5,8 @@
         </div>
 
         <template v-if="loading">
-            <TheLoader :margin="33" />
-            <TheLoader style="display: block; margin: 20px auto 54px; width: 50%" />
+            <Loader :margin="33" />
+            <Loader style="display: block; margin: 20px auto 54px; width: 50%" />
         </template>
 
         <RangeSlider

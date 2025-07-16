@@ -95,7 +95,7 @@ const b = {
 };
 var x = function() {
   var e = this, a = e._self._c;
-  return a("div", { staticClass: "filter filter-price" }, [a("div", { staticClass: "-title" }, [e._v(" Faixa de pre\xE7o ")]), e.loading ? [a("TheLoader", { attrs: { margin: 33 } }), a("TheLoader", { staticStyle: { display: "block", margin: "20px auto 54px", width: "50%" } })] : e.payload.max ? a("RangeSlider", { attrs: { max: e.payload.max, "remove-prefix": !0 }, on: { input: e.updatePriceStatus }, model: { value: e.value, callback: function(o) {
+  return a("div", { staticClass: "filter filter-price" }, [a("div", { staticClass: "-title" }, [e._v(" Faixa de pre\xE7o ")]), e.loading ? [a("Loader", { attrs: { margin: 33 } }), a("Loader", { staticStyle: { display: "block", margin: "20px auto 54px", width: "50%" } })] : e.payload.max ? a("RangeSlider", { attrs: { max: e.payload.max, "remove-prefix": !0 }, on: { input: e.updatePriceStatus }, model: { value: e.value, callback: function(o) {
     e.value = o;
   }, expression: "value" } }) : e._e()], 2);
 }, g = [], q = /* @__PURE__ */ F(

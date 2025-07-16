@@ -36,8 +36,12 @@
                 :src="getImage(banner) || srcFirstPlaceholder"
                 :alt="`${banner.name}`"
                 :lazyload="true"
+                :class="{
+                    '--has-link': !!banner.link,
+                }"
                 width="158"
                 height="237"
+                @click="handleClick(banner)"
             />
         </div>
     </div>
@@ -289,6 +293,18 @@ export default {
             } finally {
                 this.loading = false;
             }
+        },
+
+        handleClick(banner) {
+            if (!banner.link) {
+                return;
+            }
+
+            window.open(
+                banner.link,
+                '_blank',
+                'noopener,noreferrer',
+            );
         },
     },
 };
