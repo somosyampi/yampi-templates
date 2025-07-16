@@ -1,14 +1,14 @@
-import { mapGetters as _ } from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/vuex.js";
-import b from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/modules/axios/api.js";
-import B from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/modules/axios/rocket.js";
-import v from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/mobile.js";
-import { isLinkSameStoreDomain as y } from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/helpers.js";
-function C(t, e, n, s, o, d, c, p) {
+import { mapGetters as _ } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/vuex.js";
+import b from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/axios/api.js";
+import v from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/axios/rocket.js";
+import B from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/mobile.js";
+import { isLinkSameStoreDomain as y } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/helpers.js";
+function C(t, e, n, i, o, d, c, p) {
     var r = typeof t == "function" ? t.options : t;
-    e && (r.render = e, r.staticRenderFns = n, r._compiled = !0), s && (r.functional = !0), d && (r._scopeId = "data-v-" + d);
+    e && (r.render = e, r.staticRenderFns = n, r._compiled = !0), i && (r.functional = !0), d && (r._scopeId = "data-v-" + d);
     var a;
-    if (c ? (a = function (i) {
-        i = i || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !i && typeof __VUE_SSR_CONTEXT__ < "u" && (i = __VUE_SSR_CONTEXT__), o && o.call(this, i), i && i._registeredComponents && i._registeredComponents.add(c);
+    if (c ? (a = function (s) {
+        s = s || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !s && typeof __VUE_SSR_CONTEXT__ < "u" && (s = __VUE_SSR_CONTEXT__), o && o.call(this, s), s && s._registeredComponents && s._registeredComponents.add(c);
     }, r._ssrRegister = a) : o && (a = p ? function () {
         o.call(
             this,
@@ -33,7 +33,7 @@ function C(t, e, n, s, o, d, c, p) {
 const w = {
     name: "SectionTextButton2Banners",
     mixins: [
-        v
+        B
     ],
     props: {
         numberBanner: {
@@ -95,8 +95,7 @@ const w = {
                 {
                     "--multiple-resources": this.numberBanner > 1
                 }
-            ];
-        },
+    },
         customBannersClasses() {
             return [
                 {
@@ -148,7 +147,7 @@ const w = {
             !this.isPreview || (this.placeholders = await this.getPlaceholders());
         },
         async getPlaceholders() {
-            const { data: t } = await B({
+            const { data: t } = await v({
                 method: "get",
                 url: "/placeholders/text-button-2-banners"
             });
@@ -169,51 +168,100 @@ const w = {
                 let e = {
                     id: t
                 };
-                e = {
-                    status: "active",
-                    ...e
-                };
-                const { data: n } = await b.get("catalog/banners", {
-                    params: e
-                });
-                if (!n.data.length && this.isPreview) {
-                    this.banners = await this.getPlaceholders();
-                    return;
+            },
+            computed: {
+        ..._("preview", ["isPreview"]),
+        customContainerClasses() {
+            return [
+                `--${this.textPosition}`,
+                {
+                    "--multiple-resources": this.numberBanner > 1
                 }
-                if (!this.hasEnoughUploadedBanners && this.isPreview) {
-                    let s = await this.getPlaceholders();
-                    s = s.slice(
-                        0,
-                        this.remainingBannersCount
-                    ), this.banners = [
-                        ...n.data,
-                        ...s
-                    ];
-                    return;
+            ];
+        },
+        customBannersClasses() {
+            return [
+                {
+                    "--multiple-resources": this.numberBanner > 1
                 }
-                this.banners = n.data;
-            } finally {
-                this.loading = !1;
-            }
+            ];
+        },
+        customDescriptionClasses() {
+            return [
+                `--${this.textAlign}`
+            ];
+        },
+        computedAttrs() {
+            const t = this.linkInButton === "javascript:void(0)";
+            return !this.linkInButton || t ? {} : y(this.linkInButton, window.merchant.domain) ? {
+                rel: "noreferrer nofollow",
+                "target-type": "_blank"
+            } : {
+                "target-type": "_blank"
+            };
+        },
+        computedBanners() {
+            return !this.banners || this.banners.length === 0 ? [] : this.numberBanner > 1 ? this.banners : [this.banners[0]];
+        },
+        remainingBannersCount() {
+            const t = this.resourceIds.length;
+            return this.numberBanner - t;
+        },
+        hasEnoughUploadedBanners() {
+            return this.remainingBannersCount === 0;
+        },
+        srcFirstPlaceholder() {
+            var t, e;
+            return !this.placeholders || !this.isPreview ? "" : (e = (t = this.placeholders) == null ? void 0 : t[0]) == null ? void 0 : e.image_url;
         }
-    }
+        if(!this.hasEnoughUploadedBanners && this.isPreview) {
+        let i = await this.getPlaceholders();
+i = i.slice(
+    0,
+    this.remainingBannersCount
+), this.banners = [
+    ...n.data,
+    ...i
+];
+return;
+        }
+this.banners = n.data;
+      } finally {
+    this.loading = !1;
+}
+    },
+handleClick(t) {
+    !t.link || window.open(
+        t.link,
+        "_blank",
+        "noopener,noreferrer"
+    );
+}
 };
-var S = function () {
+var k = function () {
     var e = this, n = e._self._c;
-    return e.ready ? n("div", { staticClass: "section-text-button-2-banners--container container", class: e.customContainerClasses }, [n("div", { staticClass: "section-text-button-2-banners--description", class: e.customDescriptionClasses }, [n("div", { staticClass: "theme-title title-text", domProps: { innerHTML: e._s(e.titleText) } }), n("div", { staticClass: "description-text", domProps: { innerHTML: e._s(e.descriptionText) } }), n("div", [e.buttonSwitch ? n("RocketAnchor", e._b({ attrs: { "custom-classes": `section--button btn btn-${e.buttonStyle} ellipsis-multiline`, label: e.textInButton, href: e.linkInButton } }, "RocketAnchor", e.computedAttrs, !1)) : e._e()], 1)]), n("div", { staticClass: "section-text-button-2-banners--banners", class: e.customBannersClasses }, e._l(e.computedBanners, function (s) {
-        return n("CustomImage", { key: s.id, attrs: { src: e.getImage(s) || e.srcFirstPlaceholder, alt: `${s.name}`, lazyload: !0, width: "158", height: "237" } });
+    return e.ready ? n("div", { staticClass: "section-text-button-2-banners--container container", class: e.customContainerClasses }, [n("div", { staticClass: "section-text-button-2-banners--description", class: e.customDescriptionClasses }, [n("div", { staticClass: "theme-title title-text", domProps: { innerHTML: e._s(e.titleText) } }), n("div", { staticClass: "description-text", domProps: { innerHTML: e._s(e.descriptionText) } }), n("div", [e.buttonSwitch ? n("RocketAnchor", e._b({ attrs: { "custom-classes": `section--button btn btn-${e.buttonStyle} ellipsis-multiline`, label: e.textInButton, href: e.linkInButton } }, "RocketAnchor", e.computedAttrs, !1)) : e._e()], 1)]), n("div", { staticClass: "section-text-button-2-banners--banners", class: e.customBannersClasses }, e._l(e.computedBanners, function (i) {
+        return n("CustomImage", {
+            key: i.id, class: {
+                "--has-link": !!i.link
+            }, attrs: { src: e.getImage(i) || e.srcFirstPlaceholder, alt: `${i.name}`, lazyload: !0, width: "158", height: "237" }, on: {
+                click: function (o) {
+                    return e.handleClick(i);
+                }
+            }
+        });
     }), 1)]) : e._e();
-}, P = [], k = /* @__PURE__ */ C(
+}, S = [], P = /* @__PURE__ */ C(
     w,
+    k,
     S,
-    P,
     !1,
     null,
     null,
     null,
     null
 );
-const x = k.exports;
+const x = P.exports;
 function u(t) {
     u.installed || (u.installed = !0, t.component("SectionTextButton2Banners", x));
 }

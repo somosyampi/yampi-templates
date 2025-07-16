@@ -31,7 +31,7 @@
                     class="close-modal"
                     @click="closeModal"
                 >
-                    <i class="icon icon-close-modal" />
+                    <i class="icon icon-close-x" />
                 </div>
             </div>
 

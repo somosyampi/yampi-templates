@@ -19,7 +19,7 @@
                     class="close-modal"
                     @click="handleShow"
                 >
-                    <i class="icon icon-close-modal" />
+                    <i class="icon icon-close-x" />
                 </div>
             </div>
             <div

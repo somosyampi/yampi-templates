@@ -114,7 +114,7 @@ var w = function () {
         staticClass: "side-cart-header", class: {
             "--overflows": t.isOverflowing
         }
-    }, [e("div", { staticClass: "theme-title side-cart-title" }, [t._v(" Meu carrinho ")]), e("div", { staticClass: "close-modal", on: { click: t.handleShow } }, [e("i", { staticClass: "icon icon-close-modal" })])]), !t.items.length && !t.loading.all ? e("div", { staticClass: "empty-cart" }, [e("i", { staticClass: "icon icon-empty-cart" }), e("div", { staticClass: "-title" }, [t._v(" Seu carrinho est\xE1 vazio ")]), e("span", [t.emptyCartHelperText ? e("div", { staticClass: "-subtitle", domProps: { innerHTML: t._s(t.emptyCartHelperText) } }) : e("div", { staticClass: "-subtitle" }, [t._v(" Navegue pela loja e adicione produtos. ")])]), t.emptyCartTextButton ? e("div", { staticClass: "-cta-holder" }, [e("a", {
+    }, [e("div", { staticClass: "theme-title side-cart-title" }, [t._v(" Meu carrinho ")]), e("div", { staticClass: "close-modal", on: { click: t.handleShow } }, [e("i", { staticClass: "icon icon-close-x" })])]), !t.items.length && !t.loading.all ? e("div", { staticClass: "empty-cart" }, [e("i", { staticClass: "icon icon-empty-cart" }), e("div", { staticClass: "-title" }, [t._v(" Seu carrinho est\xE1 vazio ")]), e("span", [t.emptyCartHelperText ? e("div", { staticClass: "-subtitle", domProps: { innerHTML: t._s(t.emptyCartHelperText) } }) : e("div", { staticClass: "-subtitle" }, [t._v(" Navegue pela loja e adicione produtos. ")])]), t.emptyCartTextButton ? e("div", { staticClass: "-cta-holder" }, [e("a", {
         staticClass: "-cta", on: {
             click: function (s) {
                 return t.linkValidation();

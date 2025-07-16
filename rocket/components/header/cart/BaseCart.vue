@@ -117,12 +117,10 @@ export default {
                 return 0;
             }
 
-            const itemsAmountWithCustomizationValue = (
+            return (
                 parseFloat(this.cart.prices.items_amount)
                 + this.totalValueCustomizations
             );
-
-            return itemsAmountWithCustomizationValue - this.totalFreebieValue;
         },
 
         totalCartSavings() {

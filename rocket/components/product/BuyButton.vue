@@ -68,8 +68,8 @@ export default {
         justify-content: center;
         align-items: center;
         position: absolute;
-        bottom: 8px;
-        right: 8px;
+        bottom: var(--grids-products-images-margin);
+        right: var(--grids-products-images-margin);
         width: 46px;
         height: 46px;
         background-color: var(--add-to-cart-button-color);
