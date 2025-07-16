@@ -19,7 +19,7 @@ jobs:
 
       - name: Replace Open Store CDN URL
         run: |
-          grep -rl --exclude="*.yml" 'codigo-aberto-sandbox-assets' . | xargs -r sed -i 's/codigo-aberto-sandbox-assets/codigo-aberto-production-assets/g'
+          grep -rl --exclude="*.yml" 'codigo-aberto-sandbox-assets' . | xargs -r sed -i 's/codigo-aberto-sandbox-assets/openstore-production-assets/g'
 
       - name: Replace Rocket CDN URL
         run: |
