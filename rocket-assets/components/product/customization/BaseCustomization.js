@@ -1,5 +1,5 @@
-import r from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/lodash.js";
-import C from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/errors.js";
+import r from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
+import C from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/errors.js";
 function z(t, i, e, a, u, f, d, _) {
     var s = typeof t == "function" ? t.options : t;
     i && (s.render = i, s.staticRenderFns = e, s._compiled = !0), a && (s.functional = !0), f && (s._scopeId = "data-v-" + f);
