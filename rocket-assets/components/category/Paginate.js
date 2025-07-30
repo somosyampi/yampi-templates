@@ -1,4 +1,4 @@
-import C from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/queryParams.js";
+import C from "https://codigo-aberto-sandbox-assets.yampi.io.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/queryParams.js";
 function g(n, e, t, r, a, o, u, i) {
     var s = typeof n == "function" ? n.options : n;
     e && (s.render = e, s.staticRenderFns = t, s._compiled = !0), r && (s.functional = !0), o && (s._scopeId = "data-v-" + o);

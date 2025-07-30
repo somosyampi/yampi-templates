@@ -1,4 +1,4 @@
-import v from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
+import v from "https://codigo-aberto-sandbox-assets.yampi.io.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
 function g(t, e, o, m, n, r, c, h) {
     var s = typeof t == "function" ? t.options : t;
     e && (s.render = e, s.staticRenderFns = o, s._compiled = !0), m && (s.functional = !0), r && (s._scopeId = "data-v-" + r);

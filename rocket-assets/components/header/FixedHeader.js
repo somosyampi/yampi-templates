@@ -1,5 +1,5 @@
-import v from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
-import { mapGetters as w } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/vuex.js";
+import v from "https://codigo-aberto-sandbox-assets.yampi.io.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
+import { mapGetters as w } from "https://codigo-aberto-sandbox-assets.yampi.io.s3.amazonaws.com/yampi-templates-sandbox/rocket-assets/dist/vendor/vuex.js";
 function b(t, o, d, s, r, f, u, p) {
     var e = typeof t == "function" ? t.options : t;
     o && (e.render = o, e.staticRenderFns = d, e._compiled = !0), s && (e.functional = !0), f && (e._scopeId = "data-v-" + f);
