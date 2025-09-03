@@ -1,28 +1,28 @@
-(function () { "use strict"; try { if (typeof document < "u") { var e = document.createElement("style"); e.appendChild(document.createTextNode(".helper-text[data-v-85d86ce2]{font-size:14px;line-height:1.6;margin-bottom:15px}.product[data-v-85d86ce2]{background-color:var(--default-background-color);border-radius:var(--theme-border-radius);display:flex;align-items:center;margin:0 auto 31px;padding:17px 19px;width:100%}.product img[data-v-85d86ce2]{height:60px;margin:0 15px 0 0;width:60px;border-radius:var(--mini-cart-product-border-radius)}.product .name[data-v-85d86ce2]{color:var(--color-general-primary);font-size:14px;line-height:1.15;font-weight:var(--font-medium);word-break:break-word}")), document.head.appendChild(e) } } catch (r) { console.error("vite-plugin-css-injected-by-js", r) } })();
-import v from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/errors.js";
-import k from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/modules/axios/rocket.js";
-import g from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/tracking/sdk.js";
-function b(i, t, e, s, n, c, d, p) {
+(function () { "use strict"; try { if (typeof document < "u") { var e = document.createElement("style"); e.appendChild(document.createTextNode(".helper-text[data-v-40c92a30]{font-size:14px;line-height:1.6;margin-bottom:15px}.product[data-v-40c92a30]{background-color:var(--default-background-color);border-radius:var(--theme-border-radius);display:flex;align-items:center;margin:0 auto 31px;padding:17px 19px;width:100%}.product img[data-v-40c92a30]{height:60px;margin:0 15px 0 0;width:60px;border-radius:var(--mini-cart-product-border-radius)}.product .name[data-v-40c92a30]{color:var(--color-general-primary);font-size:14px;line-height:1.15;font-weight:var(--font-medium);word-break:break-word}")), document.head.appendChild(e) } } catch (r) { console.error("vite-plugin-css-injected-by-js", r) } })();
+import v from "https://openstore-production-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/errors.js";
+import k from "https://openstore-production-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/axios/rocket.js";
+import g from "https://openstore-production-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/tracking/sdk.js";
+function b(i, t, e, s, r, c, f, p) {
     var o = typeof i == "function" ? i.options : i;
     t && (o.render = t, o.staticRenderFns = e, o._compiled = !0), s && (o.functional = !0), c && (o._scopeId = "data-v-" + c);
-    var r;
-    if (d ? (r = function (a) {
-        a = a || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !a && typeof __VUE_SSR_CONTEXT__ < "u" && (a = __VUE_SSR_CONTEXT__), n && n.call(this, a), a && a._registeredComponents && a._registeredComponents.add(d);
-    }, o._ssrRegister = r) : n && (r = p ? function () {
-        n.call(
+    var n;
+    if (f ? (n = function (a) {
+        a = a || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !a && typeof __VUE_SSR_CONTEXT__ < "u" && (a = __VUE_SSR_CONTEXT__), r && r.call(this, a), a && a._registeredComponents && a._registeredComponents.add(f);
+    }, o._ssrRegister = n) : r && (n = p ? function () {
+        r.call(
             this,
             (o.functional ? this.parent : this).$root.$options.shadowRoot
         );
-    } : n), r)
+    } : r), n)
         if (o.functional) {
-            o._injectStyles = r;
+            o._injectStyles = n;
             var _ = o.render;
             o.render = function (h, u) {
-                return r.call(u), _(h, u);
+                return n.call(u), _(h, u);
             };
         } else {
-            var f = o.beforeCreate;
-            o.beforeCreate = f ? [].concat(f, r) : [r];
+            var d = o.beforeCreate;
+            o.beforeCreate = d ? [].concat(d, n) : [n];
         }
     return {
         exports: i,
@@ -52,7 +52,7 @@ const C = {
     },
     methods: {
         showModal() {
-            this.$refs.stockNotificationsModal.showModal();
+            this.$refs.stockNotificationsModal && this.$refs.stockNotificationsModal.showModal();
         },
         closeModal() {
             this.$refs.stockNotificationsModal.closeModal();
@@ -76,9 +76,9 @@ const C = {
         }
     }
 };
-var y = function () {
+var M = function () {
     var t = this, e = t._self._c;
-    return e("div", [e("Modal", { ref: "stockNotificationsModal", attrs: { name: "stock-notifications", title: "Avise-me quando chegar" }, on: { close: t.resetForm } }, [e("p", { staticClass: "helper-text" }, [t._v(" N\xF3s te avisaremos por e-mail quando este produto estiver novamente em nosso estoque. ")]), e("div", { staticClass: "mb-30" }, [e("div", { staticClass: "product" }, [e("CustomImage", { staticClass: "-loading", attrs: { src: t.sku.images.data[0].url, alt: t.sku.name, thumbor: { resize: "60x60" } } }), e("div", { staticClass: "text" }, [e("p", { staticClass: "name" }, [t._v(" " + t._s(t.sku.title) + " ")])])], 1)]), e("form", {
+    return e("Modal", { ref: "stockNotificationsModal", attrs: { name: "stock-notifications", title: "Avise-me quando chegar" }, on: { close: t.resetForm } }, [e("p", { staticClass: "helper-text" }, [t._v(" N\xF3s te avisaremos por e-mail quando este produto estiver novamente em nosso estoque. ")]), e("div", { staticClass: "mb-30" }, [e("div", { staticClass: "product" }, [t.sku.images.data.length ? e("CustomImage", { staticClass: "-loading", attrs: { src: t.sku.images.data[0].url, alt: t.sku.name, thumbor: { resize: "60x60" } } }) : t._e(), e("div", { staticClass: "text" }, [e("p", { staticClass: "name" }, [t._v(" " + t._s(t.sku.title) + " ")])])], 1)]), e("form", {
         attrs: { id: "form-stock-notifications" }, on: {
             submit: function (s) {
                 return s.preventDefault(), t.submit.apply(null, arguments);
@@ -100,18 +100,18 @@ var y = function () {
                 return t.setError("email", "");
             }]
         }
-    }), e("ErrorText", { attrs: { text: t.getError("email") } })], 1), e("LoaderButton", { staticClass: "btn btn-secundary -block mt-24 mb-16", attrs: { sending: t.sending, title: "Entrar na lista de espera", type: "submit" } })], 1)])], 1);
-}, E = [], M = /* @__PURE__ */ b(
+    }), e("ErrorText", { attrs: { text: t.getError("email") } })], 1), e("LoaderButton", { staticClass: "btn btn-secundary -block mt-24 mb-16", attrs: { sending: t.sending, title: "Entrar na lista de espera", type: "submit" } })], 1)]);
+}, y = [], E = /* @__PURE__ */ b(
     C,
+    M,
     y,
-    E,
     !1,
     null,
-    "85d86ce2",
+    "40c92a30",
     null,
     null
 );
-const N = M.exports;
+const N = E.exports;
 function m(i) {
     m.installed || (m.installed = !0, i.component("ModalStockNotifications", N));
 }
