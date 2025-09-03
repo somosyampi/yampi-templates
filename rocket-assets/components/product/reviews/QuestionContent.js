@@ -1,4 +1,4 @@
-import C from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/components/product/reviews/BaseContent.js";
+import C from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/components/product/reviews/BaseContent.js";
 function h(i, e, t, a, r, c, u, m) {
     var s = typeof i == "function" ? i.options : i;
     e && (s.render = e, s.staticRenderFns = t, s._compiled = !0), a && (s.functional = !0), c && (s._scopeId = "data-v-" + c);

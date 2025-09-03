@@ -1,4 +1,4 @@
-import m from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/mobile.js";
+import m from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/mobile.js";
 function g(o, e, t, f, n, c, d, p) {
     var i = typeof o == "function" ? o.options : o;
     e && (i.render = e, i.staticRenderFns = t, i._compiled = !0), f && (i.functional = !0), c && (i._scopeId = "data-v-" + c);

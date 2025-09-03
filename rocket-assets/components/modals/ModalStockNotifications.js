@@ -1,7 +1,7 @@
 (function () { "use strict"; try { if (typeof document < "u") { var e = document.createElement("style"); e.appendChild(document.createTextNode(".helper-text[data-v-85d86ce2]{font-size:14px;line-height:1.6;margin-bottom:15px}.product[data-v-85d86ce2]{background-color:var(--default-background-color);border-radius:var(--theme-border-radius);display:flex;align-items:center;margin:0 auto 31px;padding:17px 19px;width:100%}.product img[data-v-85d86ce2]{height:60px;margin:0 15px 0 0;width:60px;border-radius:var(--mini-cart-product-border-radius)}.product .name[data-v-85d86ce2]{color:var(--color-general-primary);font-size:14px;line-height:1.15;font-weight:var(--font-medium);word-break:break-word}")), document.head.appendChild(e) } } catch (r) { console.error("vite-plugin-css-injected-by-js", r) } })();
-import v from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/errors.js";
-import k from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/modules/axios/rocket.js";
-import g from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/tracking/sdk.js";
+import v from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/errors.js";
+import k from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/axios/rocket.js";
+import g from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/tracking/sdk.js";
 function b(i, t, e, s, n, c, d, p) {
     var o = typeof i == "function" ? i.options : i;
     t && (o.render = t, o.staticRenderFns = e, o._compiled = !0), s && (o.functional = !0), c && (o._scopeId = "data-v-" + c);
