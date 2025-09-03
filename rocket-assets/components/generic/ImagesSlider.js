@@ -1,5 +1,5 @@
 (function () { "use strict"; try { if (typeof document < "u") { var e = document.createElement("style"); e.appendChild(document.createTextNode(".touchable[data-v-9ecb9786]{height:100%;width:100%}")), document.head.appendChild(e) } } catch (t) { console.error("vite-plugin-css-injected-by-js", t) } })();
-import v from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/touchable.js";
+import v from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/touchable.js";
 function g(i, e, n, r, a, f, u, h) {
     var t = typeof i == "function" ? i.options : i;
     e && (t.render = e, t.staticRenderFns = n, t._compiled = !0), r && (t.functional = !0), f && (t._scopeId = "data-v-" + f);
