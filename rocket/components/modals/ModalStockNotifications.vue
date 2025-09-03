@@ -1,74 +1,73 @@
 <template>
-    <div>
-        <Modal
-            ref="stockNotificationsModal"
-            name="stock-notifications"
-            title="Avise-me quando chegar"
-            @close="resetForm"
-        >
-            <p class="helper-text">
-                Nós te avisaremos por e-mail quando este produto estiver novamente em nosso estoque.
-            </p>
+    <Modal
+        ref="stockNotificationsModal"
+        name="stock-notifications"
+        title="Avise-me quando chegar"
+        @close="resetForm"
+    >
+        <p class="helper-text">
+            Nós te avisaremos por e-mail quando este produto estiver novamente em nosso estoque.
+        </p>
 
-            <div class="mb-30">
-                <div class="product">
-                    <CustomImage
-                        class="-loading"
-                        :src="sku.images.data[0].url"
-                        :alt="sku.name"
-                        :thumbor="{ resize: '60x60' }"
-                    />
-                    <div class="text">
-                        <p class="name">
-                            {{ sku.title }}
-                        </p>
-                    </div>
+        <div class="mb-30">
+            <div class="product">
+                <CustomImage
+                    v-if="sku.images.data.length"
+                    class="-loading"
+                    :src="sku.images.data[0].url"
+                    :alt="sku.name"
+                    :thumbor="{ resize: '60x60' }"
+                />
+                <div class="text">
+                    <p class="name">
+                        {{ sku.title }}
+                    </p>
                 </div>
             </div>
+        </div>
 
-            <form
-                id="form-stock-notifications"
-                @submit.prevent="submit"
-            >
-                <label for="stock-notifications-name">NOME</label>
-                <div class="holder-input mb-24">
-                    <input
-                        id="stock-notifications-name"
-                        v-model="form.name"
-                        type="text"
-                        name="stock-notifications-name"
-                        placeholder="Adriana"
-                        :class="{ error: hasError('name') }"
-                        @input="setError('name', '')"
-                    >
+        <form
+            id="form-stock-notifications"
+            @submit.prevent="submit"
+        >
+            <label for="stock-notifications-name">NOME</label>
+            <div class="holder-input mb-24">
+                <input
+                    id="stock-notifications-name"
+                    v-model="form.name"
+                    type="text"
+                    name="stock-notifications-name"
+                    placeholder="Adriana"
+                    :class="{ error: hasError('name') }"
+                    @input="setError('name', '')"
+                >
 
-                    <ErrorText :text="getError('name')" />
-                </div>
+                <ErrorText :text="getError('name')" />
+            </div>
 
-                <label for="stock-notifications-email">E-MAIL</label>
-                <div class="holder-input">
-                    <input
-                        id="stock-notifications-email"
-                        v-model="form.email"
-                        type="email"
-                        name="stock-notifications-email"
-                        placeholder="Ex.: adriana@gmail.com"
-                        :class="{ error: hasError('email') }"
-                        @input="setError('email', '')"
-                    >
+            <label for="stock-notifications-email">E-MAIL</label>
+            <div class="holder-input">
+                <input
+                    id="stock-notifications-email"
+                    v-model="form.email"
+                    type="email"
+                    name="stock-notifications-email"
+                    placeholder="Ex.: adriana@gmail.com"
+                    :class="{ error: hasError('email') }"
+                    @input="setError('email', '')"
+                >
 
-                    <ErrorText :text="getError('email')" />
-                </div>
+                <ErrorText :text="getError('email')" />
+            </div>
 
-                <LoaderButton
-                    :sending="sending"
-                    title="Entrar na lista de espera"
-                    class="btn btn-secundary -block mt-24 mb-16"
-                    type="submit"
-                />
-            </form>
-        </Modal>
-    </div>
+            <LoaderButton
+                :sending="sending"
+                title="Entrar na lista de espera"
+                class="btn btn-secundary -block mt-24 mb-16"
+                type="submit"
+            />
+        </form>
+    </Modal>
 </template>
 
 <script>
@@ -103,7 +102,9 @@ export default {
 
     methods: {
         showModal() {
-            this.$refs.stockNotificationsModal.showModal();
+            if (this.$refs.stockNotificationsModal) {
+                this.$refs.stockNotificationsModal.showModal();
+            }
         },
 
         closeModal() {

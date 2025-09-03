@@ -326,7 +326,9 @@ export default {
 
         openStockNotificationsModal() {
             this.handleTrackSDK('notify_when_available_subscribed_intended');
-            this.$refs.stockNotificationsModal.showModal();
+            if (this.$refs.stockNotificationsModal) {
+                this.$refs.stockNotificationsModal.showModal();
+            }
         },
     },
 };
