@@ -12,6 +12,7 @@
         :height="height"
         :onerror="handleError()"
         @load="handleLoad"
+        @click="$emit('click')"
     >
 </template>
 
