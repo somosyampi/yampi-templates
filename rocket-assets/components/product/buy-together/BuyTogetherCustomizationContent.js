@@ -1,6 +1,6 @@
-import C from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
-import { mapGetters as k, mapActions as v } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/vuex.js";
-import { smoothScroll as g } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/helpers.js";
+import C from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/lodash.js";
+import { mapGetters as k, mapActions as v } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/vuex.js";
+import { smoothScroll as g } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/helpers.js";
 function z(o, t, s, u, a, d, m, h) {
     var e = typeof o == "function" ? o.options : o;
     t && (e.render = t, e.staticRenderFns = s, e._compiled = !0), u && (e.functional = !0), d && (e._scopeId = "data-v-" + d);

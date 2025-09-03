@@ -1,4 +1,4 @@
-import p from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/components/header/cart/BaseCart.js";
+import p from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-main/rocket-assets/components/header/cart/BaseCart.js";
 function g(r, t, e, s, o, c, u, f) {
     var a = typeof r == "function" ? r.options : r;
     t && (a.render = t, a.staticRenderFns = e, a._compiled = !0), s && (a.functional = !0), c && (a._scopeId = "data-v-" + c);
