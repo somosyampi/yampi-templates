@@ -174,74 +174,27 @@ export default {
         },
 
         loadOptions(index = 0) {
-            const optionsValue = this.variationsStyle === 'list'
-                ? this.filterVariationOptions(index)
-                : this.mapUnavailableVariationOptions(index);
+            const optionsValue = this.filterVariationOptions(index);
             this.$set(this.options, index, optionsValue);
-        },
-
-        mapUnavailableVariationOptions(index) {
-            const options = this.variations[index].values.data;
-
-            return options.map(option => {
-                option.unavailable = false;
-
-                if (option.blocked_sale === 1
-                || !this.skus.some(sku => this.skuHasOption(sku, option))) {
-                    option.unavailable = true;
-                }
-
-                return option;
-            });
         },
 
         filterVariationOptions(index) {
             const options = _.get(this.variations, `${index}.values.data`, []);
-            let optionsNoCache = [];
-
-            optionsNoCache = this.availabilitySkuVariationsWithoutCache(options);
-
-            if (index === 0) {
-                return optionsNoCache.filter(option => option.blocked_sale != true);
-            }
-
-            return optionsNoCache.filter(option => {
-                if (option.blocked_sale === true || options.blocked_sale === 1) {
-                    return false;
-                }
-
-                // check if we have any sku with this option
-                return this.skus.some(sku => this.skuHasOption(sku, option));
-            });
-        },
-
-        availabilitySkuVariationsWithoutCache(options) {
-            const result = [];
+            const optionsNoCache = [];
 
             for (const option of options) {
-                let isOptionBlocked = true;
-
                 for (const sku of this.skus) {
-                    const hasMatchingVariation = sku.variations.some(variation => variation.value_id === option.id && sku.blocked_sale == false);
-
-                    if (hasMatchingVariation) {
-                        isOptionBlocked = false;
-                        break;
+                    if (option.id === parseInt(sku.combinations)) {
+                        option.blocked_sale = sku.blocked_sale;
                     }
                 }
-
-                option.blocked_sale = isOptionBlocked;
-                result.push(option);
+                optionsNoCache.push(option);
             }
 
-            return result;
+            return optionsNoCache.filter(option => this.skus.some(sku => this.skuHasOption(sku, option)));
         },
 
         skuHasOption(sku, option) {
-            if (sku.blocked_sale) {
-                return false;
-            }
-
             const combinations = sku.combinations.split('-').map(item => parseInt(item, 10));
 
             const partialCombination = [
@@ -254,7 +207,6 @@ export default {
 
         verifySelect() {
             // validate all elements
-            // this.$refs.customSelect.forEach(element => (element.error = !element.value));
             const invalidSelects = this.$refs.customSelect
                 .filter(element => !element.selectedValue);
 

@@ -170,6 +170,13 @@
         max-width: var(--column-contact-max-width);
     }
 
+    .contact-email {
+        a {
+            white-space: normal;
+            word-break: break-word;
+        }
+    }
+
     .-social-midia {
         width: auto;
         font-size: 0;
@@ -186,7 +193,7 @@
     .social-midia {
         width: 40px;
         height: 40px;
-        border-radius: 50%;
+        border-radius: var(--social-media-icons-border);
         text-align: center;
         color: var(--footer-font-color);
         border: solid 1px var(--footer-font-color);
@@ -207,6 +214,7 @@
             font-size: 16px;
             line-height: 37px;
             height: 38px;
+            margin: 0;
 
             &.fa-facebook-f {
                 width: 10px;

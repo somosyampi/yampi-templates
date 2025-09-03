@@ -146,7 +146,7 @@ section {
 
             &,
             &:hover {
-                border-radius: 50%;
+                border-radius: var(--grids-products-tags-radius);
                 background-image: url(image(
                     "themes/rocket/icons/carousel-arrow.svg"
                 ));

@@ -133,7 +133,7 @@ a.no-action {
     bottom: 100px;
     width: 50px;
     height: 50px;
-    border-radius: 50%;
+    border-radius: var(--theme-border-radius);
     background-color: var(--background-contrasting-color);
     z-index: 1;
     display: flex;
@@ -294,9 +294,9 @@ div>section:not(.main-banner):not(.category-content):not(.main-product-content):
 
 .flag {
     display: inline-block;
-    padding: 4px 5px;
+    padding: 6px 8px;
     margin: 3px 3px 0 0;
-    border-radius: var(--theme-border-radius);
+    border-radius: var(--grids-products-tags-radius);
     color: var(--flag-color);
     background-color: var(--flag-bg-color);
     font-size: var(--font-11);
@@ -306,14 +306,15 @@ div>section:not(.main-banner):not(.category-content):not(.main-product-content):
 .discount-tag {
     position: relative;
     display: inline-block;
-    padding: 0 6px 0 5px;
-    height: 23px;
-    line-height: 23px;
-    border-radius: 5px;
+    padding: 6px 8px;
+    height: 24px;
+    line-height: 6px;
+    border-radius: var(--grids-products-tags-radius);
     color: var(--discount-tag-color);
     background-color: var(--discount-tag-background);
     font-size: var(--font-13);
     font-weight: var(--font-bold);
+    border: 3px solid var(--discount-tag-background);
 
     span {
         &:before {

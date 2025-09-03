@@ -1,28 +1,24 @@
 body {
     &.contrast-icons {
         .icon {
-            &-select-arrow {
-                fill: #ffffff;
-            }
-
             &-empty-cart {
                 background-image: url(image(
-                    "themes/rocket/icons/icons-darker-bg/empty-cart.svg"
-                ));
+ "themes/rocket/icons/icons-darker-bg/empty-cart.svg"
+                    ));
             }
 
             &-success {
                 background-image: url(image(
-                    "themes/rocket/icons/icons-darker-bg/modal-success.svg"
-                ));
+ "themes/rocket/icons/icons-darker-bg/modal-success.svg"
+                    ));
                 width: 77px;
                 height: 77px;
             }
 
             &-phone {
                 background-image: url(image(
-                    "themes/rocket/icons/black-friday/phone.svg"
-                ));
+ "themes/rocket/icons/black-friday/phone.svg"
+                    ));
 
                 width: 16px;
                 height: 16px;
@@ -30,97 +26,101 @@ body {
 
             &-tracker {
                 background-image: url(image(
-                    "themes/rocket/icons/black-friday/tracker.svg"
-                ));
+ "themes/rocket/icons/black-friday/tracker.svg"
+                    ));
             }
 
             &-loader-dark {
                 background-image: url(image(
-                    "themes/rocket/icons/black-friday/loader-dark.svg"
-                ));
+ "themes/rocket/icons/black-friday/loader-dark.svg"
+                    ));
             }
 
             &-video-play {
                 background-image: url(image(
-                    "themes/rocket/icons/black-friday/video-play.svg"
-                ));
+ "themes/rocket/icons/black-friday/video-play.svg"
+                    ));
             }
 
             &-order {
                 background-image: url(image(
-                    "themes/rocket/icons/black-friday/order.svg"
-                ));
+ "themes/rocket/icons/black-friday/order.svg"
+                    ));
             }
 
             &-mosaic {
                 background-image: url(image(
-                    "themes/rocket/icons/black-friday/mosaic.svg"
-                ));
+ "themes/rocket/icons/black-friday/mosaic.svg"
+                    ));
             }
 
             &-list {
                 background-image: url(image(
-                    "themes/rocket/icons/black-friday/list.svg"
-                ));
+ "themes/rocket/icons/black-friday/list.svg"
+                    ));
             }
 
             &-filters {
                 background-image: url(image(
-                    "themes/rocket/icons/black-friday/filters.svg"
-                ));
+ "themes/rocket/icons/black-friday/filters.svg"
+                    ));
             }
 
             &-big-plus {
                 background-image: url(image(
-                    "themes/rocket/icons/icons-darker-bg/big-plus.svg"
-                ));
+ "themes/rocket/icons/icons-darker-bg/big-plus.svg"
+                    ));
             }
 
             &-big-equal {
                 background-image: url(image(
-                    "themes/rocket/icons/icons-darker-bg/big-equal.svg"
-                ));
+ "themes/rocket/icons/icons-darker-bg/big-equal.svg"
+                    ));
             }
 
             &-star-grey {
                 background-image: url(image(
-                    "themes/rocket/icons/icons-darker-bg/empty-star.svg"
-                ));
+ "themes/rocket/icons/icons-darker-bg/empty-star.svg"
+                    ));
             }
 
             &-money {
                 background-image: url(image(
-                    "themes/rocket/icons/icons-darker-bg/money.svg"
-                ));
+ "themes/rocket/icons/icons-darker-bg/money.svg"
+                    ));
             }
 
             &-checklist {
                 background-image: url(image(
-                    "themes/rocket/icons/black-friday/checklist.svg"
-                ));
+ "themes/rocket/icons/black-friday/checklist.svg"
+                    ));
+            }
+
+            &-close-x {
+                background-image: url(image(
+ "themes/rocket/icons/x-close-white.svg"
+                    ));
+                width: 12px;
+                height: 12px;
             }
         }
 
         .breadcrumb-divider {
             background-image: url(image(
-                "themes/rocket/icons/icons-darker-bg/breadcrumb-divider.svg"
-            ));
+ "themes/rocket/icons/icons-darker-bg/breadcrumb-divider.svg"
+                ));
         }
 
-        .header-content
-            .dropdown.category-subcategory-menu
-            .holder-categories
-            > ul
-            li.item-category.has-subdropdown {
+        .header-content .dropdown.category-subcategory-menu .holder-categories>ul li.item-category.has-subdropdown {
             background-image: url(image(
-                "themes/rocket/icons/black-friday/arrow-right.svg"
-            ));
+ "themes/rocket/icons/black-friday/arrow-right.svg"
+                ));
         }
 
         .rocket-button.main-link {
             background-image: url(image(
-                "themes/rocket/icons/black-friday/arrow-right.svg"
-            ));
+ "themes/rocket/icons/black-friday/arrow-right.svg"
+                ));
         }
 
         @media only screen and (max-width: 700px) {
@@ -128,16 +128,16 @@ body {
                 .dropdown.category-subcategory-menu {
                     .close-dropdown {
                         background-image: url(image(
-                            "themes/rocket/icons/icons-darker-bg/arrow-left-white.svg"
-                        ));
+ "themes/rocket/icons/icons-darker-bg/arrow-left-white.svg"
+                            ));
                     }
                 }
             }
 
             .category-dropdown-holder {
                 background-image: url(image(
-                    "themes/rocket/icons/black-friday/arrow-right.svg"
-                ));
+ "themes/rocket/icons/black-friday/arrow-right.svg"
+                    ));
             }
         }
     }

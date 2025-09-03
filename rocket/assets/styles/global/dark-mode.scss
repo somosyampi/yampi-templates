@@ -41,6 +41,7 @@ body.dark-mode {
     }
 
     .installment-text {
+
         &,
         .price {
             color: var(--black-lightest);
@@ -48,11 +49,12 @@ body.dark-mode {
     }
 
     .splide:not(.splide--ttb) .splide__arrow {
+
         &,
         &:hover {
             background-image: url(image(
-                "themes/rocket/icons/black-friday/carousel-arrow.svg"
-            ));
+ "themes/rocket/icons/black-friday/carousel-arrow.svg"
+                ));
         }
     }
 
@@ -74,10 +76,6 @@ body.dark-mode {
 
         &.error {
             border-color: var(--error-color);
-
-            &::placeholder {
-                color: rgba(var(--error-color-rgb), 0.3);
-            }
         }
     }
 
@@ -98,15 +96,15 @@ body.dark-mode {
             border: 0;
             opacity: 0.3;
 
-            & + .icon-select-arrow {
+            &+.icon-select-arrow {
                 opacity: 0.3;
             }
         }
 
         &::after {
             background-image: url(image(
-                "themes/rocket/icons/black-friday/select-arrow.svg"
-            ));
+ "themes/rocket/icons/black-friday/select-arrow.svg"
+                ));
         }
     }
 
@@ -138,8 +136,8 @@ body.dark-mode {
 
     .selected-filters .selected-filter {
         background-image: url(image(
-            "themes/rocket/icons/black-friday/x-close.svg"
-        ));
+ "themes/rocket/icons/black-friday/x-close.svg"
+            ));
     }
 
     .scroll-top {
@@ -166,10 +164,10 @@ body.dark-mode {
             border-bottom-color: var(--default-background-color);
         }
 
-        .holder-categories > ul li.item-category.has-subdropdown {
+        .holder-categories>ul li.item-category.has-subdropdown {
             background-image: url(image(
-                "themes/rocket/icons/black-friday/arrow-right.svg"
-            ));
+ "themes/rocket/icons/black-friday/arrow-right.svg"
+                ));
         }
 
         .holder-sub-categories {
@@ -221,74 +219,74 @@ body.dark-mode {
     .icon {
         &-minus {
             background-image: url(image(
-                "themes/rocket/icons/black-friday/minus.svg"
-            ));
+ "themes/rocket/icons/black-friday/minus.svg"
+                ));
         }
 
         &-more {
             background-image: url(image(
-                "themes/rocket/icons/black-friday/plus.svg"
-            ));
+ "themes/rocket/icons/black-friday/plus.svg"
+                ));
         }
 
         &-empty-cart {
             background-image: url(image(
-                "themes/rocket/icons/black-friday/empty-cart.svg"
-            ));
+ "themes/rocket/icons/black-friday/empty-cart.svg"
+                ));
         }
 
         &-phone {
             background-image: url(image(
-                "themes/rocket/icons/black-friday/phone.svg"
-            ));
+ "themes/rocket/icons/black-friday/phone.svg"
+                ));
         }
 
         &-tracker {
             background-image: url(image(
-                "themes/rocket/icons/black-friday/tracker.svg"
-            ));
+ "themes/rocket/icons/black-friday/tracker.svg"
+                ));
         }
 
         &-checklist {
             background-image: url(image(
-                "themes/rocket/icons/black-friday/checklist.svg"
-            ));
+ "themes/rocket/icons/black-friday/checklist.svg"
+                ));
         }
 
         &-loader-dark {
             background-image: url(image(
-                "themes/rocket/icons/black-friday/loader-dark.svg"
-            ));
+ "themes/rocket/icons/black-friday/loader-dark.svg"
+                ));
         }
 
         &-video-play {
             background-image: url(image(
-                "themes/rocket/icons/black-friday/video-play.svg"
-            ));
+ "themes/rocket/icons/black-friday/video-play.svg"
+                ));
         }
 
         &-order {
             background-image: url(image(
-                "themes/rocket/icons/black-friday/order.svg"
-            ));
+ "themes/rocket/icons/black-friday/order.svg"
+                ));
         }
 
         &-mosaic {
             background-image: url(image(
-                "themes/rocket/icons/black-friday/mosaic.svg"
-            ));
+ "themes/rocket/icons/black-friday/mosaic.svg"
+                ));
         }
 
         &-list {
             background-image: url(image(
-                "themes/rocket/icons/black-friday/list.svg"
-            ));
+ "themes/rocket/icons/black-friday/list.svg"
+                ));
         }
 
         &-filters {
             background-image: url(image(
-                "themes/rocket/icons/black-friday/filters.svg"
-            ));
+ "themes/rocket/icons/black-friday/filters.svg"
+                ));
         }
     }
 
@@ -327,7 +325,7 @@ body.dark-mode {
 
     // Modals
     .modal {
-        background-color: var(--default-background-color);
+        background-color: var(--dark-bg);
 
         .theme-title {
             color: var(--white);
@@ -444,7 +442,7 @@ body.dark-mode {
             background-color: var(--dark-bg);
         }
 
-        .holder-product-reviews-title > .active-slider {
+        .holder-product-reviews-title>.active-slider {
             height: 66px;
         }
 
@@ -493,6 +491,7 @@ body.dark-mode {
         }
 
         .review-content {
+
             .-client,
             .-message,
             .-product-link {
@@ -595,8 +594,8 @@ body.dark-mode {
                     color: var(--black-light);
                     background-color: #363636;
                     background-image: url(image(
-                        "themes/rocket/icons/black-friday/arrow-left-grey.svg"
-                    ));
+ "themes/rocket/icons/black-friday/arrow-left-grey.svg"
+                        ));
                 }
 
                 .holder-sub-categories {
@@ -607,8 +606,8 @@ body.dark-mode {
 
         .category-dropdown-holder {
             background-image: url(image(
-                "themes/rocket/icons/black-friday/arrow-right.svg"
-            ));
+ "themes/rocket/icons/black-friday/arrow-right.svg"
+                ));
         }
 
         .category-title,
@@ -621,11 +620,12 @@ body.dark-mode {
             background-color: transparent;
         }
 
-        .category-options > div:not(.holder-sort) span {
+        .category-options>div:not(.holder-sort) span {
             color: var(--white);
         }
 
         .product-reviews {
+
             .holder-review,
             .holder-question {
                 background-color: transparent;
@@ -641,7 +641,7 @@ body.dark-mode {
         }
     }
 
-    .h-anchor-container > .subcategories-list {
+    .h-anchor-container>.subcategories-list {
         border: 1px solid #333;
         background: #333;
 
@@ -650,7 +650,7 @@ body.dark-mode {
         }
     }
 
-    .subcategories-list > .subcategory-container {
+    .subcategories-list>.subcategory-container {
         .subcategory {
             color: var(--front-end-front-end-black-medium, #999);
 
@@ -660,14 +660,14 @@ body.dark-mode {
         }
     }
 
-    .subcategory-container > .subcategory {
+    .subcategory-container>.subcategory {
         cursor: pointer;
     }
 
     .nav-drawer-content {
         background: #2d2d2d;
 
-        & > .selected-category-name {
+        &>.selected-category-name {
             color: #ffffff;
         }
 
@@ -689,15 +689,15 @@ body.dark-mode {
             line-height: 20px;
         }
 
-        .h-category-child > .rocket-anchor {
+        .h-category-child>.rocket-anchor {
             color: var(--front-end-front-end-black-light, #999);
         }
     }
 
     .rocket-button.main-link {
         background-image: url(image(
-            "themes/rocket/icons/black-friday/arrow-right.svg"
-        ));
+ "themes/rocket/icons/black-friday/arrow-right.svg"
+            ));
     }
 
     .rkt-header-shopping-page-redirect {

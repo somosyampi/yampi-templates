@@ -3,6 +3,10 @@
     display: flex;
     justify-content: center;
 
+    .--has-link {
+        cursor: pointer;
+    }
+
     &--container {
         width: 100%;
         display: flex;
@@ -84,6 +88,7 @@
         width: clamp(358px, 50vw, 574px);
         max-width: 574px;
         object-fit: cover;
+        border-radius: var(--banner-border-radius);
 
         @media screen and (max-width: 1220px) {
             width: clamp(358px, 50vw, 474px);

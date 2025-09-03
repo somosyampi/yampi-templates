@@ -8,6 +8,10 @@
             .splide__arrows {
                 padding: 0 50px;
             }
+
+            img {
+                border-radius: var(--banner-border-radius);
+            }
         }
 
         .splide__arrows {
@@ -41,6 +45,10 @@
             height: 0;
         }
     }
+
+    img {
+        border-radius: var(--banner-border-radius);
+    }
 }
 
 .banner-1 {
@@ -70,7 +78,7 @@
     }
 
     .banner {
-        width: 377px;
+        width: 100%;
     }
 }
 
@@ -148,11 +156,10 @@
 .banner-stopwatch-holder {
     position: absolute;
     padding: 10px 15px;
-    width: 172px;
     top: 20px;
     right: 20px;
     text-align: center;
-    border-radius: 5px;
+    border-radius: var(--grids-products-tags-radius);
     font-weight: var(--font-bold);
     font-size: 20px;
     z-index: 1;

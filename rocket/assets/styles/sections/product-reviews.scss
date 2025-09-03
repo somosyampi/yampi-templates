@@ -173,7 +173,7 @@
     .-store-icon {
         width: 52px;
         height: 52px;
-        border-radius: 50%;
+        border-radius: var(--theme-border-radius);
         background-image: var(--store-icon);
         background: var(--white);
         background-size: 60%;

@@ -129,9 +129,7 @@
 
     .product-specifications .container + .container,
     section
-        + section:not(.main-banner):not(.category-content):not(
-            .main-product-content
-        ):not(.section-pages) {
+        + section:not(.main-banner):not(.category-content):not(.main-product-content):not(.section-pages) {
         margin-top: 50px;
     }
 
@@ -1035,6 +1033,12 @@
 
     .alert {
         margin: 0 16px;
+    }
+
+    .category-content {
+        .holder-main-banner.container.relative img {
+            border-radius: 0px;
+        }
     }
 }
 
