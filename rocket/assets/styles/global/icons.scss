@@ -158,6 +158,14 @@
         height: 41px;
     }
 
+    &-close-x {
+        background-image: url(image(
+            "themes/rocket/icons/x-close-black-light.svg"
+        ));
+        width: 12px;
+        height: 12px;
+    }
+
     &-close-modal-white {
         background-image: url(image("themes/rocket/icons/x-close-white.svg"));
         width: 10px;

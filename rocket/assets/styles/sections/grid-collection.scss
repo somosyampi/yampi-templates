@@ -152,6 +152,7 @@
             height: 100%;
             width: 100%;
             object-fit: cover;
+            border-radius: var(--grid-collection-banner);
         }
     }
 
@@ -186,7 +187,7 @@
             .holder-image {
                 .holder-flags {
                     display: block;
-                    max-height: 23px;
+                    max-height: 28px;
                     overflow: hidden;
                 }
 
@@ -206,6 +207,24 @@
                     overflow: hidden;
                 }
             }
+        }
+
+        img.-loading.loaded {
+            border-radius: var(--grid-collection-banner);
+        }
+
+        .holder-flags.not-mosaic {
+            bottom: var(--grids-products-images-margin);
+            left: var(--grids-products-images-margin);
+        }
+
+        .discount-tag {
+            top: var(--grids-products-images-margin);
+            right: var(--grids-products-images-margin);
+        }
+
+        span.flag {
+            max-height: 23px;
         }
     }
 }

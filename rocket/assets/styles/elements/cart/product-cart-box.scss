@@ -10,8 +10,8 @@
         }
 
         &.--is-freebie {
-            border: 1px dashed #d0d0d0;
-            border-radius: 4px;
+            border: 1px dashed var(--black-medium-color-contrast);
+            border-radius: var(--mini-cart-buy-together--border-radius);
             padding: 12px;
             background-color: var(--background-color);
         }
@@ -20,7 +20,7 @@
     &__freebie--tag {
         border: 1px solid #3fc583;
         padding: 4px;
-        border-radius: 4px;
+        border-radius: var(--mini-cart-buy-together--border-radius);
         color: #3fc583;
         display: inline-block;
         margin-bottom: 6px;
@@ -40,6 +40,10 @@
     &__holder-image {
         min-width: 60px;
         margin: 0 8px 0 0;
+
+        img {
+            border-radius: var(--mini-cart-product-border-radius);
+        }
     }
 
     &__text--holder-info {
@@ -145,7 +149,7 @@
 
     &__text--error {
         background: #ffebef;
-        border-radius: var(--theme-border-radius);
+        border-radius: var(--mini-cart-buy-together--border-radius);
         font-size: var(--font-12);
         color: var(--error-color);
         padding: 7px 11px;
@@ -165,7 +169,7 @@
         width: 135px;
         height: 19px;
         background-color: rgba(var(--color-btn-primary-background-rgb), 0.1);
-        border-radius: var(--theme-border-radius);
+        border-radius: var(--mini-cart-flags-border-radius);
         text-align: center;
     }
 

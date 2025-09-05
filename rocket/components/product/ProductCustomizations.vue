@@ -1,45 +1,64 @@
 <template>
     <div class="product-customizations">
-        <template v-if="firstValidSku">
-            <SelectSku
-                v-if="!validProduct.simple"
-                ref="selectSku"
-                :variations-style="variationsStyle"
-                @update="setSelectedSku($event)"
-            />
+        <SelectSku
+            v-if="!validProduct.simple"
+            ref="selectSku"
+            :variations-style="variationsStyle"
+            @update="setSelectedSku($event)"
+        />
 
-            <SkuCustomizations
-                v-if="selectedSku"
-                ref="skuCustomizations"
-                :sku="selectedSku"
-                @change="setCustomizations($event)"
-            />
+        <SkuCustomizations
+            v-if="selectedSku && showBuyButton"
+            ref="skuCustomizations"
+            :sku="selectedSku"
+            @change="setCustomizations($event)"
+        />
+
+        <template v-if="showBuyButton">
+            <div
+                class="main-product-buy-button-holder flex"
+            >
+                <QuantitySelector
+                    v-if="showQuantitySelector"
+                    v-model="quantity"
+                    :disabled="!canAddToCart"
+                />
+
+                <LoaderButton
+                    class="btn btn-primary"
+                    :title="buyButtonText"
+                    :sending="loading"
+                    :disabled="!canAddToCart"
+                    :listen-position="true"
+                    @click="addToCart()"
+                />
+            </div>
         </template>
 
-        <div class="main-product-buy-button-holder flex">
-            <QuantitySelector
-                v-if="showQuantitySelector"
-                v-model="quantity"
-                :disabled="!canAddToCart"
-            />
+        <FloatingButton
+            v-if="showMobileFloatingButton"
+            :quantity="quantity"
+            :loading-button="loading"
+            :disabled="!canAddToCart"
+            @click="addToCart('floating-button')"
+            @open-stock-notifications-modal="openStockNotificationsModal"
+        />
 
-            <LoaderButton
-                class="btn btn-primary"
-                :title="buyButtonText"
-                :sending="loading"
-                :disabled="!canAddToCart"
-                :listen-position="true"
-                @click="addToCart()"
-            />
+        <template v-if="!showBuyButton">
+            <div
+                class="main-product-unavailable alert -yellow"
+            >
+                Produto indisponível.
+            </div>
 
-            <FloatingButton
-                v-if="showMobileFloatingButton"
-                :quantity="quantity"
-                :loading-button="loading"
-                :disabled="!canAddToCart"
-                @click="addToCart('floating-button')"
-            />
-        </div>
+            <button
+                class="btn-stock-notifications btn btn-secundary -block flex -hcenter -vcenter mt-23"
+                @click="openStockNotificationsModal"
+            >
+                <IconEmail class="fill-current mr-3" />
+                Avise-me quando chegar
+            </button>
+        </template>
 
         <Cashback
             v-if="hasCashbackValid"
@@ -47,19 +66,23 @@
             :percent-amount="validCashback.percent_amount"
         />
 
-        <div
-            v-if="!firstValidSku"
-            class="main-product-unavailable alert -yellow"
-        >
-            Produto indisponível.
-        </div>
-
         <InventoryCountdown v-if="firstValidSku && showInventoryCountdown" />
 
         <Zipcode
             v-if="showShippingForm"
             :quantity="quantity"
             :disabled="!firstValidSku"
+        />
+
+        <ModalStockNotifications
+            v-if="selectedSku || validProduct.simple"
+            ref="stockNotificationsModal"
+            :sku="selectedSku || firstSku[0]"
+            @success="$refs.stockNotificationsSuccessModal.showModal()"
+        />
+
+        <ModalStockNotificationsSuccess
+            ref="stockNotificationsSuccessModal"
         />
     </div>
 </template>
@@ -70,6 +93,7 @@ import _ from '~/lodash';
 import productMixin from '@/mixins/product';
 import cashbackMixin from '@/mixins/cashback';
 import trackingByApi from '@/mixins/tracking/api';
+import trackingBySDK from '@/mixins/tracking/sdk';
 
 export default {
     name: 'ProductCustomizations',
@@ -78,6 +102,7 @@ export default {
         productMixin,
         cashbackMixin,
         trackingByApi,
+        trackingBySDK,
     ],
 
     props: {
@@ -136,7 +161,7 @@ export default {
 
     computed: {
         canAddToCart() {
-            if (!this.firstValidSku) {
+            if (this.selectedSku && !this.firstValidSku) {
                 return false;
             }
 
@@ -187,6 +212,18 @@ export default {
             }
 
             return this.validCashback.percent_amount > 0;
+        },
+
+        showBuyButton() {
+            if (this.selectedSku && this.selectedSku.blocked_sale) {
+                return false;
+            }
+
+            if (this.validProduct.simple && this.validProduct.blocked_sale) {
+                return false;
+            }
+
+            return true;
         },
     },
 
@@ -285,6 +322,13 @@ export default {
             });
 
             this.loading = false;
+        },
+
+        openStockNotificationsModal() {
+            this.handleTrackSDK('notify_when_available_subscribed_intended');
+            if (this.$refs.stockNotificationsModal) {
+                this.$refs.stockNotificationsModal.showModal();
+            }
         },
     },
 };

@@ -65,7 +65,7 @@ const b = {
             document.body.style.marginRight = `${t}px`, document.getElementsByTagName("body")[0].classList.add("block-scroll");
         },
         closeModal() {
-            this.$children.map((t) => {
+            this.$emit("close"), this.$children.map((t) => {
                 t.$options.name === "ImageSelector" && t.$children.map((o) => {
                     o.deleteInputFromClosingModal();
                 });

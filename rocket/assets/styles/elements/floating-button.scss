@@ -1,15 +1,15 @@
 .floating-button {
     z-index: 1;
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    right: 0px;
 }
 
 .floating-button-container {
     display: flex;
     line-height: 15px;
     justify-content: space-between;
-    position: fixed;
-    width: 100%;
-    bottom: 0px;
-    right: 0px;
     background-color: var(--background-color);
     color: var(--black-dark-color-contrast);
     z-index: 4;

@@ -81,21 +81,6 @@ export default {
         },
     },
 
-    watch: {
-        'scrollPos.y': function (newVal) {
-            if (!this.listenPosition) return;
-
-            const limInf = newVal + this.height > this.$el.offsetTop;
-            const limSup = newVal + this.height < this.$el.offsetTop + this.height;
-
-            if (limInf && limSup) {
-                this.PUSH({ queue: 'buttons', itemId: this._uid });
-            } else {
-                this.POP({ queue: 'buttons', itemId: this._uid });
-            }
-        },
-    },
-
     methods: {
         ...mapMutations('queue', ['PUSH', 'POP']),
 

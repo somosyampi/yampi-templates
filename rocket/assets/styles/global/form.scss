@@ -3,6 +3,7 @@ form {
         color: var(--black-medium-color-contrast);
         display: inline-block;
         font-size: 12px;
+        line-height: 1;
         margin-bottom: 8px;
 
         &.-hide {
@@ -13,7 +14,7 @@ form {
     }
 
     input {
-        & + label {
+        &+label {
             margin-top: 22px;
         }
     }

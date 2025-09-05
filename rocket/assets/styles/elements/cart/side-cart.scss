@@ -10,8 +10,15 @@
     background-color: var(--background-color);
 
     .close-modal {
-        height: 45px;
-        width: 45px;
+        padding: 8px 11px;
+        background-color: var(--default-background-color);
+        border-radius: var(--theme-border-radius);
+        border: 2px solid var(--close-modal-border-color);
+        height: 40px;
+        width: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     @media screen and (max-width: 450px) {
@@ -224,7 +231,7 @@
     &__container {
         border: 1px dashed var(--black-medium-color-contrast);
         box-sizing: border-box;
-        border-radius: 5px;
+        border-radius: var(--mini-cart-buy-together--border-radius);
         padding: 16px 12px 12px;
         margin: 11.5px 1px 21px;
 
@@ -274,7 +281,7 @@
     flex-flow: column nowrap;
     background-color: var(--product-card-smoky-background);
     padding: 8px 0 7px;
-    border-radius: 5px;
+    border-radius: var(--mini-cart-buy-together--border-radius);
 
     .row {
         display: flex;

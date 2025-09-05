@@ -2,7 +2,7 @@
     <div class="floating-button">
         <Transition name="fade">
             <div
-                v-if="sku && showFloatingButton"
+                v-if="(sku && !sku.blocked_sale) && showFloatingButton"
                 class="floating-button-container"
             >
                 <div class="prices-container">
@@ -44,11 +44,18 @@
                     </LoaderButton>
                 </div>
             </div>
-            <Loader
-                v-else
-                :height="50"
-                :margin="13"
-            />
+            <div
+                v-else-if="(sku && sku.blocked_sale) && showFloatingButton"
+                class="pl-22 pr-22 pt-16 pb-16 floating-button-container"
+            >
+                <button
+                    class="btn-stock-notifications btn btn-secundary -block uppercase flex -hcenter -vcenter"
+                    @click="$emit('open-stock-notifications-modal')"
+                >
+                    <IconEmail class="fill-current" />
+                    Avise-me quando chegar
+                </button>
+            </div>
         </Transition>
     </div>
 </template>
@@ -82,6 +89,12 @@ export default {
         },
     },
 
+    data() {
+        return {
+            showFloatingButton: false,
+        };
+    },
+
     computed: {
         sku() {
             return this.selectedSku || this.firstValidSku;
@@ -100,16 +113,24 @@ export default {
         lastInstallment() {
             return _.last(this.installments.installments);
         },
-
-        showFloatingButton() {
-            return !this.buttons.length;
-        },
     },
 
     async created() {
         this.scroll();
 
         this.installments = await this.handleInstallments();
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                this.showFloatingButton = !entry.isIntersecting;
+            });
+        }, { threshold: 0.4 });
+
+        const buttonElement = document.querySelectorAll('.main-product-buy-button-holder, .btn-stock-notifications');
+
+        buttonElement.forEach(element => {
+            observer.observe(element);
+        });
     },
 };
 </script>

@@ -64,7 +64,7 @@
             min-width: 100%;
             flex: 1;
 
-            div > .flex > * + * {
+            div>.flex>*+* {
                 margin-left: 0;
             }
         }
@@ -78,6 +78,7 @@
 
             &,
             .mobile-zoom-image {
+
                 &,
                 img.normal {
                     width: 100%;
@@ -111,7 +112,7 @@
                 min-width: 100%;
             }
 
-            & > * + * {
+            &>*+* {
                 margin-left: 0;
                 margin-top: 49px;
             }
@@ -280,7 +281,7 @@
                 padding-bottom: 24px;
             }
 
-            & + .holder-question {
+            &+.holder-question {
                 margin-top: 12px;
             }
 
@@ -320,6 +321,7 @@
 
     #modal-review,
     #modal-question {
+
         input,
         textarea {
             &:not([type="checkbox"], [type="radio"]) {
@@ -327,12 +329,17 @@
             }
         }
     }
+
+    .main-product-unavailable {
+        margin-left: 0 !important;
+    }
 }
 
 @media only screen and (max-width: 370px) {
     .product-reviews {
         .holder-product-reviews-title:not(.single) {
             .titles {
+
                 .-title,
                 .-quantity {
                     font-size: var(--font-14);

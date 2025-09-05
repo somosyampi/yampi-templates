@@ -203,7 +203,7 @@
         margin: 0 5px;
         width: 40px;
         height: 40px;
-        border-radius: 50%;
+        border-radius: var(--category-pagination-border-radius);
         background-color: var(--default-background-color);
         line-height: 40px;
         font-size: var(--font-14);
@@ -259,11 +259,23 @@
 
             .holder-main-banner {
                 width: 100%;
+
+                img {
+                    border-radius: var(--banner-border-radius);
+                }
             }
         }
 
         .filters + .holder-results .main-banner {
             max-width: 721px;
+        }
+    }
+}
+
+@media only screen and (min-width: 700px) {
+    .category-content {
+        .splide__slide.banner {
+            width: 100%;
         }
     }
 }
