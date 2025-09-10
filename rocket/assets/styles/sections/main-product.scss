@@ -165,7 +165,7 @@
     }
 
     &-unavailable {
-        margin-top: 21px;
+        margin-bottom: 21px;
         width: 100%;
     }
 
@@ -179,6 +179,10 @@
         .btn {
             flex: 1 auto;
             align-self: start;
+
+            &:disabled {
+                opacity: 0.5;
+            }
         }
     }
 
@@ -442,10 +446,18 @@
             background-color: rgb(var(--light-error-color-rgb));
             border-color: var(--error-color);
             color: var(--error-color);
+
+            &:hover {
+                border-color: var(--error-color);
+            }
+
+            &.unavailable {
+                border-color: var(--error-color);
+                color: var(--error-color);
+            }
         }
 
         .variant-button {
-            max-width: 460px;
             background: transparent;
             border: 1px solid var(--black-light-color-contrast);
             font-size: var(--font-13);
@@ -454,24 +466,45 @@
             color: var(--black-dark-color-contrast);
             padding: 14px 18px;
             border-radius: var(--theme-border-radius);
-            text-wrap: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
+            position: relative;
 
             &:hover {
-                border-color: var(--black-dark-color-contrast);
+                border-color: var(--black-dark-color-contrast) !important;
                 cursor: pointer;
             }
 
-            &.selected {
+            &.selected:not(.unavailable) {
                 background-color: var(--color-general-primary);
-                border-color: var(--color-general-primary);
                 color: var(--white);
             }
 
             &.unavailable {
-                opacity: 0.3;
-                pointer-events: none;
+                text-decoration: line-through;
+                color: rgba(var(--black-dark-rgb), 0.3);
+                border-color: var(--black-light-30);
+
+                &.selected {
+                    opacity: 1;
+                    border-color: var(--black-dark-color-contrast);
+                }
+            }
+
+            .unavailable-icon {
+                fill: var(--white);
+                background-color: var(--color-general-primary);
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                position: absolute;
+                bottom: -2px;
+                right: -3px;
+            }
+
+            .text {
+                max-width: 460px;
+                overflow: hidden;
+                text-wrap: nowrap;
+                text-overflow: ellipsis;
             }
         }
     }
@@ -505,6 +538,15 @@
 .btn-stock-notifications {
     display: flex !important;
     text-transform: var(--fonts-buttons-uppercase);
+}
+
+.main-product-buy-button-holder {
+    .helper-text.-error {
+        color: var(--error-color);
+        width: 100%;
+        text-align: center;
+        font-size: 15px;
+    }
 }
 
 @media only screen and (max-width: 1220px) {
