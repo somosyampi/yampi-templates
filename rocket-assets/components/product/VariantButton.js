@@ -1,31 +1,31 @@
-function b(t, e, o, i, r, d, f, v) {
+function b(t, e, r, l, s, d, f, v) {
   var n = typeof t == "function" ? t.options : t;
-  e && (n.render = e, n.staticRenderFns = o, n._compiled = !0), i && (n.functional = !0), d && (n._scopeId = "data-v-" + d);
-  var l;
-  if (f ? (l = function(a) {
-    a = a || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !a && typeof __VUE_SSR_CONTEXT__ < "u" && (a = __VUE_SSR_CONTEXT__), r && r.call(this, a), a && a._registeredComponents && a._registeredComponents.add(f);
-  }, n._ssrRegister = l) : r && (l = v ? function() {
-    r.call(
+  e && (n.render = e, n.staticRenderFns = r, n._compiled = !0), l && (n.functional = !0), d && (n._scopeId = "data-v-" + d);
+  var i;
+  if (f ? (i = function(a) {
+    a = a || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !a && typeof __VUE_SSR_CONTEXT__ < "u" && (a = __VUE_SSR_CONTEXT__), s && s.call(this, a), a && a._registeredComponents && a._registeredComponents.add(f);
+  }, n._ssrRegister = i) : s && (i = v ? function() {
+    s.call(
       this,
       (n.functional ? this.parent : this).$root.$options.shadowRoot
     );
-  } : r), l)
+  } : s), i)
     if (n.functional) {
-      n._injectStyles = l;
+      n._injectStyles = i;
       var h = n.render;
-      n.render = function(p, c) {
-        return l.call(c), h(p, c);
+      n.render = function(p, _) {
+        return i.call(_), h(p, _);
       };
     } else {
-      var _ = n.beforeCreate;
-      n.beforeCreate = _ ? [].concat(_, l) : [l];
+      var c = n.beforeCreate;
+      n.beforeCreate = c ? [].concat(c, i) : [i];
     }
   return {
     exports: t,
     options: n
   };
 }
-const m = {
+const C = {
   name: "VariantButton",
   props: {
     options: {
@@ -60,22 +60,22 @@ const m = {
     }
   }
 };
-var C = function() {
-  var e = this, o = e._self._c;
-  return o("div", { staticClass: "holder-variant-button", class: {
+var m = function() {
+  var e = this, r = e._self._c;
+  return r("div", { staticClass: "holder-variant-button", class: {
     error: e.error && !e.selectedValue,
     disabled: e.disabled
-  } }, e._l(e.options, function(i) {
-    return o("button", { key: i.id, staticClass: "variant-button", class: {
-      selected: i.id === e.value,
-      unavailable: i.unavailable
-    }, on: { click: function(r) {
-      return e.handleClick(r, i.id);
-    } } }, [e._v(" " + e._s(i.value) + " ")]);
+  } }, e._l(e.options, function(l) {
+    return r("button", { key: l.id, staticClass: "variant-button", class: {
+      selected: l.id === e.value,
+      unavailable: l.unavailable
+    }, on: { click: function(s) {
+      return e.handleClick(s, l.id);
+    } } }, [l.unavailable ? r("IconEdit", { staticClass: "unavailable-icon" }) : e._e(), r("p", { staticClass: "text" }, [e._v(" " + e._s(l.value) + " ")])], 1);
   }), 0);
 }, V = [], $ = /* @__PURE__ */ b(
-  m,
   C,
+  m,
   V,
   !1,
   null,
@@ -90,9 +90,9 @@ function u(t) {
 const g = {
   install: u
 };
-let s = null;
-typeof window < "u" ? s = window.Vue : typeof global < "u" && (s = global.Vue);
-s && s.use(g);
+let o = null;
+typeof window < "u" ? o = window.Vue : typeof global < "u" && (o = global.Vue);
+o && o.use(g);
 export {
   y as default
 };

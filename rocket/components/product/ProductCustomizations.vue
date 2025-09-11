@@ -4,7 +4,8 @@
             v-if="!validProduct.simple"
             ref="selectSku"
             :variations-style="variationsStyle"
-            @update="setSelectedSku($event)"
+            :show-error-message="false"
+            @update="handleSelectSkuUpdate"
         />
 
         <SkuCustomizations
@@ -13,6 +14,13 @@
             :sku="selectedSku"
             @change="setCustomizations($event)"
         />
+
+        <div
+            v-if="showUnavailableMessage"
+            class="main-product-unavailable alert -yellow"
+        >
+            Produto indisponível.
+        </div>
 
         <template v-if="showBuyButton">
             <div
@@ -32,33 +40,24 @@
                     :listen-position="true"
                     @click="addToCart()"
                 />
+
+                <p
+                    v-if="showErrorMessage"
+                    class="helper-text -error"
+                >
+                    Selecione uma opção para comprar
+                </p>
             </div>
         </template>
 
-        <FloatingButton
-            v-if="showMobileFloatingButton"
-            :quantity="quantity"
-            :loading-button="loading"
-            :disabled="!canAddToCart"
-            @click="addToCart('floating-button')"
-            @open-stock-notifications-modal="openStockNotificationsModal"
-        />
-
-        <template v-if="!showBuyButton">
-            <div
-                class="main-product-unavailable alert -yellow"
-            >
-                Produto indisponível.
-            </div>
-
-            <button
-                class="btn-stock-notifications btn btn-secundary -block flex -hcenter -vcenter mt-23"
-                @click="openStockNotificationsModal"
-            >
-                <IconEmail class="fill-current mr-3" />
-                Avise-me quando chegar
-            </button>
-        </template>
+        <button
+            v-if="!showBuyButton"
+            class="btn-stock-notifications btn btn-secundary -block flex -hcenter -vcenter mt-23"
+            @click="openStockNotificationsModal"
+        >
+            <IconEmail class="fill-current mr-3" />
+            Avise-me quando chegar
+        </button>
 
         <Cashback
             v-if="hasCashbackValid"
@@ -72,6 +71,15 @@
             v-if="showShippingForm"
             :quantity="quantity"
             :disabled="!firstValidSku"
+        />
+
+        <FloatingButton
+            v-if="showMobileFloatingButton"
+            :quantity="quantity"
+            :loading-button="loading"
+            :disabled="!canAddToCart"
+            @click="addToCart('floating-button')"
+            @open-stock-notifications-modal="openStockNotificationsModal"
         />
 
         <ModalStockNotifications
@@ -157,11 +165,12 @@ export default {
         loading: false,
         customizationValues: {},
         customizationHasErrors: false,
+        showErrorMessage: false,
     }),
 
     computed: {
         canAddToCart() {
-            if (this.selectedSku && !this.firstValidSku) {
+            if (!this.firstValidSku) {
                 return false;
             }
 
@@ -225,6 +234,10 @@ export default {
 
             return true;
         },
+
+        showUnavailableMessage() {
+            return !this.firstValidSku || (this.selectedSku && this.selectedSku.blocked_sale);
+        },
     },
 
     mounted() {
@@ -258,9 +271,17 @@ export default {
             this.customizationValues = payload;
         },
 
+        handleSelectSkuUpdate(sku) {
+            this.showErrorMessage = false;
+            this.setSelectedSku(sku);
+        },
+
         async addToCart(locationTrack = 'main-product-buy-button') {
+            this.showErrorMessage = false;
+
             if (!this.selectedSku) {
                 this.$refs.selectSku.verifySelect();
+                this.showErrorMessage = true;
                 return;
             }
 
