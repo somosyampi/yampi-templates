@@ -1,7 +1,7 @@
 <template>
     <div class="sku-select">
         <p
-            v-if="variations.length"
+            v-if="variations.length && showErrorMessage"
             class="helper-text"
             :class="{ '-error': selectWithErrors }"
         >
@@ -38,6 +38,7 @@
                         v-for="option in options[index]"
                         :key="option.id"
                         :value="option.id"
+                        :class="{ 'unavailable': option.unavailable }"
                         @click="updateVariation(option.id)"
                         v-text="option.value"
                     />
@@ -58,14 +59,14 @@ export default {
     mixins: [productMixin],
 
     props: {
-        shouldScrollOnError: {
-            type: Boolean,
-            default: true,
-        },
-
         variationsStyle: {
             type: String,
             default: 'list',
+        },
+
+        showErrorMessage: {
+            type: Boolean,
+            default: true,
         },
     },
 
@@ -110,15 +111,7 @@ export default {
         bootSelected() {
             this.selected = _.times(this.variations.length, _.constant(0));
 
-            if (this.variationsStyle === 'list' || this.variations.length === 1) {
-                this.options = _.times(this.variations.length, () => ([]));
-
-                this.loadOptions();
-
-                return;
-            }
-
-            this.options = this.variations.map(variation => variation.values.data);
+            this.mapOptionsToFindSomeSkuAvailable();
         },
 
         updateSelected(index, value) {
@@ -132,7 +125,7 @@ export default {
             }
 
             if (index < this.variations.length - 1) {
-                this.loadOptions(index + 1);
+                this.mapOptionsToFindSomeSkuAvailable(index + 1);
             }
 
             this.checkIfValidSkuSelected();
@@ -173,29 +166,26 @@ export default {
             return this.$emit('update', selectedSku);
         },
 
-        loadOptions(index = 0) {
-            const optionsValue = this.filterVariationOptions(index);
-            this.$set(this.options, index, optionsValue);
-        },
+        mapOptionsToFindSomeSkuAvailable(startIndex = 0) {
+            for (let optionIndex = startIndex; optionIndex < this.variations.length; optionIndex++) {
+                const optionsValues = this.variations[optionIndex].values.data
+                    .filter(option => this.skus.some(sku => this.skuHasOption(sku, option)))
+                    .map(option => {
+                        const findSomeSkuAvailable = this.skus
+                            .filter(sku => this.skuHasOption(sku, option))
+                            .some(sku => sku.blocked_sale === false);
 
-        filterVariationOptions(index) {
-            const options = _.get(this.variations, `${index}.values.data`, []);
-            const optionsNoCache = [];
+                        option.unavailable = !findSomeSkuAvailable;
 
-            for (const option of options) {
-                for (const sku of this.skus) {
-                    if (option.id === parseInt(sku.combinations)) {
-                        option.blocked_sale = sku.blocked_sale;
-                    }
-                }
-                optionsNoCache.push(option);
+                        return option;
+                    });
+
+                this.$set(this.options, optionIndex, optionsValues);
             }
-
-            return optionsNoCache.filter(option => this.skus.some(sku => this.skuHasOption(sku, option)));
         },
 
         skuHasOption(sku, option) {
-            const combinations = sku.combinations.split('-').map(item => parseInt(item, 10));
+            const combinations = sku.combinations.split('-').map(item => parseInt(item));
 
             const partialCombination = [
                 ...this.selected.filter(item => item), // get only valid selected ids
@@ -212,10 +202,6 @@ export default {
 
             // check if any element has error
             this.selectWithErrors = !!invalidSelects.length;
-
-            if (this.selectWithErrors && this.shouldScrollOnError) {
-                this.smoothScroll(document.body, 0, this.$el.offsetTop - (window.innerHeight / 6));
-            }
 
             return this.selectWithErrors;
         },

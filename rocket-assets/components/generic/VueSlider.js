@@ -13,9 +13,9 @@ function v(a, e, l, s, o, d, c, m) {
   } : o), n)
     if (t.functional) {
       t._injectStyles = n;
-      var f = t.render;
-      t.render = function(_, p) {
-        return n.call(p), f(_, p);
+      var _ = t.render;
+      t.render = function(f, p) {
+        return n.call(p), _(f, p);
       };
     } else {
       var h = t.beforeCreate;
