@@ -67,7 +67,6 @@
                         v-show="product.has_variations && !showCustomization"
                         ref="selectSku"
                         :product="product"
-                        :should-scroll-on-error="false"
                         @update="setSelectedSku($event)"
                     />
 

@@ -16,7 +16,13 @@
             class="variant-button"
             @click="handleClick($event, option.id)"
         >
-            {{ option.value }}
+            <IconEdit
+                v-if="option.unavailable"
+                class="unavailable-icon"
+            />
+            <p class="text">
+                {{ option.value }}
+            </p>
         </button>
     </div>
 </template>

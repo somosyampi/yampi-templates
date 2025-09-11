@@ -400,12 +400,28 @@ body.dark-mode {
                 }
             }
 
-            .variant-button:not(.selected) {
-                background-color: var(--input-background);
-                border-color: (var(--input-background));
+            .variant-button {
+                &.selected {
+                    border-color: var(--color-general-primary);
 
-                &:hover {
-                    border-color: var(--black-dark);
+                    &.unavailable {
+                        border-color: var(--black-dark-color-contrast);
+                    }
+                }
+
+                &:not(.selected) {
+                    background-color: var(--input-background);
+                    border-color: (var(--input-background));
+
+                    &:hover {
+                        border-color: var(--black-dark);
+                    }
+                }
+
+                &.unavailable {
+                    background-color: rgba(54, 54, 54, 0.3); // #363636 with 30% opacity
+                    border-color: rgba(54, 54, 54, 0.3); // #363636 with 30% opacity
+                    color: rgba(245, 245, 245, 0.3); // #F5F5F5 with 30% opacity
                 }
             }
         }

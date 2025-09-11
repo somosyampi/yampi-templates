@@ -1,44 +1,44 @@
-import r from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/lodash.js";
+import u from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/lodash.js";
 import S from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/product.js";
 import { smoothScroll as k } from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/helpers.js";
-function g(e, t, s, i, o, a, d, m) {
-    var n = typeof e == "function" ? e.options : e;
-    t && (n.render = t, n.staticRenderFns = s, n._compiled = !0), i && (n.functional = !0), a && (n._scopeId = "data-v-" + a);
-    var c;
-    if (d ? (c = function (l) {
-        l = l || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !l && typeof __VUE_SSR_CONTEXT__ < "u" && (l = __VUE_SSR_CONTEXT__), o && o.call(this, l), l && l._registeredComponents && l._registeredComponents.add(d);
-    }, n._ssrRegister = c) : o && (c = m ? function () {
+function b(e, t, s, i, o, n, d, m) {
+    var a = typeof e == "function" ? e.options : e;
+    t && (a.render = t, a.staticRenderFns = s, a._compiled = !0), i && (a.functional = !0), n && (a._scopeId = "data-v-" + n);
+    var l;
+    if (d ? (l = function (r) {
+        r = r || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !r && typeof __VUE_SSR_CONTEXT__ < "u" && (r = __VUE_SSR_CONTEXT__), o && o.call(this, r), r && r._registeredComponents && r._registeredComponents.add(d);
+    }, a._ssrRegister = l) : o && (l = m ? function () {
         o.call(
             this,
-            (n.functional ? this.parent : this).$root.$options.shadowRoot
+            (a.functional ? this.parent : this).$root.$options.shadowRoot
         );
-    } : o), c)
-        if (n.functional) {
-            n._injectStyles = c;
-            var v = n.render;
-            n.render = function (_, p) {
-                return c.call(p), v(_, p);
+    } : o), l)
+        if (a.functional) {
+            a._injectStyles = l;
+            var v = a.render;
+            a.render = function (_, p) {
+                return l.call(p), v(_, p);
             };
         } else {
-            var f = n.beforeCreate;
-            n.beforeCreate = f ? [].concat(f, c) : [c];
+            var h = a.beforeCreate;
+            a.beforeCreate = h ? [].concat(h, l) : [l];
         }
     return {
         exports: e,
-        options: n
+        options: a
     };
 }
-const $ = {
+const g = {
     name: "SelectSku",
     mixins: [S],
     props: {
-        shouldScrollOnError: {
-            type: Boolean,
-            default: !0
-        },
         variationsStyle: {
             type: String,
             default: "list"
+        },
+        showErrorMessage: {
+            type: Boolean,
+            default: !0
         }
     },
     data: () => ({
@@ -48,10 +48,10 @@ const $ = {
     }),
     computed: {
         variations() {
-            return r.get(this.validProduct, "variations.data", []);
+            return u.get(this.validProduct, "variations.data", []);
         },
         skus() {
-            return r.get(this.validProduct, "skus.data", []);
+            return u.get(this.validProduct, "skus.data", []);
         },
         variationsSelectStyle() {
             return {
@@ -71,17 +71,13 @@ const $ = {
     methods: {
         smoothScroll: k,
         bootSelected() {
-            if (this.selected = r.times(this.variations.length, r.constant(0)), this.variationsStyle === "list" || this.variations.length === 1) {
-                this.options = r.times(this.variations.length, () => []), this.loadOptions();
-                return;
-            }
-            this.options = this.variations.map((e) => e.values.data);
+            this.selected = u.times(this.variations.length, u.constant(0)), this.mapOptionsToFindSomeSkuAvailable();
         },
         updateSelected(e, t) {
             this.selectWithErrors = !1, this.$set(this.selected, e, t);
             for (let s = e + 1; s < this.variations.length; s++)
                 this.$set(this.selected, s, 0);
-            e < this.variations.length - 1 && this.loadOptions(e + 1), this.checkIfValidSkuSelected();
+            e < this.variations.length - 1 && this.mapOptionsToFindSomeSkuAvailable(e + 1), this.checkIfValidSkuSelected();
         },
         updateVariation(e) {
             if (this.product.skus !== void 0) {
@@ -101,58 +97,54 @@ const $ = {
                 return this.$emit("update");
             const e = this.skus.find((t) => {
                 const s = t.combinations.split("-").map((i) => parseInt(i, 10));
-                return r.isEqual(r.sortBy(this.selected), r.sortBy(s));
+                return u.isEqual(u.sortBy(this.selected), u.sortBy(s));
             });
             return this.$emit("update", e);
         },
-        loadOptions(e = 0) {
-            const t = this.filterVariationOptions(e);
-            this.$set(this.options, e, t);
-        },
-        filterVariationOptions(e) {
-            const t = r.get(this.variations, `${e}.values.data`, []), s = [];
-            for (const i of t) {
-                for (const o of this.skus)
-                    i.id === parseInt(o.combinations) && (i.blocked_sale = o.blocked_sale);
-                s.push(i);
+        mapOptionsToFindSomeSkuAvailable(e = 0) {
+            for (let t = e; t < this.variations.length; t++) {
+                const s = this.variations[t].values.data.filter((i) => this.skus.some((o) => this.skuHasOption(o, i))).map((i) => {
+                    const o = this.skus.filter((n) => this.skuHasOption(n, i)).some((n) => n.blocked_sale === !1);
+                    return i.unavailable = !o, i;
+                });
+                this.$set(this.options, t, s);
             }
-            return s.filter((i) => this.skus.some((o) => this.skuHasOption(o, i)));
         },
         skuHasOption(e, t) {
-            const s = e.combinations.split("-").map((o) => parseInt(o, 10)), i = [
+            const s = e.combinations.split("-").map((o) => parseInt(o)), i = [
                 ...this.selected.filter((o) => o),
                 t.id
             ];
-            return r.difference(i, s).length === 0;
+            return u.difference(i, s).length === 0;
         },
         verifySelect() {
             const e = this.$refs.customSelect.filter((t) => !t.selectedValue);
-            return this.selectWithErrors = !!e.length, this.selectWithErrors && this.shouldScrollOnError && this.smoothScroll(document.body, 0, this.$el.offsetTop - window.innerHeight / 6), this.selectWithErrors;
+            return this.selectWithErrors = !!e.length, this.selectWithErrors;
         }
     }
 };
-var b = function () {
+var $ = function () {
     var t = this, s = t._self._c;
-    return s("div", { staticClass: "sku-select" }, [t.variations.length ? s("p", { staticClass: "helper-text", class: { "-error": t.selectWithErrors } }, [t._v(" Selecione uma op\xE7\xE3o ")]) : t._e(), t._l(t.variations, function (i, o) {
+    return s("div", { staticClass: "sku-select" }, [t.variations.length && t.showErrorMessage ? s("p", { staticClass: "helper-text", class: { "-error": t.selectWithErrors } }, [t._v(" Selecione uma op\xE7\xE3o ")]) : t._e(), t._l(t.variations, function (i, o) {
         return s("div", { key: i.id, staticClass: "sku-option", class: t.variationsStyle }, [s("label", { attrs: { for: `${i.id}-${i.name}` }, domProps: { textContent: t._s(i.name) } }), s(t.variationsSelectStyle, {
             ref: "customSelect", refInFor: !0, tag: "component", attrs: { id: `${i.id}-${i.name}`, name: `${i.id}-${i.name}`, value: t.selected[o], disabled: o > 0 && t.selected[o - 1] === 0, error: t.selectWithErrors, options: t.options[o] }, on: {
-                change: function (a) {
-                    return t.updateSelected(o, a);
+                change: function (n) {
+                    return t.updateSelected(o, n);
                 }
             }
-        }, [t.variationsStyle === "list" ? [s("option", { domProps: { value: 0 } }, [t._v(" Selecionar... ")]), t._l(t.options[o], function (a) {
+        }, [t.variationsStyle === "list" ? [s("option", { domProps: { value: 0 } }, [t._v(" Selecionar... ")]), t._l(t.options[o], function (n) {
             return s("option", {
-                key: a.id, domProps: { value: a.id, textContent: t._s(a.value) }, on: {
+                key: n.id, class: { unavailable: n.unavailable }, domProps: { value: n.id, textContent: t._s(n.value) }, on: {
                     click: function (d) {
-                        return t.updateVariation(a.id);
+                        return t.updateVariation(n.id);
                     }
                 }
             });
         })] : t._e()], 2)], 1);
     })], 2);
-}, C = [], y = /* @__PURE__ */ g(
+}, C = [], y = /* @__PURE__ */ b(
+    g,
     $,
-    b,
     C,
     !1,
     null,
@@ -161,15 +153,15 @@ var b = function () {
     null
 );
 const V = y.exports;
-function h(e) {
-    h.installed || (h.installed = !0, e.component("SelectSku", V));
+function f(e) {
+    f.installed || (f.installed = !0, e.component("SelectSku", V));
 }
 const E = {
-    install: h
+    install: f
 };
-let u = null;
-typeof window < "u" ? u = window.Vue : typeof global < "u" && (u = global.Vue);
-u && u.use(E);
+let c = null;
+typeof window < "u" ? c = window.Vue : typeof global < "u" && (c = global.Vue);
+c && c.use(E);
 export {
     V as default
 };
