@@ -50,7 +50,7 @@
         --white: #FFFFFF;
         --white-smoke: #F5F5F5;
         --categories-filter-tag-background: {{ '#F5F5F5' ~ inputsBackgroundOpacity }};
-        --product-not-found-alert: {{ '#FFF7E0' ~ inputsBackgroundOpacity }};
+        --product-not-found-alert: #FFF7E0;
         --product-not-found-alert-border: {{ '#C29100' ~ inputsBackgroundOpacity }};
         --input-background: {{ '#FFFFFF' ~ inputsBackgroundOpacity }};
         --section-slide-splide-arrow-bg-color: {{ '#F5F5F5' ~ inputsBackgroundOpacity }};
@@ -71,6 +71,7 @@
         --black-medium-color-contrast: {{ get_contrasting_color(defaultColorGeneralBg, '#666666', '#F5F5F5') }};
         --black-dark-color-contrast: {{ get_contrasting_color(defaultColorGeneralBg, '#222222', '#E5E5E5') }};
         --green-color-contrast: {{ get_contrasting_color(defaultColorGeneralBg, '#00AE31', '#FFFFFF') }};
+        --close-modal-border-color: {{ get_contrasting_color(defaultColorGeneralBg, '#999999', '#E5E5E5') }};
 
         --review-start-stop-color: {{ get_contrasting_color(defaultColorGeneralBg, '#9999994D', '#E5E5E5') }};
 
@@ -84,7 +85,7 @@
         --neutral-color-low-dark-color-contrast: {{ get_contrasting_color(defaultColorGeneralBg, '#56545E', '#F5F5F5') }};
         --section-title-color: {{ get_contrasting_color(defaultColorGeneralBg, '#56545E', '#FFFFFF') }};
         --product-title-color: {{ get_contrasting_color(defaultColorGeneralBg, '#222222', '#FFFFFF') }};
-        
+
         --product-description-color: {{ get_contrasting_color(defaultColorGeneralBg, '#666666', '#F5F5F5') }};
         --top-rating-message-color: {{ get_contrasting_color(defaultColorGeneralBg, '#666666', '#F5F5F5') }};
         --header-dropdown-color: {{ get_contrasting_color(defaultColorGeneralBg, '#222222', '#F5F5F5') }};
@@ -117,7 +118,28 @@
         --fonts-buttons-uppercase: {{ params.fonts_buttons_uppercase ? 'uppercase' : 'initial' }};
 
         --theme-border-radius: {{ type_border_radius(params.buttons_general_format) }};
+        --grids-products-images-border: {{ params.border_apply_on_images | default(false) ? type_border_radius(params.buttons_general_format) : '0px' }};
+        --grids-products-images-margin: {{ params.border_apply_on_images | default(false) ? product_image_margin(params.buttons_general_format) : '0px' }};
+        --grids-products-tags-radius: {{ product_discount_tag_radius(params.buttons_general_format) }};
+        --product-page-image-border-radius: {{ params.border_apply_on_images | default(false) ? resolve_border_radius_by_type(params.buttons_general_format, 'product-page-image') : '0px' }};
+        --product-page-nav-border-radius: {{ params.border_apply_on_images | default(false) ? resolve_border_radius_by_type(params.buttons_general_format, 'mini-cart-product-image') : '0px' }};
+        --product-page-flag-border-radius: {{ resolve_border_radius_by_type(params.buttons_general_format, 'mini-cart-buy-together') }};
+        --product-page-buy-together-image-border-radius: {{ params.border_apply_on_images | default(false) ? resolve_border_radius_by_type(params.buttons_general_format) : '0px' }};    
+        --product-page-buy-together-image-mobile: {{ params.border_apply_on_images | default(false) ? resolve_border_radius_by_type(params.buttons_general_format, 'product-buy-together-mobile') : '0px' }};    
+
         --slides-border-radius: {{ type_border_radius_slide(params.buttons_general_format) }};
+
+        --banner-border-radius: {{ params.border_apply_on_images | default(false) ? resolve_border_radius_by_type(params.buttons_general_format, 'banners') : '0px' }};
+        --section-border-radius: {{ resolve_border_radius_by_type(params.buttons_general_format, 'banners') }};
+        --grid-collection-banner: {{ params.border_apply_on_images | default(false) ? resolve_border_radius_by_type(params.buttons_general_format, 'grid-collection-banner') : '0px' }};
+
+        --mini-cart-product-border-radius: {{ params.border_apply_on_images | default(false) ? resolve_border_radius_by_type(params.buttons_general_format, 'mini-cart-product-image') : '0px' }};
+        --mini-cart-buy-together--border-radius: {{ resolve_border_radius_by_type(params.buttons_general_format, 'mini-cart-buy-together') }};
+        --mini-cart-flags-border-radius: {{ resolve_border_radius_by_type(params.buttons_general_format, 'mini-cart-flags') }};
+
+        --category-pagination-border-radius: {{ resolve_border_radius_by_type(params.buttons_general_format, 'mini-cart-buy-together') }};
+
+        --social-media-icons-border: {{ resolve_border_radius_by_type(params.buttons_general_format, 'mini-cart-buy-together') }};
 
         --product-name-size: {{ params.grids_product_name_size | default('14px') }};
         --product-name-color: {{ params.grids_product_name_color | default('#000000') }};

@@ -1,6 +1,5 @@
 {% set highlightTypePayment = pageConfig.data.theme.params.highlight_type_payment ?: 'promotional' %}
 
-
 {% set price = {
     'path': 'prices.data.price_formated',
     'text': ''
@@ -32,6 +31,8 @@
 {% set isTextAndIconButton =  pageConfig.data.theme.params.grids_add_to_cart_button_type | default('icon_only') == 'icon_and_text' %}
 
 {% set fallbackPrice = product.prices.data.currency ~ ' ' ~ product.prices.data.base_amount ~ ',' ~ '<span class="fraction-amount">' ~ product.prices.data.fraction_amount ~ '</span>' %}
+
+{% set hasPrice =  highlightTypePayment != 'promotional' ? product.prices.data[highlightTypePayment].base_amount : false %}
 
 {% if highlightTypePayment == 'promotional' %}
     {% set selectedPrice = product.prices.data.currency ~ ' ' ~ product.prices.data.base_amount ~ ',' ~ '<span class="fraction-amount">' ~ product.prices.data.fraction_amount ~ '</span>' %}
@@ -164,8 +165,8 @@
                     ">
                         {% if product %}
                             <div>
-                                {{ (selectedPrice ?: fallbackPrice)|raw }}
-                                {% if selectedPrice %}
+                                {{ (hasPrice ? selectedPrice : fallbackPrice)|raw }}
+                                {% if hasPrice %}
                                     <span class="payment-type">{{ priceText }}</span>
                                 {% endif %}
                             </div>

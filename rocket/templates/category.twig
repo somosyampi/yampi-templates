@@ -6,7 +6,7 @@
 	</head>
 	<body class="{{ merchantData.alias }} {{ page }}
 		{{ pageConfig.data.theme.params.show_dark_mode ? 'dark-mode' : '' }}
-		{{ is_color_contrasting(pageConfig.data.theme.params.color_general_background | default('#FFFFFF'), "#222222") ? '' : 'contrast-icons' }}
+		{{ is_color_contrasting(pageConfig.data.theme.params.color_general_background | default('#FFFFFF'), "#999999") ? '' : 'contrast-icons' }}
 	">
 		<div id="app">
 			{% include 'sections/global/header.twig' %}
