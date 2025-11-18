@@ -1,105 +1,122 @@
-import f from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/lodash.js";
-import v from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/modules/axios/api.js";
-import y from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/product.js";
-function C(t, a, l, s, i, u, _, p) {
-    var e = typeof t == "function" ? t.options : t;
-    a && (e.render = a, e.staticRenderFns = l, e._compiled = !0), s && (e.functional = !0), u && (e._scopeId = "data-v-" + u);
-    var o;
-    if (_ ? (o = function (n) {
-        n = n || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !n && typeof __VUE_SSR_CONTEXT__ < "u" && (n = __VUE_SSR_CONTEXT__), i && i.call(this, n), n && n._registeredComponents && n._registeredComponents.add(_);
-    }, e._ssrRegister = o) : i && (o = p ? function () {
-        i.call(
-            this,
-            (e.functional ? this.parent : this).$root.$options.shadowRoot
-        );
-    } : i), o)
-        if (e.functional) {
-            e._injectStyles = o;
-            var h = e.render;
-            e.render = function (m, g) {
-                return o.call(g), h(m, g);
-            };
-        } else {
-            var c = e.beforeCreate;
-            e.beforeCreate = c ? [].concat(c, o) : [o];
-        }
-    return {
-        exports: t,
-        options: e
-    };
+import d from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
+import v from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/axios/api.js";
+import y from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/product.js";
+import C from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/cache.js";
+function S(t, e, i, n, l, u, c, _) {
+  var a = typeof t == "function" ? t.options : t;
+  e && (a.render = e, a.staticRenderFns = i, a._compiled = !0), n && (a.functional = !0), u && (a._scopeId = "data-v-" + u);
+  var o;
+  if (c ? (o = function(s) {
+    s = s || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !s && typeof __VUE_SSR_CONTEXT__ < "u" && (s = __VUE_SSR_CONTEXT__), l && l.call(this, s), s && s._registeredComponents && s._registeredComponents.add(c);
+  }, a._ssrRegister = o) : l && (o = _ ? function() {
+    l.call(
+      this,
+      (a.functional ? this.parent : this).$root.$options.shadowRoot
+    );
+  } : l), o)
+    if (a.functional) {
+      a._injectStyles = o;
+      var p = a.render;
+      a.render = function(m, h) {
+        return o.call(h), p(m, h);
+      };
+    } else {
+      var g = a.beforeCreate;
+      a.beforeCreate = g ? [].concat(g, o) : [o];
+    }
+  return {
+    exports: t,
+    options: a
+  };
 }
 const F = {
-    name: "Flags",
-    mixins: [
-        y
-    ],
-    props: {
-        defaultFlags: {
-            type: Array,
-            default: () => []
-        }
+  name: "Flags",
+  mixins: [
+    y,
+    C
+  ],
+  props: {
+    defaultFlags: {
+      type: Array,
+      default: () => []
     },
-    data: () => ({
-        flags: [],
-        loading: !1
-    }),
-    mounted() {
-        if (!f.isEmpty(this.defaultFlags)) {
-            this.flags = this.defaultFlags;
-            return;
-        }
-        const t = f.get(this.validProduct, "flags.data");
-        if (!f.isNil(t)) {
-            this.flags = t;
-            return;
-        }
-        this.loadFlags();
-    },
-    methods: {
-        getStyle(t) {
-            return {
-                "--flag-color": t.text_color,
-                "--flag-bg-color": t.background_color
-            };
-        },
-        async loadFlags() {
-            try {
-                if (!this.validProduct)
-                    return;
-                this.loading = !0;
-                const { data: t } = await v.get(`catalog/products/${this.validProduct.id}/flags`);
-                this.flags = t.data.filter((a) => a.active);
-            } finally {
-                this.loading = !1;
-            }
-        }
+    productId: {
+      type: [Number, String],
+      default: null
     }
+  },
+  data: () => ({
+    flags: [],
+    loading: !1
+  }),
+  computed: {
+    shouldUseNewSearchStrategy() {
+      const { new_search: t } = this.$store.getters["merchant/storeModules"];
+      return t;
+    }
+  },
+  mounted() {
+    if (!d.isEmpty(this.defaultFlags)) {
+      this.flags = this.defaultFlags;
+      return;
+    }
+    const t = d.get(this.validProduct, "flags.data");
+    if (!d.isNil(t)) {
+      this.flags = t;
+      return;
+    }
+    this.loadFlags();
+  },
+  methods: {
+    getStyle(t) {
+      return {
+        "--flag-color": t.text_color,
+        "--flag-bg-color": t.background_color
+      };
+    },
+    async loadFlags() {
+      try {
+        if (!this.validProduct && !this.shouldUseNewSearchStrategy)
+          return;
+        this.loading = !0;
+        const t = this.productId || this.validProduct.id, e = this.getLocalStorageCache({ itemId: t, itemAlias: "flags" });
+        if (e) {
+          this.flags = e, this.loading = !1;
+          return;
+        }
+        const { data: i } = await v.get(`catalog/products/${t}/flags`);
+        this.flags = i.data, this.setLocalStorageCache({ itemId: t, data: this.flags, itemAlias: "flags" });
+      } finally {
+        this.loading = !1;
+      }
+    }
+  }
 };
-var $ = function () {
-    var a = this, l = a._self._c;
-    return a.flags.length ? l("div", { staticClass: "holder-flags", class: { "not-mosaic": !a.$parent.isMosaic } }, a._l(a.flags, function (s) {
-        return l("span", { key: s.id, staticClass: "flag", style: a.getStyle(s), domProps: { textContent: a._s(s.name) } });
-    }), 0) : a._e();
-}, b = [], w = /* @__PURE__ */ C(
-    F,
-    $,
-    b,
-    !1,
-    null,
-    null,
-    null,
-    null
+var w = function() {
+  var e = this, i = e._self._c;
+  return e.flags.length ? i("div", { staticClass: "holder-flags", class: { "not-mosaic": !e.$parent.isMosaic } }, e._l(e.flags, function(n) {
+    return i("span", { key: n.id, staticClass: "flag", style: e.getStyle(n), domProps: { textContent: e._s(n.name) } });
+  }), 0) : e._e();
+}, $ = [], b = /* @__PURE__ */ S(
+  F,
+  w,
+  $,
+  !1,
+  null,
+  null,
+  null,
+  null
 );
-const R = w.exports;
-function d(t) {
-    d.installed || (d.installed = !0, t.component("Flags", R));
+const N = b.exports;
+function f(t) {
+  f.installed || (f.installed = !0, t.component("Flags", N));
 }
-const V = {
-    install: d
+const R = {
+  install: f
 };
 let r = null;
 typeof window < "u" ? r = window.Vue : typeof global < "u" && (r = global.Vue);
-r && r.use(V);
+r && r.use(R);
 export {
-    R as default
+  N as default
 };

@@ -1,93 +1,137 @@
-import p from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/components/category/filters/BaseFilter.js";
-function C(a, e, t, r, i, l, f, m) {
-    var n = typeof a == "function" ? a.options : a;
-    e && (n.render = e, n.staticRenderFns = t, n._compiled = !0), r && (n.functional = !0), l && (n._scopeId = "data-v-" + l);
-    var o;
-    if (f ? (o = function (s) {
-        s = s || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !s && typeof __VUE_SSR_CONTEXT__ < "u" && (s = __VUE_SSR_CONTEXT__), i && i.call(this, s), s && s._registeredComponents && s._registeredComponents.add(f);
-    }, n._ssrRegister = o) : i && (o = m ? function () {
-        i.call(
-            this,
-            (n.functional ? this.parent : this).$root.$options.shadowRoot
-        );
-    } : i), o)
-        if (n.functional) {
-            n._injectStyles = o;
-            var v = n.render;
-            n.render = function (h, _) {
-                return o.call(_), v(h, _);
-            };
-        } else {
-            var c = n.beforeCreate;
-            n.beforeCreate = c ? [].concat(c, o) : [o];
-        }
-    return {
-        exports: a,
-        options: n
-    };
-}
-const g = {
-    name: "FilterCustom",
-    extends: p,
-    data: () => ({
-        route: "filters",
-        mainQueryString: "filter_id"
-    }),
-    methods: {
-        parsePayload(a) {
-            return a.map((e) => ({
-                ...e,
-                id: this.$randomString(),
-                values: e.values.data.map((t) => ({
-                    ...t,
-                    active: this.queryParams.filter_id.includes(t.id)
-                }))
-            }));
-        },
-        parseFilterStatuses(a) {
-            a.forEach((e) => e.values.forEach((t) => this.checkFilterStatus(t, !1)));
-        },
-        filterRemoved(a) {
-            this.payload.some((e) => {
-                const t = e.values.find((r) => r.id === a.id);
-                return t ? (t.active = !1, !0) : !1;
-            });
-        }
+import p from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/components/category/filters/BaseFilter.js";
+function y(t, e, s, i, a, l, d, _) {
+  var r = typeof t == "function" ? t.options : t;
+  e && (r.render = e, r.staticRenderFns = s, r._compiled = !0), i && (r.functional = !0), l && (r._scopeId = "data-v-" + l);
+  var u;
+  if (d ? (u = function(n) {
+    n = n || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !n && typeof __VUE_SSR_CONTEXT__ < "u" && (n = __VUE_SSR_CONTEXT__), a && a.call(this, n), n && n._registeredComponents && n._registeredComponents.add(d);
+  }, r._ssrRegister = u) : a && (u = _ ? function() {
+    a.call(
+      this,
+      (r.functional ? this.parent : this).$root.$options.shadowRoot
+    );
+  } : a), u)
+    if (r.functional) {
+      r._injectStyles = u;
+      var v = r.render;
+      r.render = function(m, f) {
+        return u.call(f), v(m, f);
+      };
+    } else {
+      var h = r.beforeCreate;
+      r.beforeCreate = h ? [].concat(h, u) : [u];
     }
+  return {
+    exports: t,
+    options: r
+  };
+}
+const S = {
+  name: "FilterCustom",
+  extends: p,
+  props: {
+    searchFilters: {
+      type: Object,
+      default: () => ({})
+    }
+  },
+  data: () => ({
+    route: "filters",
+    mainQueryString: "filter_id",
+    searchSelectedAttributes: []
+  }),
+  computed: {
+    activeCustomFilterKeys() {
+      return this.searchSelectedAttributes.map((t) => `${t.attributeName}-${t.value}`).flat();
+    }
+  },
+  mounted() {
+    !this.shouldUseNewSearchStrategy || this.parseAttributes(this.queryParams.attributes).forEach((t) => {
+      this.updateSearchSelectedAttributes(t, !0);
+    });
+  },
+  methods: {
+    updateSearchSelectedAttributes(t, e) {
+      e ? this.searchSelectedAttributes = [...this.searchSelectedAttributes, t] : this.searchSelectedAttributes = this.searchSelectedAttributes.filter(
+        (s) => !(s.attributeName === t.attributeName && s.value === t.value)
+      ), this.mainQueryString = "attributes", this.updateFilterAttributes({
+        filterData: {
+          id: `${t.attributeName}-${t.value}`,
+          key: "attributes",
+          query: {
+            attributes: t
+          },
+          alias: `${t.attributeName}-${t.value}`,
+          name: t.value,
+          active: e
+        },
+        allActiveFilters: this.searchSelectedAttributes
+      });
+    },
+    parsePayload(t) {
+      return t.map((e) => ({
+        ...e,
+        id: this.$randomString(),
+        values: e.values.data.map((s) => ({
+          ...s,
+          active: this.queryParams.filter_id.includes(s.id)
+        }))
+      }));
+    },
+    parseFilterStatuses(t) {
+      t.forEach((e) => e.values.forEach((s) => this.checkFilterStatus(s, !1)));
+    },
+    filterRemoved(t) {
+      if (t.key === "attributes") {
+        this.searchSelectedAttributes = this.searchSelectedAttributes.filter(
+          (e) => e.value !== t.name
+        );
+        return;
+      }
+      this.payload.some((e) => {
+        const s = e.values.find((i) => i.id === t.id);
+        return s ? (s.active = !1, !0) : !1;
+      });
+    }
+  }
 };
-var y = function () {
-    var e = this, t = e._self._c;
-    return t("div", { staticClass: "filter" }, e._l(e.payload, function (r) {
-        return t("div", { key: r.id, staticClass: "filter filter-generic" }, [t("div", { staticClass: "-title", domProps: { textContent: e._s(r.name) } }), t("ul", e._l(r.values, function (i) {
-            return t("li", { key: i.id, staticClass: "filter-option" }, [t("CustomCheckbox", {
-                attrs: { text: i.name, color: i.color, image: i.image_url, checked: i.active }, on: {
-                    change: function (l) {
-                        return e.updateFilterStatus(i, l);
-                    }
-                }
-            })], 1);
-        }), 0)]);
-    }), 0);
-}, F = [], R = /* @__PURE__ */ C(
-    g,
-    y,
-    F,
-    !1,
-    null,
-    null,
-    null,
-    null
+var b = function() {
+  var e = this, s = e._self._c;
+  return s("div", { staticClass: "filter" }, [e.shouldUseNewSearchStrategy ? s("div", e._l(Object.keys(e.searchFilters), function(i) {
+    return s("div", { key: i, staticClass: "filter filter-generic" }, [s("div", { staticClass: "-title", domProps: { innerHTML: e._s(i) } }), s("ul", e._l(e.searchFilters[i], function(a) {
+      return s("li", { key: `${i}.${a.key}`, staticClass: "filter-option" }, [s("CustomCheckbox", { attrs: { text: a.key, color: a.color, image: a.image_url, checked: e.activeCustomFilterKeys.includes(`${i}-${a.key}`) }, on: { change: function(l) {
+        return e.updateSearchSelectedAttributes({ attributeName: i, value: a.key }, l);
+      } }, scopedSlots: e._u([{ key: "count", fn: function() {
+        return [a.count ? s("span", [e._v(e._s(`(${a.count})`))]) : e._e()];
+      }, proxy: !0 }], null, !0) })], 1);
+    }), 0)]);
+  }), 0) : s("div", e._l(e.payload, function(i) {
+    return s("div", { key: i.id, staticClass: "filter filter-generic" }, [s("div", { staticClass: "-title", domProps: { innerHTML: e._s(i.name) } }), s("ul", e._l(i.values, function(a) {
+      return s("li", { key: a.id, staticClass: "filter-option" }, [s("CustomCheckbox", { attrs: { text: a.name, color: a.color, image: a.image_url, checked: a.active }, on: { change: function(l) {
+        return e.updateFilterStatus(a, l);
+      } } })], 1);
+    }), 0)]);
+  }), 0)]);
+}, C = [], g = /* @__PURE__ */ y(
+  S,
+  b,
+  C,
+  !1,
+  null,
+  null,
+  null,
+  null
 );
-const S = R.exports;
-function d(a) {
-    d.installed || (d.installed = !0, a.component("FilterCustom", S));
+const k = g.exports;
+function c(t) {
+  c.installed || (c.installed = !0, t.component("FilterCustom", k));
 }
 const $ = {
-    install: d
+  install: c
 };
-let u = null;
-typeof window < "u" ? u = window.Vue : typeof global < "u" && (u = global.Vue);
-u && u.use($);
+let o = null;
+typeof window < "u" ? o = window.Vue : typeof global < "u" && (o = global.Vue);
+o && o.use($);
 export {
-    S as default
+  k as default
 };
