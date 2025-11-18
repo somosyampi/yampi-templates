@@ -1,6 +1,6 @@
 <template>
     <div
-        v-if="payload.length"
+        v-if="currentPayload.length"
         class="filter filter-category"
     >
         <div class="-title">
@@ -9,7 +9,7 @@
 
         <ul :class="{ '-category': !showCheckbox }">
             <li
-                v-for="category in payload"
+                v-for="category in currentPayload"
                 :key="category.id"
                 :class="{ 'filter-option': showCheckbox }"
             >
@@ -18,7 +18,11 @@
                     :text="category.name"
                     :checked="category.active"
                     @change="updateFilterStatus(category, $event)"
-                />
+                >
+                    <template #count>
+                        <span v-if="category.count">{{ `(${category.count})` }}</span>
+                    </template>
+                </CustomCheckbox>
 
                 <a
                     v-else
@@ -49,11 +53,34 @@ export default {
             type: String,
             default: '',
         },
+
+        allCategories: {
+            type: Array,
+            default: () => [],
+        },
     },
 
     data: () => ({
         route: 'categories',
         mainQueryString: 'category_id',
     }),
+
+    computed: {
+        currentPayload() {
+            const filterData = this.shouldUseNewSearchStrategy
+                ? this.allCategories
+                : this.payload;
+
+            return this.processQueryParams(filterData);
+        },
+    },
+
+    mounted() {
+        if (!this.shouldUseNewSearchStrategy) {
+            return;
+        }
+
+        this.mainQueryString = 'categories_name';
+    },
 };
 </script>
