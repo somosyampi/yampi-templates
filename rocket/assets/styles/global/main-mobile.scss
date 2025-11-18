@@ -36,7 +36,7 @@
                 z-index: 0;
             }
 
-            .filters {
+            .filters-wrapper {
                 transform: translate3d(0, 0, 0);
                 z-index: 11;
                 background-color: var(--background-color);
@@ -297,7 +297,6 @@
     }
 
     .header-content {
-        overflow: hidden;
         position: relative;
         padding: 24px 0 24px;
 
@@ -769,7 +768,7 @@
         }
     }
 
-    .filters {
+    .filters-wrapper {
         position: fixed;
         width: 75%;
         max-width: 280px;
@@ -1022,6 +1021,7 @@
 
         .header-content-right {
             justify-content: end;
+            z-index: 10;
         }
     }
 
