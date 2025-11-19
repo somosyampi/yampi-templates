@@ -36,16 +36,8 @@
 </template>
 
 <script>
-import LazyVisibility from '@/components/LazyVisibility.vue';
-import ProductCard from '@/components/product/ProductCard.vue';
-
 export default {
     name: 'ProductsSearchList',
-
-    components: {
-        ProductCard,
-        LazyVisibility,
-    },
 
     props: {
         products: {

@@ -90,14 +90,9 @@
 <script>
 import pricesMixin from '@/mixins/prices';
 import productCardTheme from '@/mixins/productCardTheme';
-import IconBuyButton from '@/editor/icons/IconBuyButton.vue';
 
 export default {
     name: 'ProductCard',
-
-    components: {
-        IconBuyButton,
-    },
 
     mixins: [
         pricesMixin,
