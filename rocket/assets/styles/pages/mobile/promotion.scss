@@ -57,8 +57,9 @@
     .category-content {
         .holder-results {
             margin-top: 32px;
-            margin-left: 10px;
+            margin-left: 0;
             margin-right: 10px;
+            min-width: 100vw;
         }
 
         .category-description {

@@ -26,8 +26,18 @@
                 <option value="lowest_price">Menor preço</option>
                 <option value="newest">Lançamentos</option>
                 <option value="rating">Melhor avaliação</option>
-                <option value="name_asc">A-Z</option>
-                <option value="name_desc">Z-A</option>
+                <option
+                    v-if="!shouldUseNewSearchStrategy"
+                    value="name_asc"
+                >
+                    A-Z
+                </option>
+                <option
+                    v-if="!shouldUseNewSearchStrategy"
+                    value="name_desc"
+                >
+                    Z-A
+                </option>
             </select>
         </div>
         <div
@@ -88,6 +98,13 @@ export default {
     },
 
     data: () => ({ }),
+
+    computed: {
+        shouldUseNewSearchStrategy() {
+            const { new_search } = this.$store.getters['merchant/storeModules'];
+            return new_search;
+        },
+    },
 
     mounted() {},
 

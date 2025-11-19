@@ -18,12 +18,14 @@
 import _ from '~/lodash';
 import api from '@/modules/axios/api';
 import productMixin from '@/mixins/product';
+import cacheMixin from '@/mixins/cache';
 
 export default {
     name: 'Flags',
 
     mixins: [
         productMixin,
+        cacheMixin,
     ],
 
     props: {
@@ -31,12 +33,24 @@ export default {
             type: Array,
             default: () => ([]),
         },
+
+        productId: {
+            type: [Number, String],
+            default: null,
+        },
     },
 
     data: () => ({
         flags: [],
         loading: false,
     }),
+
+    computed: {
+        shouldUseNewSearchStrategy() {
+            const { new_search } = this.$store.getters['merchant/storeModules'];
+            return new_search;
+        },
+    },
 
     mounted() {
         if (!_.isEmpty(this.defaultFlags)) {
@@ -65,13 +79,31 @@ export default {
 
         async loadFlags() {
             try {
-                if (!this.validProduct) return;
+                /*
+                 * Força a buscar flags quando o resultado vier da busca de produtos
+                 * porque o search traz flags deletadas.
+                 */
+                if (!this.validProduct && !this.shouldUseNewSearchStrategy) return;
 
                 this.loading = true;
 
-                const { data } = await api.get(`catalog/products/${this.validProduct.id}/flags`);
+                const productId = this.productId || this.validProduct.id;
 
-                this.flags = data.data.filter(flag => flag.active);
+                const cached = this.getLocalStorageCache({ itemId: productId, itemAlias: 'flags' });
+
+                if (cached) {
+                    this.flags = cached;
+
+                    this.loading = false;
+
+                    return;
+                }
+
+                const { data } = await api.get(`catalog/products/${productId}/flags`);
+
+                this.flags = data.data;
+
+                this.setLocalStorageCache({ itemId: productId, data: this.flags, itemAlias: 'flags' });
             } finally {
                 this.loading = false;
             }

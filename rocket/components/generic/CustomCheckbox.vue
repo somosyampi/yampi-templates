@@ -2,6 +2,7 @@
     <div class="custom-checkbox relative">
         <label :class="{'with-effect': color || image}">
             {{ text }}
+            <span class="item-count"><slot name="count" /></span>
             <input
                 v-model="checkedState"
                 type="checkbox"

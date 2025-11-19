@@ -23,7 +23,9 @@ export default {
     },
 
     mounted() {
-        this.loadData();
+        if (!this.shouldUseNewSearchStrategy) {
+            this.loadData();
+        }
 
         this.$store.subscribe(({ type, payload }) => {
             if (type !== 'filters/REMOVE_ACTIVE_FILTER') {
@@ -36,9 +38,28 @@ export default {
 
             this.filterRemoved(payload);
         });
+
+        this.loading = false;
     },
 
     methods: {
+        processQueryParams(payload) {
+            if (!this.queryParams[this.mainQueryString]) {
+                return payload;
+            }
+
+            const filterIds = this.queryParams[this.mainQueryString];
+
+            if (!filterIds.length) {
+                return payload;
+            }
+
+            payload.forEach(item => {
+                item.active = filterIds.includes(item.id);
+            });
+            return payload;
+        },
+
         async loadData() {
             try {
                 this.loading = true;
@@ -77,7 +98,7 @@ export default {
         },
 
         filterRemoved(filter) {
-            const filterToRemove = this.payload.find(item => item.id === filter.id);
+            const filterToRemove = this.currentPayload.find(item => item.id === filter.id);
 
             if (filterToRemove) {
                 filterToRemove.active = false;

@@ -1,5 +1,5 @@
 {% if ws_enabled and ws_user_id %}
-<script 
+<script
     src="{{ ws_cdn_url }}"
     defer
     async
@@ -10,7 +10,7 @@
     function startOnlineVisitors() {
         const date = new Date();
         const timestampCdn = `${date.getFullYear()}${date.getMonth()}${date.getDay()}`;
-        
+
         const websocketOptions = {
             echo: {
                 key: "{{ ws_app_key }}",
@@ -22,7 +22,7 @@
             },
             alias: window.merchant.alias,
             service: '{{ ws_service }}',
-            workerPath: `${window.location.origin}/js/worker.js?ts=${timestampCdn}`,
+            workerPath: `${window.location.origin}{{ mix('/js/worker.js') }}`,
             user_data: {
                 id: "{{ ws_user_id }}",
             },

@@ -52,7 +52,7 @@
                             />
                             <div
                                 class="-text"
-                                v-html="question.answer.message"
+                                v-html="question.answer.message_with_links"
                             />
                         </div>
                     </div>

@@ -175,7 +175,6 @@ p {
     }
 
     h1 {
-
         &,
         * {
             font-size: var(--font-24);
@@ -183,7 +182,6 @@ p {
     }
 
     h2 {
-
         &,
         * {
             font-size: var(--font-21);
@@ -191,7 +189,6 @@ p {
     }
 
     h3 {
-
         &,
         * {
             font-size: var(--font-18);
@@ -199,7 +196,6 @@ p {
     }
 
     h4 {
-
         &,
         * {
             font-size: var(--font-14);
@@ -268,4 +264,8 @@ p {
 
 .fill-current {
     fill: currentColor;
+}
+
+.item-count {
+    color: var(--black-medium-color-contrast);
 }

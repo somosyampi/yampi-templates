@@ -4,7 +4,7 @@
         :class="{ 'grid-list': !isMosaic }"
     >
         <div
-            v-if="loading"
+            v-if="loading && firstLoadFinished"
             class="over-background -loader"
         >
             <i class="icon icon-general-loader" />
@@ -20,6 +20,9 @@
             :update-grid="updateGrid"
             :selected-order="selectedOrder"
             :paginate="paginate"
+            :search-data="searchData"
+            :loading="loading"
+            :query-params="queryParams"
         />
 
         <AddToCart />
@@ -33,6 +36,9 @@ import rocket from '@/modules/axios/rocket';
 import api from '@/modules/axios/api';
 import queryParamsMixin from '@/mixins/queryParams';
 import mobileMixin from '@/mixins/mobile';
+import search from '@/modules/axios/search';
+import cacheMixin from '@/mixins/cache';
+import trackingByApi from '@/mixins/tracking/api';
 
 export default {
     name: 'CategoryContent',
@@ -40,6 +46,8 @@ export default {
     mixins: [
         queryParamsMixin,
         mobileMixin,
+        trackingByApi,
+        cacheMixin,
     ],
 
     props: {
@@ -50,7 +58,7 @@ export default {
     },
 
     data: () => ({
-        loading: false,
+        loading: true,
         newHtml: '',
         isMosaic: true,
         paginate: {
@@ -58,6 +66,8 @@ export default {
             pageCount: 7,
             currentPage: 1,
         },
+        searchData: [],
+        firstLoadFinished: false,
     }),
 
     computed: {
@@ -80,6 +90,10 @@ export default {
 
         ...mapGetters('merchant', [
             'merchant',
+        ]),
+
+        ...mapGetters('filters', [
+            'activeFilters',
         ]),
     },
 
@@ -104,27 +118,127 @@ export default {
     },
 
     async mounted() {
-        this.setGridType();
+        this.loading = true;
 
-        await this.bootQueryParams();
+        try {
+            this.setGridType();
 
-        this.paginate.currentPage = this.queryParams.page || 1;
+            await this.bootQueryParams();
 
-        await this.loadCountPaginate();
+            this.paginate.currentPage = this.queryParams.page || 1;
 
-        this.$store.subscribe(({ type }) => {
-            if (type !== 'queryParams/EVENT_URL_UPDATED') {
-                return;
+            await this.loadCountPaginate();
+
+            this.$store.subscribe(({ type }) => {
+                if (type !== 'queryParams/EVENT_URL_UPDATED') {
+                    return;
+                }
+
+                if (!this.firstLoadFinished) {
+                    return;
+                }
+
+                this.updateFilters();
+                this.loadCountPaginate();
+            });
+
+            this.displayMosaicGrid();
+        } catch (e) {
+            console.error(e);
+        } finally {
+            if (document.readyState === 'complete') {
+                // Page already loaded
+                this.firstLoad();
+            } else {
+                window.addEventListener('load', this.firstLoad);
             }
+        }
+    },
 
-            this.updateFilters();
-            this.loadCountPaginate();
-        });
-
-        this.displayMosaicGrid();
+    destroyed() {
+        window.removeEventListener('load', this.firstLoad);
     },
 
     methods: {
+        searchTrackings() {
+            if (!this.shouldUseNewSearchStrategy) {
+                return;
+            }
+
+            const cacheData = this.getLocalStorageCache({
+                itemId: this.queryParams.q,
+                itemAlias: 'search_query',
+            });
+
+            if (!this.firstLoadFinished && !!cacheData?.q) {
+                this.handleTrackApi('store-search-returned', {
+                    'store-search-returned': !!this.searchData.length,
+                });
+
+                this.removeLocalStorageCache({
+                    itemId: this.queryParams.q,
+                    itemAlias: 'search_query',
+                });
+            }
+        },
+
+        async firstLoad() {
+            if (!this.shouldUseNewSearchStrategy) {
+                this.firstLoadFinished = true;
+                this.loading = false;
+                return;
+            }
+
+            this.loading = true;
+
+            await this.loadProductsStrategy();
+
+            this.searchTrackings();
+
+            this.firstLoadFinished = true;
+
+            this.loading = false;
+        },
+
+        async loadProductsStrategy() {
+            if (this.shouldUseNewSearchStrategy) {
+                const { builderSearch } = await import('@/modules/search/searchHelpers');
+
+                const urlStringParams = new URLSearchParams(window.location.search);
+                const urlStringParamsKeys = Array.from(urlStringParams.keys()).filter(key => key !== 'q');
+
+                this.queryParams.q = urlStringParams.get('q') || '';
+                this.queryParams.limit = this.productsPerPage;
+                this.queryParams.include = 'skus,url_path,image_url,tags,brand,name,slug,id,rating,attributes,categories,price';
+
+                const searchData = await builderSearch.execute(
+                    search,
+                    this.queryParams,
+                );
+
+                this.paginate.pageCount = searchData?.data?.last_page || 1;
+
+                this.searchData = searchData?.data.data;
+
+                if (urlStringParamsKeys.length) {
+                    return;
+                }
+
+                this.setLocalStorageCache({
+                    itemId: this.queryParams.q,
+                    itemAlias: 'search_aggs',
+                    data: {
+                        aggs: searchData?.aggs,
+                    },
+                });
+
+                return;
+            }
+            const { urlSearch } = await import('@/modules/search/searchHelpers');
+
+            this.newHtml = await urlSearch.execute(rocket, this.queryParams);
+        },
+
         updateFilters: _.debounce(async function () {
             this.loading = true;
 
@@ -136,10 +250,7 @@ export default {
             }
 
             try {
-                const url = this.$applyQueriesToUrl(window.location.pathname, queryParams);
-                const { data } = await rocket.get(url);
-
-                this.newHtml = `<div>${data}</div>`;
+                await this.loadProductsStrategy();
 
                 this.scrollToTop();
             } catch (e) {
@@ -152,6 +263,10 @@ export default {
         }),
 
         displayMosaicGrid() {
+            if (this.shouldUseNewSearchStrategy) {
+                return;
+            }
+
             this.$nextTick(() => {
                 if (!this.isMobile || !this.isMosaic) {
                     return;
@@ -191,6 +306,10 @@ export default {
         },
 
         displayListGrid() {
+            if (this.shouldUseNewSearchStrategy) {
+                return;
+            }
+
             this.$nextTick(() => {
                 const parent = this.getResultsElement();
                 const holder = parent.getElementsByClassName('products-list')[0];
@@ -262,6 +381,10 @@ export default {
         },
 
         async loadCountPaginate() {
+            if (this.shouldUseNewSearchStrategy) {
+                return;
+            }
+
             this.paginate.loading = true;
 
             const { queryParams } = this;
@@ -293,7 +416,7 @@ export default {
             this.paginate.currentPage = page;
 
             if (this.paginate.currentPage === 1) {
-                this.removeQueryParams('page');
+                this.removeQueryParams({ key: 'page' });
 
                 return;
             }

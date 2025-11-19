@@ -1,14 +1,24 @@
 <template>
-    <div
-        class="installment-text"
-        :class="{ '-loading': loading }"
-        v-html="formattedInstallmentText()"
-    />
+    <LazyVisibility class="installments-text">
+        <div
+            v-if="shouldShowInstallments"
+            class="installment-text"
+            v-html="installmentText"
+        />
+
+        <div
+            v-else
+            class="installment-text"
+            :class="{ '-loading': loading }"
+            v-html="formattedInstallmentText()"
+        />
+    </LazyVisibility>
 </template>
 
 <script>
 import debounce from '~/vue-debounce';
 import _ from '~/lodash';
+import { mapGetters } from '~/vuex';
 import BaseInstallments from '@/components/product/installments/BaseInstallments.vue';
 
 export default {
@@ -21,17 +31,68 @@ export default {
             type: Number,
             default: null,
         },
+
+        product: {
+            type: Object,
+            required: true,
+        },
+
+        productPrices: {
+            type: Object,
+            default: null,
+        },
     },
 
     computed: {
+        ...mapGetters('merchant', [
+            'storeModules',
+            'defaultCard',
+        ]),
+
         isSku() {
             // if there is product.id, than we should not look into the validSku.
             // validSku is used only for the main product.
             return !this.product.id && !_.isNil(this.validSku);
         },
+
+        hasTaxes() {
+            return this.installmentsData.installments.some(installment => installment.tax_value > 0);
+        },
+
+        installmentsData() {
+            return this.productPrices?.installments_data;
+        },
+
+        taxesText() {
+            if (!this.hasTaxes) {
+                return 'sem juros';
+            }
+
+            return '*';
+        },
+
+        shouldShowInstallments() {
+            return this.storeModules.new_search && !!this.installmentsData && !!this.defaultCard;
+        },
+
+        installmentText() {
+            if (!this.installmentsData?.installments?.length) {
+                return ' ';
+            }
+
+            const lastInstallment = this.installmentsData.installments[
+                this.installmentsData.installments.length - 1
+            ];
+
+            return lastInstallment.text;
+        },
     },
 
     mounted() {
+        if (this.storeModules.new_search) {
+            return;
+        }
+
         if (this.validProduct) {
             if (this.showAllInstallments && this.validProduct.has_variations) {
                 this.$watch('validSku', () => this.loadInstallments());
@@ -71,7 +132,7 @@ export default {
 
         formattedInstallmentText() {
             if (!this.installments.installments || !this.installments.installments.length) {
-                return '_';
+                return ' ';
             }
 
             const lastInstallment = this.installments.installments[

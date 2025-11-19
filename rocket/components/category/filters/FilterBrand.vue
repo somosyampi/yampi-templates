@@ -6,7 +6,7 @@
 
         <ul>
             <li
-                v-for="brand in payload"
+                v-for="brand in currentPayload"
                 :key="brand.id"
                 class="filter-option"
             >
@@ -14,7 +14,11 @@
                     :text="brand.name"
                     :checked="brand.active"
                     @change="updateFilterStatus(brand, $event)"
-                />
+                >
+                    <template #count>
+                        <span v-if="brand.count">{{ `(${brand.count})` }}</span>
+                    </template>
+                </CustomCheckbox>
             </li>
         </ul>
     </div>
@@ -28,9 +32,34 @@ export default {
 
     extends: BaseFilter,
 
+    props: {
+        allBrands: {
+            type: Array,
+            default: () => [],
+        },
+    },
+
     data: () => ({
         route: 'brands',
         mainQueryString: 'brand_id',
     }),
+
+    computed: {
+        currentPayload() {
+            const filterData = this.shouldUseNewSearchStrategy
+                ? this.allBrands
+                : this.payload;
+
+            return this.processQueryParams(filterData);
+        },
+    },
+
+    mounted() {
+        if (!this.shouldUseNewSearchStrategy) {
+            return;
+        }
+
+        this.mainQueryString = 'brand_name';
+    },
 };
 </script>

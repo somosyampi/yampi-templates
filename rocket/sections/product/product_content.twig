@@ -99,7 +99,7 @@
                             <discount-tag class="-main-product" :value="price.percent_discount"></discount-tag>
                         </div>
 
-                        <installments-text :key="price"></installments-text>
+                        <installments-text :key="price" :product="{{ product|json_encode }}"></installments-text>
 
                         {% if section.params.show_all_installments|default(true) %}
                             <installments

@@ -1,5 +1,7 @@
 <template>
-    <div class="filter filter-price">
+    <div
+        class="filter filter-price"
+    >
         <div class="-title">
             Faixa de preço
         </div>
@@ -10,9 +12,9 @@
         </template>
 
         <RangeSlider
-            v-else-if="payload.max"
+            v-else-if="currentPayload.max"
             v-model="value"
-            :max="payload.max"
+            :max="currentPayload.max"
             :remove-prefix="true"
             @input="updatePriceStatus"
         />
@@ -28,16 +30,41 @@ export default {
 
     extends: BaseFilter,
 
+    props: {
+        allPrices: {
+            type: Array,
+            default: () => [],
+        },
+    },
+
     data: () => ({
         mainQueryString: 'price',
         route: 'prices',
         value: [],
+        currentPayload: { min: 0, max: 0 },
     }),
 
     computed: {
         ...mapGetters('preview', [
             'isIframe',
         ]),
+
+    },
+
+    watch: {
+        payload(newPayload) {
+            if (!this.shouldUseNewSearchStrategy) {
+                this.currentPayload = newPayload;
+            }
+        },
+
+        allPrices(newPrices) {
+            if (!this.shouldUseNewSearchStrategy) {
+                return;
+            }
+
+            this.processAllPrices(newPrices);
+        },
     },
 
     mounted() {
@@ -46,6 +73,10 @@ export default {
         if (this.queryParams.max) {
             this.value.push(this.queryParams.max);
         }
+
+        if (this.shouldUseNewSearchStrategy) {
+            this.processAllPrices(this.allPrices);
+        }
     },
 
     methods: {
@@ -53,20 +84,42 @@ export default {
             'removeQueryParams',
         ]),
 
+        processAllPrices(allPrices) {
+            const prices = allPrices.map(price => Number(price));
+
+            if (!prices.length) {
+                return;
+            }
+
+            const maxPrice = Math.max(...prices);
+
+            this.currentPayload = this.parsePayload({
+                min: 0,
+                max: Number(maxPrice),
+            });
+
+            if (this.queryParams.max && this.value.length < 2) {
+                this.value = [
+                    this.queryParams.min || 0,
+                    this.queryParams.max || maxPrice,
+                ];
+            }
+        },
+
         updatePriceStatus([min, max]) {
             if (this.isIframe) {
                 return;
             }
 
             if (min === 0 && Number(this.queryParams.min)) {
-                this.removeQueryParams('min');
+                this.removeQueryParams({ key: 'min' });
                 this.parseActiveFilter();
 
                 return;
             }
 
-            if (max === this.payload.max && Number(this.queryParams.max)) {
-                this.removeQueryParams('max');
+            if (max === this.currentPayload.max && Number(this.queryParams.max)) {
+                this.removeQueryParams({ key: 'max' });
                 this.parseActiveFilter();
 
                 return;
@@ -78,7 +131,7 @@ export default {
                 queries.min = min;
             }
 
-            if (max !== Number(this.queryParams.max) && max < this.payload.max) {
+            if (max !== Number(this.queryParams.max) && max < this.currentPayload.max) {
                 queries.max = max;
             }
 
@@ -91,6 +144,7 @@ export default {
 
             if (this.value.length < 2) {
                 this.value.push(max);
+                this.currentPayload.max = max;
             }
 
             return {
@@ -102,7 +156,7 @@ export default {
         parseFilterStatuses() {
             const [min, max] = this.value;
 
-            if (min === 0 && max === this.payload.max) {
+            if (min === 0 && max === this.currentPayload.max) {
                 return;
             }
 
@@ -112,7 +166,7 @@ export default {
                 queries.min = min;
             }
 
-            if (max !== this.payload.max) {
+            if (max !== this.currentPayload.max) {
                 queries.max = max;
             }
 
@@ -137,7 +191,7 @@ export default {
         },
 
         filterRemoved() {
-            this.value = [0, this.payload.max];
+            this.value = [0, this.currentPayload.max];
         },
     },
 };
