@@ -1,4 +1,4 @@
-import v from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/components/category/filters/BaseFilter.js";
+import v from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/components/category/filters/BaseFilter.js";
 function y(n, t, a, i, s, f, d, p) {
     var e = typeof n == "function" ? n.options : n;
     t && (e.render = t, e.staticRenderFns = a, e._compiled = !0), i && (e.functional = !0), f && (e._scopeId = "data-v-" + f);

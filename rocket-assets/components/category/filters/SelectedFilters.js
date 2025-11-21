@@ -1,6 +1,6 @@
-import { mapGetters as y, mapActions as _ } from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/vuex.js";
-import b from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/queryParams.js";
-import F from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/modules/SearchAttributesHandler.js";
+import { mapGetters as y, mapActions as _ } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/vuex.js";
+import b from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/queryParams.js";
+import F from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/SearchAttributesHandler.js";
 function C(e, r, a, o, i, d, c, v) {
     var t = typeof e == "function" ? e.options : e;
     r && (t.render = r, t.staticRenderFns = a, t._compiled = !0), o && (t.functional = !0), d && (t._scopeId = "data-v-" + d);
