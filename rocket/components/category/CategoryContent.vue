@@ -39,6 +39,7 @@ import mobileMixin from '@/mixins/mobile';
 import search from '@/modules/axios/search';
 import cacheMixin from '@/mixins/cache';
 import trackingByApi from '@/mixins/tracking/api';
+import { builderSearch, urlSearch } from '@/modules/search/searchHelpers';
 
 export default {
     name: 'CategoryContent',
@@ -202,8 +203,6 @@ export default {
 
         async loadProductsStrategy() {
             if (this.shouldUseNewSearchStrategy) {
-                const { builderSearch } = await import('@/modules/search/searchHelpers');
-
                 const urlStringParams = new URLSearchParams(window.location.search);
                 const urlStringParamsKeys = Array.from(urlStringParams.keys()).filter(key => key !== 'q');
 
@@ -234,7 +233,6 @@ export default {
 
                 return;
             }
-            const { urlSearch } = await import('@/modules/search/searchHelpers');
 
             this.newHtml = await urlSearch.execute(rocket, this.queryParams);
         },
