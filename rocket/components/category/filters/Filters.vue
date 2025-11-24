@@ -54,6 +54,7 @@ import { mapActions } from '~/vuex';
 import queryParams from '@/mixins/queryParams';
 import cacheMixin from '@/mixins/cache';
 import search from '@/modules/axios/search';
+import { builderSearch } from '@/modules/search/searchHelpers';
 
 export default {
     name: 'Filters',
@@ -145,8 +146,6 @@ export default {
 
             return;
         }
-
-        const { builderSearch } = await import('@/modules/search/searchHelpers');
 
         const searchData = await builderSearch.execute(
             search,
