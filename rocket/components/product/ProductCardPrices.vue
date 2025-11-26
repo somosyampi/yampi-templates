@@ -21,7 +21,7 @@
                         <span
                             v-if="hasPrice"
                             class="payment-type"
-                        >{{ priceText }}</span>
+                        > {{ priceText }}</span>
                     </div>
                 </span>
             </div>
