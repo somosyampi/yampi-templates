@@ -1,5 +1,5 @@
-import a from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/prices.js";
-import d from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/productCardTheme.js";
+import a from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/prices.js";
+import d from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/productCardTheme.js";
 function l(s, e, t, n, c, v, h, C) {
     var r = typeof s == "function" ? s.options : s;
     return e && (r.render = e, r.staticRenderFns = t, r._compiled = !0), {
