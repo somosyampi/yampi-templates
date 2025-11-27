@@ -1,86 +1,114 @@
-import { mapGetters as _, mapActions as y } from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/vuex.js";
-import P from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/components/category/filters/BaseFilter.js";
-function F(t, e, a, o, n, m, f, h) {
-    var i = typeof t == "function" ? t.options : t;
-    e && (i.render = e, i.staticRenderFns = a, i._compiled = !0), o && (i.functional = !0), m && (i._scopeId = "data-v-" + m);
+import { mapGetters as v, mapActions as P } from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/vuex.js";
+import _ from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/components/category/filters/BaseFilter.js";
+function x(r, e, t, n, o, m, c, f) {
+    var a = typeof r == "function" ? r.options : r;
+    e && (a.render = e, a.staticRenderFns = t, a._compiled = !0), n && (a.functional = !0), m && (a._scopeId = "data-v-" + m);
     var s;
-    if (f ? (s = function (r) {
-        r = r || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !r && typeof __VUE_SSR_CONTEXT__ < "u" && (r = __VUE_SSR_CONTEXT__), n && n.call(this, r), r && r._registeredComponents && r._registeredComponents.add(f);
-    }, i._ssrRegister = s) : n && (s = h ? function () {
-        n.call(
+    if (c ? (s = function (i) {
+        i = i || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !i && typeof __VUE_SSR_CONTEXT__ < "u" && (i = __VUE_SSR_CONTEXT__), o && o.call(this, i), i && i._registeredComponents && i._registeredComponents.add(c);
+    }, a._ssrRegister = s) : o && (s = f ? function () {
+        o.call(
             this,
-            (i.functional ? this.parent : this).$root.$options.shadowRoot
+            (a.functional ? this.parent : this).$root.$options.shadowRoot
         );
-    } : n), s)
-        if (i.functional) {
-            i._injectStyles = s;
-            var c = i.render;
-            i.render = function (v, p) {
-                return s.call(p), c(v, p);
+    } : o), s)
+        if (a.functional) {
+            a._injectStyles = s;
+            var p = a.render;
+            a.render = function (y, d) {
+                return s.call(d), p(y, d);
             };
         } else {
-            var d = i.beforeCreate;
-            i.beforeCreate = d ? [].concat(d, s) : [s];
+            var h = a.beforeCreate;
+            a.beforeCreate = h ? [].concat(h, s) : [s];
         }
     return {
-        exports: t,
-        options: i
+        exports: r,
+        options: a
     };
 }
-const b = {
+const g = {
     name: "FilterPrice",
-    extends: P,
+    extends: _,
+    props: {
+        allPrices: {
+            type: Array,
+            default: () => []
+        }
+    },
     data: () => ({
         mainQueryString: "price",
         route: "prices",
-        value: []
+        value: [],
+        currentPayload: { min: 0, max: 0 }
     }),
     computed: {
-        ..._("preview", [
+        ...v("preview", [
             "isIframe"
         ])
     },
+    watch: {
+        payload(r) {
+            this.shouldUseNewSearchStrategy || (this.currentPayload = r);
+        },
+        allPrices(r) {
+            !this.shouldUseNewSearchStrategy || this.processAllPrices(r);
+        }
+    },
     mounted() {
-        this.value.push(this.queryParams.min || 0), this.queryParams.max && this.value.push(this.queryParams.max);
+        this.value.push(this.queryParams.min || 0), this.queryParams.max && this.value.push(this.queryParams.max), this.shouldUseNewSearchStrategy && this.processAllPrices(this.allPrices);
     },
     methods: {
-        ...y("queryParams", [
+        ...P("queryParams", [
             "removeQueryParams"
         ]),
-        updatePriceStatus([t, e]) {
+        processAllPrices(r) {
+            const e = r.map((n) => Number(n));
+            if (!e.length)
+                return;
+            const t = Math.max(...e);
+            this.currentPayload = this.parsePayload({
+                min: 0,
+                max: Number(t)
+            }), this.queryParams.max && this.value.length < 2 && (this.value = [
+                this.queryParams.min || 0,
+                this.queryParams.max || t
+            ]);
+        },
+        updatePriceStatus([r, e]) {
             if (this.isIframe)
                 return;
-            if (t === 0 && Number(this.queryParams.min)) {
-                this.removeQueryParams("min"), this.parseActiveFilter();
+            if (r === 0 && Number(this.queryParams.min)) {
+                this.removeQueryParams({ key: "min" }), this.parseActiveFilter();
                 return;
             }
-            if (e === this.payload.max && Number(this.queryParams.max)) {
-                this.removeQueryParams("max"), this.parseActiveFilter();
+            if (e === this.currentPayload.max && Number(this.queryParams.max)) {
+                this.removeQueryParams({ key: "max" }), this.parseActiveFilter();
                 return;
             }
-            const a = {};
-            t !== Number(this.queryParams.min) && t > 0 && (a.min = t), e !== Number(this.queryParams.max) && e < this.payload.max && (a.max = e), this.setQueryParams({ ...a, page: 1 }), this.parseActiveFilter();
+            const t = {};
+            r !== Number(this.queryParams.min) && r > 0 && (t.min = r), e !== Number(this.queryParams.max) && e < this.currentPayload.max && (t.max = e), this.setQueryParams({ ...t, page: 1 }), this.parseActiveFilter();
         },
-        parsePayload(t) {
-            const e = Number(t.max);
-            return this.value.length < 2 && this.value.push(e), {
-                min: Number(t.min),
+        parsePayload(r) {
+            const e = Number(r.max);
+            return this.value.length < 2 && (this.value.push(e), this.currentPayload.max = e), {
+                min: Number(r.min),
                 max: e
             };
         },
         parseFilterStatuses() {
-            const [t, e] = this.value;
-            if (t === 0 && e === this.payload.max)
+            const [r, e] = this.value;
+            if (r === 0 && e === this.currentPayload.max)
                 return;
-            const a = {};
-            t !== 0 && (a.min = t), e !== this.payload.max && (a.max = e);
-            const o = this.$formatMoney(Number(t)), n = this.$formatMoney(Number(e));
+            const t = {};
+            r !== 0 && (t.min = r), e !== this.currentPayload.max && (t.max = e);
+            const n = this.$formatMoney(Number(r)), o = this.$formatMoney(Number(e));
             this.addActiveFilter({
                 id: this.$randomString(),
                 key: "price",
-                query: a,
+                query: t,
                 alias: "price",
-                name: `${o} - ${n}`
+                name: `${n} - ${o}`
             });
         },
         parseActiveFilter() {
@@ -89,39 +117,39 @@ const b = {
             }), this.parseFilterStatuses();
         },
         filterRemoved() {
-            this.value = [0, this.payload.max];
+            this.value = [0, this.currentPayload.max];
         }
     }
 };
-var x = function () {
-    var e = this, a = e._self._c;
-    return a("div", { staticClass: "filter filter-price" }, [a("div", { staticClass: "-title" }, [e._v(" Faixa de pre\xE7o ")]), e.loading ? [a("Loader", { attrs: { margin: 33 } }), a("Loader", { staticStyle: { display: "block", margin: "20px auto 54px", width: "50%" } })] : e.payload.max ? a("RangeSlider", {
-        attrs: { max: e.payload.max, "remove-prefix": !0 }, on: { input: e.updatePriceStatus }, model: {
-            value: e.value, callback: function (o) {
-                e.value = o;
+var b = function () {
+    var e = this, t = e._self._c;
+    return t("div", { staticClass: "filter filter-price" }, [t("div", { staticClass: "-title" }, [e._v(" Faixa de pre\xE7o ")]), e.loading ? [t("Loader", { attrs: { margin: 33 } }), t("Loader", { staticStyle: { display: "block", margin: "20px auto 54px", width: "50%" } })] : e.currentPayload.max ? t("RangeSlider", {
+        attrs: { max: e.currentPayload.max, "remove-prefix": !0 }, on: { input: e.updatePriceStatus }, model: {
+            value: e.value, callback: function (n) {
+                e.value = n;
             }, expression: "value"
         }
     }) : e._e()], 2);
-}, g = [], q = /* @__PURE__ */ F(
-    b,
-    x,
+}, F = [], S = /* @__PURE__ */ x(
     g,
+    b,
+    F,
     !1,
     null,
     null,
     null,
     null
 );
-const C = q.exports;
-function l(t) {
-    l.installed || (l.installed = !0, t.component("FilterPrice", C));
+const N = S.exports;
+function u(r) {
+    u.installed || (u.installed = !0, r.component("FilterPrice", N));
 }
-const $ = {
-    install: l
+const q = {
+    install: u
 };
-let u = null;
-typeof window < "u" ? u = window.Vue : typeof global < "u" && (u = global.Vue);
-u && u.use($);
+let l = null;
+typeof window < "u" ? l = window.Vue : typeof global < "u" && (l = global.Vue);
+l && l.use(q);
 export {
-    C as default
+    N as default
 };

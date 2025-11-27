@@ -101,7 +101,6 @@ import _ from '~/lodash';
 import productMixin from '@/mixins/product';
 import cashbackMixin from '@/mixins/cashback';
 import trackingByApi from '@/mixins/tracking/api';
-import trackingBySDK from '@/mixins/tracking/sdk';
 
 export default {
     name: 'ProductCustomizations',
@@ -110,7 +109,6 @@ export default {
         productMixin,
         cashbackMixin,
         trackingByApi,
-        trackingBySDK,
     ],
 
     props: {
@@ -346,10 +344,8 @@ export default {
         },
 
         openStockNotificationsModal() {
-            this.handleTrackSDK('notify_when_available_subscribed_intended');
-            if (this.$refs.stockNotificationsModal) {
-                this.$refs.stockNotificationsModal.showModal();
-            }
+            this.handleTrackApi('notify_when_available_subscribed_intended');
+            this.$refs.stockNotificationsModal.showModal();
         },
     },
 };

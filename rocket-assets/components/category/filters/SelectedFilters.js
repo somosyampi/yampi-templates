@@ -1,85 +1,96 @@
-import { mapGetters as C, mapActions as m } from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/vuex.js";
-import F from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/queryParams.js";
-function y(t, n, a, s, o, u, d, v) {
-    var e = typeof t == "function" ? t.options : t;
-    n && (e.render = n, e.staticRenderFns = a, e._compiled = !0), s && (e.functional = !0), u && (e._scopeId = "data-v-" + u);
-    var i;
-    if (d ? (i = function (r) {
-        r = r || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !r && typeof __VUE_SSR_CONTEXT__ < "u" && (r = __VUE_SSR_CONTEXT__), o && o.call(this, r), r && r._registeredComponents && r._registeredComponents.add(d);
-    }, e._ssrRegister = i) : o && (i = v ? function () {
-        o.call(
+import { mapGetters as y, mapActions as _ } from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/vuex.js";
+import b from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/queryParams.js";
+import F from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/modules/SearchAttributesHandler.js";
+function C(e, r, a, o, i, d, c, v) {
+    var t = typeof e == "function" ? e.options : e;
+    r && (t.render = r, t.staticRenderFns = a, t._compiled = !0), o && (t.functional = !0), d && (t._scopeId = "data-v-" + d);
+    var s;
+    if (c ? (s = function (n) {
+        n = n || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !n && typeof __VUE_SSR_CONTEXT__ < "u" && (n = __VUE_SSR_CONTEXT__), i && i.call(this, n), n && n._registeredComponents && n._registeredComponents.add(c);
+    }, t._ssrRegister = s) : i && (s = v ? function () {
+        i.call(
             this,
-            (e.functional ? this.parent : this).$root.$options.shadowRoot
+            (t.functional ? this.parent : this).$root.$options.shadowRoot
         );
-    } : o), i)
-        if (e.functional) {
-            e._injectStyles = i;
-            var p = e.render;
-            e.render = function (h, c) {
-                return i.call(c), p(h, c);
+    } : i), s)
+        if (t.functional) {
+            t._injectStyles = s;
+            var p = t.render;
+            t.render = function (h, f) {
+                return s.call(f), p(h, f);
             };
         } else {
-            var _ = e.beforeCreate;
-            e.beforeCreate = _ ? [].concat(_, i) : [i];
+            var m = t.beforeCreate;
+            t.beforeCreate = m ? [].concat(m, s) : [s];
         }
     return {
-        exports: t,
-        options: e
+        exports: e,
+        options: t
     };
 }
-const g = {
+const g = ["categories_name", "brand_name", "attributes", "price", "brand_id", "category_id", "filter_id"], A = {
     name: "SelectedFilters",
     mixins: [
-        F
+        b
     ],
     computed: {
-        ...C("filters", [
+        ...y("filters", [
             "activeFilters"
-        ])
+        ]),
+        validActiveFilters() {
+            return this.activeFilters.filter((e) => e.name && g.includes(e.key));
+        }
     },
     methods: {
-        ...m("filters", [
+        ..._("filters", [
             "removeActiveFilter"
         ]),
-        ...m("queryParams", [
-            "setQueryParams"
+        ..._("queryParams", [
+            "setQueryParams",
+            "removeQueryParams"
         ]),
-        removeFilter(t) {
-            this.setQueryParams({ ...t.query, page: 1 }), this.removeActiveFilter(t);
+        removeFilter(e) {
+            var r, a;
+            if (e.key === "attributes") {
+                const o = (a = (r = this.queryParams) == null ? void 0 : r.attributes) != null && a.length ? this.queryParams.attributes : "", i = F.removeAttributeValue(decodeURIComponent(o), e.name);
+                i ? this.setQueryParams({ attributes: i, page: 1 }) : this.removeQueryParams({ key: ["attributes", "page"] }), this.removeActiveFilter(e);
+                return;
+            }
+            this.removeActiveFilter(e), this.setQueryParams({ ...e.query, page: 1 }), e.alias === "price" && this.removeQueryParams({ key: Object.keys(e.query) });
         }
     }
 };
-var $ = function () {
-    var n = this, a = n._self._c;
-    return n.activeFilters.length ? a("div", { staticClass: "selected-filters" }, n._l(n.activeFilters, function (s) {
+var P = function () {
+    var r = this, a = r._self._c;
+    return r.activeFilters.length ? a("div", { staticClass: "selected-filters" }, r._l(r.validActiveFilters, function (o) {
         return a("div", {
-            key: s.alias, staticClass: "selected-filter", domProps: { textContent: n._s(s.name) }, on: {
-                click: function (o) {
-                    return n.removeFilter(s);
+            key: o.alias, staticClass: "selected-filter", domProps: { textContent: r._s(o.name) }, on: {
+                click: function (i) {
+                    return r.removeFilter(o);
                 }
             }
         });
-    }), 0) : n._e();
-}, R = [], b = /* @__PURE__ */ y(
-    g,
-    $,
-    R,
+    }), 0) : r._e();
+}, k = [], R = /* @__PURE__ */ C(
+    A,
+    P,
+    k,
     !1,
     null,
     null,
     null,
     null
 );
-const w = b.exports;
-function f(t) {
-    f.installed || (f.installed = !0, t.component("SelectedFilters", w));
+const $ = R.exports;
+function u(e) {
+    u.installed || (u.installed = !0, e.component("SelectedFilters", $));
 }
-const P = {
-    install: f
+const q = {
+    install: u
 };
 let l = null;
 typeof window < "u" ? l = window.Vue : typeof global < "u" && (l = global.Vue);
-l && l.use(P);
+l && l.use(q);
 export {
-    w as default
+    $ as default
 };

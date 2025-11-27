@@ -3,8 +3,7 @@ import u from "https://openstore-production-assets.yampi.io/yampi-templates-main
 import y from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/product.js";
 import v from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/cashback.js";
 import b from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/tracking/api.js";
-import w from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/tracking/sdk.js";
-function C(i, t, e, a, n, l, c, h) {
+function w(i, t, e, a, n, l, c, h) {
     var s = typeof i == "function" ? i.options : i;
     t && (s.render = t, s.staticRenderFns = e, s._compiled = !0), a && (s.functional = !0), l && (s._scopeId = "data-v-" + l);
     var r;
@@ -31,13 +30,12 @@ function C(i, t, e, a, n, l, c, h) {
         options: s
     };
 }
-const g = {
+const C = {
     name: "ProductCustomizations",
     mixins: [
         y,
         v,
-        b,
-        w
+        b
     ],
     props: {
         buyButtonText: {
@@ -168,11 +166,11 @@ const g = {
             }), this.loading = !1;
         },
         openStockNotificationsModal() {
-            this.handleTrackSDK("notify_when_available_subscribed_intended"), this.$refs.stockNotificationsModal && this.$refs.stockNotificationsModal.showModal();
+            this.handleTrackApi("notify_when_available_subscribed_intended"), this.$refs.stockNotificationsModal.showModal();
         }
     }
 };
-var z = function () {
+var g = function () {
     var t = this, e = t._self._c;
     return e("div", { staticClass: "product-customizations" }, [t.validProduct.simple ? t._e() : e("SelectSku", { ref: "selectSku", attrs: { "variations-style": t.variationsStyle, "show-error-message": !1 }, on: { update: t.handleSelectSkuUpdate } }), t.selectedSku && t.showBuyButton ? e("SkuCustomizations", {
         ref: "skuCustomizations", attrs: { sku: t.selectedSku }, on: {
@@ -205,19 +203,19 @@ var z = function () {
             }
         }
     }) : t._e(), e("ModalStockNotificationsSuccess", { ref: "stockNotificationsSuccessModal" })], 2);
-}, M = [], V = /* @__PURE__ */ C(
+}, z = [], V = /* @__PURE__ */ w(
+    C,
     g,
     z,
-    M,
     !1,
     null,
     null,
     null,
     null
 );
-const B = V.exports;
+const M = V.exports;
 function f(i) {
-    f.installed || (f.installed = !0, i.component("ProductCustomizations", B));
+    f.installed || (f.installed = !0, i.component("ProductCustomizations", M));
 }
 const q = {
     install: f
@@ -226,5 +224,5 @@ let d = null;
 typeof window < "u" ? d = window.Vue : typeof global < "u" && (d = global.Vue);
 d && d.use(q);
 export {
-    B as default
+    M as default
 };

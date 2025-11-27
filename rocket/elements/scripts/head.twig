@@ -16,9 +16,11 @@
 
 <script>
 	window.merchant = {{ merchantData | json_encode | raw }}
+    window.merchant.shouldUseNewSearchStrategy = {{ (not merchantData.store_search_v1 and context == 'search') | json_encode | raw }};
     window.themeConfig = {{ pageConfig.data | json_encode | raw }}
     window.Yampi = {
         "api_domain": "{{ yampi_api_url }}",
+        "search_domain": "{{ search_api_url }}",
         "page": "{{ page }}",
         "cart_token": '{{ cart_token }}',
         "env": "{{ environment }}",
@@ -37,9 +39,6 @@
                 "email": '{{ customer_email }}'
             }
         },
-        "mixpanel": {
-            "key": '{{ mixpanel_key }}'
-        },
         "thumbor": {
             "enabled": '{{ thumbor_enabled }}',
             "url": '{{ thumbor_url }}',
@@ -57,7 +56,8 @@
         "mago_config": {
             "user_id": '{{ cart_token }}',
             "recomm_id": '{{ recomm_id }}'
-        }
+        },
+        "search_min_score": '{{ search_min_score }}',
     }
     window.data = {{ customData | json_encode() | raw }}
 </script>

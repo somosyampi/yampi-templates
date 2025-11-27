@@ -10,8 +10,12 @@
     <h1 class="theme-title">
         {{ strip_mustache(pageName) }}
     </h1>
-    {% if customData.config.params.show_sort and content.data | length %}
-        <div class="select-order flex -vcenter -hend">
+    {% if customData.config.params.show_sort and (content.data.data | length or shouldUseNewSearchStrategy) %}
+        <div class="select-order flex -vcenter -hend"
+            {% if shouldUseNewSearchStrategy %}
+                v-if="searchData.length"
+            {% endif %}
+        >
             <span class="-title">
                 ORDENAR POR:
             </span>
@@ -29,8 +33,10 @@
                 <option value="lowest_price">Menor preço</option>
                 <option value="newest">Lançamentos</option>
                 <option value="rating">Melhor avaliação</option>
-                <option value="name_asc">A-Z</option>
-                <option value="name_desc">Z-A</option>
+                {% if not shouldUseNewSearchStrategy %}
+                    <option value="name_asc">A-Z</option>
+                    <option value="name_desc">Z-A</option>
+                {% endif %}
             </select>
         </div>
     {% endif %}
@@ -44,8 +50,11 @@
     </div>
 {% endif %}
 
-{% if content.data.data | length %}
+{% if content.data.data | length or shouldUseNewSearchStrategy %}
     <category-options
+        {% if shouldUseNewSearchStrategy %}
+            v-if="searchData.length"
+        {% endif %}
         :is-mosaic="isMosaic"
         :show-sort="{{ customData.config.params.show_sort ? 'true' : 'false' }}"
         :show-filters="{{ customData.config.params.filters_enabled ? 'true' : 'false' }}"
@@ -73,8 +82,12 @@
     ></banners>
 {% endif %}
 
-{% if content.data.data | length %}
-    {% include 'elements/products-list.twig' with { 'products': content.data.data } %}
+{% if content.data.data | length or shouldUseNewSearchStrategy %}
+    {% if not shouldUseNewSearchStrategy %}
+        {% include 'elements/products-list.twig' with { 'products': content.data.data } %}
+    {% else %}
+        <products-search-list :is-mosaic="isMosaic" :products="searchData" :loading="loading"></products-search-list>
+    {% endif %}
 
     <loader
         class="paginate-loader"
@@ -82,15 +95,16 @@
         :height="40"
         :width="50"
     ></loader>
-
     <paginate
-        v-else-if="paginate.pageCount > 1"
+        v-else-if="paginate.pageCount > 1 && !loading"
         :page-count="paginate.pageCount"
         :pager-count="isMobile ? 5 : 7"
         :value="paginate.currentPage"
         :disabled="{{ isPreview ? 'true' : 'false' }}"
         @input="updateCurrentPage($event)"
     ></paginate>
+
 {% else %}
     <div class="alert -yellow">Nenhum produto foi encontrado.</div>
 {% endif %}
+

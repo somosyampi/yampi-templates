@@ -15,15 +15,15 @@ jobs:
 
       - name: Replace Open Store Templates URL
         run: |
-          grep -rl --exclude="*.yml" 'yampi-templates-sandbox' . | xargs -r sed -i 's/yampi-templates-sandbox/yampi-templates-main/g'
+          grep -rl --exclude="*.yml" --exclude="*.sh" 'yampi-templates-sandbox' . | xargs -r sed -i 's/yampi-templates-sandbox/yampi-templates-main/g'
 
       - name: Replace Open Store CDN URL
         run: |
-          grep -rl --exclude="*.yml" 'codigo-aberto-sandbox-assets' . | xargs -r sed -i 's/codigo-aberto-sandbox-assets/openstore-production-assets/g'
+          grep -rl --exclude="*.yml" --exclude="*.sh" 'codigo-aberto-sandbox-assets' . | xargs -r sed -i 's/codigo-aberto-sandbox-assets/openstore-production-assets/g'
 
       - name: Replace Rocket CDN URL
         run: |
-          grep -rl --exclude="*.yml" 'images-dev.yampi' . | xargs -r sed -i 's/images-dev.yampi/images.yampi/g'
+          grep -rl --exclude="*.yml" --exclude="*.sh" 'images-dev.yampi' . | xargs -r sed -i 's/images-dev.yampi/images.yampi/g'
 
       - name: Commit and push changes
         run: |

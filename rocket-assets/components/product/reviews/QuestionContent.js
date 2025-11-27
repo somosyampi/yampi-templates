@@ -49,7 +49,7 @@ const g = {
 var w = function () {
     var e = this, t = e._self._c;
     return t("div", { staticClass: "tab-content" }, [t("div", { staticClass: "holder-questions" }, [t("div", { staticClass: "btn btn-secundary", on: { click: e.showModal } }, [e._v(" Perguntar ")]), t("br"), e.payload.length ? t("div", [t("div", e._l(e.payload, function (a, r) {
-        return t("div", { key: r, staticClass: "holder-question" }, [t("div", { staticClass: "question" }, [t("span", { staticClass: "-name", domProps: { textContent: e._s(a.name) } }), e.showDates ? t("Timeago", { staticClass: "-time-ago", attrs: { date: a.created_at.date } }) : e._e(), t("div", { staticClass: "-text", domProps: { textContent: e._s(a.message) } })], 1), a.answer ? t("div", { staticClass: "answer" }, [t("div", { staticClass: "-store-icon", style: e.getIconStyle() }), t("span", { staticClass: "-store-name", domProps: { textContent: e._s(a.answer.name) } }), e.showDates ? t("Timeago", { staticClass: "-time-ago", attrs: { date: a.answer.created_at.date } }) : e._e(), t("div", { staticClass: "-text", domProps: { innerHTML: e._s(a.answer.message) } })], 1) : e._e()]);
+        return t("div", { key: r, staticClass: "holder-question" }, [t("div", { staticClass: "question" }, [t("span", { staticClass: "-name", domProps: { textContent: e._s(a.name) } }), e.showDates ? t("Timeago", { staticClass: "-time-ago", attrs: { date: a.created_at.date } }) : e._e(), t("div", { staticClass: "-text", domProps: { textContent: e._s(a.message) } })], 1), a.answer ? t("div", { staticClass: "answer" }, [t("div", { staticClass: "-store-icon", style: e.getIconStyle() }), t("span", { staticClass: "-store-name", domProps: { textContent: e._s(a.answer.name) } }), e.showDates ? t("Timeago", { staticClass: "-time-ago", attrs: { date: a.answer.created_at.date } }) : e._e(), t("div", { staticClass: "-text", domProps: { innerHTML: e._s(a.answer.message_with_links) } })], 1) : e._e()]);
     }), 0), t("br"), e.showLoadMore ? t("div", {
         staticClass: "load-more", on: {
             click: function (a) {
@@ -67,16 +67,16 @@ var w = function () {
     null,
     null
 );
-const S = y.exports;
+const k = y.exports;
 function d(i) {
-    d.installed || (d.installed = !0, i.component("QuestionContent", S));
+    d.installed || (d.installed = !0, i.component("QuestionContent", k));
 }
-const k = {
+const S = {
     install: d
 };
 let l = null;
 typeof window < "u" ? l = window.Vue : typeof global < "u" && (l = global.Vue);
-l && l.use(k);
+l && l.use(S);
 export {
-    S as default
+    k as default
 };

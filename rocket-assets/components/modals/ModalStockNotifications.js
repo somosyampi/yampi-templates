@@ -1,28 +1,28 @@
-(function () { "use strict"; try { if (typeof document < "u") { var e = document.createElement("style"); e.appendChild(document.createTextNode(".helper-text[data-v-40c92a30]{font-size:14px;line-height:1.6;margin-bottom:15px}.product[data-v-40c92a30]{background-color:var(--default-background-color);border-radius:var(--theme-border-radius);display:flex;align-items:center;margin:0 auto 31px;padding:17px 19px;width:100%}.product img[data-v-40c92a30]{height:60px;margin:0 15px 0 0;width:60px;border-radius:var(--mini-cart-product-border-radius)}.product .name[data-v-40c92a30]{color:var(--color-general-primary);font-size:14px;line-height:1.15;font-weight:var(--font-medium);word-break:break-word}")), document.head.appendChild(e) } } catch (r) { console.error("vite-plugin-css-injected-by-js", r) } })();
+(function () { "use strict"; try { if (typeof document < "u") { var e = document.createElement("style"); e.appendChild(document.createTextNode(".helper-text[data-v-b41006e1]{font-size:14px;line-height:1.6;margin-bottom:15px}.product[data-v-b41006e1]{background-color:var(--default-background-color);border-radius:var(--theme-border-radius);display:flex;align-items:center;margin:0 auto 31px;padding:17px 19px;width:100%}.product img[data-v-b41006e1]{height:60px;margin:0 15px 0 0;width:60px;border-radius:var(--mini-cart-product-border-radius)}.product .name[data-v-b41006e1]{color:var(--color-general-primary);font-size:14px;line-height:1.15;font-weight:var(--font-medium);word-break:break-word}")), document.head.appendChild(e) } } catch (r) { console.error("vite-plugin-css-injected-by-js", r) } })();
 import v from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/errors.js";
 import k from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/modules/axios/rocket.js";
-import g from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/tracking/sdk.js";
-function b(i, t, e, s, r, c, f, p) {
+import g from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/tracking/api.js";
+function b(i, t, e, s, n, c, f, p) {
     var o = typeof i == "function" ? i.options : i;
     t && (o.render = t, o.staticRenderFns = e, o._compiled = !0), s && (o.functional = !0), c && (o._scopeId = "data-v-" + c);
-    var n;
-    if (f ? (n = function (a) {
-        a = a || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !a && typeof __VUE_SSR_CONTEXT__ < "u" && (a = __VUE_SSR_CONTEXT__), r && r.call(this, a), a && a._registeredComponents && a._registeredComponents.add(f);
-    }, o._ssrRegister = n) : r && (n = p ? function () {
-        r.call(
+    var r;
+    if (f ? (r = function (a) {
+        a = a || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !a && typeof __VUE_SSR_CONTEXT__ < "u" && (a = __VUE_SSR_CONTEXT__), n && n.call(this, a), a && a._registeredComponents && a._registeredComponents.add(f);
+    }, o._ssrRegister = r) : n && (r = p ? function () {
+        n.call(
             this,
             (o.functional ? this.parent : this).$root.$options.shadowRoot
         );
-    } : r), n)
+    } : n), r)
         if (o.functional) {
-            o._injectStyles = n;
+            o._injectStyles = r;
             var _ = o.render;
             o.render = function (h, u) {
-                return n.call(u), _(h, u);
+                return r.call(u), _(h, u);
             };
         } else {
             var d = o.beforeCreate;
-            o.beforeCreate = d ? [].concat(d, n) : [n];
+            o.beforeCreate = d ? [].concat(d, r) : [r];
         }
     return {
         exports: i,
@@ -67,7 +67,7 @@ const C = {
                 ...this.form
             };
             try {
-                await k.post(`/products/${this.sku.product_id}/stock-notifications`, i), this.handleTrackSDK("notify_when_available_subscribed"), this.closeModal(), this.$emit("success");
+                await k.post(`/products/${this.sku.product_id}/stock-notifications`, i), this.handleTrackApi("notify_when_available_subscribed"), this.closeModal(), this.$emit("success");
             } catch (t) {
                 this.setErrorsFromResponse(t);
             } finally {
@@ -107,7 +107,7 @@ var M = function () {
     y,
     !1,
     null,
-    "40c92a30",
+    "b41006e1",
     null,
     null
 );
