@@ -11,9 +11,6 @@
 
 <script>
     function startOnlineVisitors() {
-        const date = new Date();
-        const timestampCdn = `${date.getFullYear()}${date.getMonth()}${date.getDay()}`;
-
         const websocketOptions = {
             echo: {
                 key: "{{ ws_app_key }}",
