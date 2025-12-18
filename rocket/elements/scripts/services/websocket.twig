@@ -1,4 +1,7 @@
 {% if ws_enabled and ws_user_id %}
+
+{% set workerPath = mix('js/worker.js') | replace_cdn_url %}
+
 <script
     src="{{ ws_cdn_url }}"
     defer
@@ -8,9 +11,6 @@
 
 <script>
     function startOnlineVisitors() {
-        const date = new Date();
-        const timestampCdn = `${date.getFullYear()}${date.getMonth()}${date.getDay()}`;
-
         const websocketOptions = {
             echo: {
                 key: "{{ ws_app_key }}",
@@ -22,7 +22,7 @@
             },
             alias: window.merchant.alias,
             service: '{{ ws_service }}',
-            workerPath: `${window.location.origin}{{ mix('/js/worker.js') }}`,
+            workerPath: `${window.location.origin}{{ workerPath }}`,
             user_data: {
                 id: "{{ ws_user_id }}",
             },
