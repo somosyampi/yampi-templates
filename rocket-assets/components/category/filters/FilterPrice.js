@@ -1,5 +1,5 @@
-import { mapGetters as v, mapActions as P } from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/vuex.js";
-import _ from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/components/category/filters/BaseFilter.js";
+import { mapGetters as v, mapActions as P } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/vuex.js";
+import _ from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/components/category/filters/BaseFilter.js";
 function x(r, e, t, n, o, m, c, f) {
     var a = typeof r == "function" ? r.options : r;
     e && (a.render = e, a.staticRenderFns = t, a._compiled = !0), n && (a.functional = !0), m && (a._scopeId = "data-v-" + m);

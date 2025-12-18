@@ -1,7 +1,7 @@
-import v from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/vue-debounce.js";
-import I from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/lodash.js";
-import { mapGetters as g } from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/vuex.js";
-import w from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/components/product/installments/BaseInstallments.js";
+import v from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/vue-debounce.js";
+import I from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
+import { mapGetters as g } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/vuex.js";
+import w from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/components/product/installments/BaseInstallments.js";
 function T(t, e, n, f, i, m, d, c) {
     var s = typeof t == "function" ? t.options : t;
     e && (s.render = e, s.staticRenderFns = n, s._compiled = !0), f && (s.functional = !0), m && (s._scopeId = "data-v-" + m);
