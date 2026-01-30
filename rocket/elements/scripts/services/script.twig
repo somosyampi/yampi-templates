@@ -1,7 +1,0 @@
-{% for tag in merchantData.scripts.all %}
-    {{ tag | raw }}
-{% endfor %}
-
-{% for tag in attribute(merchantData.scripts, page) %}
-    {{ tag | raw }}
-{% endfor %}
