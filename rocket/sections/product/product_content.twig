@@ -26,7 +26,7 @@
 
             <div class="main-product-info">
                 <product-info
-                    v-slot="{ sku, availability, warranty, price, formattedPrice, priceTypeText, loadingPrices }"
+                    v-slot="{ sku, availability, warranty, price, selectedPrice, priceText, loadingPrices }"
                     highlight-type-payment="{{ pageConfig.data.theme.params.highlight_type_payment | default('promotional') }}"
                 >
                     {% if product.data.flags.data|length > 0 %}
@@ -99,8 +99,8 @@
 
                             <div class="flex">
                                 <div class="actual-price price">
-                                    <span v-text="formattedPrice"></span>
-                                    <span class="payment-type--product" v-text="priceTypeText"></span>
+                                    <span v-html="selectedPrice"></span>
+                                    <span class="payment-type--product" v-text="priceText"></span>
                                 </div>
 
                                 <discount-tag class="-main-product" :value="price.percent_discount"></discount-tag>
