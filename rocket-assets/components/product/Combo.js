@@ -1,7 +1,7 @@
-import { mapGetters as C, mapActions as p } from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/vuex.js";
-import u from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/lodash.js";
-import g from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/vue.js";
-import { createPriceObjects as b } from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/helpers.js";
+import { mapGetters as C, mapActions as p } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/vuex.js";
+import u from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
+import g from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/vue.js";
+import { createPriceObjects as b } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/helpers.js";
 function S(e, t, s, i, o, l, h, _) {
     var r = typeof e == "function" ? e.options : e;
     t && (r.render = t, r.staticRenderFns = s, r._compiled = !0), i && (r.functional = !0), l && (r._scopeId = "data-v-" + l);

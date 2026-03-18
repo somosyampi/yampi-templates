@@ -1,5 +1,5 @@
-import h from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/components/product/installments/BaseInstallments.js";
-import v from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/buttons.js";
+import h from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/components/product/installments/BaseInstallments.js";
+import v from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/buttons.js";
 function C(o, t, e, a, r, c, d, _) {
     var n = typeof o == "function" ? o.options : o;
     t && (n.render = t, n.staticRenderFns = e, n._compiled = !0), a && (n.functional = !0), c && (n._scopeId = "data-v-" + c);
