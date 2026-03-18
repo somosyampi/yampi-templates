@@ -1,9 +1,8 @@
-import { mapGetters as _ } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/vuex.js";
-import m from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
-import w from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/axios/rocket.js";
-import E from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/errors.js";
-import b from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/tracking/api.js";
-function x(a, e, r, t, n, f, u, p) {
+import { mapGetters as _ } from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/vuex.js";
+import m from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/lodash.js";
+import w from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/modules/axios/rocket.js";
+import E from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/errors.js";
+function b(a, e, r, t, n, f, u, p) {
     var s = typeof a == "function" ? a.options : a;
     e && (s.render = e, s.staticRenderFns = r, s._compiled = !0), t && (s.functional = !0), f && (s._scopeId = "data-v-" + f);
     var i;
@@ -26,82 +25,6 @@ function x(a, e, r, t, n, f, u, p) {
             s.beforeCreate = c ? [].concat(c, i) : [i];
         }
     return {
-        exports: a,
-        options: s
-    };
-}
-const y = {
-    name: "ModalReview",
-    mixins: [
-        E,
-        b
-    ],
-    data: () => ({
-        sending: !1,
-        form: {
-            name: "",
-            email: "",
-            message: "",
-            rating: 5,
-            images: []
-        },
-        uploading: !1,
-        showError: !1
-    }),
-    computed: {
-        ..._("product", [
-            "product"
-        ])
-    },
-    methods: {
-        times: m.times,
-        handleUploading(a) {
-            this.uploading = a;
-        },
-        handleImageUrls({ event: a, imageNumber: e, imageUrl: r }) {
-            return {
-                DELETE: () => {
-                    this.form.images.splice(e, 1);
-                },
-                APPEND: () => {
-                    if (this.form.images.length < 3) {
-                        const t = this.form.images.length ? m.lastIndexOf(this.form.images) : 0;
-                        this.$set(this.form.images, t, r);
-                    }
-                }
-            }[a]();
-        },
-        showModal() {
-            this.resetForm(), this.$refs.reviewBaseModal.showModal(), this.handleTrackApi("product-review-intended");
-        },
-        closeModal() {
-            this.$refs.reviewBaseModal.closeModal(), this.$nextTick(() => this.resetForm());
-        },
-        resetForm() {
-            this.form = {
-                name: "",
-                email: "",
-                message: "",
-                rating: 5,
-                images: []
-            };
-        },
-        async submit() {
-            this.sending = !0;
-            try {
-                const a = { ...this.form };
-                a.images = m.compact(a.images), await w.post(`products/${this.product.id}/reviews`, a), this.closeModal(), this.handleTrackApi("product-review-entered", {
-                    "photo-entered": this.form.images.length,
-                    "review-grade": this.form.rating
-                }), this.$emit("success");
-            } catch (a) {
-                a.response.status === 429 && (this.showError = !0), this.setErrorsFromResponse(a);
-            } finally {
-                this.sending = !1;
-            }
-        }
-    }
-  return {
         exports: a,
         options: s
     };

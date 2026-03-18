@@ -1,23 +1,23 @@
-import v from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
-import I from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/vue-debounce.js";
-import w from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/components/product/installments/BaseInstallments.js";
-function g(n, t, a, d, i, f, u, c) {
+import v from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/lodash.js";
+import I from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/vue-debounce.js";
+import w from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/components/product/installments/BaseInstallments.js";
+function g(n, t, i, d, a, u, f, c) {
     var e = typeof n == "function" ? n.options : n;
-    t && (e.render = t, e.staticRenderFns = a, e._compiled = !0), d && (e.functional = !0), f && (e._scopeId = "data-v-" + f);
+    t && (e.render = t, e.staticRenderFns = i, e._compiled = !0), d && (e.functional = !0), u && (e._scopeId = "data-v-" + u);
     var s;
-    if (u ? (s = function (l) {
-        l = l || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !l && typeof __VUE_SSR_CONTEXT__ < "u" && (l = __VUE_SSR_CONTEXT__), i && i.call(this, l), l && l._registeredComponents && l._registeredComponents.add(u);
-    }, e._ssrRegister = s) : i && (s = c ? function () {
-        i.call(
+    if (f ? (s = function (l) {
+        l = l || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !l && typeof __VUE_SSR_CONTEXT__ < "u" && (l = __VUE_SSR_CONTEXT__), a && a.call(this, l), l && l._registeredComponents && l._registeredComponents.add(f);
+    }, e._ssrRegister = s) : a && (s = c ? function () {
+        a.call(
             this,
             (e.functional ? this.parent : this).$root.$options.shadowRoot
         );
-    } : i), s)
+    } : a), s)
         if (e.functional) {
             e._injectStyles = s;
-            var _ = e.render;
-            e.render = function (p, h) {
-                return s.call(h), _(p, h);
+            var p = e.render;
+            e.render = function (_, h) {
+                return s.call(h), p(_, h);
             };
         } else {
             var m = e.beforeCreate;

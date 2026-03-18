@@ -1,85 +1,28 @@
-import { mapGetters as l, mapActions as w } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/vuex.js";
-import h from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
-import M from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/tracking/api.js";
-import b from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/eventBus.js";
-function g(o, e, a, p, i, c, f, C) {
-    var t = typeof o == "function" ? o.options : o;
-    e && (t.render = e, t.staticRenderFns = a, t._compiled = !0), p && (t.functional = !0), c && (t._scopeId = "data-v-" + c);
-    var n;
-    if (f ? (n = function (r) {
-        r = r || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !r && typeof __VUE_SSR_CONTEXT__ < "u" && (r = __VUE_SSR_CONTEXT__), i && i.call(this, r), r && r._registeredComponents && r._registeredComponents.add(f);
-    }, t._ssrRegister = n) : i && (n = C ? function () {
+import { mapGetters as l, mapActions as v } from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/vuex.js";
+import M from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/modules/eventBus.js";
+function w(n, e, r, h, i, f, c, m) {
+    var t = typeof n == "function" ? n.options : n;
+    e && (t.render = e, t.staticRenderFns = r, t._compiled = !0), h && (t.functional = !0), f && (t._scopeId = "data-v-" + f);
+    var a;
+    if (c ? (a = function (o) {
+        o = o || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !o && typeof __VUE_SSR_CONTEXT__ < "u" && (o = __VUE_SSR_CONTEXT__), i && i.call(this, o), o && o._registeredComponents && o._registeredComponents.add(c);
+    }, t._ssrRegister = a) : i && (a = m ? function () {
         i.call(
             this,
             (t.functional ? this.parent : this).$root.$options.shadowRoot
         );
-    } : i), n)
+    } : i), a)
         if (t.functional) {
-            t._injectStyles = n;
-            var _ = t.render;
-            t.render = function (v, u) {
-                return n.call(u), _(v, u);
+            t._injectStyles = a;
+            var p = t.render;
+            t.render = function (_, C) {
+                return a.call(C), p(_, C);
             };
         } else {
-            var m = t.beforeCreate;
-            t.beforeCreate = m ? [].concat(m, n) : [n];
+            var u = t.beforeCreate;
+            t.beforeCreate = u ? [].concat(u, a) : [a];
         }
     return {
-        exports: o,
-        options: t
-    };
-}
-const y = {
-    name: "ModalCartConfirmation",
-    mixins: [M],
-    props: {
-        error: {
-            type: [String, void 0],
-            default: () => {
-            }
-        },
-        quantityAdded: {
-            type: Number,
-            default: 1
-        }
-    },
-    computed: {
-        ...l("cart", [
-            "cart"
-        ]),
-        ...l("merchant", [
-            "merchant"
-        ]),
-        ...l("preview", [
-            "isIframe"
-        ])
-    },
-    mounted() {
-        b.$on("addedToCart", this.showModal);
-    },
-    methods: {
-        ...w("cart", ["redirectToCart"]),
-        showModal() {
-            this.$refs.cartConfirmBaseModal && this.$refs.cartConfirmBaseModal.showModal();
-        },
-        closeModal() {
-            this.$refs.cartConfirmBaseModal && this.$refs.cartConfirmBaseModal.closeModal();
-        },
-        handleKeepBuying() {
-            this.handleTrackApi("keep-buying-clicked"), this.closeModal();
-        },
-        async handleRedirectoToCart() {
-            this.isIframe && this.closeModal();
-            const o = window.themeConfig.theme.params;
-            await this.handleTrackApi("checkout-intended", {
-                location: "modal-cart-confirm",
-                quick_buy_button_enabled: o.show_add_to_cart_button,
-                items: h.map(this.cart.items, "name"),
-                amount: h.sumBy(this.cart.items, "price_total")
-            }), this.redirectToCart();
-        }
-    }
-  return {
         exports: n,
         options: t
     };

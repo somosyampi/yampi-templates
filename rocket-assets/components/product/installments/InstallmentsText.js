@@ -1,32 +1,32 @@
-import v from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/vue-debounce.js";
-import I from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
-import { mapGetters as g } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/vuex.js";
-import w from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/components/product/installments/BaseInstallments.js";
-function T(t, e, n, f, i, m, d, c) {
-    var s = typeof t == "function" ? t.options : t;
-    e && (s.render = e, s.staticRenderFns = n, s._compiled = !0), f && (s.functional = !0), m && (s._scopeId = "data-v-" + m);
+import v from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/vue-debounce.js";
+import I from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/lodash.js";
+import { mapGetters as g } from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/vuex.js";
+import T from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/components/product/installments/BaseInstallments.js";
+function w(t, e, s, f, i, m, d, c) {
+    var n = typeof t == "function" ? t.options : t;
+    e && (n.render = e, n.staticRenderFns = s, n._compiled = !0), f && (n.functional = !0), m && (n._scopeId = "data-v-" + m);
     var a;
     if (d ? (a = function (l) {
         l = l || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !l && typeof __VUE_SSR_CONTEXT__ < "u" && (l = __VUE_SSR_CONTEXT__), i && i.call(this, l), l && l._registeredComponents && l._registeredComponents.add(d);
-    }, s._ssrRegister = a) : i && (a = c ? function () {
+    }, n._ssrRegister = a) : i && (a = c ? function () {
         i.call(
             this,
-            (s.functional ? this.parent : this).$root.$options.shadowRoot
+            (n.functional ? this.parent : this).$root.$options.shadowRoot
         );
     } : i), a)
-        if (s.functional) {
-            s._injectStyles = a;
-            var p = s.render;
-            s.render = function (_, h) {
+        if (n.functional) {
+            n._injectStyles = a;
+            var p = n.render;
+            n.render = function (_, h) {
                 return a.call(h), p(_, h);
             };
         } else {
-            var u = s.beforeCreate;
-            s.beforeCreate = u ? [].concat(u, a) : [a];
+            var u = n.beforeCreate;
+            n.beforeCreate = u ? [].concat(u, a) : [a];
         }
     return {
         exports: t,
-        options: s
+        options: n
     };
 }
 const x = {

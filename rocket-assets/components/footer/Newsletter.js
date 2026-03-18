@@ -1,27 +1,26 @@
-import v from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/errors.js";
-import g from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/axios/rocket.js";
-import w from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/tracking/api.js";
-function b(n, t, r, a, l, f, u, c) {
+import v from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/errors.js";
+import g from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/modules/axios/rocket.js";
+function w(n, t, r, a, l, f, u, c) {
     var e = typeof n == "function" ? n.options : n;
     t && (e.render = t, e.staticRenderFns = r, e._compiled = !0), a && (e.functional = !0), f && (e._scopeId = "data-v-" + f);
-    var s;
-    if (u ? (s = function (i) {
-        i = i || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !i && typeof __VUE_SSR_CONTEXT__ < "u" && (i = __VUE_SSR_CONTEXT__), l && l.call(this, i), i && i._registeredComponents && i._registeredComponents.add(u);
-    }, e._ssrRegister = s) : l && (s = c ? function () {
+    var i;
+    if (u ? (i = function (s) {
+        s = s || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !s && typeof __VUE_SSR_CONTEXT__ < "u" && (s = __VUE_SSR_CONTEXT__), l && l.call(this, s), s && s._registeredComponents && s._registeredComponents.add(u);
+    }, e._ssrRegister = i) : l && (i = c ? function () {
         l.call(
             this,
             (e.functional ? this.parent : this).$root.$options.shadowRoot
         );
-    } : l), s)
+    } : l), i)
         if (e.functional) {
-            e._injectStyles = s;
+            e._injectStyles = i;
             var _ = e.render;
             e.render = function (h, p) {
-                return s.call(p), _(h, p);
+                return i.call(p), _(h, p);
             };
         } else {
             var m = e.beforeCreate;
-            e.beforeCreate = m ? [].concat(m, s) : [s];
+            e.beforeCreate = m ? [].concat(m, i) : [i];
         }
     return {
         exports: n,

@@ -1,175 +1,30 @@
-import { mapActions as k } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/vuex.js";
-import u from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
-import y from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/product.js";
-import v from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/cashback.js";
-import b from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/tracking/api.js";
-function w(i, t, e, a, n, l, c, h) {
-    var s = typeof i == "function" ? i.options : i;
-    t && (s.render = t, s.staticRenderFns = e, s._compiled = !0), a && (s.functional = !0), l && (s._scopeId = "data-v-" + l);
+import { mapActions as m } from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/vuex.js";
+import u from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/lodash.js";
+import v from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/product.js";
+import y from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/cashback.js";
+function C(s, t, e, a, n, l, h, k) {
+    var i = typeof s == "function" ? s.options : s;
+    t && (i.render = t, i.staticRenderFns = e, i._compiled = !0), a && (i.functional = !0), l && (i._scopeId = "data-v-" + l);
     var r;
-    if (c ? (r = function (o) {
-        o = o || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !o && typeof __VUE_SSR_CONTEXT__ < "u" && (o = __VUE_SSR_CONTEXT__), n && n.call(this, o), o && o._registeredComponents && o._registeredComponents.add(c);
-    }, s._ssrRegister = r) : n && (r = h ? function () {
+    if (h ? (r = function (o) {
+        o = o || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !o && typeof __VUE_SSR_CONTEXT__ < "u" && (o = __VUE_SSR_CONTEXT__), n && n.call(this, o), o && o._registeredComponents && o._registeredComponents.add(h);
+    }, i._ssrRegister = r) : n && (r = k ? function () {
         n.call(
             this,
-            (s.functional ? this.parent : this).$root.$options.shadowRoot
+            (i.functional ? this.parent : this).$root.$options.shadowRoot
         );
     } : n), r)
-        if (s.functional) {
-            s._injectStyles = r;
-            var _ = s.render;
-            s.render = function (S, p) {
+        if (i.functional) {
+            i._injectStyles = r;
+            var _ = i.render;
+            i.render = function (S, p) {
                 return r.call(p), _(S, p);
             };
         } else {
-            var m = s.beforeCreate;
-            s.beforeCreate = m ? [].concat(m, r) : [r];
+            var f = i.beforeCreate;
+            i.beforeCreate = f ? [].concat(f, r) : [r];
         }
     return {
-        exports: i,
-        options: s
-    };
-}
-const C = {
-    name: "ProductCustomizations",
-    mixins: [
-        y,
-        v,
-        b
-    ],
-    props: {
-        buyButtonText: {
-            type: String,
-            default: "Comprar"
-        },
-        showQuantitySelector: {
-            type: Boolean,
-            default: !1
-        },
-        showInventoryCountdown: {
-            type: Boolean,
-            default: !1
-        },
-        showShippingForm: {
-            type: Boolean,
-            default: !1
-        },
-        showModalAfterPurchase: {
-            type: Boolean,
-            default: !1
-        },
-        showMobileFloatingButton: {
-            type: Boolean,
-            default: !1
-        },
-        cartType: {
-            type: String,
-            default: "suspended"
-        },
-        variationsStyle: {
-            type: String,
-            default: "list"
-        },
-        cashbacks: {
-            type: Array,
-            default: () => []
-        }
-    },
-    data: () => ({
-        quantity: 1,
-        loading: !1,
-        customizationValues: {},
-        customizationHasErrors: !1,
-        showErrorMessage: !1
-    }),
-    computed: {
-        canAddToCart() {
-            return !!this.firstValidSku;
-        },
-        customizations() {
-            return u.get(this.selectedSku, "customizations.data", []);
-        },
-        areCustomizationsValid() {
-            return !this.selectedSku || this.customizations.length === 0 ? !0 : this.selectedSku.allow_sell_without_customization ? this.customizations.every((i) => u.isEmpty(this.customizationValues[i.id])) : this.customizations.every((i) => i.required ? !u.isEmpty(this.customizationValues[i.id]) : !0);
-        },
-        validCashback() {
-            const {
-                price_sale: i,
-                price_discount: t
-            } = this.validSku;
-            let e = i;
-            return t > 0 && (e = t), this.getValidCashback(this.cashbacks, e);
-        },
-        hasCashbackValid() {
-            return u.isEmpty(this.validCashback) ? !1 : this.validCashback.percent_amount > 0;
-        },
-        showBuyButton() {
-            return !(this.selectedSku && this.selectedSku.blocked_sale || this.validProduct.simple && this.validProduct.blocked_sale);
-        },
-        showUnavailableMessage() {
-            return !this.firstValidSku || this.selectedSku && this.selectedSku.blocked_sale;
-        }
-    },
-    mounted() {
-        this.bootSelectedSku(), this.viewItem();
-    },
-    methods: {
-        ...k("cart", ["addProductsToCart"]),
-        ...k("product", ["trackViewItem"]),
-        viewItem() {
-            this.trackViewItem({
-                skus: this.firstValidSku,
-                products: this.validProduct,
-                value: this.firstValidSku.prices.data.price * this.quantity,
-                quantities: this.quantity
-            });
-        },
-        bootSelectedSku() {
-            this.validProduct.has_variations || this.setSelectedSku(this.firstValidSku);
-        },
-        setCustomizations(i) {
-            this.customizationValues = i;
-        },
-        handleSelectSkuUpdate(i) {
-            this.showErrorMessage = !1, this.setSelectedSku(i);
-        },
-        async addToCart(i = "main-product-buy-button") {
-            if (this.showErrorMessage = !1, !this.selectedSku) {
-                this.$refs.selectSku.verifySelect(), this.showErrorMessage = !0;
-                return;
-            }
-            if (!this.$refs.skuCustomizations.checkValues(
-                this.$refs.skuCustomizations.values
-            ))
-                return;
-            this.loading = !0;
-            const t = {}, e = u.omitBy(this.customizationValues, u.isEmpty);
-            this.customizations.every((h) => !h.required) && u.isEmpty(e) && !this.selectedSku.allow_sell_without_customization && (t[this.selectedSku.id] = this.customizationValues), u.isEmpty(e) || (t[this.selectedSku.id] = e);
-            let a = !1;
-            const { recomm_id: n } = window.Yampi.mago_config, l = [];
-            n && (a = !0, l.push({ recomm_id: n })), await this.addProductsToCart({
-                skus: this.selectedSku,
-                quantities: this.quantity,
-                products: this.validProduct,
-                value: this.selectedSku.prices.data.price * this.quantity,
-                showModal: this.showModalAfterPurchase,
-                cartType: this.cartType,
-                extras: { has_recomm: a, customization: t, item_metadata: l }
-            });
-            const c = window.themeConfig.theme.params;
-            this.handleTrackApi("purchase-intended", {
-                location: i,
-                quick_buy_button_enabled: c.show_add_to_cart_button,
-                product_quantity_updated: this.quantity,
-                items: this.validProduct.name,
-                amount: this.quantity * this.selectedSku.prices.data.price
-            }), this.loading = !1;
-        },
-        openStockNotificationsModal() {
-            this.handleTrackApi("notify_when_available_subscribed_intended"), this.$refs.stockNotificationsModal.showModal();
-        }
-    }
-  return {
         exports: s,
         options: i
     };
