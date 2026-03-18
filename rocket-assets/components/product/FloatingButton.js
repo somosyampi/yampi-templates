@@ -76,42 +76,93 @@ const k = {
             s.observe(n);
         });
     }
+  return {
+        exports: o,
+        options: n
+    };
+}
+const g = {
+    name: "FloatingButton",
+    extends: h,
+    mixins: [v],
+    props: {
+        quantity: {
+            type: Number,
+            default: 1
+        },
+        loadingButton: {
+            type: Boolean,
+            required: !0
+        },
+        disabled: {
+            type: Boolean,
+            default: !1
+        },
+        price: {
+            type: Object,
+            required: !0
+        }
+    },
+    data() {
+        return {
+            showFloatingButton: !1
+        };
+    },
+    computed: {
+        sku() {
+            return this.selectedSku || this.firstValidSku;
+        },
+        buyButtonText() {
+            return this.quantity > 1 ? `Comprar (${this.quantity})` : "Comprar";
+        }
+    },
+    async created() {
+        this.scroll();
+        const o = new IntersectionObserver((e) => {
+            e.forEach((a) => {
+                this.showFloatingButton = !a.isIntersecting;
+            });
+        }, { threshold: 0.4 });
+        document.querySelectorAll(".main-product-buy-button-holder, .btn-stock-notifications").forEach((e) => {
+            o.observe(e);
+        });
+    }
 };
-var y = function () {
-    var t = this, n = t._self._c;
-    return n("div", { staticClass: "floating-button" }, [n("Transition", { attrs: { name: "fade" } }, [t.sku && !t.sku.blocked_sale && t.showFloatingButton ? n("div", { staticClass: "floating-button-container" }, [n("div", { staticClass: "prices-container" }, [n("p", { class: t.originalPriceClass }, [t._v(" " + t._s(t.sku.prices.data.price_sale_formated) + " ")]), t.sku.prices.data.price_discount > 0 ? n("p", { staticClass: "original-price" }, [t._v(" " + t._s(t.sku.prices.data.price_discount_formated) + " ")]) : t._e(), t.lastInstallment ? n("div", { staticClass: "installments" }, [n("p", [t._v(" " + t._s(t.lastInstallment.installment) + "x de "), n("span", { staticClass: "installment-price" }, [t._v(" " + t._s(t._f("formatMoney")(t.lastInstallment.installment_value)) + " ")]), t.lastInstallment.tax_value === 0 ? n("span", [t._v(" sem juros ")]) : t._e()])]) : t._e()]), n("div", { staticClass: "button-container" }, [n("LoaderButton", {
+var k = function () {
+    var t = this, e = t._self._c;
+    return e("div", { staticClass: "floating-button" }, [e("Transition", { attrs: { name: "fade" } }, [t.sku && !t.sku.blocked_sale && t.showFloatingButton ? e("div", { staticClass: "floating-button-container" }, [e("div", { staticClass: "prices-container" }, [t.price.has_promotion ? e("p", { staticClass: "original-price-discount" }, [t._v(" " + t._s(t.price.price_sale_formated) + " ")]) : t._e(), e("p", { staticClass: "original-price" }, [t._v(" " + t._s(t.price.price_formated) + " ")]), t.price.installments_data ? e("div", { staticClass: "installments" }, [e("p", { domProps: { textContent: t._s(t.price.installments_data.text) } })]) : t._e()]), e("div", { staticClass: "button-container" }, [e("LoaderButton", {
         staticClass: "btn btn-primary", attrs: { sending: t.loadingButton, disabled: t.disabled }, on: {
-            click: function (o) {
+            click: function (a) {
                 return t.$emit("click");
             }
         }
-    }, [t._v(" " + t._s(t.buyButtonText) + " ")])], 1)]) : t.sku && t.sku.blocked_sale && t.showFloatingButton ? n("div", { staticClass: "pl-22 pr-22 pt-16 pb-16 floating-button-container" }, [n("button", {
+    }, [t._v(" " + t._s(t.buyButtonText) + " ")])], 1)]) : t.sku && t.sku.blocked_sale && t.showFloatingButton ? e("div", { staticClass: "pl-22 pr-22 pt-16 pb-16 floating-button-container" }, [e("button", {
         staticClass: "btn-stock-notifications btn btn-secundary -block uppercase flex -hcenter -vcenter", on: {
-            click: function (o) {
+            click: function (a) {
                 return t.$emit("open-stock-notifications-modal");
             }
         }
-    }, [n("IconEmail", { staticClass: "fill-current" }), t._v(" Avise-me quando chegar ")], 1)]) : t._e()])], 1);
-}, B = [], w = /* @__PURE__ */ C(
+    }, [e("IconEmail", { staticClass: "fill-current" }), t._v(" Avise-me quando chegar ")], 1)]) : t._e()])], 1);
+}, y = [], B = /* @__PURE__ */ C(
+    g,
     k,
     y,
-    B,
     !1,
     null,
     null,
     null,
     null
 );
-const $ = w.exports;
-function u(s) {
-    u.installed || (u.installed = !0, s.component("FloatingButton", $));
+const $ = B.exports;
+function u(o) {
+    u.installed || (u.installed = !0, o.component("FloatingButton", $));
 }
-const I = {
+const w = {
     install: u
 };
-let r = null;
-typeof window < "u" ? r = window.Vue : typeof global < "u" && (r = global.Vue);
-r && r.use(I);
+let l = null;
+typeof window < "u" ? l = window.Vue : typeof global < "u" && (l = global.Vue);
+l && l.use(w);
 export {
     $ as default
 };

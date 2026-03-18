@@ -31,12 +31,8 @@ function T(t, e, n, f, i, m, d, c) {
 }
 const x = {
     name: "InstallmentsText",
-    extends: w,
+    extends: T,
     props: {
-        price: {
-            type: Number,
-            default: null
-        },
         product: {
             type: Object,
             required: !0
@@ -55,7 +51,9 @@ const x = {
             return !this.product.id && !I.isNil(this.validSku);
         },
         hasTaxes() {
-            return this.installmentsData.installments.some((t) => t.tax_value > 0);
+            return this.installmentsData.installments.some(
+                (t) => t.tax_value > 0
+            );
         },
         installmentsData() {
             var t;
@@ -65,11 +63,11 @@ const x = {
             return this.hasTaxes ? "*" : "sem juros";
         },
         shouldShowInstallments() {
-            return this.storeModules.new_search && !!this.installmentsData && !!this.defaultCard;
+            return !!this.installmentsData && !!this.defaultCard;
         },
         installmentText() {
-            var e, n;
-            return (n = (e = this.installmentsData) == null ? void 0 : e.installments) != null && n.length ? this.installmentsData.installments[this.installmentsData.installments.length - 1].text : " ";
+            var e, s;
+            return (s = (e = this.installmentsData) == null ? void 0 : e.installments) != null && s.length ? this.installmentsData.installments[this.installmentsData.installments.length - 1].text : " ";
         }
     },
     mounted() {
@@ -78,6 +76,8 @@ const x = {
     methods: {
         async loadInstallments(t) {
             try {
+                if (this.installmentsData || this.loading)
+                    return;
                 this.installments = await this.handleInstallments(t);
             } catch (e) {
                 console.error(e);
@@ -98,24 +98,24 @@ const x = {
             if (!this.installments.installments || !this.installments.installments.length)
                 return " ";
             const t = this.installments.installments[this.installments.installments.length - 1], e = t.installment_value_formated || this.$formatMoney(t.installment_value);
-            let n = `${t.installment}x de <span class="price">${e}</span>`;
-            return t.text.includes("sem juros") && (n += ' <span class="-free-tax">sem juros</span>'), n;
+            let s = `${t.installment}x de <span class="price">${e}</span>`;
+            return t.text.includes("sem juros") && (s += ' <span class="-free-tax">sem juros</span>'), s;
         },
         isInViewport(t) {
             if (!t)
                 return !0;
-            const e = t.getBoundingClientRect(), n = (window.innerHeight || document.documentElement.clientHeight) + 30;
-            return e.top >= 0 && e.bottom <= n;
+            const e = t.getBoundingClientRect(), s = (window.innerHeight || document.documentElement.clientHeight) + 30;
+            return e.top >= 0 && e.bottom <= s;
         }
     }
 };
-var y = function () {
-    var e = this, n = e._self._c;
-    return n("LazyVisibility", { staticClass: "installments-text" }, [e.shouldShowInstallments ? n("div", { staticClass: "installment-text", domProps: { innerHTML: e._s(e.installmentText) } }) : n("div", { staticClass: "installment-text", class: { "-loading": e.loading }, domProps: { innerHTML: e._s(e.formattedInstallmentText()) } })]);
-}, C = [], $ = /* @__PURE__ */ T(
+var C = function () {
+    var e = this, s = e._self._c;
+    return s("LazyVisibility", { staticClass: "installments-text" }, [e.shouldShowInstallments ? s("div", { staticClass: "installment-text", domProps: { innerHTML: e._s(e.installmentText) } }) : s("div", { staticClass: "installment-text", class: { "-loading": e.loading }, domProps: { innerHTML: e._s(e.formattedInstallmentText()) } })]);
+}, y = [], $ = /* @__PURE__ */ w(
     x,
-    y,
     C,
+    y,
     !1,
     null,
     null,

@@ -15,8 +15,8 @@ function g(l, e, t, n, r, c, u, m) {
         if (a.functional) {
             a._injectStyles = i;
             var p = a.render;
-            a.render = function (v, h) {
-                return i.call(h), p(v, h);
+            a.render = function (v, f) {
+                return i.call(f), p(v, f);
             };
         } else {
             var _ = a.beforeCreate;
@@ -34,6 +34,10 @@ const b = {
         product: {
             type: Object,
             required: !0
+        },
+        productPrices: {
+            type: Object,
+            default: null
         }
     },
     data() {
@@ -59,11 +63,8 @@ const b = {
             this.handleSelectCard(this.selectedAlias);
         }
     },
-    created() {
-        this.handleSelectCard(this.selectedAlias);
-    },
     methods: {
-        get: f.get,
+        get: h.get,
         async handleSelectCard(l) {
             try {
                 if (!l)
@@ -80,7 +81,7 @@ const b = {
             }
         },
         showModal() {
-            this.$refs.installmentsBaseModal.showModal();
+            this.handleSelectCard(this.selectedAlias), this.$refs.installmentsBaseModal.showModal();
         },
         cleanData() {
             this.selected = [], this.handleSelectCard(this.selectedAlias);
@@ -89,7 +90,7 @@ const b = {
             this.$refs.installmentsBaseModal.closeModal();
         },
         cleanText(l) {
-            return f.trimEnd(l, " *");
+            return h.trimEnd(l, " *");
         }
     }
 };

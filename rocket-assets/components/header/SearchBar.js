@@ -144,8 +144,126 @@ const C = {
             return `${n}<b>${t}</b>`;
         }
     }
+  return {
+        exports: s,
+        options: r
+    };
+}
+const v = {
+    name: "SearchBar",
+    mixins: [y],
+    data: () => {
+        var s;
+        return {
+            productName: "",
+            suggestions: [],
+            topSuggestions: [],
+            showSuggestions: !1,
+            currentIndex: -1,
+            debounceTimer: null,
+            isInputFocused: !1,
+            debouncedGetSuggestions: () => {
+            },
+            minScore: (s = localStorage.getItem("ROCKET_SEARCH_MIN_SCORE")) != null ? s : window.Yampi.search_min_score
+        };
+    },
+    computed: {
+        ...p("header", [
+            "showSearchBar"
+        ]),
+        ...p("merchant", [
+            "merchant"
+        ])
+    },
+    mounted() {
+        this.parseQueryString(), this.debouncedGetSuggestions = S(this.getSuggestions, 300);
+        const s = this.merchant.id;
+        f.get("/v1/search/public/products/suggestions", {
+            params: {
+                min_score: this.minScore,
+                store_id: s
+            }
+        }).then((e) => {
+            var n, t;
+            this.topSuggestions = Array.isArray((n = e.data) == null ? void 0 : n.data) ? (t = e.data) == null ? void 0 : t.data.slice(0, 9) : [];
+        }).catch((e) => {
+            console.log("Erro ao buscar sugest\xF5es:", e), this.topSuggestions = [];
+        });
+    },
+    methods: {
+        search(s = null) {
+            !this.productName.length || (this.setLocalStorageCache({
+                itemId: this.productName,
+                data: { q: this.productName },
+                itemAlias: "search_query"
+            }), this.$redirectTo(this.$applyQueriesToUrl(
+                `${this.$baseUrl}/busca`,
+                { q: this.productName }
+            )));
+        },
+        parseQueryString() {
+            this.productName = new URLSearchParams(window.location.search).get("q") || "";
+        },
+        onInput() {
+            this.currentIndex = -1, this.productName.length > 1 ? this.debouncedGetSuggestions() : (this.suggestions = [], this.showSuggestions = !1);
+        },
+        async getSuggestions() {
+            var e;
+            if (!this.productName)
+                return;
+            const s = this.merchant.id;
+            try {
+                const t = ((e = (await f.get("/v1/search/public/products/suggestions", {
+                    params: {
+                        q: this.productName,
+                        min_score: this.minScore,
+                        store_id: s
+                    }
+                })).data) == null ? void 0 : e.data) || [];
+                Array.isArray(t) && t.length > 0 ? (this.suggestions = t.slice(0, 9), this.showSuggestions = !0) : (this.suggestions = [], this.showSuggestions = !1);
+            } catch (n) {
+                console.error("Erro ao buscar sugest\xF5es:", n), this.suggestions = [], this.showSuggestions = !1;
+            }
+        },
+        onArrowDown() {
+            this.suggestions.length !== 0 && (this.currentIndex < this.suggestions.length - 1 ? this.currentIndex++ : this.currentIndex = 0);
+        },
+        onArrowUp() {
+            this.suggestions.length !== 0 && (this.currentIndex > 0 ? this.currentIndex-- : this.currentIndex = this.suggestions.length - 1);
+        },
+        onEnter() {
+            this.currentIndex >= 0 && this.currentIndex < this.suggestions.length ? this.selectSuggestion(this.suggestions[this.currentIndex]) : this.search("search_icon");
+        },
+        selectSuggestion(s) {
+            this.productName = s, this.showSuggestions = !1, this.search("dropdown");
+        },
+        onBlur() {
+            setTimeout(() => {
+                this.showSuggestions = !1, this.isInputFocused = !1;
+            }, 200);
+        },
+        onFocus() {
+            if (this.isInputFocused = !0, this.productName.length <= 1 && this.topSuggestions.length > 0) {
+                this.suggestions = this.topSuggestions, this.showSuggestions = !0;
+                return;
+            }
+            this.productName.length > 1 && this.suggestions.length > 0 && (this.showSuggestions = !0);
+        },
+        highlightMatch(s) {
+            if (!this.productName)
+                return s;
+            const e = this.productName;
+            if (!s.toLowerCase().startsWith(e.toLowerCase()))
+                return s.replace(
+                    new RegExp(`(${e.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&")})`, "i"),
+                    "<span>$1</span>"
+                );
+            const n = s.substr(0, e.length), t = s.substr(e.length);
+            return `${n}<b>${t}</b>`;
+        }
+    }
 };
-var I = function () {
+var C = function () {
     var e = this, n = e._self._c;
     return n("Transition", { attrs: { name: "fadeHeight" } }, [e.showSearchBar ? n("div", { staticClass: "search-container" }, [n("form", {
         staticClass: "search-bar", attrs: { id: "product-search", role: "search", action: "/busca" }, on: {
@@ -168,8 +286,6 @@ var I = function () {
                 return !t.type.indexOf("key") && e._k(t.keyCode, "enter", 13, t.key, "Enter") ? null : (t.preventDefault(), e.onEnter.apply(null, arguments));
             }], blur: e.onBlur, focus: e.onFocus, mousedown: function (t) {
                 e.isInputFocused = !0;
-            }, click: function (t) {
-                return e.handleTrackApi("store-search-intended");
             }
         }
     }), n("span", {
@@ -189,19 +305,19 @@ var I = function () {
             }
         }, [n("span", { staticClass: "ellipsis", domProps: { innerHTML: e._s(e.highlightMatch(t)) } })]);
     }), 0)]) : e._e()]) : e._e()]);
-}, k = [], N = /* @__PURE__ */ v(
+}, I = [], N = /* @__PURE__ */ b(
+    v,
     C,
     I,
-    k,
     !1,
     null,
-    "9cd562a5",
+    "141e1dd0",
     null,
     null
 );
-const A = N.exports;
+const k = N.exports;
 function h(s) {
-    h.installed || (h.installed = !0, s.component("SearchBar", A));
+    h.installed || (h.installed = !0, s.component("SearchBar", k));
 }
 const x = {
     install: h
@@ -210,5 +326,5 @@ let c = null;
 typeof window < "u" ? c = window.Vue : typeof global < "u" && (c = global.Vue);
 c && c.use(x);
 export {
-    A as default
+    k as default
 };

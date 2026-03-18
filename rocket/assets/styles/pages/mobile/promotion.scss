@@ -55,6 +55,81 @@
     }
 
     .category-content {
+        .products-search-list,
+        .products-list {
+            margin: 0;
+            padding: 0 16px;
+            min-width: 100vw;
+
+            &.-list {
+                flex-direction: row;
+                flex-wrap: wrap;
+
+                .lazy-visibility.product-card {
+                    flex: 1 0 100%;
+                    padding: 0 0 20px 0;
+                    border-top: 1px solid var(--default-background-color);
+                }
+
+                /*
+                * Foi necessário definir uma altura mínima para os cards de produtos
+                * que ainda não foram carregados, para garantir que o lazy loading
+                * funcione corretamente ao rolar a página. Após o carregamento, a altura
+                * mínima é removida para evitar espaços em branco desnecessários.
+                */
+                .lazy-visibility.product-card:not(.is-visible) {
+                    min-height: 249px;
+                }
+
+                .product-card {
+                    margin: 0;
+                }
+
+                .box-product {
+                    max-width: 100%;
+
+                    .holder-image {
+                        flex: 0 0 50%;
+                    }
+
+                    &.product-card {
+                        .product-card-container {
+                            display: flex;
+                            gap: 12px;
+                        }
+                    }
+
+                    .holder-info.--space-bottom-medium {
+                        padding-top: 0;
+                    }
+
+                    .holder-flags {
+                        margin-top: 0;
+                    }
+                }
+            }
+
+            &.-mosaic {
+                flex-direction: row;
+                justify-content: space-between;
+                flex-wrap: wrap;
+
+                .lazy-visibility.product-card {
+                    flex: 0 0 45%;
+                }
+
+                /*
+                * Foi necessário definir uma altura mínima para os cards de produtos
+                * que ainda não foram carregados, para garantir que o lazy loading
+                * funcione corretamente ao rolar a página. Após o carregamento, a altura
+                * mínima é removida para evitar espaços em branco desnecessários.
+                */
+                .lazy-visibility.product-card:not(.is-visible) {
+                    min-height: 368px;
+                }
+            }
+        }
+
         .holder-results {
             margin-top: 32px;
             margin-left: 0;

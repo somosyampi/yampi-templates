@@ -33,7 +33,6 @@
                     @blur="onBlur"
                     @focus="onFocus"
                     @mousedown="isInputFocused = true"
-                    @click="handleTrackApi('store-search-intended')"
                 >
                 <span
                     class="search-btn"
@@ -70,13 +69,12 @@
 import { mapGetters } from '~/vuex';
 import { debounce } from '@/mixins/helpers';
 import searchApi from '@/modules/axios/search';
-import trackingByApi from '@/mixins/tracking/api';
 import cacheMixin from '@/mixins/cache';
 
 export default {
     name: 'SearchBar',
 
-    mixins: [trackingByApi, cacheMixin],
+    mixins: [cacheMixin],
 
     data: () => ({
         productName: '',
@@ -126,8 +124,6 @@ export default {
             if (!this.productName.length) {
                 return;
             }
-
-            this.handleTrackApi('store-search-clicked', { location });
 
             this.setLocalStorageCache({
                 itemId: this.productName,

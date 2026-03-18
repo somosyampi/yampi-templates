@@ -101,6 +101,78 @@ const y = {
             }
         }
     }
+  return {
+        exports: a,
+        options: s
+    };
+}
+const x = {
+    name: "ModalReview",
+    mixins: [
+        E
+    ],
+    data: () => ({
+        sending: !1,
+        form: {
+            name: "",
+            email: "",
+            message: "",
+            rating: 5,
+            images: []
+        },
+        uploading: !1,
+        showError: !1
+    }),
+    computed: {
+        ..._("product", [
+            "product"
+        ])
+    },
+    methods: {
+        times: m.times,
+        handleUploading(a) {
+            this.uploading = a;
+        },
+        handleImageUrls({ event: a, imageNumber: e, imageUrl: r }) {
+            return {
+                DELETE: () => {
+                    this.form.images.splice(e, 1);
+                },
+                APPEND: () => {
+                    if (this.form.images.length < 3) {
+                        const t = this.form.images.length ? m.lastIndexOf(this.form.images) : 0;
+                        this.$set(this.form.images, t, r);
+                    }
+                }
+            }[a]();
+        },
+        showModal() {
+            this.resetForm(), this.$refs.reviewBaseModal.showModal();
+        },
+        closeModal() {
+            this.$refs.reviewBaseModal.closeModal(), this.$nextTick(() => this.resetForm());
+        },
+        resetForm() {
+            this.form = {
+                name: "",
+                email: "",
+                message: "",
+                rating: 5,
+                images: []
+            };
+        },
+        async submit() {
+            this.sending = !0;
+            try {
+                const a = { ...this.form };
+                a.images = m.compact(a.images), await w.post(`products/${this.product.id}/reviews`, a), this.closeModal(), this.$emit("success");
+            } catch (a) {
+                a.response.status === 429 && (this.showError = !0), this.setErrorsFromResponse(a);
+            } finally {
+                this.sending = !1;
+            }
+        }
+    }
 };
 var C = function () {
     var e = this, r = e._self._c;
@@ -137,26 +209,26 @@ var C = function () {
             }
         }
     }), r("CharacterLimitText", { staticClass: "text-left inline-block", attrs: { limit: 250, "current-text-length": e.form.message.length } }), r("ErrorText", { attrs: { text: e.getError("message") } }), r("ImageSelector", { ref: "ImageUploader", attrs: { amount: "3", "images-urls": e.form.images }, on: { changeImageUrls: e.handleImageUrls, uploading: e.handleUploading } }), r("div", { staticClass: "alert -yellow" }, [e._v(" \u2022 Sua avalia\xE7\xE3o est\xE1 sujeita \xE0 aprova\xE7\xE3o por nossa equipe "), r("br"), e._v(" \u2022 Seus dados n\xE3o ser\xE3o divulgados "), r("br"), e._v(" \u2022 N\xE3o publicaremos termos ofensivos ou de baixo cal\xE3o. ")]), e.showError ? r("div", { staticClass: "alert -red" }, [r("b", [e._v("Opa! Voc\xEA est\xE1 enviando muitas avalia\xE7\xF5es seguidas.")]), r("br"), e._v(" Aguarde 1 minuto para enviar mais. ")]) : e._e()], 2), r("template", { slot: "footer" }, [r("LoaderButton", { staticClass: "btn -block btn-secundary", attrs: { sending: e.sending, disabled: e.uploading }, on: { click: e.submit } }, [e._v(" Enviar avalia\xE7\xE3o ")])], 1)], 2);
-}, A = [], M = /* @__PURE__ */ x(
-    y,
+}, y = [], M = /* @__PURE__ */ b(
+    x,
     C,
-    A,
+    y,
     !1,
     null,
     null,
     null,
     null
 );
-const T = M.exports;
+const $ = M.exports;
 function d(a) {
-    d.installed || (d.installed = !0, a.component("ModalReview", T));
+    d.installed || (d.installed = !0, a.component("ModalReview", $));
 }
-const $ = {
+const R = {
     install: d
 };
 let l = null;
 typeof window < "u" ? l = window.Vue : typeof global < "u" && (l = global.Vue);
-l && l.use($);
+l && l.use(R);
 export {
-    T as default
+    $ as default
 };

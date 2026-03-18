@@ -16,6 +16,7 @@
             v-if="showAllInstallments"
             ref="modalInstallments"
             :product="validSku"
+            :product-prices="productPrices"
         />
     </div>
 </template>
@@ -44,6 +45,11 @@ export default {
         showAllInstallments: {
             type: Boolean,
             default: false,
+        },
+
+        productPrices: {
+            type: Object,
+            default: null,
         },
     },
 

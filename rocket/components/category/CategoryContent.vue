@@ -38,7 +38,6 @@ import queryParamsMixin from '@/mixins/queryParams';
 import mobileMixin from '@/mixins/mobile';
 import search from '@/modules/axios/search';
 import cacheMixin from '@/mixins/cache';
-import trackingByApi from '@/mixins/tracking/api';
 import { builderSearch, urlSearch } from '@/modules/search/searchHelpers';
 
 export default {
@@ -47,7 +46,6 @@ export default {
     mixins: [
         queryParamsMixin,
         mobileMixin,
-        trackingByApi,
         cacheMixin,
     ],
 
@@ -172,10 +170,6 @@ export default {
             });
 
             if (!this.firstLoadFinished && !!cacheData?.q) {
-                this.handleTrackApi('store-search-returned', {
-                    'store-search-returned': !!this.searchData.length,
-                });
-
                 this.removeLocalStorageCache({
                     itemId: this.queryParams.q,
                     itemAlias: 'search_query',

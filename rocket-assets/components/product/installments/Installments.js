@@ -43,6 +43,10 @@ const y = {
         showAllInstallments: {
             type: Boolean,
             default: !1
+        },
+        productPrices: {
+            type: Object,
+            default: null
         }
     },
     data: () => ({
@@ -81,20 +85,20 @@ const y = {
         isInViewport(n) {
             if (!n)
                 return !0;
-            const t = n.getBoundingClientRect(), a = (window.innerHeight || document.documentElement.clientHeight) + 30;
-            return t.top >= 0 && t.bottom <= a;
+            const t = n.getBoundingClientRect(), i = (window.innerHeight || document.documentElement.clientHeight) + 30;
+            return t.top >= 0 && t.bottom <= i;
         }
     }
 };
 var C = function () {
-    var t = this, a = t._self._c;
-    return a("div", [t.installments.installments ? [t.showAllInstallments ? [a("div", {
+    var t = this, i = t._self._c;
+    return i("div", [t.installments.installments ? [t.showAllInstallments ? [i("div", {
         staticClass: "show-installments link-alike", class: { "-loading": t.loading }, on: {
             click: function (d) {
                 return t.showInstallmentsModal();
             }
         }
-    }, [t._v(" Ver op\xE7\xF5es de parcelamento ")])] : t._e()] : t._e(), t.showAllInstallments ? a("ModalInstallments", { ref: "modalInstallments", attrs: { product: t.validSku } }) : t._e()], 2);
+    }, [t._v(" Ver op\xE7\xF5es de parcelamento ")])] : t._e()] : t._e(), t.showAllInstallments ? i("ModalInstallments", { ref: "modalInstallments", attrs: { product: t.validSku, "product-prices": t.productPrices } }) : t._e()], 2);
 }, $ = [], b = /* @__PURE__ */ g(
     y,
     C,

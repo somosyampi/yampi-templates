@@ -241,9 +241,9 @@ function c(e) {
 const v = {
     install: c
 };
-let l = null;
-typeof window < "u" ? l = window.Vue : typeof global < "u" && (l = global.Vue);
-l && l.use(v);
+let c = null;
+typeof window < "u" ? c = window.Vue : typeof global < "u" && (c = global.Vue);
+c && c.use(E);
 export {
     L as default
 };

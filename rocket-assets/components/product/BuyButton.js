@@ -32,8 +32,7 @@ function b(i, e, a, l, s, f, d, p) {
 const B = {
     name: "BuyButton",
     mixins: [
-        y,
-        C
+        v
     ],
     props: {
         isTextAndIconButton: {
@@ -57,11 +56,11 @@ const B = {
     },
     methods: {
         async handleClick() {
-            v.$emit("addToCartClicked", this.validProduct), this.handleTrackApi("quick-buy-button-clicked");
+            y.$emit("addToCartClicked", this.validProduct);
         }
     }
 };
-var g = function () {
+var b = function () {
     var e = this, a = e._self._c;
     return a("div", { staticClass: "holder-buy-button", class: e.containerClasses }, [a("div", {
         class: e.buyButtonClass, on: {
@@ -70,26 +69,26 @@ var g = function () {
             }
         }
     }, [e._t("default")], 2)]);
-}, k = [], T = /* @__PURE__ */ b(
+}, g = [], T = /* @__PURE__ */ C(
     B,
+    b,
     g,
-    k,
     !1,
     null,
-    "00f6370c",
+    "7008d80e",
     null,
     null
 );
 const R = T.exports;
-function u(i) {
-    u.installed || (u.installed = !0, i.component("BuyButton", R));
+function r(s) {
+    r.installed || (r.installed = !0, s.component("BuyButton", R));
 }
 const $ = {
-    install: u
+    install: r
 };
-let r = null;
-typeof window < "u" ? r = window.Vue : typeof global < "u" && (r = global.Vue);
-r && r.use($);
+let u = null;
+typeof window < "u" ? u = window.Vue : typeof global < "u" && (u = global.Vue);
+u && u.use($);
 export {
     R as default
 };

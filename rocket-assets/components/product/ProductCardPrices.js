@@ -33,9 +33,9 @@ function o(s) {
 const P = {
     install: o
 };
-let i = null;
-typeof window < "u" ? i = window.Vue : typeof global < "u" && (i = global.Vue);
-i && i.use(P);
+let c = null;
+typeof window < "u" ? c = window.Vue : typeof global < "u" && (c = global.Vue);
+c && c.use(y);
 export {
     _ as default
 };

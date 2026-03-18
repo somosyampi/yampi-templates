@@ -31,8 +31,7 @@ function b(n, t, r, a, l, f, u, c) {
 const C = {
     name: "Newsletter",
     mixins: [
-        v,
-        w
+        v
     ],
     props: {
         placeholder: {
@@ -55,7 +54,7 @@ const C = {
             try {
                 await g.post("leads", {
                     email: this.email
-                }), this.$refs.modalNewsletter.showModal(), this.email = "", this.handleTrackApi("newsletter-inscribed");
+                }), this.$refs.modalNewsletter.showModal(), this.email = "";
             } catch (n) {
                 console.error(n), this.setErrorsFromResponse(n);
             } finally {
@@ -64,7 +63,7 @@ const C = {
         }
     }
 };
-var y = function () {
+var b = function () {
     var t = this, r = t._self._c;
     return r("div", { staticClass: "holder-newsletter-form" }, [r("form", {
         attrs: { id: "form-newsletter" }, on: {
@@ -79,26 +78,26 @@ var y = function () {
             }
         }
     }), r("ErrorText", { attrs: { text: t.getError("email") } })], 1), r("LoaderButton", { staticClass: "btn btn-secundary", attrs: { sending: t.sending, title: t.buttonText } })], 1), r("ModalNewsletter", { ref: "modalNewsletter" })], 1);
-}, N = [], T = /* @__PURE__ */ b(
+}, y = [], N = /* @__PURE__ */ w(
     C,
+    b,
     y,
-    N,
     !1,
     null,
     null,
     null,
     null
 );
-const R = T.exports;
+const R = N.exports;
 function d(n) {
     d.installed || (d.installed = !0, n.component("Newsletter", R));
 }
-const E = {
+const T = {
     install: d
 };
 let o = null;
 typeof window < "u" ? o = window.Vue : typeof global < "u" && (o = global.Vue);
-o && o.use(E);
+o && o.use(T);
 export {
     R as default
 };

@@ -129,13 +129,10 @@
 <script>
 import _ from '~/lodash';
 import { mapActions, mapGetters } from '~/vuex';
-import trackingByApi from '@/mixins/tracking/api';
 import { createPriceObjects } from '@/mixins/helpers';
 
 export default {
     name: 'ModalConfirmAddToCart',
-
-    mixins: [trackingByApi],
 
     props: {
         product: {
@@ -405,13 +402,6 @@ export default {
                     value: this.selectedSku.prices.data.price,
                     showModal: true,
                     extras: { has_recomm, customization, item_metadata },
-                });
-
-                this.handleTrackApi('purchase-intended', {
-                    location: 'quick-buy-button-modal',
-                    product_quantity_updated: this.quantity,
-                    items: this.product.name,
-                    amount: this.quantity * this.selectedSku.prices.data.price,
                 });
             } catch (error) {
                 this.error = error;

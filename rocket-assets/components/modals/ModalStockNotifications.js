@@ -75,8 +75,58 @@ const C = {
             }
         }
     }
+  return {
+        exports: a,
+        options: o
+    };
+}
+const b = {
+    name: "ModalStockNotifications",
+    mixins: [
+        v
+    ],
+    props: {
+        sku: {
+            type: Object,
+            default: () => ({})
+        }
+    },
+    data() {
+        return {
+            sending: !1,
+            form: {
+                name: "",
+                email: ""
+            }
+        };
+    },
+    methods: {
+        showModal() {
+            this.$refs.stockNotificationsModal && this.$refs.stockNotificationsModal.showModal();
+        },
+        closeModal() {
+            this.$refs.stockNotificationsModal.closeModal();
+        },
+        resetForm() {
+            this.form.name = "", this.form.email = "", this.clearErrors();
+        },
+        async submit() {
+            this.sending = !0;
+            const a = {
+                sku_id: this.sku.id,
+                ...this.form
+            };
+            try {
+                await g.post(`/products/${this.sku.product_id}/stock-notifications`, a), this.closeModal(), this.$emit("success");
+            } catch (t) {
+                this.setErrorsFromResponse(t);
+            } finally {
+                this.sending = !1;
+            }
+        }
+    }
 };
-var M = function () {
+var C = function () {
     var t = this, e = t._self._c;
     return e("Modal", { ref: "stockNotificationsModal", attrs: { name: "stock-notifications", title: "Avise-me quando chegar" }, on: { close: t.resetForm } }, [e("p", { staticClass: "helper-text" }, [t._v(" N\xF3s te avisaremos por e-mail quando este produto estiver novamente em nosso estoque. ")]), e("div", { staticClass: "mb-30" }, [e("div", { staticClass: "product" }, [t.sku.images.data.length ? e("CustomImage", { staticClass: "-loading", attrs: { src: t.sku.images.data[0].url, alt: t.sku.name, thumbor: { resize: "60x60" } } }) : t._e(), e("div", { staticClass: "text" }, [e("p", { staticClass: "name" }, [t._v(" " + t._s(t.sku.title) + " ")])])], 1)]), e("form", {
         attrs: { id: "form-stock-notifications" }, on: {
@@ -101,26 +151,26 @@ var M = function () {
             }]
         }
     }), e("ErrorText", { attrs: { text: t.getError("email") } })], 1), e("LoaderButton", { staticClass: "btn btn-secundary -block mt-24 mb-16", attrs: { sending: t.sending, title: "Entrar na lista de espera", type: "submit" } })], 1)]);
-}, y = [], E = /* @__PURE__ */ b(
+}, M = [], E = /* @__PURE__ */ k(
+    b,
     C,
     M,
-    y,
     !1,
     null,
-    "b41006e1",
+    "1f47b9a0",
     null,
     null
 );
-const N = E.exports;
-function m(i) {
-    m.installed || (m.installed = !0, i.component("ModalStockNotifications", N));
+const y = E.exports;
+function m(a) {
+    m.installed || (m.installed = !0, a.component("ModalStockNotifications", y));
 }
-const $ = {
+const N = {
     install: m
 };
 let l = null;
 typeof window < "u" ? l = window.Vue : typeof global < "u" && (l = global.Vue);
-l && l.use($);
+l && l.use(N);
 export {
-    N as default
+    y as default
 };

@@ -7,6 +7,7 @@
             :price="price"
             :formatted-price="currentFormattedPrice"
             :price-type-text="selectedPriceText"
+            :loading-prices="loadingPrices"
         />
 
         <AddToCart />
@@ -16,6 +17,7 @@
 <script>
 import _ from '~/lodash';
 import productMixin from '@/mixins/product';
+import pricesMixin from '@/mixins/prices';
 import { createPriceObjects } from '@/mixins/helpers';
 
 export default {
@@ -23,10 +25,11 @@ export default {
 
     mixins: [
         productMixin,
+        pricesMixin,
     ],
 
     props: {
-        selectedPrice: {
+        highlightTypePayment: {
             type: String,
             default: 'promotional',
         },
@@ -47,11 +50,19 @@ export default {
 
         price() {
             const item = this.validSku || this.validProduct;
+            const staticPrices = _.get(item, 'prices.data', {});
 
-            return _.get(item, 'prices.data', {});
+            if (this.productPrices && !this.loadingPrices) {
+                return this.productPrices;
+            }
+
+            return staticPrices;
         },
 
         priceObject() {
+            if (!this.selectedPriceMeta || !this.selectedPriceMeta.path) {
+                return {};
+            }
             return _.get(this.price, this.selectedPriceMeta.path, {});
         },
 
@@ -72,11 +83,27 @@ export default {
         },
 
         selectedPriceMeta() {
-            return createPriceObjects({ basePath: '', pricePath: 'price_formatted' })[this.selectedPrice];
+            const priceObjects = createPriceObjects({ basePath: '', pricePath: 'price_formatted' });
+            // Retorna o highlightTypePayment se existir, senão retorna 'promotional' como fallback
+            return priceObjects[this.highlightTypePayment] || priceObjects.promotional;
         },
 
         availability() {
             return _.get(this.validSku, 'days_availability_formated');
+        },
+    },
+
+    watch: {
+        selectedSku(sku) {
+            const productId = this.validProduct?.id || window.data?.product?.data.id;
+
+            if (!productId) {
+                return;
+            }
+
+            this.productPricesParams = sku?.id
+                ? { product_id: productId, sku_id: sku.id }
+                : { product_id: productId };
         },
     },
 };

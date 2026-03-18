@@ -16,9 +16,9 @@ function z(s, t, e, a, r, d, h, _) {
     } : r), u)
         if (i.functional) {
             i._injectStyles = u;
-            var k = i.render;
+            var C = i.render;
             i.render = function (S, p) {
-                return u.call(p), k(S, p);
+                return u.call(p), C(S, p);
             };
         } else {
             var m = i.beforeCreate;
@@ -29,9 +29,8 @@ function z(s, t, e, a, r, d, h, _) {
         options: i
     };
 }
-const g = {
+const y = {
     name: "ModalConfirmAddToCart",
-    mixins: [v],
     props: {
         product: {
             type: Object,
@@ -66,7 +65,7 @@ const g = {
             return this.selectedSku ? this.selectedSku.prices.data.price_sale_formated : this.product.prices.data.price_sale_formated;
         },
         price() {
-            return y({ basePath: "prices.data.", pricePath: "price_formatted" });
+            return v({ basePath: "prices.data.", pricePath: "price_formatted" });
         },
         skuPriceFormated() {
             return this.selectedSku ? `${o.get(
@@ -114,7 +113,7 @@ const g = {
         }
     },
     methods: {
-        ...C("cart", ["addProductsToCart"]),
+        ...k("cart", ["addProductsToCart"]),
         bootSelectedSku() {
             this.product.has_variations || this.setSelectedSku(this.firstValidSku);
         },
@@ -184,11 +183,6 @@ const g = {
                     value: this.selectedSku.prices.data.price,
                     showModal: !0,
                     extras: { has_recomm: e, customization: s, item_metadata: a }
-                }), this.handleTrackApi("purchase-intended", {
-                    location: "quick-buy-button-modal",
-                    product_quantity_updated: this.quantity,
-                    items: this.product.name,
-                    amount: this.quantity * this.selectedSku.prices.data.price
                 });
             } catch (r) {
                 this.error = r, console.error(r);
@@ -198,7 +192,7 @@ const g = {
         }
     }
 };
-var w = function () {
+var g = function () {
     var t = this, e = t._self._c;
     return e("Modal", { ref: "baseModal", attrs: { name: "confirm-add-to-cart", title: t.modalTitle }, on: { close: t.resetComponent } }, [t.product && t.product.skus ? [e("div", { staticClass: "pl-sm-40 pl-xs-24 mb-38" }, [e("div", { staticClass: "product" }, [e("CustomImage", { key: t.imageUrl, staticClass: "-loading", attrs: { src: t.imageUrl, alt: t.product.name, thumbor: { resize: "60x60" }, width: "60", height: "60" } }), e("div", { staticClass: "text" }, [e("p", { staticClass: "name ellipsis-multiline", class: t.ellipsisClass }, [t._v(" " + t._s(t.product.name) + " ")]), t.selectedSku && t.selectedSku.variations.length ? e("ul", t._l(t.selectedSku.variations, function (a) {
         return e("li", { key: a.name }, [t._v(" " + t._s(a.name) + ": " + t._s(a.value) + " ")]);
@@ -215,26 +209,26 @@ var w = function () {
             }, expression: "quantity"
         }
     })], 1)]] : e("div", { staticClass: "alert -yellow" }, [t._v(" Produto indispon\xEDvel. ")])], 2), e("template", { slot: "footer" }, [e("hr"), e("div", { staticClass: "control-button pr-xs-14" }, [e("button", { staticClass: "btn btn-modal-secundary", on: { click: t.handleSecondaryButton } }, [t._v(" Voltar ")]), e("LoaderButton", { staticClass: "btn btn-modal-primary", attrs: { sending: t.sending, disabled: !t.canAddToCart }, on: { click: t.handlePrimaryButton } }, [t._v(" " + t._s(t.primaryButtonText) + " ")])], 1)])] : [e("div", { staticClass: "pl-sm-40 pr-sm-40 pl-xs-24 pr-xs-24 mb-38" }, [e("div", { staticClass: "-loading", staticStyle: { height: "70px" } }), e("div", { staticClass: "-loading mt-30", staticStyle: { height: "70px" } })])]], 2);
-}, b = [], P = /* @__PURE__ */ z(
+}, w = [], b = /* @__PURE__ */ z(
+    y,
     g,
     w,
-    b,
     !1,
     null,
     null,
     null,
     null
 );
-const V = P.exports;
+const P = b.exports;
 function c(s) {
-    c.installed || (c.installed = !0, s.component("ModalConfirmAddToCart", V));
+    c.installed || (c.installed = !0, s.component("ModalConfirmAddToCart", P));
 }
-const T = {
+const V = {
     install: c
 };
 let l = null;
 typeof window < "u" ? l = window.Vue : typeof global < "u" && (l = global.Vue);
-l && l.use(T);
+l && l.use(V);
 export {
-    V as default
+    P as default
 };
