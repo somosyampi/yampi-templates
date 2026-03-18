@@ -42,7 +42,6 @@ import _ from '~/lodash';
 import rocket from '@/modules/axios/rocket';
 import errorsMixin from '@/mixins/errors';
 import productMixin from '@/mixins/product';
-import trackingByApi from '@/mixins/tracking/api';
 
 export default {
     name: 'Zipcode',
@@ -50,7 +49,6 @@ export default {
     mixins: [
         errorsMixin,
         productMixin,
-        trackingByApi,
     ],
 
     props: {
@@ -84,10 +82,6 @@ export default {
 
         async submit() {
             this.sending = true;
-
-            this.handleTrackApi('zipcode-entered', {
-                location: 'product-page',
-            });
 
             try {
                 const total = this.validSku.prices.data.price;

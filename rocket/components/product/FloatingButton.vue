@@ -6,30 +6,22 @@
                 class="floating-button-container"
             >
                 <div class="prices-container">
-                    <p :class="originalPriceClass">
-                        {{ sku.prices.data.price_sale_formated }}
+                    <p
+                        v-if="price.has_promotion"
+                        class="original-price-discount"
+                    >
+                        {{ price.price_sale_formated }}
                     </p>
 
-                    <p
-                        v-if="sku.prices.data.price_discount > 0"
-                        class="original-price"
-                    >
-                        {{ sku.prices.data.price_discount_formated }}
+                    <p class="original-price">
+                        {{ price.price_formated }}
                     </p>
 
                     <div
-                        v-if="lastInstallment"
+                        v-if="price.installments_data"
                         class="installments"
                     >
-                        <p>
-                            {{ lastInstallment.installment }}x de
-                            <span class="installment-price">
-                                {{ lastInstallment.installment_value | formatMoney }}
-                            </span>
-                            <span v-if="lastInstallment.tax_value === 0">
-                                sem juros
-                            </span>
-                        </p>
+                        <p v-text="price.installments_data.text" />
                     </div>
                 </div>
 
@@ -61,7 +53,6 @@
 </template>
 
 <script>
-import _ from '~/lodash';
 import BaseInstallments from '@/components/product/installments/BaseInstallments.vue';
 import buttonsMixin from '@/mixins/buttons';
 
@@ -87,6 +78,11 @@ export default {
             type: Boolean,
             default: false,
         },
+
+        price: {
+            type: Object,
+            required: true,
+        },
     },
 
     data() {
@@ -104,21 +100,10 @@ export default {
             return this.quantity > 1 ? `Comprar (${this.quantity})` : 'Comprar';
         },
 
-        originalPriceClass() {
-            return this.sku.prices.data.has_promotion || this.sku.prices.data.price_discount > 0
-                ? 'original-price-discount'
-                : 'original-price';
-        },
-
-        lastInstallment() {
-            return _.last(this.installments.installments);
-        },
     },
 
     async created() {
         this.scroll();
-
-        this.installments = await this.handleInstallments();
 
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {

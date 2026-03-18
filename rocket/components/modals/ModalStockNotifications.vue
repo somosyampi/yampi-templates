@@ -73,14 +73,12 @@
 <script>
 import errorsMixin from '@/mixins/errors';
 import rocket from '@/modules/axios/rocket';
-import trackingByApi from '@/mixins/tracking/api';
 
 export default {
     name: 'ModalStockNotifications',
 
     mixins: [
         errorsMixin,
-        trackingByApi,
     ],
 
     props: {
@@ -126,8 +124,6 @@ export default {
             };
             try {
                 await rocket.post(`/products/${this.sku.product_id}/stock-notifications`, formData);
-
-                this.handleTrackApi('notify_when_available_subscribed');
 
                 this.closeModal();
                 this.$emit('success');

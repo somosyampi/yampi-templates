@@ -111,14 +111,12 @@ import { mapGetters } from '~/vuex';
 import _ from '~/lodash';
 import rocket from '@/modules/axios/rocket';
 import errorsMixin from '@/mixins/errors';
-import trackingByApi from '@/mixins/tracking/api';
 
 export default {
     name: 'ModalReview',
 
     mixins: [
         errorsMixin,
-        trackingByApi,
     ],
 
     data: () => ({
@@ -164,8 +162,6 @@ export default {
         showModal() {
             this.resetForm();
             this.$refs.reviewBaseModal.showModal();
-
-            this.handleTrackApi('product-review-intended');
         },
 
         closeModal() {
@@ -193,11 +189,6 @@ export default {
                 await rocket.post(`products/${this.product.id}/reviews`, submittableForm);
 
                 this.closeModal();
-
-                this.handleTrackApi('product-review-entered', {
-                    'photo-entered': this.form.images.length,
-                    'review-grade': this.form.rating,
-                });
 
                 this.$emit('success');
             } catch (e) {

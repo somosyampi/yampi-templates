@@ -98,7 +98,6 @@ export default {
         },
 
         closeModal() {
-            this.$emit('close');
             this.$children.map(children => {
                 if (children.$options.name === 'ImageSelector') {
                     const imageInputs = children.$children;

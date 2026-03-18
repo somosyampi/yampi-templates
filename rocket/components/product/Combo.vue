@@ -100,13 +100,10 @@
 import { mapActions, mapGetters } from '~/vuex';
 import _ from '~/lodash';
 import Vue from '~/vue';
-import trackingByApi from '@/mixins/tracking/api';
 import { createPriceObjects } from '@/mixins/helpers';
 
 export default {
     name: 'Combo',
-
-    mixins: [trackingByApi],
 
     props: {
         combo: {
@@ -344,15 +341,6 @@ export default {
                         kit_id: this.combo.id,
                         customization: this.filteredCustomizations || {},
                     },
-                });
-
-                const themeParams = window.themeConfig.theme.params;
-
-                this.handleTrackApi('purchase-intended', {
-                    location: 'buy-together',
-                    quick_buy_button_enabled: themeParams.show_add_to_cart_button,
-                    items: _.map(this.products, 'name'),
-                    amount: this.priceWithDiscount,
                 });
             }
 

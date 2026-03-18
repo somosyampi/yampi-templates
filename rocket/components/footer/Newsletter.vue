@@ -34,14 +34,12 @@
 <script>
 import errorsMixin from '@/mixins/errors';
 import rocket from '@/modules/axios/rocket';
-import trackingByApi from '@/mixins/tracking/api';
 
 export default {
     name: 'Newsletter',
 
     mixins: [
         errorsMixin,
-        trackingByApi,
     ],
 
     props: {
@@ -74,8 +72,6 @@ export default {
 
                 this.$refs.modalNewsletter.showModal();
                 this.email = '';
-
-                this.handleTrackApi('newsletter-inscribed');
             } catch (e) {
                 console.error(e);
                 this.setErrorsFromResponse(e);

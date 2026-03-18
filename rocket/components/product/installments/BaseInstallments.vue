@@ -70,10 +70,14 @@ export default {
                 ? this.validSku
                 : undefined;
 
-            const productPrice = _.get(
+            let productPrice = _.get(
                 sku || this.validProduct,
                 'prices.data.price',
             );
+
+            if (this.productPrices) {
+                productPrice = this.productPrices.price;
+            }
 
             const productId = _.get(this.validProduct, 'id');
 
