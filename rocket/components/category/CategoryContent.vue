@@ -23,6 +23,7 @@
             :search-data="searchData"
             :loading="loading"
             :query-params="queryParams"
+            :is-search-without-results="isSearchWithoutResults"
         />
 
         <AddToCart />
@@ -39,6 +40,8 @@ import mobileMixin from '@/mixins/mobile';
 import search from '@/modules/axios/search';
 import cacheMixin from '@/mixins/cache';
 import { builderSearch, urlSearch } from '@/modules/search/searchHelpers';
+
+const FILTER_QUERY_PARAMS = ['categories_name', 'brand_name', 'attributes', 'price', 'brand_id', 'category_id', 'filter_id', 'min', 'max'];
 
 export default {
     name: 'CategoryContent',
@@ -67,6 +70,7 @@ export default {
         },
         searchData: [],
         firstLoadFinished: false,
+        isSearchWithoutResults: false,
     }),
 
     computed: {
@@ -213,17 +217,8 @@ export default {
 
                 this.searchData = searchData?.data.data;
 
-                if (urlStringParamsKeys.length) {
-                    return;
-                }
-
-                this.setLocalStorageCache({
-                    itemId: this.queryParams.q,
-                    itemAlias: 'search_aggs',
-                    data: {
-                        aggs: searchData?.aggs,
-                    },
-                });
+                this.isSearchWithoutResults = !this.searchData.length
+                    && urlStringParamsKeys.every(key => !FILTER_QUERY_PARAMS.includes(key));
 
                 return;
             }

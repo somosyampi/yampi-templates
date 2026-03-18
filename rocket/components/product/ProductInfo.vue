@@ -5,8 +5,8 @@
             :availability="availability"
             :warranty="validProduct.warranty"
             :price="price"
-            :formatted-price="currentFormattedPrice"
-            :price-type-text="selectedPriceText"
+            :selected-price="selectedPrice"
+            :price-text="priceText"
             :loading-prices="loadingPrices"
         />
 
@@ -18,7 +18,6 @@
 import _ from '~/lodash';
 import productMixin from '@/mixins/product';
 import pricesMixin from '@/mixins/prices';
-import { createPriceObjects } from '@/mixins/helpers';
 
 export default {
     name: 'ProductInfo',
@@ -57,35 +56,6 @@ export default {
             }
 
             return staticPrices;
-        },
-
-        priceObject() {
-            if (!this.selectedPriceMeta || !this.selectedPriceMeta.path) {
-                return {};
-            }
-            return _.get(this.price, this.selectedPriceMeta.path, {});
-        },
-
-        currentFormattedPrice() {
-            if (Object.keys(this.priceObject).length) {
-                return `${_.get(this.price, this.selectedPriceMeta.path, this.firstSku[0].prices.data.price_formated)}`;
-            }
-
-            return `${_.get(this.price, 'price_formated', this.firstSku[0].prices.data.price_formated)}`;
-        },
-
-        selectedPriceText() {
-            if (Object.keys(this.priceObject).length) {
-                return this.selectedPriceMeta.text;
-            }
-
-            return '';
-        },
-
-        selectedPriceMeta() {
-            const priceObjects = createPriceObjects({ basePath: '', pricePath: 'price_formatted' });
-            // Retorna o highlightTypePayment se existir, senão retorna 'promotional' como fallback
-            return priceObjects[this.highlightTypePayment] || priceObjects.promotional;
         },
 
         availability() {

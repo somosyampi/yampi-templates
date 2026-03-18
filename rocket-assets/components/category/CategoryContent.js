@@ -1,12 +1,12 @@
-import p from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
+import g from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
 import { mapGetters as f } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/vuex.js";
 import P from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/axios/rocket.js";
 import C from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/axios/api.js";
 import w from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/queryParams.js";
 import v from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/mobile.js";
-import M from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/axios/search.js";
-import q from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/cache.js";
-import { builderSearch as b, urlSearch as S } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/search/searchHelpers.js";
+import S from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/axios/search.js";
+import b from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/cache.js";
+import { builderSearch as M, urlSearch as q } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/search/searchHelpers.js";
 function L(e, t, i, s, a, o, n, u) {
   var r = typeof e == "function" ? e.options : e;
   t && (r.render = t, r.staticRenderFns = i, r._compiled = !0), s && (r.functional = !0), o && (r._scopeId = "data-v-" + o);
@@ -22,8 +22,8 @@ function L(e, t, i, s, a, o, n, u) {
     if (r.functional) {
       r._injectStyles = d;
       var y = r.render;
-      r.render = function(_, g) {
-        return d.call(g), y(_, g);
+      r.render = function(_, p) {
+        return d.call(p), y(_, p);
       };
     } else {
       var m = r.beforeCreate;
@@ -34,12 +34,12 @@ function L(e, t, i, s, a, o, n, u) {
     options: r
   };
 }
-const k = {
+const k = ["categories_name", "brand_name", "attributes", "price", "brand_id", "category_id", "filter_id", "min", "max"], T = {
   name: "CategoryContent",
   mixins: [
     w,
     v,
-    q
+    b
   ],
   props: {
     productsPerPage: {
@@ -57,7 +57,8 @@ const k = {
       currentPage: 1
     },
     searchData: [],
-    firstLoadFinished: !1
+    firstLoadFinished: !1,
+    isSearchWithoutResults: !1
   }),
   computed: {
     selectedOrder() {
@@ -127,24 +128,16 @@ const k = {
       if (this.shouldUseNewSearchStrategy) {
         const t = new URLSearchParams(window.location.search), i = Array.from(t.keys()).filter((a) => a !== "q");
         this.queryParams.q = t.get("q") || "", this.queryParams.limit = this.productsPerPage, this.queryParams.include = "skus,url_path,image_url,tags,brand,name,slug,id,rating,attributes,categories,price";
-        const s = await b.execute(
-          M,
+        const s = await M.execute(
+          S,
           this.queryParams
         );
-        if (this.paginate.pageCount = ((e = s == null ? void 0 : s.data) == null ? void 0 : e.last_page) || 1, this.searchData = s == null ? void 0 : s.data.data, i.length)
-          return;
-        this.setLocalStorageCache({
-          itemId: this.queryParams.q,
-          itemAlias: "search_aggs",
-          data: {
-            aggs: s == null ? void 0 : s.aggs
-          }
-        });
+        this.paginate.pageCount = ((e = s == null ? void 0 : s.data) == null ? void 0 : e.last_page) || 1, this.searchData = s == null ? void 0 : s.data.data, this.isSearchWithoutResults = !this.searchData.length && i.every((a) => !k.includes(a));
         return;
       }
-      this.newHtml = await S.execute(P, this.queryParams);
+      this.newHtml = await q.execute(P, this.queryParams);
     },
-    updateFilters: p.debounce(async function() {
+    updateFilters: g.debounce(async function() {
       this.loading = !0;
       const { queryParams: e } = this;
       e.resultsOnly = !0, this.paginate.currentPage !== this.queryParams.page && (this.paginate.currentPage = this.queryParams.page || 1);
@@ -213,7 +206,7 @@ const k = {
       e.limit = this.productsPerPage;
       try {
         const t = this.$applyQueriesToUrl("search/products/count", e), { data: i } = await C.get(t);
-        this.paginate.pageCount = p.get(i, "data.total_pages", 1);
+        this.paginate.pageCount = g.get(i, "data.total_pages", 1);
       } catch (t) {
         console.error(t);
       } finally {
@@ -242,29 +235,29 @@ const k = {
     }
   }
 };
-var T = function() {
+var G = function() {
   var t = this, i = t._self._c;
-  return i("div", { ref: "content", class: { "grid-list": !t.isMosaic } }, [t.loading && t.firstLoadFinished ? i("div", { staticClass: "over-background -loader" }, [i("i", { staticClass: "icon icon-general-loader" })]) : t._e(), t._t("default", null, { isMosaic: t.isMosaic, isMobile: t.isMobile, newHtml: t.newHtml, updateFilters: t.updateFilters, updateOrderBy: t.updateOrderBy, updateCurrentPage: t.updateCurrentPage, updateGrid: t.updateGrid, selectedOrder: t.selectedOrder, paginate: t.paginate, searchData: t.searchData, loading: t.loading, queryParams: t.queryParams }), i("AddToCart")], 2);
-}, G = [], $ = /* @__PURE__ */ L(
-  k,
+  return i("div", { ref: "content", class: { "grid-list": !t.isMosaic } }, [t.loading && t.firstLoadFinished ? i("div", { staticClass: "over-background -loader" }, [i("i", { staticClass: "icon icon-general-loader" })]) : t._e(), t._t("default", null, { isMosaic: t.isMosaic, isMobile: t.isMobile, newHtml: t.newHtml, updateFilters: t.updateFilters, updateOrderBy: t.updateOrderBy, updateCurrentPage: t.updateCurrentPage, updateGrid: t.updateGrid, selectedOrder: t.selectedOrder, paginate: t.paginate, searchData: t.searchData, loading: t.loading, queryParams: t.queryParams, isSearchWithoutResults: t.isSearchWithoutResults }), i("AddToCart")], 2);
+}, R = [], $ = /* @__PURE__ */ L(
   T,
   G,
+  R,
   !1,
   null,
   null,
   null,
   null
 );
-const N = $.exports;
+const E = $.exports;
 function h(e) {
-  h.installed || (h.installed = !0, e.component("CategoryContent", N));
+  h.installed || (h.installed = !0, e.component("CategoryContent", E));
 }
-const E = {
+const N = {
   install: h
 };
 let c = null;
 typeof window < "u" ? c = window.Vue : typeof global < "u" && (c = global.Vue);
-c && c.use(E);
+c && c.use(N);
 export {
-  N as default
+  E as default
 };
