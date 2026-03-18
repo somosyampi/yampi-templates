@@ -1,5 +1,5 @@
-import { mapGetters as l, mapActions as v } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/vuex.js";
-import M from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/modules/eventBus.js";
+import { mapGetters as l, mapActions as v } from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/vuex.js";
+import M from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/modules/eventBus.js";
 function w(n, e, r, h, i, f, c, m) {
   var t = typeof n == "function" ? n.options : n;
   e && (t.render = e, t.staticRenderFns = r, t._compiled = !0), h && (t.functional = !0), f && (t._scopeId = "data-v-" + f);
