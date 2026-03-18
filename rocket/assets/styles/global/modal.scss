@@ -277,6 +277,12 @@
     }
 }
 
+#modal-review-details {
+    .close-modal {
+        z-index: 2;
+    }
+}
+
 #modal-confirm-add-to-cart {
     padding: 0;
 

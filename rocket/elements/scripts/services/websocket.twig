@@ -1,7 +1,6 @@
-{% if ws_enabled and ws_user_id %}
+{% if ws_enabled %}
 
 {% set workerPath = mix('js/worker.js') | replace_cdn_url %}
-
 <script
     src="{{ ws_cdn_url }}"
     defer
@@ -10,7 +9,17 @@
 ></script>
 
 <script>
-    function startOnlineVisitors() {
+    async function startOnlineVisitors() {
+        if (!window.Yampi.ws_user_id) {
+            await window.yampiSessionPromise;
+            if (!window.Yampi.ws_user_id) {
+                return;
+            }
+        }
+
+        const date = new Date();
+        const timestampCdn = `${date.getFullYear()}${date.getMonth()}${date.getDay()}`;
+
         const websocketOptions = {
             echo: {
                 key: "{{ ws_app_key }}",
@@ -24,9 +33,9 @@
             service: '{{ ws_service }}',
             workerPath: `${window.location.origin}{{ workerPath }}`,
             user_data: {
-                id: "{{ ws_user_id }}",
+                id: window.Yampi.ws_user_id,
             },
-            cart_token: "{{ ws_cart_token }}",
+            cart_token: window.Yampi.cart_token,
             cdn_url: "{{ ws_cdn_url }}",
         };
 
