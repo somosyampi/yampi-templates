@@ -50,20 +50,16 @@
     </div>
 {% endif %}
 
-{% if content.data.data | length or shouldUseNewSearchStrategy %}
-    <category-options
-        {% if shouldUseNewSearchStrategy %}
-            v-if="searchData.length"
-        {% endif %}
-        :is-mosaic="isMosaic"
-        :show-sort="{{ customData.config.params.show_sort ? 'true' : 'false' }}"
-        :show-filters="{{ customData.config.params.filters_enabled ? 'true' : 'false' }}"
-        :selected-order="selectedOrder"
-        @change="updateOrderBy"
-        @change-grid="updateGrid"
-        ref="categoryOptions"
-    ></category-options>
-{% endif %}
+<category-options
+    v-show="!isSearchWithoutResults"
+    :is-mosaic="isMosaic"
+    :show-sort="{{ customData.config.params.show_sort ? 'true' : 'false' }}"
+    :show-filters="{{ customData.config.params.filters_enabled ? 'true' : 'false' }}"
+    :selected-order="selectedOrder"
+    @change="updateOrderBy"
+    @change-grid="updateGrid"
+    ref="categoryOptions"
+></category-options>
 
 {% if customData.config.params.filters_enabled %}
     <selected-filters></selected-filters>

@@ -25,12 +25,12 @@
     <category-content
         class="{{ "#{section.section_alias}-#{section.order}" }}"
         products-per-page="{{ section.params.products_per_page }}"
-        v-slot="{ newHtml, updateFilters, updateOrderBy, updateGrid, updateCurrentPage, selectedOrder, paginate, isMosaic, isMobile, searchData, loading, queryParams }"
+        v-slot="{ newHtml, updateFilters, updateOrderBy, updateGrid, updateCurrentPage, selectedOrder, paginate, isMosaic, isMobile, searchData, loading, queryParams, isSearchWithoutResults }"
     >
         {% include 'elements/breadcrumbs.twig' with {'levels': breadcrumbLevels} %}
 
         <div class="flex-holder container flex">
-            {% if section.params.filters_enabled and (customData['content'].data.data | length or shouldUseNewSearchStrategy) %}
+            {% if section.params.filters_enabled %}
                 <filters
                     :products-per-page="{{ section.params.products_per_page }}"
                     :show-price="{{ section.params.show_price_slider ? 'true' : 'false' }}"
