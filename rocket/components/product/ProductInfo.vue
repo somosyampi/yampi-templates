@@ -5,8 +5,9 @@
             :availability="availability"
             :warranty="validProduct.warranty"
             :price="price"
-            :formatted-price="currentFormattedPrice"
-            :price-type-text="selectedPriceText"
+            :selected-price="selectedPrice"
+            :price-text="priceText"
+            :loading-prices="loadingPrices"
         />
 
         <AddToCart />
@@ -16,17 +17,18 @@
 <script>
 import _ from '~/lodash';
 import productMixin from '@/mixins/product';
-import { createPriceObjects } from '@/mixins/helpers';
+import pricesMixin from '@/mixins/prices';
 
 export default {
     name: 'ProductInfo',
 
     mixins: [
         productMixin,
+        pricesMixin,
     ],
 
     props: {
-        selectedPrice: {
+        highlightTypePayment: {
             type: String,
             default: 'promotional',
         },
@@ -47,36 +49,31 @@ export default {
 
         price() {
             const item = this.validSku || this.validProduct;
+            const staticPrices = _.get(item, 'prices.data', {});
 
-            return _.get(item, 'prices.data', {});
-        },
-
-        priceObject() {
-            return _.get(this.price, this.selectedPriceMeta.path, {});
-        },
-
-        currentFormattedPrice() {
-            if (Object.keys(this.priceObject).length) {
-                return `${_.get(this.price, this.selectedPriceMeta.path, this.firstSku[0].prices.data.price_formated)}`;
+            if (this.productPrices && !this.loadingPrices) {
+                return this.productPrices;
             }
 
-            return `${_.get(this.price, 'price_formated', this.firstSku[0].prices.data.price_formated)}`;
-        },
-
-        selectedPriceText() {
-            if (Object.keys(this.priceObject).length) {
-                return this.selectedPriceMeta.text;
-            }
-
-            return '';
-        },
-
-        selectedPriceMeta() {
-            return createPriceObjects({ basePath: '', pricePath: 'price_formatted' })[this.selectedPrice];
+            return staticPrices;
         },
 
         availability() {
             return _.get(this.validSku, 'days_availability_formated');
+        },
+    },
+
+    watch: {
+        selectedSku(sku) {
+            const productId = this.validProduct?.id || window.data?.product?.data.id;
+
+            if (!productId) {
+                return;
+            }
+
+            this.productPricesParams = sku?.id
+                ? { product_id: productId, sku_id: sku.id }
+                : { product_id: productId };
         },
     },
 };

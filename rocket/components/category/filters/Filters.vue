@@ -52,7 +52,6 @@
 <script>
 import { mapActions } from '~/vuex';
 import queryParams from '@/mixins/queryParams';
-import cacheMixin from '@/mixins/cache';
 import search from '@/modules/axios/search';
 import { builderSearch } from '@/modules/search/searchHelpers';
 
@@ -61,7 +60,6 @@ export default {
 
     mixins: [
         queryParams,
-        cacheMixin,
     ],
 
     props: {
@@ -132,20 +130,7 @@ export default {
             return;
         }
 
-        const cacheData = this.getLocalStorageCache({
-            itemId: this.queryParams.q,
-            itemAlias: 'search_aggs',
-        });
-
         const urlStringParams = new URLSearchParams(window.location.search);
-
-        this.syncUrlParamsWithActiveFilters(urlStringParams);
-
-        if (cacheData && cacheData.aggs) {
-            this.parseAggs({ elasticAggregations: cacheData.aggs });
-
-            return;
-        }
 
         const searchData = await builderSearch.execute(
             search,
@@ -154,15 +139,9 @@ export default {
             },
         );
 
-        this.setLocalStorageCache({
-            itemId: this.queryParams.q,
-            itemAlias: 'search_aggs',
-            data: {
-                aggs: searchData?.aggs,
-            },
-        });
-
         this.parseAggs({ elasticAggregations: searchData.aggs });
+
+        this.syncUrlParamsWithActiveFilters(urlStringParams);
     },
 
     methods: {

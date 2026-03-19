@@ -59,6 +59,11 @@ export default {
     mixins: [productMixin],
 
     props: {
+        shouldScrollOnError: {
+            type: Boolean,
+            default: true,
+        },
+
         variationsStyle: {
             type: String,
             default: 'list',
@@ -202,6 +207,10 @@ export default {
 
             // check if any element has error
             this.selectWithErrors = !!invalidSelects.length;
+
+            if (this.selectWithErrors && this.shouldScrollOnError) {
+                this.smoothScroll(document.body, 0, this.$el.offsetTop - (window.innerHeight / 6));
+            }
 
             return this.selectWithErrors;
         },

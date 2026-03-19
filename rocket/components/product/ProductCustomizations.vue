@@ -78,7 +78,8 @@
             :quantity="quantity"
             :loading-button="loading"
             :disabled="!canAddToCart"
-            @click="addToCart('floating-button')"
+            :price="price"
+            @click="addToCart()"
             @open-stock-notifications-modal="openStockNotificationsModal"
         />
 
@@ -100,7 +101,6 @@ import { mapActions } from '~/vuex';
 import _ from '~/lodash';
 import productMixin from '@/mixins/product';
 import cashbackMixin from '@/mixins/cashback';
-import trackingByApi from '@/mixins/tracking/api';
 
 export default {
     name: 'ProductCustomizations',
@@ -108,7 +108,6 @@ export default {
     mixins: [
         productMixin,
         cashbackMixin,
-        trackingByApi,
     ],
 
     props: {
@@ -155,6 +154,11 @@ export default {
         cashbacks: {
             type: Array,
             default: () => [],
+        },
+
+        price: {
+            type: Object,
+            required: true,
         },
     },
 
@@ -274,7 +278,7 @@ export default {
             this.setSelectedSku(sku);
         },
 
-        async addToCart(locationTrack = 'main-product-buy-button') {
+        async addToCart() {
             this.showErrorMessage = false;
 
             if (!this.selectedSku) {
@@ -330,21 +334,10 @@ export default {
                 extras: { has_recomm, customization, item_metadata },
             });
 
-            const themeParams = window.themeConfig.theme.params;
-
-            this.handleTrackApi('purchase-intended', {
-                location: locationTrack,
-                quick_buy_button_enabled: themeParams.show_add_to_cart_button,
-                product_quantity_updated: this.quantity,
-                items: this.validProduct.name,
-                amount: this.quantity * this.selectedSku.prices.data.price,
-            });
-
             this.loading = false;
         },
 
         openStockNotificationsModal() {
-            this.handleTrackApi('notify_when_available_subscribed_intended');
             this.$refs.stockNotificationsModal.showModal();
         },
     },

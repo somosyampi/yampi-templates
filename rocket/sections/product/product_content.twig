@@ -26,8 +26,8 @@
 
             <div class="main-product-info">
                 <product-info
-                    v-slot="{ sku, availability, warranty, price, formattedPrice, priceTypeText }"
-                    selected-price="{{ pageConfig.data.theme.params.highlight_type_payment | default('promotional') }}"
+                    v-slot="{ sku, availability, warranty, price, selectedPrice, priceText, loadingPrices }"
+                    highlight-type-payment="{{ pageConfig.data.theme.params.highlight_type_payment | default('promotional') }}"
                 >
                     {% if product.data.flags.data|length > 0 %}
                         <div class="holder-flags">
@@ -86,27 +86,39 @@
                     <div class="main-product-prices">
                         {% set price = product.data.prices.data %}
 
-                        <div class="old-price" v-if="price.has_promotion" v-text="price.price_sale_formated">
-                            {{ price.price_sale_formated }}
-                        </div>
+                        <template v-if="loadingPrices">
+                            <loader :height="16" :width="30" class="mb-5"></loader>
+                            <loader :height="36" :width="50"></loader>
+                            <loader :height="14" :width="40" :margin="8"></loader>
+                        </template>
 
-                        <div class="flex">
-                            <div class="actual-price price">
-                                <span v-text="formattedPrice"></span>
-                                <span class="payment-type--product" v-text="priceTypeText"></span>
+                        <template v-else>
+                            <div class="old-price" v-if="price.has_promotion" v-text="price.price_sale_formated">
+                                {{ price.price_sale_formated }}
                             </div>
 
-                            <discount-tag class="-main-product" :value="price.percent_discount"></discount-tag>
-                        </div>
+                            <div class="flex">
+                                <div class="actual-price price">
+                                    <span v-html="selectedPrice"></span>
+                                    <span class="payment-type--product" v-text="priceText"></span>
+                                </div>
 
-                        <installments-text :key="price" :product="{{ product|json_encode }}"></installments-text>
+                                <discount-tag class="-main-product" :value="price.percent_discount"></discount-tag>
+                            </div>
 
-                        {% if section.params.show_all_installments|default(true) %}
-                            <installments
-                                :show-all-installments="{{ section.params.show_all_installments ? 'true' : 'false' }}"
-                                :loader-height="24"
-                            ></installments>
-                        {% endif %}
+                            <installments-text
+                                :product="{{ product|json_encode }}"
+                                :product-prices="price"
+                            ></installments-text>
+
+                            {% if section.params.show_all_installments|default(true) %}
+                                <installments
+                                    :show-all-installments="{{ section.params.show_all_installments ? 'true' : 'false' }}"
+                                    :loader-height="24"
+                                    :product-prices="price"
+                                ></installments>
+                            {% endif %}
+                        </template>
                     </div>
 
                     <product-customizations
@@ -119,6 +131,7 @@
                         :cart-type="{{ pageConfig.data.theme.params.cart_type|json_encode }}"
                         variations-style="{{ section.params.product_variations_style|default('list') }}"
                         :cashbacks="{{ merchantData.cashbacks | json_encode }}"
+                        :price="price"
                     ></product-customizations>
                 </product-info>
             </div>

@@ -4,7 +4,8 @@
 @import "../elements/carousel.scss";
 
 .category-content {
-    .products-search-list {
+    .products-search-list,
+    .products-list {
         margin: 32px 0 0 0;
         flex-wrap: wrap;
         min-width: 893px;

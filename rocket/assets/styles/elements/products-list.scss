@@ -42,6 +42,12 @@
         }
     }
 
+    .splide__slide {
+        .lazy-visibility:not(.is-visible) {
+            min-height: 1px;
+        }
+    }
+
     .owl-theme {
         .owl-nav {
             top: -76px;

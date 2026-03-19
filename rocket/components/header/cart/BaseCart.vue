@@ -1,14 +1,12 @@
 <script>
 import _ from '~/lodash';
 import { mapActions, mapGetters } from '~/vuex';
-import trackingByApi from '@/mixins/tracking/api';
 import cashbackMixin from '@/mixins/cashback';
 
 export default {
     name: 'BaseCart',
 
     mixins: [
-        trackingByApi,
         cashbackMixin,
     ],
 
@@ -194,19 +192,6 @@ export default {
             }
 
             this.setLoading('all', true);
-
-            const themeParams = window.themeConfig.theme.params;
-
-            const eventDispatch = window.merchant.checkout.skip_cart
-                ? 'checkout-intended'
-                : 'view-cart-intended';
-
-            this.handleTrackApi(eventDispatch, {
-                location: 'side-cart',
-                quick_buy_button_enabled: themeParams.show_add_to_cart_button,
-                items: _.map(this.items, 'name'),
-                amount: this.cartValue,
-            });
 
             this.redirectToCart();
 

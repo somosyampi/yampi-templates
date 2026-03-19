@@ -78,6 +78,11 @@ export default {
             type: Object,
             required: true,
         },
+
+        productPrices: {
+            type: Object,
+            default: null,
+        },
     },
 
     data() {
@@ -108,10 +113,6 @@ export default {
         },
     },
 
-    created() {
-        this.handleSelectCard(this.selectedAlias);
-    },
-
     methods: {
         get: _.get,
 
@@ -136,6 +137,7 @@ export default {
         },
 
         showModal() {
+            this.handleSelectCard(this.selectedAlias);
             this.$refs.installmentsBaseModal.showModal();
         },
 

@@ -27,11 +27,6 @@ export default {
     extends: BaseInstallments,
 
     props: {
-        price: {
-            type: Number,
-            default: null,
-        },
-
         product: {
             type: Object,
             required: true,
@@ -56,7 +51,9 @@ export default {
         },
 
         hasTaxes() {
-            return this.installmentsData.installments.some(installment => installment.tax_value > 0);
+            return this.installmentsData.installments.some(
+                installment => installment.tax_value > 0,
+            );
         },
 
         installmentsData() {
@@ -72,7 +69,7 @@ export default {
         },
 
         shouldShowInstallments() {
-            return this.storeModules.new_search && !!this.installmentsData && !!this.defaultCard;
+            return !!this.installmentsData && !!this.defaultCard;
         },
 
         installmentText() {
@@ -109,6 +106,10 @@ export default {
     methods: {
         async loadInstallments(selectedCardAlias) {
             try {
+                if (this.installmentsData || this.loading) {
+                    return;
+                }
+
                 this.installments = await this.handleInstallments(selectedCardAlias);
             } catch (e) {
                 console.error(e);

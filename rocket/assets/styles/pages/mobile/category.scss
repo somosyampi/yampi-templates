@@ -88,11 +88,12 @@
     }
 
     .selected-filters {
-        margin: 20px 0;
+        margin: 20px 12px;
     }
 
     .category-content {
-        .products-search-list {
+        .products-search-list,
+        .products-list {
             margin: 0;
             padding: 0 16px;
             min-width: 100vw;

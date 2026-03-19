@@ -1,10 +1,10 @@
-function v(r, e, n, s, i, d, p, g) {
+function v(r, e, a, s, i, d, p, _) {
   var t = typeof r == "function" ? r.options : r;
-  e && (t.render = e, t.staticRenderFns = n, t._compiled = !0), s && (t.functional = !0), d && (t._scopeId = "data-v-" + d);
+  e && (t.render = e, t.staticRenderFns = a, t._compiled = !0), s && (t.functional = !0), d && (t._scopeId = "data-v-" + d);
   var o;
-  if (p ? (o = function(a) {
-    a = a || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !a && typeof __VUE_SSR_CONTEXT__ < "u" && (a = __VUE_SSR_CONTEXT__), i && i.call(this, a), a && a._registeredComponents && a._registeredComponents.add(p);
-  }, t._ssrRegister = o) : i && (o = g ? function() {
+  if (p ? (o = function(n) {
+    n = n || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !n && typeof __VUE_SSR_CONTEXT__ < "u" && (n = __VUE_SSR_CONTEXT__), i && i.call(this, n), n && n._registeredComponents && n._registeredComponents.add(p);
+  }, t._ssrRegister = o) : i && (o = _ ? function() {
     i.call(
       this,
       (t.functional ? this.parent : this).$root.$options.shadowRoot
@@ -12,13 +12,13 @@ function v(r, e, n, s, i, d, p, g) {
   } : i), o)
     if (t.functional) {
       t._injectStyles = o;
-      var _ = t.render;
-      t.render = function(h, f) {
-        return o.call(f), _(h, f);
+      var g = t.render;
+      t.render = function(h, c) {
+        return o.call(c), g(h, c);
       };
     } else {
-      var c = t.beforeCreate;
-      t.beforeCreate = c ? [].concat(c, o) : [o];
+      var f = t.beforeCreate;
+      t.beforeCreate = f ? [].concat(f, o) : [o];
     }
   return {
     exports: r,
@@ -96,37 +96,37 @@ const m = {
   }
 };
 var w = function() {
-  var e = this, n = e._self._c;
-  return n("div", { staticClass: "products-list" }, [e.ready ? n(e.tagOrDiv("splide"), { tag: "component", class: {
+  var e = this, a = e._self._c;
+  return a("div", { staticClass: "products-list" }, [e.ready ? a(e.tagOrDiv("splide"), { tag: "component", class: {
     "flex -wrap": !e.carousel,
     "single-per-line": e.isMobile && e.productsPerLine === 1,
     "-no-pagination": e.carousel && e.products.length <= e.productsPerPage
-  }, attrs: { options: e.carousel ? e.carouselOptions : null, slides: e.carousel ? e.products : null } }, [e._l(e.products, function(s) {
-    return n(e.tagOrDiv("splide-slide"), { key: s.id, tag: "component", class: {
+  }, attrs: { options: e.carousel ? e.carouselOptions : null, slides: e.carousel ? e.products : null } }, e._l(e.products, function(s) {
+    return a(e.tagOrDiv("splide-slide"), { key: s.id, tag: "component", class: {
       "box-product-wrapper": !e.carousel,
       "-loading": e.loading
     } }, [e._t("default", null, { product: s, loading: e.loading })], 2);
-  }), n(e.tagOrDiv("li"), { tag: "component", staticClass: "box-product-wrapper -clear" }), n(e.tagOrDiv("li"), { tag: "component", staticClass: "box-product-wrapper -clear" }), n(e.tagOrDiv("li"), { tag: "component", staticClass: "box-product-wrapper -clear" })], 2) : e._e()], 1);
-}, b = [], y = /* @__PURE__ */ v(
+  }), 1) : e._e()], 1);
+}, y = [], P = /* @__PURE__ */ v(
   m,
   w,
-  b,
+  y,
   !1,
   null,
   null,
   null,
   null
 );
-const C = y.exports;
+const b = P.exports;
 function u(r) {
-  u.installed || (u.installed = !0, r.component("ProductsList", C));
+  u.installed || (u.installed = !0, r.component("ProductsList", b));
 }
-const P = {
+const C = {
   install: u
 };
 let l = null;
 typeof window < "u" ? l = window.Vue : typeof global < "u" && (l = global.Vue);
-l && l.use(P);
+l && l.use(C);
 export {
-  C as default
+  b as default
 };

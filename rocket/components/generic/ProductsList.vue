@@ -25,19 +25,6 @@
                     :loading="loading"
                 />
             </component>
-
-            <component
-                :is="tagOrDiv('li')"
-                class="box-product-wrapper -clear"
-            />
-            <component
-                :is="tagOrDiv('li')"
-                class="box-product-wrapper -clear"
-            />
-            <component
-                :is="tagOrDiv('li')"
-                class="box-product-wrapper -clear"
-            />
         </component>
     </div>
 </template>

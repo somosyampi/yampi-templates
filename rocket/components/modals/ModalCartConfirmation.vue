@@ -58,14 +58,10 @@
 
 <script>
 import { mapActions, mapGetters } from '~/vuex';
-import _ from '~/lodash';
-import trackingByApi from '@/mixins/tracking/api';
 import eventBus from '@/modules/eventBus';
 
 export default {
     name: 'ModalCartConfirmation',
-
-    mixins: [trackingByApi],
 
     props: {
         error: {
@@ -113,7 +109,6 @@ export default {
         },
 
         handleKeepBuying() {
-            this.handleTrackApi('keep-buying-clicked');
             this.closeModal();
         },
 
@@ -121,15 +116,6 @@ export default {
             if (this.isIframe) {
                 this.closeModal();
             }
-
-            const themeParams = window.themeConfig.theme.params;
-
-            await this.handleTrackApi('checkout-intended', {
-                location: 'modal-cart-confirm',
-                quick_buy_button_enabled: themeParams.show_add_to_cart_button,
-                items: _.map(this.cart.items, 'name'),
-                amount: _.sumBy(this.cart.items, 'price_total'),
-            });
 
             this.redirectToCart();
         },
