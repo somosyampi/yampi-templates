@@ -73,7 +73,7 @@
                 }
 
                 .box-product {
-                    & > a {
+                    .product-card > a {
                         width: 100%;
                         height: 100%;
                         display: flex;
@@ -99,7 +99,7 @@
                 max-height: unset;
 
                 .box-product {
-                    & > a {
+                    .product-card > a {
                         width: 100%;
                         display: flex;
                         flex-wrap: wrap;
@@ -175,7 +175,6 @@
         }
 
         .box-product {
-            display: flex;
             max-width: 100%;
             height: 100%;
             margin: 0;
@@ -288,7 +287,7 @@
                             }
                         }
 
-                        & > a {
+                        .product-card > a {
                             gap: 10px 13px;
                         }
 

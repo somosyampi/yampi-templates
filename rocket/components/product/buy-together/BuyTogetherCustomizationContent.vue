@@ -37,7 +37,6 @@
 
 <script>
 import _ from '~/lodash';
-import { mapActions, mapGetters } from '~/vuex';
 import { smoothScroll } from '@/mixins/helpers';
 
 export default {
@@ -48,6 +47,11 @@ export default {
             type: Object,
             default: () => {},
         },
+
+        customizedProducts: {
+            type: Object,
+            required: true,
+        },
     },
 
     data() {
@@ -57,8 +61,6 @@ export default {
     },
 
     computed: {
-        ...mapGetters('buyTogether', ['customizedProducts']),
-
         skuImageUrl() {
             return this.sku.images.data.length ? this.sku.images.data[0].url : '';
         },
@@ -75,7 +77,9 @@ export default {
 
     mounted() {
         if (!this.sku.allow_sell_without_customization && !this.customizedProducts[this.sku.id]) {
-            this.$refs.customizationContent.updateAllCustomizations('');
+            if (this.$refs.customizationContent) {
+                this.$refs.customizationContent.updateAllCustomizations('');
+            }
         }
 
         if (this.customizedProducts[this.sku.id]) {
@@ -85,8 +89,6 @@ export default {
     },
 
     methods: {
-        ...mapActions('buyTogether', ['addSkuCustomization', 'removeCustomization']),
-
         smoothScroll,
     },
 };

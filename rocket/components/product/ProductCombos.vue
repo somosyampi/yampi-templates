@@ -17,13 +17,11 @@
         <Combo
             v-for="combo in payload"
             :key="combo.id"
-            :current-combo-key="currentComboId"
             :combo="combo"
             :buy-button-text="buyButtonText"
             :show-modal-after-purchase="showModalAfterPurchase"
             :center="center"
             :highlight-type-payment="highlightTypePayment"
-            @updateCurrentComboKey="updateComboKey"
         />
     </section>
 </template>
@@ -66,7 +64,6 @@ export default {
 
     data: () => ({
         route: 'combos?expired=false',
-        currentComboId: '',
     }),
 
     watch: {
@@ -77,10 +74,6 @@ export default {
 
     methods: {
         ...mapMutations('buyTogether', ['SET_COMBOS']),
-
-        updateComboKey(currentComboKey) {
-            this.currentComboId = currentComboKey;
-        },
     },
 };
 </script>

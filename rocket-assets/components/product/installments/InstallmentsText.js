@@ -1,45 +1,107 @@
 import v from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/vue-debounce.js";
 import I from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
 import { mapGetters as g } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/vuex.js";
-import T from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/components/product/installments/BaseInstallments.js";
-function w(t, e, s, f, i, m, d, c) {
-    var n = typeof t == "function" ? t.options : t;
-    e && (n.render = e, n.staticRenderFns = s, n._compiled = !0), f && (n.functional = !0), m && (n._scopeId = "data-v-" + m);
-    var a;
-    if (d ? (a = function (l) {
-        l = l || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !l && typeof __VUE_SSR_CONTEXT__ < "u" && (l = __VUE_SSR_CONTEXT__), i && i.call(this, l), l && l._registeredComponents && l._registeredComponents.add(d);
-    }, n._ssrRegister = a) : i && (a = c ? function () {
-        i.call(
+import w from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/components/product/installments/BaseInstallments.js";
+function C(t, n, s, f, a, d, m, c) {
+    var e = typeof t == "function" ? t.options : t;
+    n && (e.render = n, e.staticRenderFns = s, e._compiled = !0), f && (e.functional = !0), d && (e._scopeId = "data-v-" + d);
+    var i;
+    if (m ? (i = function (l) {
+        l = l || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !l && typeof __VUE_SSR_CONTEXT__ < "u" && (l = __VUE_SSR_CONTEXT__), a && a.call(this, l), l && l._registeredComponents && l._registeredComponents.add(m);
+    }, e._ssrRegister = i) : a && (i = c ? function () {
+        a.call(
             this,
-            (n.functional ? this.parent : this).$root.$options.shadowRoot
+            (e.functional ? this.parent : this).$root.$options.shadowRoot
         );
-    } : i), a)
-        if (n.functional) {
-            n._injectStyles = a;
-            var p = n.render;
-            n.render = function (_, h) {
-                return a.call(h), p(_, h);
+    } : a), i)
+        if (e.functional) {
+            e._injectStyles = i;
+            var p = e.render;
+            e.render = function (_, h) {
+                return i.call(h), p(_, h);
             };
         } else {
-            var u = n.beforeCreate;
-            n.beforeCreate = u ? [].concat(u, a) : [a];
+            var u = e.beforeCreate;
+            e.beforeCreate = u ? [].concat(u, i) : [i];
         }
     return {
         exports: t,
-        options: n
+        options: e
     };
 }
-const x = {
+const y = {
     name: "InstallmentsText",
-    extends: T,
+    extends: w,
     props: {
         product: {
             type: Object,
             required: !0
         },
-        productPrices: {
-            type: Object,
-            default: null
+        computed: {
+            ...g("merchant", [
+                "storeModules",
+                "defaultCard"
+            ]),
+            isSku() {
+                return !this.product.id && !I.isNil(this.validSku);
+            },
+            hasTaxes() {
+                return this.installmentsData.installments.some(
+                    (t) => t.tax_value > 0
+                );
+            },
+            installmentsData() {
+                var t;
+                return (t = this.productPrices) == null ? void 0 : t.installments_data;
+            },
+            taxesText() {
+                return this.hasTaxes ? "*" : "sem juros";
+            },
+            shouldShowInstallments() {
+                return !!this.installmentsData && !!this.defaultCard;
+            },
+            installmentText() {
+                var e, s;
+                return (s = (e = this.installmentsData) == null ? void 0 : e.installments) != null && s.length ? this.installmentsData.installments[this.installmentsData.installments.length - 1].text : " ";
+            }
+        },
+        mounted() {
+            this.storeModules.new_search || (this.validProduct && this.showAllInstallments && this.validProduct.has_variations && this.$watch("validSku", () => this.loadInstallments()), this.isInViewport(this.$refs.installmentText) || !this.installments.installments ? this.loadInstallments() : this.lazyLoadInstallment());
+        },
+        methods: {
+            async loadInstallments(t) {
+                try {
+                    if (this.installmentsData || this.loading)
+                        return;
+                    this.installments = await this.handleInstallments(t);
+                } catch (e) {
+                    console.error(e);
+                } finally {
+                    this.loading = !1;
+                }
+            },
+            lazyLoadInstallment() {
+                document.addEventListener(
+                    "scroll",
+                    v(() => {
+                        !this.lazyLoaded && this.isInViewport(this.$refs.installmentText) && (this.lazyLoaded = !0, this.loadInstallments());
+                    }, 40),
+                    { passive: !0 }
+                );
+            },
+            formattedInstallmentText() {
+                if (!this.installments.installments || !this.installments.installments.length)
+                    return " ";
+                const t = this.installments.installments[this.installments.installments.length - 1], e = t.installment_value_formated || this.$formatMoney(t.installment_value);
+                let s = `${t.installment}x de <span class="price">${e}</span>`;
+                return t.text.includes("sem juros") && (s += ' <span class="-free-tax">sem juros</span>'), s;
+            },
+            isInViewport(t) {
+                if (!t)
+                    return !0;
+                const e = t.getBoundingClientRect(), s = (window.innerHeight || document.documentElement.clientHeight) + 30;
+                return e.top >= 0 && e.bottom <= s;
+            }
         }
     },
     computed: {
@@ -50,24 +112,16 @@ const x = {
         isSku() {
             return !this.product.id && !I.isNil(this.validSku);
         },
-        hasTaxes() {
-            return this.installmentsData.installments.some(
-                (t) => t.tax_value > 0
-            );
-        },
         installmentsData() {
             var t;
             return (t = this.productPrices) == null ? void 0 : t.installments_data;
-        },
-        taxesText() {
-            return this.hasTaxes ? "*" : "sem juros";
         },
         shouldShowInstallments() {
             return !!this.installmentsData && !!this.defaultCard;
         },
         installmentText() {
-            var e, s;
-            return (s = (e = this.installmentsData) == null ? void 0 : e.installments) != null && s.length ? this.installmentsData.installments[this.installmentsData.installments.length - 1].text : " ";
+            var n, s;
+            return (s = (n = this.installmentsData) == null ? void 0 : n.installments) != null && s.length ? this.installmentsData.installments[this.installmentsData.installments.length - 1].text.replace("*", "").trim() : " ";
         }
     },
     mounted() {
@@ -79,8 +133,8 @@ const x = {
                 if (this.installmentsData || this.loading)
                     return;
                 this.installments = await this.handleInstallments(t);
-            } catch (e) {
-                console.error(e);
+            } catch (n) {
+                console.error(n);
             } finally {
                 this.loading = !1;
             }
@@ -97,34 +151,34 @@ const x = {
         formattedInstallmentText() {
             if (!this.installments.installments || !this.installments.installments.length)
                 return " ";
-            const t = this.installments.installments[this.installments.installments.length - 1], e = t.installment_value_formated || this.$formatMoney(t.installment_value);
-            let s = `${t.installment}x de <span class="price">${e}</span>`;
+            const t = this.installments.installments[this.installments.installments.length - 1], n = t.installment_value_formated || this.$formatMoney(t.installment_value);
+            let s = `${t.installment}x de <span class="price">${n}</span>`;
             return t.text.includes("sem juros") && (s += ' <span class="-free-tax">sem juros</span>'), s;
         },
         isInViewport(t) {
             if (!t)
                 return !0;
-            const e = t.getBoundingClientRect(), s = (window.innerHeight || document.documentElement.clientHeight) + 30;
-            return e.top >= 0 && e.bottom <= s;
+            const n = t.getBoundingClientRect(), s = (window.innerHeight || document.documentElement.clientHeight) + 30;
+            return n.top >= 0 && n.bottom <= s;
         }
     }
 };
-var C = function () {
-    var e = this, s = e._self._c;
-    return s("LazyVisibility", { staticClass: "installments-text" }, [e.shouldShowInstallments ? s("div", { staticClass: "installment-text", domProps: { innerHTML: e._s(e.installmentText) } }) : s("div", { staticClass: "installment-text", class: { "-loading": e.loading }, domProps: { innerHTML: e._s(e.formattedInstallmentText()) } })]);
-}, y = [], $ = /* @__PURE__ */ w(
-    x,
-    C,
+var T = function () {
+    var n = this, s = n._self._c;
+    return s("LazyVisibility", { staticClass: "installments-text" }, [n.shouldShowInstallments ? s("div", { staticClass: "installment-text", domProps: { innerHTML: n._s(n.installmentText) } }) : s("div", { staticClass: "installment-text", class: { "-loading": n.loading }, domProps: { innerHTML: n._s(n.formattedInstallmentText()) } })]);
+}, $ = [], b = /* @__PURE__ */ C(
     y,
+    T,
+    $,
     !1,
     null,
     null,
     null,
     null
 );
-const b = $.exports;
+const x = b.exports;
 function o(t) {
-    o.installed || (o.installed = !0, t.component("InstallmentsText", b));
+    o.installed || (o.installed = !0, t.component("InstallmentsText", x));
 }
 const V = {
     install: o
@@ -133,5 +187,5 @@ let r = null;
 typeof window < "u" ? r = window.Vue : typeof global < "u" && (r = global.Vue);
 r && r.use(V);
 export {
-    b as default
+    x as default
 };

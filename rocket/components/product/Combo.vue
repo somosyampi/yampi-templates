@@ -78,11 +78,16 @@
             </div>
 
             <BuyTogetherCustomization
-                v-if="productsForCustomization.length && combo.id === currentCombo"
+                v-if="productsForCustomization.length"
                 ref="BuyTogether"
                 class="ma-2"
+                :products-for-customization="productsForCustomization"
+                :customized-products="customizedProducts"
+                :combo-id="combo.id"
                 @click="handleBuyTogetherCustomization"
                 @save="handleSave"
+                @addSkuCustomization="addSkuCustomization"
+                @resetCustomizations="resetCustomizations"
             />
 
             <LoaderButton
@@ -97,7 +102,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from '~/vuex';
+import { mapActions } from '~/vuex';
 import _ from '~/lodash';
 import Vue from '~/vue';
 import { createPriceObjects } from '@/mixins/helpers';
@@ -140,16 +145,12 @@ export default {
             invalidSelectedPrice: false,
             imageUrl: Vue.observable({}),
             productId: false,
+            productsForCustomization: [],
+            customizedProducts: {},
         };
     },
 
     computed: {
-        ...mapGetters('buyTogether', [
-            'productsForCustomization',
-            'customizedProducts',
-            'currentCombo',
-        ]),
-
         url() {
             if (!this.imageUrl) {
                 return this.products[0].skus.data[0].images.data[0].url;
@@ -191,14 +192,28 @@ export default {
                     tempSku = _.get(this.products, `${index}.skus.data.0`);
                 }
 
-                const defaultPrice = _.get(tempSku, 'prices.data.price', 0);
+                const basePrice = _.get(tempSku, 'prices.data.price', 0);
                 const selectedPrice = _.get(tempSku, this.price.path, false);
 
                 if (!selectedPrice) {
                     this.invalidSelectedPrice = true;
                 }
 
-                return acc + _.get(tempSku, this.price.path, defaultPrice);
+                return acc + basePrice;
+            }, 0);
+        },
+
+        paymentMethodPrice() {
+            return this.selectedSkus.reduce((acc, sku, index) => {
+                let tempSku = sku;
+
+                if (!tempSku) {
+                    tempSku = _.get(this.products, `${index}.skus.data.0`);
+                }
+
+                const basePrice = _.get(tempSku, 'prices.data.price', 0);
+
+                return acc + _.get(tempSku, this.price.path, basePrice);
             }, 0);
         },
 
@@ -210,7 +225,13 @@ export default {
                 v: 1,
             };
 
-            return this.fullPrice - discountValue * factors[discountType];
+            const priceAfterCombo = this.fullPrice - discountValue * factors[discountType];
+
+            if (this.fullPrice > 0 && this.paymentMethodPrice < this.fullPrice) {
+                return priceAfterCombo * (this.paymentMethodPrice / this.fullPrice);
+            }
+
+            return priceAfterCombo;
         },
 
         discountTotal() {
@@ -251,16 +272,6 @@ export default {
         },
     },
 
-    watch: {
-        currentCombo(newValue) {
-            if (newValue !== this.combo.id) {
-                this.$refs.SelectSkuRef.forEach(el => {
-                    el.bootSelected();
-                });
-            }
-        },
-    },
-
     mounted() {
         this.setSelectedSkus();
     },
@@ -268,24 +279,23 @@ export default {
     methods: {
         ...mapActions('cart', ['addProductsToCart']),
 
-        ...mapActions('buyTogether', [
-            'addSkuToCustomize',
-            'updateSkusToCustomize',
-            'setCombo',
-            'reset',
-        ]),
+        updateSkusToCustomize(skus) {
+            this.productsForCustomization = skus;
+        },
+
+        addSkuCustomization(payload) {
+            this.customizedProducts = { ...this.customizedProducts, ...payload };
+        },
+
+        resetCustomizations() {
+            this.customizedProducts = {};
+        },
 
         changeVariationImage(imageUrl) {
             Vue.set(this.imageUrl, imageUrl.productId, imageUrl.imageUrl);
         },
 
         handleSave() {
-            this.$refs.SelectSkuRef.forEach(el => {
-                if (el.$refs.customSelect) {
-                    el.verifySelect();
-                }
-            });
-
             this.$refs.BuyTogether.checkError();
         },
 
@@ -302,20 +312,35 @@ export default {
 
             this.$set(this.imageUrl, selectedSku.product_id, images.data[0].url);
 
-            this.setCombo(this.combo.id);
+            const updatedSkus = [...this.selectedSkus];
+            updatedSkus[index] = selectedSku;
+            this.selectedSkus = updatedSkus;
 
-            this.$emit('updateCurrentComboKey', this.combo.id);
+            this.updateSkusToCustomize(
+                updatedSkus.filter(sku => sku && sku.customizations.data.length),
+            );
 
-            this.$set(this.selectedSkus, index, selectedSku);
-
-            this.updateSkusToCustomize({
-                index,
-                skus: this.selectedSkus.filter(sku => sku && sku.customizations.data.length),
-            });
+            if (this.$refs.BuyTogether) {
+                this.$refs.BuyTogether.checkError();
+            }
         },
 
         setSelectedSkus() {
-            this.selectedSkus = this.products.map(product => _.get(product, 'skus.data.0'));
+            const skusWithCustomization = [];
+
+            this.selectedSkus = this.products.map(product => {
+                const [firstSku] = product.skus.data;
+
+                if (product.simple && firstSku.customizations.data.length) {
+                    skusWithCustomization.push(firstSku);
+                }
+
+                return firstSku;
+            });
+
+            if (skusWithCustomization.length) {
+                this.updateSkusToCustomize(skusWithCustomization);
+            }
         },
 
         handleBuyTogetherCustomization() {
