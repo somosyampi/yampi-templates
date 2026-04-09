@@ -1,5 +1,5 @@
-import C from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
-import { smoothScroll as k } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/helpers.js";
+import C from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/lodash.js";
+import { smoothScroll as k } from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/helpers.js";
 function v(i, t, s, u, r, d, f, h) {
   var e = typeof i == "function" ? i.options : i;
   t && (e.render = t, e.staticRenderFns = s, e._compiled = !0), u && (e.functional = !0), d && (e._scopeId = "data-v-" + d);
