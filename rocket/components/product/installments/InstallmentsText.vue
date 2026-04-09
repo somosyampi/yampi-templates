@@ -50,22 +50,8 @@ export default {
             return !this.product.id && !_.isNil(this.validSku);
         },
 
-        hasTaxes() {
-            return this.installmentsData.installments.some(
-                installment => installment.tax_value > 0,
-            );
-        },
-
         installmentsData() {
             return this.productPrices?.installments_data;
-        },
-
-        taxesText() {
-            if (!this.hasTaxes) {
-                return 'sem juros';
-            }
-
-            return '*';
         },
 
         shouldShowInstallments() {
@@ -81,7 +67,7 @@ export default {
                 this.installmentsData.installments.length - 1
             ];
 
-            return lastInstallment.text;
+            return lastInstallment.text.replace('*', '').trim();
         },
     },
 
