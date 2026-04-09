@@ -1,35 +1,35 @@
-import { mapGetters as C, mapActions as p } from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/vuex.js";
-import u from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/lodash.js";
-import g from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/vue.js";
-import { createPriceObjects as b } from "https://openstore-production-assets.yampi.io/yampi-templates-main/rocket-assets/dist/vendor/mixins/helpers.js";
-function S(e, t, s, i, o, l, h, _) {
-  var r = typeof e == "function" ? e.options : e;
-  t && (r.render = t, r.staticRenderFns = s, r._compiled = !0), i && (r.functional = !0), l && (r._scopeId = "data-v-" + l);
+import { mapActions as y } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/vuex.js";
+import a from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/lodash.js";
+import p from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/vue.js";
+import { createPriceObjects as v } from "https://codigo-aberto-sandbox-assets.yampi.io/yampi-templates-sandbox/rocket-assets/dist/vendor/mixins/helpers.js";
+function S(e, t, s, i, r, c, h, g) {
+  var o = typeof e == "function" ? e.options : e;
+  t && (o.render = t, o.staticRenderFns = s, o._compiled = !0), i && (o.functional = !0), c && (o._scopeId = "data-v-" + c);
   var n;
-  if (h ? (n = function(a) {
-    a = a || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !a && typeof __VUE_SSR_CONTEXT__ < "u" && (a = __VUE_SSR_CONTEXT__), o && o.call(this, a), a && a._registeredComponents && a._registeredComponents.add(h);
-  }, r._ssrRegister = n) : o && (n = _ ? function() {
-    o.call(
+  if (h ? (n = function(u) {
+    u = u || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !u && typeof __VUE_SSR_CONTEXT__ < "u" && (u = __VUE_SSR_CONTEXT__), r && r.call(this, u), u && u._registeredComponents && u._registeredComponents.add(h);
+  }, o._ssrRegister = n) : r && (n = g ? function() {
+    r.call(
       this,
-      (r.functional ? this.parent : this).$root.$options.shadowRoot
+      (o.functional ? this.parent : this).$root.$options.shadowRoot
     );
-  } : o), n)
-    if (r.functional) {
-      r._injectStyles = n;
-      var v = r.render;
-      r.render = function(y, m) {
-        return n.call(m), v(y, m);
+  } : r), n)
+    if (o.functional) {
+      o._injectStyles = n;
+      var _ = o.render;
+      o.render = function(C, m) {
+        return n.call(m), _(C, m);
       };
     } else {
-      var f = r.beforeCreate;
-      r.beforeCreate = f ? [].concat(f, n) : [n];
+      var f = o.beforeCreate;
+      o.beforeCreate = f ? [].concat(f, n) : [n];
     }
   return {
     exports: e,
-    options: r
+    options: o
   };
 }
-const k = {
+const b = {
   name: "Combo",
   props: {
     combo: {
@@ -59,21 +59,18 @@ const k = {
       selectedSkus: [],
       invalidFormClass: !1,
       invalidSelectedPrice: !1,
-      imageUrl: g.observable({}),
-      productId: !1
+      imageUrl: p.observable({}),
+      productId: !1,
+      productsForCustomization: [],
+      customizedProducts: {}
     };
   },
   computed: {
-    ...C("buyTogether", [
-      "productsForCustomization",
-      "customizedProducts",
-      "currentCombo"
-    ]),
     url() {
       return this.imageUrl ? this.imageUrl : this.products[0].skus.data[0].images.data[0].url;
     },
     products() {
-      return u.get(this.combo, "products.data", []);
+      return a.get(this.combo, "products.data", []);
     },
     threeProducts() {
       return this.products.length === 3;
@@ -87,22 +84,30 @@ const k = {
       return this.products.length === this.selectedSkus.length && this.selectedSkus.every((e) => e);
     },
     price() {
-      return b({ basePath: "prices.data.", pricePath: "price" })[this.highlightTypePayment];
+      return v({ basePath: "prices.data.", pricePath: "price" })[this.highlightTypePayment];
     },
     fullPrice() {
       return this.selectedSkus.reduce((e, t, s) => {
         let i = t;
-        i || (i = u.get(this.products, `${s}.skus.data.0`));
-        const o = u.get(i, "prices.data.price", 0);
-        return u.get(i, this.price.path, !1) || (this.invalidSelectedPrice = !0), e + u.get(i, this.price.path, o);
+        i || (i = a.get(this.products, `${s}.skus.data.0`));
+        const r = a.get(i, "prices.data.price", 0);
+        return a.get(i, this.price.path, !1) || (this.invalidSelectedPrice = !0), e + r;
+      }, 0);
+    },
+    paymentMethodPrice() {
+      return this.selectedSkus.reduce((e, t, s) => {
+        let i = t;
+        i || (i = a.get(this.products, `${s}.skus.data.0`));
+        const r = a.get(i, "prices.data.price", 0);
+        return e + a.get(i, this.price.path, r);
       }, 0);
     },
     priceWithDiscount() {
-      const e = u.get(this.combo, "discount_value", 0), t = u.get(this.combo, "discount_type", "v"), s = {
+      const e = a.get(this.combo, "discount_value", 0), t = a.get(this.combo, "discount_type", "v"), s = {
         p: this.fullPrice / 100,
         v: 1
-      };
-      return this.fullPrice - e * s[t];
+      }, i = this.fullPrice - e * s[t];
+      return this.fullPrice > 0 && this.paymentMethodPrice < this.fullPrice ? i * (this.paymentMethodPrice / this.fullPrice) : i;
     },
     discountTotal() {
       return this.fullPrice - this.priceWithDiscount;
@@ -118,49 +123,50 @@ const k = {
       return Object.keys(this.customizedProducts).forEach((t) => {
         (this.customizedProducts[t].isMandatory || this.customizedProducts[t].isPersonalized) && (e = {
           ...e,
-          [t]: u.omit(this.customizedProducts[t], ["isPersonalized", "isMandatory"])
+          [t]: a.omit(this.customizedProducts[t], ["isPersonalized", "isMandatory"])
         });
       }), e;
-    }
-  },
-  watch: {
-    currentCombo(e) {
-      e !== this.combo.id && this.$refs.SelectSkuRef.forEach((t) => {
-        t.bootSelected();
-      });
     }
   },
   mounted() {
     this.setSelectedSkus();
   },
   methods: {
-    ...p("cart", ["addProductsToCart"]),
-    ...p("buyTogether", [
-      "addSkuToCustomize",
-      "updateSkusToCustomize",
-      "setCombo",
-      "reset"
-    ]),
+    ...y("cart", ["addProductsToCart"]),
+    updateSkusToCustomize(e) {
+      this.productsForCustomization = e;
+    },
+    addSkuCustomization(e) {
+      this.customizedProducts = { ...this.customizedProducts, ...e };
+    },
+    resetCustomizations() {
+      this.customizedProducts = {};
+    },
     changeVariationImage(e) {
-      g.set(this.imageUrl, e.productId, e.imageUrl);
+      p.set(this.imageUrl, e.productId, e.imageUrl);
     },
     handleSave() {
-      this.$refs.SelectSkuRef.forEach((e) => {
-        e.$refs.customSelect && e.verifySelect();
-      }), this.$refs.BuyTogether.checkError();
+      this.$refs.BuyTogether.checkError();
     },
     getIcon(e) {
       return e + 1 === this.products.length ? "equal" : "plus";
     },
     updateSelectedSkus(e, t) {
       const { images: s } = t;
-      s.data[0] !== void 0 && (this.$set(this.imageUrl, t.product_id, s.data[0].url), this.setCombo(this.combo.id), this.$emit("updateCurrentComboKey", this.combo.id), this.$set(this.selectedSkus, e, t), this.updateSkusToCustomize({
-        index: e,
-        skus: this.selectedSkus.filter((i) => i && i.customizations.data.length)
-      }));
+      if (s.data[0] === void 0)
+        return;
+      this.$set(this.imageUrl, t.product_id, s.data[0].url);
+      const i = [...this.selectedSkus];
+      i[e] = t, this.selectedSkus = i, this.updateSkusToCustomize(
+        i.filter((r) => r && r.customizations.data.length)
+      ), this.$refs.BuyTogether && this.$refs.BuyTogether.checkError();
     },
     setSelectedSkus() {
-      this.selectedSkus = this.products.map((e) => u.get(e, "skus.data.0"));
+      const e = [];
+      this.selectedSkus = this.products.map((t) => {
+        const [s] = t.skus.data;
+        return t.simple && s.customizations.data.length && e.push(s), s;
+      }), e.length && this.updateSkusToCustomize(e);
     },
     handleBuyTogetherCustomization() {
       this.allSkusAreValid ? this.$refs.BuyTogether.handleCustomization() : this.$refs.SelectSkuRef.forEach((e) => {
@@ -181,35 +187,35 @@ const k = {
     }
   }
 };
-var T = function() {
+var k = function() {
   var t = this, s = t._self._c;
-  return s("div", { staticClass: "buy-together-offer flex -between", class: { "-three": t.threeProducts, "-center-box": t.center } }, [t._l(t.products, function(i, o) {
-    return [s("div", { key: i.id, staticClass: "buy-together-product" }, [s("a", { staticClass: "-clean", attrs: { href: i.url_path } }, [s("div", [s("CustomImage", { key: t.url[i.id] ? t.url[i.id] : t.$get(i, "images.data.0.url"), staticClass: "-loading", attrs: { src: t.url[i.id] ? t.url[i.id] : t.$get(i, "images.data.0.url"), alt: i.name, thumbor: t.thumborFilters, width: "200", height: "200" } })], 1), s("div", { staticClass: "buy-together-quantity" }, [t._v(" 1 unidade ")]), s("div", { staticClass: "buy-together-product-name" }, [s("p", [t._v(t._s(i.name))])])]), s("SelectSku", { ref: "SelectSkuRef", refInFor: !0, attrs: { product: i }, on: { update: function(l) {
-      return t.updateSelectedSkus(o, l);
-    }, updateVariation: t.changeVariationImage } })], 1), s("div", { key: `${i.id}-icon`, class: `buy-together-${t.getIcon(o)}` }, [s("i", { staticClass: "icon", class: `icon-big-${t.getIcon(o)}` })])];
-  }), s("div", { staticClass: "buy-together-total" }, [t.discountTotal > 0 ? s("div", { staticClass: "total-value" }, [t._v(" Valor total: "), s("span", { staticClass: "old-price" }, [t._v(" " + t._s(t._f("formatMoney")(t.fullPrice)) + " ")])]) : t._e(), s("div", { staticClass: "final-value price" }, [t._v(" " + t._s(t._f("formatMoney")(t.priceWithDiscount)) + " "), s("br"), t.invalidSelectedPrice ? t._e() : s("span", { staticClass: "payment-type" }, [t._v(" " + t._s(t.price.text))])]), t.discountTotal > 0 ? s("div", { staticClass: "discount-value" }, [t._v(" Economize " + t._s(t._f("formatMoney")(t.discountTotal)) + " ")]) : t._e(), t.productsForCustomization.length && t.combo.id === t.currentCombo ? s("BuyTogetherCustomization", { ref: "BuyTogether", staticClass: "ma-2", on: { click: t.handleBuyTogetherCustomization, save: t.handleSave } }) : t._e(), s("LoaderButton", { staticClass: "btn btn-primary mt-14", staticStyle: { width: "100%" }, attrs: { sending: t.loading, title: t.buyButtonText }, on: { click: function(i) {
+  return s("div", { staticClass: "buy-together-offer flex -between", class: { "-three": t.threeProducts, "-center-box": t.center } }, [t._l(t.products, function(i, r) {
+    return [s("div", { key: i.id, staticClass: "buy-together-product" }, [s("a", { staticClass: "-clean", attrs: { href: i.url_path } }, [s("div", [s("CustomImage", { key: t.url[i.id] ? t.url[i.id] : t.$get(i, "images.data.0.url"), staticClass: "-loading", attrs: { src: t.url[i.id] ? t.url[i.id] : t.$get(i, "images.data.0.url"), alt: i.name, thumbor: t.thumborFilters, width: "200", height: "200" } })], 1), s("div", { staticClass: "buy-together-quantity" }, [t._v(" 1 unidade ")]), s("div", { staticClass: "buy-together-product-name" }, [s("p", [t._v(t._s(i.name))])])]), s("SelectSku", { ref: "SelectSkuRef", refInFor: !0, attrs: { product: i }, on: { update: function(c) {
+      return t.updateSelectedSkus(r, c);
+    }, updateVariation: t.changeVariationImage } })], 1), s("div", { key: `${i.id}-icon`, class: `buy-together-${t.getIcon(r)}` }, [s("i", { staticClass: "icon", class: `icon-big-${t.getIcon(r)}` })])];
+  }), s("div", { staticClass: "buy-together-total" }, [t.discountTotal > 0 ? s("div", { staticClass: "total-value" }, [t._v(" Valor total: "), s("span", { staticClass: "old-price" }, [t._v(" " + t._s(t._f("formatMoney")(t.fullPrice)) + " ")])]) : t._e(), s("div", { staticClass: "final-value price" }, [t._v(" " + t._s(t._f("formatMoney")(t.priceWithDiscount)) + " "), s("br"), t.invalidSelectedPrice ? t._e() : s("span", { staticClass: "payment-type" }, [t._v(" " + t._s(t.price.text))])]), t.discountTotal > 0 ? s("div", { staticClass: "discount-value" }, [t._v(" Economize " + t._s(t._f("formatMoney")(t.discountTotal)) + " ")]) : t._e(), t.productsForCustomization.length ? s("BuyTogetherCustomization", { ref: "BuyTogether", staticClass: "ma-2", attrs: { "products-for-customization": t.productsForCustomization, "customized-products": t.customizedProducts, "combo-id": t.combo.id }, on: { click: t.handleBuyTogetherCustomization, save: t.handleSave, addSkuCustomization: t.addSkuCustomization, resetCustomizations: t.resetCustomizations } }) : t._e(), s("LoaderButton", { staticClass: "btn btn-primary mt-14", staticStyle: { width: "100%" }, attrs: { sending: t.loading, title: t.buyButtonText }, on: { click: function(i) {
     return t.addToCart();
   } } })], 1)], 2);
-}, P = [], $ = /* @__PURE__ */ S(
+}, z = [], P = /* @__PURE__ */ S(
+  b,
   k,
-  T,
-  P,
+  z,
   !1,
   null,
   null,
   null,
   null
 );
-const z = $.exports;
+const T = P.exports;
 function d(e) {
-  d.installed || (d.installed = !0, e.component("Combo", z));
+  d.installed || (d.installed = !0, e.component("Combo", T));
 }
-const B = {
+const $ = {
   install: d
 };
-let c = null;
-typeof window < "u" ? c = window.Vue : typeof global < "u" && (c = global.Vue);
-c && c.use(B);
+let l = null;
+typeof window < "u" ? l = window.Vue : typeof global < "u" && (l = global.Vue);
+l && l.use($);
 export {
-  z as default
+  T as default
 };
