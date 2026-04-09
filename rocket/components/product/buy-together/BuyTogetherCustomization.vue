@@ -5,7 +5,10 @@
             :class="{ error: customizationError }"
             @click="$emit('click')"
         >
-            <div v-if="productsForCustomization.length && !Object.keys(customizedProducts).length">
+            <div
+                v-if="productsForCustomization.length &&
+                    Object.keys(customizedProducts).length < productsForCustomization.length"
+            >
                 <p class="mt-12 mb-7">
                     Você tem
                     <span>{{ productsForCustomization.length }}</span>
@@ -35,7 +38,12 @@
 
         <ModalBuyTogetherCustomization
             ref="ModalBuyTogetherCustomization"
+            :products-for-customization="productsForCustomization"
+            :customized-products="customizedProducts"
+            :combo-id="comboId"
             @save="handleSave"
+            @addSkuCustomization="$emit('addSkuCustomization', $event)"
+            @resetCustomizations="$emit('resetCustomizations')"
         />
     </div>
 </template>
@@ -51,6 +59,21 @@ export default {
             type: Boolean,
             default: false,
         },
+
+        productsForCustomization: {
+            type: Array,
+            required: true,
+        },
+
+        customizedProducts: {
+            type: Object,
+            required: true,
+        },
+
+        comboId: {
+            type: [String, Number],
+            required: true,
+        },
     },
 
     data() {
@@ -61,8 +84,6 @@ export default {
     },
 
     computed: {
-        ...mapGetters('buyTogether', ['productsForCustomization', 'customizedProducts']),
-
         ...mapGetters('theme', ['themeStyle']),
 
         productsUserAlreadyCustomized() {
@@ -78,6 +99,14 @@ export default {
             }
 
             return true;
+        },
+    },
+
+    watch: {
+        customizedProducts() {
+            if (this.customizationError) {
+                this.checkError();
+            }
         },
     },
 

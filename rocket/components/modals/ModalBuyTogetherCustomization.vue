@@ -1,7 +1,7 @@
 <template>
     <Modal
         ref="baseModal"
-        name="ProductCustomization"
+        :name="`ProductCustomization-${comboId}`"
         :title="`${$tc('common.count-product', productsForCustomization.length)} para personalizar`"
         :scrollable="false"
     >
@@ -25,6 +25,7 @@
                         v-if="currentProductId === product.id"
                         :ref="`CustomizationContent-${product.id}`"
                         :sku="product"
+                        :customized-products="customizedProducts"
                     />
                 </div>
             </div>
@@ -48,10 +49,25 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from '~/vuex';
-
 export default {
     name: 'ModalBuyTogetherCustomization',
+
+    props: {
+        productsForCustomization: {
+            type: Array,
+            required: true,
+        },
+
+        customizedProducts: {
+            type: Object,
+            required: true,
+        },
+
+        comboId: {
+            type: [String, Number],
+            required: true,
+        },
+    },
 
     data() {
         return {
@@ -61,8 +77,6 @@ export default {
     },
 
     computed: {
-        ...mapGetters('buyTogether', ['productsForCustomization', 'customizedProducts']),
-
         isFirstProductActive() {
             return this.active === 0;
         },
@@ -91,8 +105,6 @@ export default {
     },
 
     methods: {
-        ...mapActions('buyTogether', ['addSkuCustomization', 'reset']),
-
         handleModal() {
             this.$refs.baseModal.handleModal();
         },
@@ -101,7 +113,7 @@ export default {
             this.currentProductRef.$refs.customizationContent.hasErrorInCustomizations();
 
             if (!this.currentProductRef.$refs.customizationContent.hasErrors) {
-                this.addSkuCustomization({
+                this.$emit('addSkuCustomization', {
                     [this.currentProductRef.sku.id]: {
                         ...this.currentProductRef.$refs.customizationContent.values,
                         isPersonalized: this.currentProductRef.skuCustomized,
@@ -117,7 +129,7 @@ export default {
 
             if (this.currentProductRef.$refs.customizationContent.hasErrors) return;
 
-            this.addSkuCustomization({
+            this.$emit('addSkuCustomization', {
                 [this.currentProductRef.sku.id]: {
                     isPersonalized: this.currentProductRef.$refs.customizationContent.skuCustomized,
                     isMandatory: !this.currentProductRef.sku.allow_sell_without_customization,
@@ -141,7 +153,7 @@ export default {
             }
 
             if (this.isFirstProductActive) {
-                this.reset();
+                this.$emit('resetCustomizations');
                 this.handleModal();
             }
         },
