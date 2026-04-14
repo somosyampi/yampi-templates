@@ -102,7 +102,7 @@ export default {
 
     },
 
-    async created() {
+    async mounted() {
         this.scroll();
 
         const observer = new IntersectionObserver(entries => {
