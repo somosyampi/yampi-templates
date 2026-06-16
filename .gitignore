@@ -1,3 +1,10 @@
 .env
 node_modules/
 *.sh
+
+# Clone temporario do rocket usado pelo workflow de build (CI)
+.rocket-src/
+
+# Assets gerados pelo workflow de build (efemeros, nao versionados — vivem no S3)
+rocket-assets/components/
+rocket-assets/css/
