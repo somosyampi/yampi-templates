@@ -8,7 +8,6 @@
 .box-product {
     display: inline-block;
     width: 100%;
-    max-width: var(--box-product-max-width);
     overflow: hidden;
 }
 
@@ -84,7 +83,6 @@
 
         img {
             width: 100%;
-            max-height: var(--box-product-max-width);
             border-radius: var(--grids-products-images-border);
         }
 
