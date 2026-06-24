@@ -57,16 +57,16 @@
     .category-content {
         .products-search-list,
         .products-list {
+            --products-grid-column-gap: 12px;
+            --products-grid-row-gap: 12px;
             margin: 0;
             padding: 0 16px;
             min-width: 100vw;
 
             &.-list {
-                flex-direction: row;
-                flex-wrap: wrap;
+                --products-grid-columns: 1;
 
                 .lazy-visibility.product-card {
-                    flex: 1 0 100%;
                     padding: 0 0 20px 0;
                     border-top: 1px solid var(--default-background-color);
                 }
@@ -110,13 +110,7 @@
             }
 
             &.-mosaic {
-                flex-direction: row;
-                justify-content: space-between;
-                flex-wrap: wrap;
-
-                .lazy-visibility.product-card {
-                    flex: 0 0 45%;
-                }
+                --products-grid-columns: 2;
 
                 /*
                 * Foi necessário definir uma altura mínima para os cards de produtos
@@ -141,20 +135,13 @@
             margin: 10px 0;
         }
 
-        .products-list.flex,
-        .products-list > .flex {
+        .products-list.-grid {
             margin-top: 0;
-
-            .box-product {
-                margin-left: 0;
-                margin-right: 0;
-            }
         }
 
         .grid-list {
             .products-list {
-                &.flex,
-                > .flex {
+                &.-grid {
                     display: block;
                     margin: 0 0 30px 0;
                 }
@@ -215,17 +202,6 @@
 
             .product-name {
                 min-height: auto;
-            }
-        }
-
-        .mosaic-column {
-            padding-left: 6px;
-            padding-right: 6px;
-            max-width: 50%;
-            text-align: center;
-
-            .box-product:not(.-center) {
-                text-align: left;
             }
         }
 
