@@ -109,3 +109,4 @@ jobs:
             --exclude ".github/*" \
             --exclude ".git/*" \
             --exclude ".rocket-src/*"
+            --exclude ".gitignore"
