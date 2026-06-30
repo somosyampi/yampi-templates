@@ -20,7 +20,6 @@
 </template>
 <script>
 import Cookies from '~/js-cookie';
-console.log('Teste CI');
 
 export default {
     name: 'CookiesWarning',
