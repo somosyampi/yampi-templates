@@ -31,12 +31,23 @@ jobs:
         with:
           persist-credentials: false
 
+      # TESTE: owner/repository apontam para o fork pedro-crv4/rocket.
+      # Reverter para owner=somosyampi e repository=somosyampi/rocket antes do merge.
+      - name: Gerar token do GitHub App (read-only no rocket)
+        id: rocket_token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          app-id: ${{ vars.ROCKET_APP_ID }}
+          private-key: ${{ secrets.ROCKET_APP_PRIVATE_KEY }}
+          owner: pedro-crv4
+          repositories: rocket
+
       - name: Checkout rocket (fonte + toolchain)
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
-          repository: somosyampi/rocket
+          repository: pedro-crv4/rocket
           ref: ${{ inputs.rocket_ref }}
-          token: ${{ secrets.ROCKET_REPO_TOKEN }}
+          token: ${{ steps.rocket_token.outputs.token }}
           path: .rocket-src
           persist-credentials: false
 
