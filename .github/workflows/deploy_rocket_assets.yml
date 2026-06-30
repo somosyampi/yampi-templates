@@ -27,7 +27,7 @@ jobs:
 
     steps:
       - name: Checkout yampi-templates
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
         with:
           persist-credentials: false
 
@@ -60,6 +60,13 @@ jobs:
         working-directory: .rocket-src
         run: yarn install --frozen-lockfile
 
+      - name: Injetar fonte do yampi-templates no .rocket-src
+        run: |
+          rsync -a --delete --exclude='*.js' \
+            rocket/components/ .rocket-src/resources/js/components/
+          rsync -a --delete \
+            rocket/assets/styles/ .rocket-src/resources/scss/
+
       - name: Build componentes Vue
         working-directory: .rocket-src
         run: node build-vue-files.mjs --all
@@ -76,21 +83,6 @@ jobs:
           cp -R .rocket-src/public/css/. rocket-assets/css/
           cp -R .rocket-src/.open-store/dist/vendor/. rocket-assets/dist/vendor/
 
-      - name: Sincronizar fonte rocket/ a partir do .rocket-src (mesmo ref)
-        run: |
-          rsync -a --delete \
-            --exclude='errors' \
-            --exclude='assets' \
-            --exclude='components' \
-            --exclude='head.twig' \
-            --exclude='preload.twig' \
-            --exclude='yampi-internals' \
-            .rocket-src/resources/twig/template/rocket/ rocket/
-          rsync -a --delete --exclude='*.js' \
-            .rocket-src/resources/js/components/ rocket/components/
-          rsync -a \
-            .rocket-src/resources/scss/ rocket/assets/styles/
-
       - name: Converter URLs sandbox -> producao (em memoria, sem commit)
         if: ${{ inputs.environment == 'production' }}
         run: |
@@ -100,7 +92,7 @@ jobs:
           grep -rl $EXCL 'images-dev.yampi' .             | xargs -r sed -i 's/images-dev.yampi/images.yampi/g'
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@254c19bd240aabef8777f48595e9d2d7b972184b # v6.2.1
+        uses: aws-actions/configure-aws-credentials@254c19bd240aabef8777f48595e9d2d7b972184b
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
