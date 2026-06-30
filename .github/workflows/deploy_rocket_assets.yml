@@ -67,6 +67,21 @@ jobs:
           cp -R .rocket-src/public/css/. rocket-assets/css/
           cp -R .rocket-src/.open-store/dist/vendor/. rocket-assets/dist/vendor/
 
+      - name: Sincronizar fonte rocket/ a partir do .rocket-src (mesmo ref)
+        run: |
+          rsync -a --delete \
+            --exclude='errors' \
+            --exclude='assets' \
+            --exclude='components' \
+            --exclude='head.twig' \
+            --exclude='preload.twig' \
+            --exclude='yampi-internals' \
+            .rocket-src/resources/twig/template/rocket/ rocket/
+          rsync -a --delete --exclude='*.js' \
+            .rocket-src/resources/js/components/ rocket/components/
+          rsync -a \
+            .rocket-src/resources/scss/ rocket/assets/styles/
+
       - name: Converter URLs sandbox -> producao (em memoria, sem commit)
         if: ${{ inputs.environment == 'production' }}
         run: |
