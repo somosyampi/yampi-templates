@@ -108,5 +108,5 @@ jobs:
             --delete \
             --exclude ".github/*" \
             --exclude ".git/*" \
-            --exclude ".rocket-src/*"
+            --exclude ".rocket-src/*" \
             --exclude ".gitignore"
