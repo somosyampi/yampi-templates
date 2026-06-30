@@ -55,16 +55,17 @@ jobs:
         working-directory: .rocket-src
         run: node build-vue-files.mjs --all
 
-      - name: Build SCSS/CSS
+      - name: Build assets (CSS + vendor via build:ci)
         working-directory: .rocket-src
-        run: yarn prod
+        run: yarn build:ci
 
-      - name: Sincronizar saida em rocket-assets (nao toca dist/)
+      - name: Sincronizar saida em rocket-assets
         run: |
-          rm -rf rocket-assets/components rocket-assets/css
-          mkdir -p rocket-assets/components rocket-assets/css
+          rm -rf rocket-assets/components rocket-assets/css rocket-assets/dist/vendor
+          mkdir -p rocket-assets/components rocket-assets/css rocket-assets/dist/vendor
           cp -R .rocket-src/.open-store/dist/components/. rocket-assets/components/
           cp -R .rocket-src/public/css/. rocket-assets/css/
+          cp -R .rocket-src/.open-store/dist/vendor/. rocket-assets/dist/vendor/
 
       - name: Converter URLs sandbox -> producao (em memoria, sem commit)
         if: ${{ inputs.environment == 'production' }}
