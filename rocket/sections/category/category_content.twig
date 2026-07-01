@@ -29,7 +29,7 @@
     >
         {% include 'elements/breadcrumbs.twig' with {'levels': breadcrumbLevels} %}
 
-        <div class="flex-holder container flex">
+        <div class="flex-holder container flex{{ section.params.filters_enabled ? '' : ' -no-filters' }}">
             {% if section.params.filters_enabled %}
                 <filters
                     :products-per-page="{{ section.params.products_per_page }}"
