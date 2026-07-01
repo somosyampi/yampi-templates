@@ -1,9 +1,3 @@
 .env
 node_modules/
 *.sh
-
-.rocket-src/
-
-rocket-assets/components/
-rocket-assets/css/
-rocket-assets/dist/vendor/
