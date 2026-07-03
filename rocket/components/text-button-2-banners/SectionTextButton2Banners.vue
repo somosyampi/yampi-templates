@@ -40,7 +40,7 @@
                     '--has-link': !!banner.link,
                 }"
                 width="158"
-                height="237"
+                height="auto"
                 @click="handleClick(banner)"
             />
         </div>
