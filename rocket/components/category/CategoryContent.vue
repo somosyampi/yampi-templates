@@ -40,6 +40,7 @@ import mobileMixin from '@/mixins/mobile';
 import search from '@/modules/axios/search';
 import cacheMixin from '@/mixins/cache';
 import { builderSearch, urlSearch } from '@/modules/search/searchHelpers';
+import { smoothScroll } from '@/mixins/helpers';
 
 const FILTER_QUERY_PARAMS = ['categories_name', 'brand_name', 'attributes', 'price', 'brand_id', 'category_id', 'filter_id', 'min', 'max'];
 
@@ -325,7 +326,15 @@ export default {
         async scrollToTop() {
             await this.$nextTick();
 
-            this.$refs.content.scrollIntoView({ behavior: 'smooth' });
+            const { content } = this.$refs;
+
+            if (!content) {
+                return;
+            }
+
+            const top = content.getBoundingClientRect().top + window.scrollY;
+
+            await smoothScroll(document.body, 0, top);
         },
     },
 };
