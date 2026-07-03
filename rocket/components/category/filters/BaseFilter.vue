@@ -28,6 +28,11 @@ export default {
         }
 
         this.$store.subscribe(({ type, payload }) => {
+            if (type === 'queryParams/EVENT_URL_UPDATED') {
+                this.syncActiveFilters();
+                return;
+            }
+
             if (type !== 'filters/REMOVE_ACTIVE_FILTER') {
                 return;
             }
@@ -44,19 +49,12 @@ export default {
 
     methods: {
         processQueryParams(payload) {
-            if (!this.queryParams[this.mainQueryString]) {
-                return payload;
-            }
-
-            const filterIds = this.queryParams[this.mainQueryString];
-
-            if (!filterIds.length) {
-                return payload;
-            }
+            const filterIds = this.queryParams[this.mainQueryString] || [];
 
             payload.forEach(item => {
                 item.active = filterIds.includes(item.id);
             });
+
             return payload;
         },
 
@@ -95,6 +93,21 @@ export default {
                 ...item,
                 active: this.queryParams[this.mainQueryString].includes(item.id),
             }));
+        },
+
+        syncActiveFilters() {
+            const items = this.currentPayload || this.payload;
+
+            if (!Array.isArray(items)) {
+                return;
+            }
+
+            const filterIds = this.queryParams[this.mainQueryString] || [];
+
+            items.forEach(item => {
+                item.active = filterIds.includes(item.id);
+                this.checkFilterStatus(item, false);
+            });
         },
 
         filterRemoved(filter) {

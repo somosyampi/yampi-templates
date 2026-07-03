@@ -147,6 +147,38 @@ export default {
                 .forEach(value => this.checkFilterStatus(value, false)));
         },
 
+        syncActiveFilters() {
+            if (this.shouldUseNewSearchStrategy) {
+                const attributes = this.parseAttributes(this.queryParams.attributes);
+
+                this.searchSelectedAttributes = attributes;
+
+                attributes.forEach(attribute => {
+                    const id = `${attribute.attributeName}-${attribute.value}`;
+
+                    this.addActiveFilter({
+                        id,
+                        key: 'attributes',
+                        query: { attributes: attribute },
+                        alias: `attributes-${id}`,
+                        name: attribute.value,
+                    });
+                });
+
+                return;
+            }
+
+            const groups = this.payload || [];
+            const filterIds = this.queryParams.filter_id || [];
+
+            groups.forEach(group => {
+                group.values.forEach(value => {
+                    value.active = filterIds.includes(value.id);
+                    this.checkFilterStatus(value, false);
+                });
+            });
+        },
+
         filterRemoved(filter) {
             if (filter.key === 'attributes') {
                 this.searchSelectedAttributes = this.searchSelectedAttributes.filter(

@@ -190,6 +190,15 @@ export default {
             this.parseFilterStatuses();
         },
 
+        syncActiveFilters() {
+            const min = Number(this.queryParams.min) || 0;
+            const max = Number(this.queryParams.max) || this.currentPayload.max;
+
+            this.value = [min, max];
+
+            this.parseFilterStatuses();
+        },
+
         filterRemoved() {
             this.value = [0, this.currentPayload.max];
         },
