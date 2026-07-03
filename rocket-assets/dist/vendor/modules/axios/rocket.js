@@ -1,1 +1,0 @@
-import"../../base.js";import i from"../../axios.js";import"../../index.js";const t=i.create({baseURL:window.location.origin||`${window.location.protocol}//${window.location.hostname}`});let o;t.interceptors.request.use(async e=>(o||(await window.yampiSessionPromise,o=window.Yampi.csrf_token),e.headers["X-CSRF-TOKEN"]=o,e));export{t as default};

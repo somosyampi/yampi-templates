@@ -1,1 +1,0 @@
-import{checkout as f,prices as s}from"../../checkout.js";import"../../helpers.js";import"../../base.js";import"../../axios.js";import"../../get.js";import"../../_commonjsHelpers.js";import"../../_getTag.js";import"../../index.js";export{f as default,s as prices};

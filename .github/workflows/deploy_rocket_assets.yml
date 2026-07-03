@@ -1,0 +1,113 @@
+name: Build & Deploy Rocket Assets
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Ambiente de deploy"
+        type: choice
+        options:
+          - sandbox
+          - production
+        default: sandbox
+      rocket_ref:
+        description: "Branch/tag/commit do rocket para buildar"
+        required: true
+        default: master
+
+permissions:
+  contents: read
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    env:
+      OPEN_STORE_TEMPLATE_COMPONENTS_URL: ${{ vars.OPEN_STORE_TEMPLATE_COMPONENTS_URL }}
+
+    steps:
+      - name: Checkout yampi-templates
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        with:
+          persist-credentials: false
+
+      - name: Gerar token do GitHub App (read-only no rocket)
+        id: rocket_token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1
+        with:
+          client-id: ${{ vars.ROCKET_APP_CLIENT_ID }}
+          private-key: ${{ secrets.ROCKET_APP_PRIVATE_KEY }}
+          owner: somosyampi
+          repositories: rocket
+
+      - name: Checkout rocket (fonte + toolchain)
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        with:
+          repository: somosyampi/rocket
+          ref: ${{ inputs.rocket_ref }}
+          token: ${{ steps.rocket_token.outputs.token }}
+          path: .rocket-src
+          persist-credentials: false
+
+      - name: Setup Node
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e
+        with:
+          node-version: 18
+          cache: yarn
+          cache-dependency-path: .rocket-src/yarn.lock
+
+      - name: Install dependencies
+        working-directory: .rocket-src
+        run: yarn install --frozen-lockfile
+
+      - name: Injetar fonte do yampi-templates no .rocket-src
+        run: |
+          rsync -a --delete --exclude='*.js' \
+            rocket/components/ .rocket-src/resources/js/components/
+          rsync -a --delete \
+            rocket/assets/styles/ .rocket-src/resources/scss/
+
+      - name: Build componentes Vue
+        working-directory: .rocket-src
+        run: node build-vue-files.mjs --all
+
+      - name: Build assets (CSS + vendor via build:ci)
+        working-directory: .rocket-src
+        run: yarn build:ci
+
+      - name: Sincronizar saida em rocket-assets
+        run: |
+          rm -rf rocket-assets/components rocket-assets/css rocket-assets/dist/vendor
+          mkdir -p rocket-assets/components rocket-assets/css rocket-assets/dist/vendor
+          cp -R .rocket-src/.open-store/dist/components/. rocket-assets/components/
+          cp -R .rocket-src/public/css/. rocket-assets/css/
+          cp -R .rocket-src/.open-store/dist/vendor/. rocket-assets/dist/vendor/
+
+      - name: Converter URLs sandbox -> producao (em memoria, sem commit)
+        if: ${{ inputs.environment == 'production' }}
+        run: |
+          EXCL='--exclude=*.yml --exclude=*.sh --exclude-dir=.git --exclude-dir=.github --exclude-dir=.rocket-src --exclude-dir=node_modules'
+          grep -rl $EXCL 'yampi-templates-sandbox' .      | xargs -r sed -i 's/yampi-templates-sandbox/yampi-templates-main/g'
+          grep -rl $EXCL 'codigo-aberto-sandbox-assets' . | xargs -r sed -i 's/codigo-aberto-sandbox-assets/openstore-production-assets/g'
+          grep -rl $EXCL 'images-dev.yampi' .             | xargs -r sed -i 's/images-dev.yampi/images.yampi/g'
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@254c19bd240aabef8777f48595e9d2d7b972184b
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+
+      - name: Deploy para o S3
+        run: |
+          if [ "${{ inputs.environment }}" = "production" ]; then
+            PREFIX="yampi-templates-main"
+          else
+            PREFIX="yampi-templates-sandbox"
+          fi
+          aws s3 sync ./ "s3://${{ secrets.AWS_BUCKET }}/$PREFIX" \
+            --delete \
+            --exclude ".github/*" \
+            --exclude ".git/*" \
+            --exclude ".rocket-src/*" \
+            --exclude ".gitignore"
