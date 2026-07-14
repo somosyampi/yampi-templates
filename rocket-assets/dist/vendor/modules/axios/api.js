@@ -1,1 +1,0 @@
-import{utms as i}from"../../helpers.js";import"../../base.js";import o from"../../axios.js";import"../../get.js";import"../../_commonjsHelpers.js";import"../../_getTag.js";import"../../index.js";const n=o.create({baseURL:`${window.Yampi.api_domain}/v2/${window.merchant.alias}/public/`,params:{...i}});export{n as default};

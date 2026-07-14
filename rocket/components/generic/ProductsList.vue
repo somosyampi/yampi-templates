@@ -1,31 +1,44 @@
 <template>
-    <div class="products-list">
-        <component
-            :is="tagOrDiv('splide')"
-            v-if="ready"
-            :options="carousel ? carouselOptions : null"
+    <div
+        class="products-list"
+        :class="{
+            '-grid': !carousel,
+            'single-per-line': isMobile && productsPerLine === 1,
+        }"
+    >
+        <Splide
+            v-if="carousel && ready"
+            :options="carouselOptions"
             :class="{
-                'flex -wrap': !carousel,
-                'single-per-line': isMobile && productsPerLine === 1,
-                '-no-pagination': carousel && products.length <= productsPerPage,
+                '-no-pagination': products.length <= productsPerPage,
             }"
-            :slides="carousel ? products : null"
+            :slides="products"
         >
-            <component
-                :is="tagOrDiv('splide-slide')"
+            <SplideSlide
                 v-for="product in products"
                 :key="product.id"
-                :class="{
-                    'box-product-wrapper': !carousel,
-                    '-loading': loading,
-                }"
+                :class="{ '-loading': loading }"
             >
                 <slot
                     :product="product"
                     :loading="loading"
                 />
-            </component>
-        </component>
+            </SplideSlide>
+        </Splide>
+
+        <template v-else-if="!carousel">
+            <div
+                v-for="product in products"
+                :key="product.id"
+                class="box-product-wrapper"
+                :class="{ '-loading': loading }"
+            >
+                <slot
+                    :product="product"
+                    :loading="loading"
+                />
+            </div>
+        </template>
     </div>
 </template>
 
@@ -114,12 +127,6 @@ export default {
                     this.ready = true;
                 });
             }
-        },
-    },
-
-    methods: {
-        tagOrDiv(tag) {
-            return this.carousel ? tag : 'div';
         },
     },
 };

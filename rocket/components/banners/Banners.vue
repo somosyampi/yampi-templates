@@ -72,6 +72,19 @@ import api from '@/modules/axios/api';
 import rocket from '@/modules/axios/rocket';
 import mobileMixin from '@/mixins/mobile';
 
+const EMPTY_DIMENSIONS = () => ({
+    desktop: { width: '0.00', height: '0.00' },
+    mobile: { width: '0.00', height: '0.00' },
+});
+
+const EMPTY_FIRST_BANNER = () => ({
+    id: null,
+    link: null,
+    image: null,
+    mobile_image: null,
+    stopwatch: null,
+});
+
 export default {
     name: 'Banners',
 
@@ -117,13 +130,13 @@ export default {
         },
 
         dimensions: {
-            type: Object,
-            default: () => ({}),
+            type: [Object, Array],
+            default: EMPTY_DIMENSIONS,
         },
 
         firstBanner: {
-            type: Object,
-            default: null,
+            type: [Object, Array],
+            default: EMPTY_FIRST_BANNER,
         },
 
         slug: {
@@ -188,19 +201,29 @@ export default {
         },
 
         loaderRatio() {
-            let width = parseFloat(this.dimensions?.desktop?.width);
-            let height = parseFloat(this.dimensions?.desktop?.height);
+            const { desktop, mobile } = this.normalizedDimensions;
+            const device = this.isMobile ? mobile : desktop;
 
-            if (this.isMobile) {
-                width = parseFloat(this.dimensions?.mobile?.width) || width;
-                height = parseFloat(this.dimensions?.mobile?.height) || height;
+            const width = parseFloat(device.width) || parseFloat(desktop.width);
+            const height = parseFloat(device.height) || parseFloat(desktop.height);
+
+            return width ? height / width : 0;
+        },
+
+        normalizedDimensions() {
+            if (Array.isArray(this.dimensions) || !this.dimensions) {
+                return EMPTY_DIMENSIONS();
             }
 
-            if (!width) {
-                return 0;
+            return this.dimensions;
+        },
+
+        normalizedFirstBanner() {
+            if (Array.isArray(this.firstBanner) || !this.firstBanner) {
+                return EMPTY_FIRST_BANNER();
             }
 
-            return height / width;
+            return this.firstBanner;
         },
 
         sectionIsMainBanner() {
@@ -219,14 +242,14 @@ export default {
     },
 
     mounted() {
-        if (this.firstBanner) {
+        if (this.normalizedFirstBanner.id) {
             const bannerModel = {
-                id: this.firstBanner.id,
+                id: this.normalizedFirstBanner.id,
                 type: '',
-                link: this.firstBanner.link,
-                image_url: this.firstBanner.image,
-                mobile_image_url: this.firstBanner.mobile_image,
-                stopwatch: this.firstBanner.stopwatch,
+                link: this.normalizedFirstBanner.link,
+                image_url: this.normalizedFirstBanner.image,
+                mobile_image_url: this.normalizedFirstBanner.mobile_image,
+                stopwatch: this.normalizedFirstBanner.stopwatch,
             };
 
             this.banners.push(bannerModel);
@@ -287,8 +310,8 @@ export default {
 
             const dimensionTypes = ['width', 'height'];
 
-            const bannerDimensions = this.firstBanner?.id === banner.id
-                ? this.dimensions
+            const bannerDimensions = this.normalizedFirstBanner.id === banner.id
+                ? this.normalizedDimensions
                 : banner.dimensions;
 
             const device = this.isMobile
@@ -339,8 +362,8 @@ export default {
                     return;
                 }
 
-                if (this.firstBanner) {
-                    const firstBannerIndex = this.ids.indexOf(this.firstBanner.id);
+                if (this.normalizedFirstBanner.id) {
+                    const firstBannerIndex = this.ids.indexOf(this.normalizedFirstBanner.id);
 
                     ids.splice(firstBannerIndex, 1);
                 }
@@ -372,7 +395,7 @@ export default {
                     return;
                 }
 
-                if (this.firstBanner) {
+                if (this.normalizedFirstBanner.id) {
                     this.banners = this.banners.concat(data.data);
                     return;
                 }

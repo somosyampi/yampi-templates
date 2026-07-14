@@ -40,6 +40,7 @@ import mobileMixin from '@/mixins/mobile';
 import search from '@/modules/axios/search';
 import cacheMixin from '@/mixins/cache';
 import { builderSearch, urlSearch } from '@/modules/search/searchHelpers';
+import { smoothScroll } from '@/mixins/helpers';
 
 const FILTER_QUERY_PARAMS = ['categories_name', 'brand_name', 'attributes', 'price', 'brand_id', 'category_id', 'filter_id', 'min', 'max'];
 
@@ -103,20 +104,6 @@ export default {
     watch: {
         isMosaic() {
             this.handleGridCookie();
-
-            if (this.isMosaic) {
-                return this.displayMosaicGrid();
-            }
-
-            return this.displayListGrid();
-        },
-
-        isMobile() {
-            if (this.isMobile && this.isMosaic) {
-                return this.displayMosaicGrid();
-            }
-
-            return this.displayListGrid();
         },
     },
 
@@ -144,8 +131,6 @@ export default {
                 this.updateFilters();
                 this.loadCountPaginate();
             });
-
-            this.displayMosaicGrid();
         } catch (e) {
             console.error(e);
         } finally {
@@ -245,82 +230,7 @@ export default {
             } finally {
                 this.loading = false;
             }
-
-            this.displayMosaicGrid();
         }),
-
-        displayMosaicGrid() {
-            if (this.shouldUseNewSearchStrategy) {
-                return;
-            }
-
-            this.$nextTick(() => {
-                if (!this.isMobile || !this.isMosaic) {
-                    return;
-                }
-
-                const parent = this.getResultsElement();
-                const holder = parent.getElementsByClassName('products-list')[0];
-                const list = Array.from(parent.getElementsByClassName('box-product'));
-
-                if (!holder) {
-                    return;
-                }
-
-                const columnLeft = document.createElement('div');
-                const columnRight = document.createElement('div');
-
-                columnLeft.classList.add('mosaic-column');
-                columnRight.classList.add('mosaic-column');
-
-                for (let i = 0; i < list.length; i++) {
-                    const element = list[i];
-                    const destiny = i % 2 === 0 ? columnLeft : columnRight;
-
-                    if (element) {
-                        destiny.appendChild(element);
-                        element.setAttribute('order', i);
-                    }
-                }
-
-                holder.append(columnLeft);
-                holder.append(columnRight);
-
-                if (this.newHtml) {
-                    this.newHtml = parent.innerHTML;
-                }
-            });
-        },
-
-        displayListGrid() {
-            if (this.shouldUseNewSearchStrategy) {
-                return;
-            }
-
-            this.$nextTick(() => {
-                const parent = this.getResultsElement();
-                const holder = parent.getElementsByClassName('products-list')[0];
-                const totalProducts = parent.getElementsByClassName('box-product').length;
-                const getMosaicColumn = () => parent.querySelector('.mosaic-column');
-
-                for (let i = 0; i < totalProducts; i++) {
-                    const element = parent.querySelector(`.box-product[order="${i}"]`);
-
-                    if (element) {
-                        holder.append(element);
-                    }
-                }
-
-                let mosaicColumn = getMosaicColumn();
-
-                while (mosaicColumn) {
-                    mosaicColumn.remove();
-                    mosaicColumn = getMosaicColumn();
-                }
-
-                this.newHtml = parent.innerHTML;
-            });
-        },
 
         getResultsElement() {
             let element = document;
@@ -416,7 +326,15 @@ export default {
         async scrollToTop() {
             await this.$nextTick();
 
-            this.$refs.content.scrollIntoView({ behavior: 'smooth' });
+            const { content } = this.$refs;
+
+            if (!content) {
+                return;
+            }
+
+            const top = content.getBoundingClientRect().top + window.scrollY;
+
+            await smoothScroll(document.body, 0, top);
         },
     },
 };

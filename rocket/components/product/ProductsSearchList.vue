@@ -2,7 +2,7 @@
     <div>
         <div
             v-if="products?.length"
-            class="products-search-list flex"
+            class="products-search-list"
             :class="{
                 '-mosaic': isMosaic,
                 '-list': !isMosaic,
