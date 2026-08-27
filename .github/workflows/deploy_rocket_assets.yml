@@ -81,7 +81,7 @@ jobs:
           mkdir -p rocket-assets/components rocket-assets/css rocket-assets/dist/vendor
           cp -R .rocket-src/.open-store/dist/components/. rocket-assets/components/
           cp -R .rocket-src/public/css/. rocket-assets/css/
-          cp -R .rocket-src/.open-store/dist/vendor/. rocket-assets/dist/vendor/
+          cp -R .rocket-src/public/dist/vendor/. rocket-assets/dist/vendor/
 
       - name: Converter URLs sandbox -> producao (em memoria, sem commit)
         if: ${{ inputs.environment == 'production' }}
