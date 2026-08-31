@@ -148,6 +148,12 @@ export default {
             };
         },
 
+        hasPaymentMethodDiscount() {
+            const { configured, percentage } = this.getCartValueByPaymentMethod;
+
+            return configured && percentage > 0;
+        },
+
         validCashback() {
             const subtotal = parseFloat(this.cart.prices.subtotal);
             return this.getValidCashback(this.cashbacks, subtotal);
