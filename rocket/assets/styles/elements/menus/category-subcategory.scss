@@ -36,6 +36,7 @@
         padding: 28px 0 32px;
         background: var(--default-background-color);
         border-radius: var(--theme-border-radius);
+        min-height: 100%;
 
         &.-is-loading {
             display: none;
