@@ -76,21 +76,6 @@ export default {
             );
         },
 
-        totalValueCustomizations() {
-            return this.items.reduce((totalCustomizationsProduct, product) => {
-                if (!product.customizations.length) {
-                    return totalCustomizationsProduct;
-                }
-
-                return product.customizations.filter(
-                    customization => customization.selected_value !== null,
-                ).reduce(
-                    (totalCustomizations, customization) => parseFloat(customization.price) + totalCustomizations,
-                    totalCustomizationsProduct,
-                );
-            }, 0);
-        },
-
         sortedByFreebies() {
             const itemsArrayCopy = _.cloneDeep(this.items);
             return itemsArrayCopy.sort((a, b) => b.is_freebie - a.is_freebie);
@@ -110,21 +95,33 @@ export default {
             }, 0);
         },
 
+        // items_discount vem do checkout já somado com o desconto de carrinho
+        // (cupom, progressivo, kits), então subtraímos para isolar o "de/por".
+        promotionDiscount() {
+            if (!this.cart.prices) {
+                return 0;
+            }
+
+            return parseFloat(this.cart.prices.items_discount)
+                - parseFloat(this.cart.prices.discount_without_wallet);
+        },
+
         totalCartValue() {
             if (!this.cart.prices) {
                 return 0;
             }
 
-            return (
-                parseFloat(this.cart.prices.items_amount)
-                + this.totalValueCustomizations
-            );
+            return parseFloat(this.cart.prices.items_amount)
+                + this.promotionDiscount;
         },
 
         totalCartSavings() {
-            const subtotal = parseFloat(this.cart.prices.subtotal);
-            const cartDiscount = parseFloat(this.cart.prices.discount);
-            return this.totalCartValue - subtotal + cartDiscount;
+            if (!this.cart.prices) {
+                return 0;
+            }
+
+            return this.promotionDiscount
+                + parseFloat(this.cart.prices.discount);
         },
 
         shouldShowCartSavings() {
