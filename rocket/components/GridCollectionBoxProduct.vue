@@ -110,7 +110,9 @@ export default {
 
                 this.product = payload;
             } catch (e) {
-                if (e.response.status >= 400 && this.isPreview) {
+                const status = e?.response?.status;
+
+                if (status >= 400 && this.isPreview) {
                     await this.loadPlaceholders();
                 }
             }
