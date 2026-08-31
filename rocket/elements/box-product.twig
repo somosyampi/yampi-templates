@@ -27,7 +27,13 @@
         >
             <div class="holder-image relative-tags">
                 {% if pageConfig.data.theme.params.grids_label_discount_tag %}
-                    <discount-tag :value="{{ vuetify(product, 'product', 'prices.data.percent_discount', false) }}"></discount-tag>
+                    <discount-tag
+                        {% if product %}
+                            :product="{{ product | json_encode }}"
+                        {% else %}
+                            :product="data.product"
+                        {% endif %}
+                    ></discount-tag>
                 {% endif %}
 
                 <div class="image-ratio --{{pageConfig.data.theme.params.grids_image_fit_behavior | default('contain') }}">

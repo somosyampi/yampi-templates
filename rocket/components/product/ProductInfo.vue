@@ -6,6 +6,7 @@
             :warranty="validProduct.warranty"
             :price="price"
             :selected-price="selectedPrice"
+            :percent-discount="percentDiscount"
             :price-text="priceText"
             :loading-prices="loadingPrices"
         />
