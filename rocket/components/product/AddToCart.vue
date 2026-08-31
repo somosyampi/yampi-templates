@@ -42,8 +42,6 @@ export default {
         ...mapGetters('cart', ['cartType']),
 
         ...mapGetters('preview', ['isPreview']),
-
-        ...mapActions('cart', ['addProductsToCart']),
     },
 
     mounted() {
@@ -84,6 +82,7 @@ export default {
 
     methods: {
         ...mapActions('cart', [
+            'addProductsToCart',
             'redirectToCart',
         ]),
 
