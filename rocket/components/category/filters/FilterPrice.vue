@@ -157,6 +157,8 @@ export default {
             const [min, max] = this.value;
 
             if (min === 0 && max === this.currentPayload.max) {
+                this.removeActiveFilter({ alias: 'price' });
+
                 return;
             }
 

@@ -131,8 +131,7 @@
                 </div>
 
                 <div
-                    v-if="highlightedPrice === 'billet' &&
-                        getCartValueByPaymentMethod.configured"
+                    v-if="highlightedPrice === 'billet' && hasPaymentMethodDiscount"
                     class="side-cart-total-value mb-24"
                 >
                     <div class="side-cart-row">
@@ -146,8 +145,7 @@
                 </div>
 
                 <div
-                    v-if="highlightedPrice === 'pix' &&
-                        getCartValueByPaymentMethod.configured"
+                    v-if="highlightedPrice === 'pix' && hasPaymentMethodDiscount"
                     class="side-cart-total-value mb-24"
                 >
                     <div class="side-cart-row">

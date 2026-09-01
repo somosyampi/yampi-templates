@@ -186,13 +186,11 @@
 								{% if storeDocument %}
 									<span class="store-document">
 										{{ isBusiness ? 'CNPJ:' : 'CPF:' }}
-										<a href="javascript:" class="no-action -clean">
-											{% if isBusiness %}
-												{{ storeDocument | mask('##.###.###/####-##') }}
-											{% else %}
-												{{ storeDocument | mask('###.###.###-##') }}
-											{% endif %}
-										</a>
+                                        {% if isBusiness %}
+                                            {{ storeDocument | mask('##.###.###/####-##') }}
+                                        {% else %}
+                                            {{ storeDocument | mask('###.###.###-##') }}
+                                        {% endif %}
 									</span>
 								{% endif %}
 							{% endif %}

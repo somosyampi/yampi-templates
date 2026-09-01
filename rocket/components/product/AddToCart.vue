@@ -42,8 +42,6 @@ export default {
         ...mapGetters('cart', ['cartType']),
 
         ...mapGetters('preview', ['isPreview']),
-
-        ...mapActions('cart', ['addProductsToCart']),
     },
 
     mounted() {
@@ -84,6 +82,7 @@ export default {
 
     methods: {
         ...mapActions('cart', [
+            'addProductsToCart',
             'redirectToCart',
         ]),
 
@@ -128,7 +127,9 @@ export default {
 
                 this.productData = data.data;
             } catch (error) {
-                if (error.response.status >= 400 && this.isPreview) {
+                const status = error?.response?.status;
+
+                if (status >= 400 && this.isPreview) {
                     await this.loadPlaceholders();
                 }
             }

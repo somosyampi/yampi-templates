@@ -64,11 +64,14 @@ export default {
             }
 
             this.removeActiveFilter(filter);
-            this.setQueryParams({ ...filter.query, page: 1 });
 
             if (filter.alias === 'price') {
-                this.removeQueryParams({ key: Object.keys(filter.query) });
+                this.removeQueryParams({ key: ['min', 'max', 'page'] });
+
+                return;
             }
+
+            this.setQueryParams({ ...filter.query, page: 1 });
         },
     },
 };

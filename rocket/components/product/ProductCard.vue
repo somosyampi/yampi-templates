@@ -13,7 +13,7 @@
             <div class="holder-image relative-tags">
                 <DiscountTag
                     v-if="showDiscountTag"
-                    :value="percentDiscount"
+                    :product="product"
                 />
                 <div
                     class="image-ratio"
@@ -88,14 +88,12 @@
 </template>
 
 <script>
-import pricesMixin from '@/mixins/prices';
 import productCardTheme from '@/mixins/productCardTheme';
 
 export default {
     name: 'ProductCard',
 
     mixins: [
-        pricesMixin,
         productCardTheme,
     ],
 
