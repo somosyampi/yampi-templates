@@ -24,6 +24,7 @@ jobs:
     environment: ${{ inputs.environment }}
     env:
       OPEN_STORE_TEMPLATE_COMPONENTS_URL: ${{ vars.OPEN_STORE_TEMPLATE_COMPONENTS_URL }}
+      OPEN_STORE_VENDOR_URL: ${{ vars.OPEN_STORE_VENDOR_URL }}
 
     steps:
       - name: Checkout yampi-templates
